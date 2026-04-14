@@ -797,5 +797,14 @@ public class TCRENLangGenerator extends TCRLangProvider {
         this.addDialogAnswer(TCRBossEntities.VALKYRIE.get(), 2, "%s? Very well then. Bring me ten %s from my subordinates to prove your worth, then we'll see.");
         this.addDialogOption(TCRBossEntities.VALKYRIE.get(), 2, "[You have no destiny to do this.(%s)]");
         this.addDialogOption(TCRBossEntities.VALKYRIE.get(), 3, "§a[Start Challenge]");
+
+        this.addDialogOption(TCRBossEntities.EVENING_GHOST.get(), -1, "[Return]");
+        this.addDialogOption(TCRBossEntities.EVENING_GHOST.get(), 0, "Who are you?");
+        this.addDialogOption(TCRBossEntities.EVENING_GHOST.get(), 1, "About [%s]");
+        this.addDialogOption(TCRBossEntities.EVENING_GHOST.get(), 2, "[Leave]");
+        this.addDialogOption(TCRBossEntities.EVENING_GHOST.get(), 3, "Prepare to fight!");
+        this.addDialogAnswer(TCRBossEntities.EVENING_GHOST.get(), 0, "... (No sign of life, just a corpse)");
+        this.addDialogAnswer(TCRBossEntities.EVENING_GHOST.get(), 1, "... (No response)");
+        this.addDialogAnswer(TCRBossEntities.EVENING_GHOST.get(), 2, "!! (Seems alert)");
     }
 }

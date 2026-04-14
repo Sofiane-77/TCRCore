@@ -799,6 +799,15 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.addDialogOption(TCRBossEntities.VALKYRIE.get(), 2, "我没资格啊，我没资格(%s)");
         this.addDialogOption(TCRBossEntities.VALKYRIE.get(), 3, "§a[开启挑战]");
 
+        this.addDialogOption(TCRBossEntities.EVENING_GHOST.get(), -1, "[返回]");
+        this.addDialogOption(TCRBossEntities.EVENING_GHOST.get(), 0, "你是何人？");
+        this.addDialogOption(TCRBossEntities.EVENING_GHOST.get(), 1, "关于[%s]");
+        this.addDialogOption(TCRBossEntities.EVENING_GHOST.get(), 2, "[离开]");
+        this.addDialogOption(TCRBossEntities.EVENING_GHOST.get(), 3, "准备迎战！");
+        this.addDialogAnswer(TCRBossEntities.EVENING_GHOST.get(), 0, "...（没有任何生息，似乎只是一具残骸）");
+        this.addDialogAnswer(TCRBossEntities.EVENING_GHOST.get(), 1, "...（没有任何回应）");
+        this.addDialogAnswer(TCRBossEntities.EVENING_GHOST.get(), 2, "！！（似乎警惕了起来）");
+
 
     }
 }

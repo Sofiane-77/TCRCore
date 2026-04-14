@@ -59,6 +59,7 @@ import com.p1nero.tcrcore.entity.TCREntities;
 import com.p1nero.tcrcore.entity.custom.fake_npc.fake_end_golem.FakeEndGolem;
 import com.p1nero.tcrcore.entity.custom.fake_npc.fake_sky_golem.FakeSkyGolem;
 import com.p1nero.tcrcore.entity.custom.mimic.TCRMimic;
+import com.p1nero.tcrcore.entity.custom.tutorial_golem.TutorialGolem;
 import com.p1nero.tcrcore.entity.custom.tutorial_humanoid.TutorialHumanoid;
 import com.p1nero.tcrcore.gameassets.TCRSkills;
 import com.p1nero.tcrcore.item.TCRItems;
@@ -75,6 +76,8 @@ import io.redspace.ironsspellbooks.registries.ItemRegistry;
 import net.genzyuro.uniqueaccessories.registry.UAItems;
 import net.kenddie.fantasyarmor.item.FAItems;
 import net.magister.bookofdragons.entity.base.dragon.DragonBase;
+import net.mehvahdjukaar.dummmmmmy.network.ClientBoundDamageNumberMessage;
+import net.mehvahdjukaar.dummmmmmy.network.NetworkHandler;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -863,6 +866,15 @@ public class LivingEntityEventListeners {
         }
     }
 
+    @SubscribeEvent
+    public static void onLivingDamage(LivingDamageEvent event) {
+        if(event.getEntity() instanceof TutorialGolem tutorialGolem && event.getSource().getEntity() instanceof ServerPlayer serverPlayer) {
+            tutorialGolem.addTotalDamage(event.getAmount());
+            serverPlayer.displayClientMessage(TCRCoreMod.getInfo("hurt_damage", String.format("%.2f / s", tutorialGolem.getTotalDamagePerSecond())).withStyle(ChatFormatting.GOLD), true);
+            NetworkHandler.CHANNEL.sendToClientPlayer(serverPlayer, new ClientBoundDamageNumberMessage(event.getEntity(), event.getAmount(), event.getSource(), null));
+        }
+    }
+
     /**
      * 有避水咒就减少呼吸消耗
      */
@@ -943,9 +955,11 @@ public class LivingEntityEventListeners {
                     TCRCoreMod.LOGGER.info("开发环境，跳过设置[{}]的出生点", boss.getDisplayName().getString());
                 }
             }
-            if(boss instanceof ValkyrieQueenEntity && !boss.getTags().contains("started")) {
-                boss.setInFighting(false);//限对话开启
+            //除了黄金处刑者以外都要对话开启
+            if(!(boss instanceof GoldenExecutorEntity) && !boss.getTags().contains("started")) {
+                boss.setInFighting(false);
                 boss.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
+                TCRCoreMod.LOGGER.info("Boss [{}] 已限制对话开启挑战", boss.getDisplayName().getString());
             }
         }
 

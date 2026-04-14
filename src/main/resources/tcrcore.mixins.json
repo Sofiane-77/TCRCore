@@ -104,7 +104,8 @@
     "epicfight.RenderEngineEventsMixin",
     "epicfight.SkillTreeScreenAccessor",
     "epicfight.SkillTreeScreenMixin",
-    "ftbq.QuestScreenMixin"
+    "ftbq.QuestScreenMixin",
+    "mmmmmmmmmmmm.ClientBoundDamageNumberMessageMixin"
   ],
   "injectors": {
     "defaultRequire": 1
