@@ -762,9 +762,12 @@ public class LivingEntityEventListeners {
                     }
                 }
             }
-        }
-
-        if (event.getEntity() instanceof EvilSkeleton
+        } else if(event.getEntity() instanceof BaseSmallBossEntity boss) {
+            if (event.getSource().is(DamageTypes.IN_WALL) || event.getSource().is(DamageTypes.OUTSIDE_BORDER)) {
+                event.setCanceled(true);
+                boss.teleportToSpawnPos();
+            }
+        } else if (event.getEntity() instanceof EvilSkeleton
                 || event.getEntity() instanceof Saulomonk) {
             if (event.getSource().getEntity() instanceof Player player) {
                 player.addEffect(new MobEffectInstance(EFNMobEffectRegistry.SIN_STUN_IMMUNITY.get(), 100, 0));
@@ -773,13 +776,13 @@ public class LivingEntityEventListeners {
         }
 
         //重生保护
-        if (event.getEntity() instanceof Bone_Chimera_Entity boneChimeraEntity) {
+        else if (event.getEntity() instanceof Bone_Chimera_Entity boneChimeraEntity) {
             if (boneChimeraEntity.isDeadOrDying()) {
                 event.setCanceled(true);
             }
         }
 
-        if (event.getEntity() instanceof ServerPlayer serverPlayer) {
+        else if (event.getEntity() instanceof ServerPlayer serverPlayer) {
 
             //被打死重置状态
             if (event.getSource().getEntity() instanceof Bone_Chimera_Entity boneChimeraEntity) {
@@ -797,7 +800,7 @@ public class LivingEntityEventListeners {
         }
 
         //还没对话不能开打
-        if (event.getEntity() instanceof EndGolem endGolem) {
+        else if (event.getEntity() instanceof EndGolem endGolem) {
             if (!endGolem.level().isClientSide) {
                 if (!TCREntityCapabilityProvider.getTCREntityPatch(endGolem).isFighting()) {
                     if (event.getSource().getEntity() instanceof Player player) {

@@ -823,7 +823,7 @@
 				item: "tcrcore:ancient_oracle_fragment"
 				type: "item"
 			}]
-			x: 0.0d
+			x: 1.0d
 			y: -3.0d
 		}
 	]

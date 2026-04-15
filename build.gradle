@@ -201,6 +201,7 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     implementation "maven.modrinth:preloading-tricks:3.2.2"
+//    implementation fg.deobf("curse.maven:registry-blocker-1118861:6998623")
     implementation ("libs:tcrmodfilter:1.0.4")
 //    implementation fg.deobf("libs:pbf:1.1.0")
     implementation fg.deobf("curse.maven:p1neros-primal-arena-dimension-1369741:7147163")
@@ -240,7 +241,7 @@ dependencies {
 
     implementation fg.deobf("curse.maven:epicfight-nightfall-1307848:7788590")
     implementation fg.deobf("curse.maven:combat-evolution-1377795:7780749")
-    implementation fg.deobf("libs:tcr_bosses:1.1.4")
+    implementation fg.deobf("libs:tcr_bosses:1.1.6")
     implementation fg.deobf("libs:tcrmeshes:1.0.0")
     implementation fg.deobf("curse.maven:epic-fight-the-mimic-1360684:7717502")
 

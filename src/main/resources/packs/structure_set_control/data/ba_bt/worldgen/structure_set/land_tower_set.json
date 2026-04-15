@@ -1,6 +1,6 @@
 {
   "placement": {
-    "type": "ba_bt:tower_structure_placement",
+    "type": "yungsapi:enhanced_random_spread",
     "salt": 7211184,
     "separation": 32,
     "spacing": 36,
@@ -9,8 +9,10 @@
       0,
       8
     ],
-    "avoid_structure_sets": "#ba_bt:land_tower_avoid_structures",
-    "min_distance_from_avoid_structures": 3
+    "enhanced_exclusion_zone": {
+      "other_set": "#ba_bt:land_tower_avoid_structures",
+      "chunk_count": 3
+    }
   },
   "structures": [
     {

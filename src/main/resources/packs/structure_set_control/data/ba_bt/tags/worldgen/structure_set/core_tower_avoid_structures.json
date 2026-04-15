@@ -1,8 +1,6 @@
 {
   "values": [
-    "minecraft:strongholds",
     "minecraft:ancient_cities",
-    "minecraft:mineshafts",
     "dodosmobs:jungle_prison",
     "ba_bt:land_tower_set"
   ]
