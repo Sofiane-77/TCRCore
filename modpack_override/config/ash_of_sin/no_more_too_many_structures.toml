@@ -3,7 +3,7 @@
 only_overlap = false
 #Radius (in blocks) to check for nearby structures/features. 0.0 ~ 1000.0
 #Range: 0.0 ~ 1000.0
-checkRadius = 50.0
+checkRadius = 75.0
 #Maximum number of structures/features allowed within the radius. 0 ~ 16
 #Range: 0 ~ 16
 maxNearby = 1
