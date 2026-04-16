@@ -10,7 +10,8 @@
 	#Structures that will always generate regardless of overlap (registry names). Example: 'minecraft:ancient_city'
 	whitelistStructures = ["cataclysm:soul_black_smith", "cataclysm:ruined_citadel", "cataclysm:burning_arena", "cataclysm:ancient_factory", "cataclysm:sunken_city", "cataclysm:cursed_pyramid", "cataclysm:frosted_prison", "cataclysm:acropolis",#灾变维度
         "betterfortresses:fortress", "irons_spellbooks:citadel", "tcrcore:gate_of_disaster",#地狱结构
-        "aquamirae:ship", "aquamirae:shelter", "aquamirae:outpost", "aquamirae:surface/arch", "aquamirae:surface/spiral",#海灵
+        "ba_bt:land_tower", "ba_bt:ocean_tower", "ba_bt:core_tower", "dodosmobs:jungle_prison", "ribbits:ribbit_village", "tlc:lost_castle", #主世界
+        "aquamirae:ship", "aquamirae:shelter",#海灵
         "aether:silver_dungeon", "aether:gold_dungeon", "lost_aether_content:platinum_dungeon"]#天境结构
 	#Features that will always generate regardless of overlap (registry names). Example: 'minecraft:tree'
 	whitelistFeatures = []

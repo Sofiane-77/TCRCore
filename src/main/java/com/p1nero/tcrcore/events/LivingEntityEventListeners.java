@@ -3,6 +3,8 @@ package com.p1nero.tcrcore.events;
 import com.aetherteam.aether.entity.monster.dungeon.Mimic;
 import com.aetherteam.aether.entity.monster.dungeon.Valkyrie;
 import com.brass_amber.ba_bt.block.block.BTChestBlock;
+import com.brass_amber.ba_bt.block.blockentity.BTChestBlockEntity;
+import com.brass_amber.ba_bt.entity.block.BTAbstractObelisk;
 import com.brass_amber.ba_bt.entity.block.BTMonolith;
 import com.brass_amber.ba_bt.entity.hostile.golem.*;
 import com.brass_amber.ba_bt.init.BTEntityType;
@@ -134,6 +136,7 @@ import org.merlin204.wraithon.entity.wraithon.WraithonEntity;
 import org.merlin204.wraithon.worldgen.WraithonDimensions;
 import reascer.wom.main.WeaponsOfMinecraft;
 import reascer.wom.world.entity.mob.EvilSkeleton;
+import reascer.wom.world.entity.mob.Hollow;
 import reascer.wom.world.entity.mob.Saulomonk;
 import yesman.epicfight.api.animation.AnimationPlayer;
 import yesman.epicfight.client.input.EpicFightKeyMappings;
@@ -604,6 +607,18 @@ public class LivingEntityEventListeners {
                     }
                 }
                 ItemUtil.addItemEntity(livingEntity, item, 1, ChatFormatting.GOLD.getColor());
+
+//                //开箱子保险?
+//                List<BTAbstractObelisk> list = serverLevel.getEntitiesOfClass(BTAbstractObelisk.class, new AABB(home).inflate(60.0F, 200.0F, 60.0F));
+//                if(!list.isEmpty()) {
+//                    BTAbstractObelisk obelisk = list.get(0);
+//                    obelisk.golemDead = true;
+//                    BlockPos.betweenClosed(home.offset(-30, -10, -30), home.offset(30, 10, 30)).forEach(pos -> {
+//                        if(serverLevel.getBlockEntity(pos) instanceof BTChestBlockEntity chest) {
+//
+//                        }
+//                    });
+//                }
             }
 
             //一些杂乱战利品
@@ -763,15 +778,21 @@ public class LivingEntityEventListeners {
                 }
             }
         } else if(event.getEntity() instanceof BaseSmallBossEntity boss) {
+            if(!boss.isInFighting() && event.getSource().getEntity() instanceof Player player) {
+                player.displayClientMessage(TCRCoreMod.getInfo("talk_to_start").withStyle(ChatFormatting.GOLD), true);
+            }
             if (event.getSource().is(DamageTypes.IN_WALL) || event.getSource().is(DamageTypes.OUTSIDE_BORDER)) {
                 event.setCanceled(true);
                 boss.teleportToSpawnPos();
             }
-        } else if (event.getEntity() instanceof EvilSkeleton
+        } else if (
+                event.getEntity() instanceof Hollow
+                || event.getEntity() instanceof EvilSkeleton
                 || event.getEntity() instanceof Saulomonk) {
             if (event.getSource().getEntity() instanceof Player player) {
                 player.addEffect(new MobEffectInstance(EFNMobEffectRegistry.SIN_STUN_IMMUNITY.get(), 100, 0));
-                player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 2));
+                player.addEffect(new MobEffectInstance(EpicFightMobEffects.STUN_IMMUNITY.get(), 100, 0));
+                player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 3));
             }
         }
 
