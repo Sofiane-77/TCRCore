@@ -521,11 +521,6 @@
     },
     {
       "ability_points": 4,
-      "parents": [
-        {
-          "skill": "wom:lethal_focus"
-        }
-      ],
       "conditions": {
         "type_specific": {
           "type": "player",
@@ -994,7 +989,7 @@
           "stats": [
             {
               "type": "minecraft:killed",
-              "stat": "minecraft:hollow",
+              "stat": "wom:hollow",
               "value": {
                 "min": 50
               }
