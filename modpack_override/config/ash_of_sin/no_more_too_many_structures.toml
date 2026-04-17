@@ -23,5 +23,7 @@ blacklistFeatures = []
 ignoreStructures = []
 #Features that will be completely ignored (no checks, no recording). Example: 'minecraft:seagrass'
 ignoreFeatures = ["minecraft:seagrass", "minecraft:kelp", "minecraft:random_selector", "minecraft:random_patch", "minecraft:ore", "minecraft:simple_block", "minecraft:flower", "minecraft:vegetation_patch", "minecraft:multiface_growth", "minecraft:simple_random_selector", "minecraft:random_boolean_selector", "minecraft:block_column", "biomesoplenty:crag_splatter", "biomesoplenty:sparse_dune_grass"]
+#Dimensions whose No-More-Too-Many-Structures data will be cleared automatically when no players are present. Example: 'minecraft:the_end'
+autoResetDimensions = ["cataclysm_dimension:cataclysm_abyssal_depths", "cataclysm_dimension:cataclysm_bastion_lost", "cataclysm_dimension:cataclysm_eternal_frosthold", "cataclysm_dimension:cataclysm_forge_of_aeons", "cataclysm_dimension:cataclysm_infernos_maw", "cataclysm_dimension:cataclysm_pharaohs_bane", "cataclysm_dimension:cataclysm_sanctum_fallen", "cataclysm_dimension:cataclysm_souls_anvil"]
 #Enable debug logging for skipped structures/features.
 debug = false
