@@ -41,7 +41,7 @@ public abstract class CuriosItemMixin extends Item implements ICurioItem {
         if(this.getDescriptionId().contains("ring_of_grudged") && !tcr$cached) {
             this.attributes = (index) -> {
                 ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-                AttributeContainer holder = new AttributeContainer(ALObjects.Attributes.CRIT_DAMAGE.get(), 10.0F, AttributeModifier.Operation.ADDITION);
+                AttributeContainer holder = new AttributeContainer(ALObjects.Attributes.CRIT_DAMAGE.get(), 0.1F, AttributeModifier.Operation.ADDITION);
                 String name = String.format("%s_%s", this.attributeSlot, index);
                 builder.put(holder.attribute(), holder.createModifier(name));
 

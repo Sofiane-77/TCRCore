@@ -221,7 +221,7 @@ dependencies {
 //    implementation fg.deobf("curse.maven:modern-ui-352491:6956345")
 //    implementation fg.deobf("curse.maven:stamp-album-1515506:7934810")
 
-    implementation fg.deobf("curse.maven:ash-of-sin-no-more-too-many-structures-1499971:7935422")
+    implementation fg.deobf("curse.maven:ash-of-sin-no-more-too-many-structures-1499971:7935900")
 
     implementation fg.deobf("curse.maven:fluid-tick-structure-processor-1369713:7133622")
     implementation fg.deobf("maven.modrinth:epic-fight:${epicfight_version}")

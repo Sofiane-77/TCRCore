@@ -30,7 +30,6 @@
     "MazeRoseMixin",
     "MenuHooksMixin",
     "MimicForgeEventsMixin",
-    "NoMoreTooManyStructuresPlacementValidatorMixin",
     "PlayerAdvancementsMixin",
     "PoisonedChakraMixin",
     "PriestEntityMixin",

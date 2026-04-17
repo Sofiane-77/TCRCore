@@ -1,7 +1,7 @@
 {
     "model": "epicfight:entity/piglin",
     "armature": "epicfight:entity/piglin",
-    "renderer": "minecraft:piglin",
+    "renderer": "",
     "isHumanoid": true,
     "faction": "undead",
     "attributes": {

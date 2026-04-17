@@ -1,7 +1,7 @@
 {
     "model": "epicfight:entity/skeleton",
     "armature": "epicfight:entity/skeleton",
-    "renderer": "minecraft:skeleton",
+    "renderer": "",
     "isHumanoid": true,
     "faction": "undead",
     "attributes": {
