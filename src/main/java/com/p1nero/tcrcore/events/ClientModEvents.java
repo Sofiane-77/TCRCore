@@ -1,11 +1,13 @@
 package com.p1nero.tcrcore.events;
 
+import com.aetherteam.aether.entity.AetherEntityTypes;
 import com.almostreliable.summoningrituals.Registration;
 import com.almostreliable.summoningrituals.altar.AltarRenderer;
 import com.ao.tcrmeshes.TCRMeshes;
 import com.github.L_Ender.cataclysm.init.ModEntities;
 import com.github.L_Ender.cataclysm.init.ModItems;
 import com.hm.efn.registries.EFNItem;
+import com.p1nero.tcr_bosses.entity.TCRBossEntities;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.block.TCRBlocks;
 import com.p1nero.tcrcore.block.client.AltarBlockRenderer;
@@ -29,6 +31,7 @@ import com.p1nero.tcrcore.entity.custom.mimic.TCRMimicRenderer;
 import com.p1nero.tcrcore.entity.custom.ornn.OrnnlGeoRenderer;
 import com.p1nero.tcrcore.entity.custom.tutorial_golem.TutorialGolemRenderer;
 import com.p1nero.tcrcore.entity.custom.tutorial_humanoid.TutorialHumanoidRenderer;
+import io.redspace.ironsspellbooks.registries.EntityRegistry;
 import net.createmod.ponder.foundation.PonderIndex;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -43,6 +46,7 @@ import net.minecraftforge.client.event.RegisterGuiOverlaysEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import org.violetmoon.quark.content.mobs.module.ForgottenModule;
 import yesman.epicfight.api.asset.AssetAccessor;
 import yesman.epicfight.api.client.event.EpicFightClientHooks;
 import yesman.epicfight.api.client.forgeevent.PatchedRenderersEvent;
@@ -157,6 +161,13 @@ public class ClientModEvents {
             }
         }.initLayerLast(context, entityType));
         event.addPatchedEntityRenderer(EntityType.DROWNED, (entityType -> new PHumanoidRenderer<>(Meshes.BIPED_OLD_TEX, context, entityType)));
+
+        event.addPatchedEntityRenderer(EntityRegistry.SUMMONED_SKELETON.get(), (entityType -> new PHumanoidRenderer<>(Meshes.SKELETON, context, entityType)));
+        event.addPatchedEntityRenderer(ForgottenModule.forgottenType, (entityType -> new PHumanoidRenderer<>(Meshes.SKELETON, context, entityType)));
+        event.addPatchedEntityRenderer(EntityRegistry.SUMMONED_ZOMBIE.get(), (entityType -> new PHumanoidRenderer<>(Meshes.BIPED_OLD_TEX, context, entityType)));
+        event.addPatchedEntityRenderer(TCRBossEntities.CITADEL_KEEPER.get(), (entityType -> new PHumanoidRenderer<>(Meshes.BIPED_OLD_TEX, context, entityType)));
+        event.addPatchedEntityRenderer(AetherEntityTypes.VALKYRIE.get(), (entityType -> new PHumanoidRenderer<>(Meshes.BIPED_OLD_TEX, context, entityType)));
+
         event.addPatchedEntityRenderer(TCREntities.FAKE_SKY_GOLEM.get(), (entityType -> new PHumanoidRenderer<>(Meshes.BIPED_OLD_TEX, context, entityType)));
         event.addPatchedEntityRenderer(TCREntities.FAKE_END_GOLEM.get(), (entityType -> new PHumanoidRenderer<>(Meshes.BIPED_OLD_TEX, context, entityType)));
 

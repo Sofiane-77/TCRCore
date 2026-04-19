@@ -579,8 +579,8 @@ public class LivingEntityEventListeners {
                 if (WorldUtil.isInStructure(livingEntity, WorldUtil.BONE_CHIMERA_STRUCTURE) && !livingEntity.getPersistentData().getBoolean("already_respawn")) {
                     //偷懒，直接秽土转生
                     SoulEntity soulEntity = EntityRespawnerMod.addToRespawn(boneChimeraEntity, 200, true);
-                    if (boneChimeraEntity.getPersistentData().contains("spawnX") && soulEntity != null) {
-                        soulEntity.setPos(readSpawnPos(boneChimeraEntity));
+                    if (boneChimeraEntity.getTags().contains("tcr-has-spawn-pos") && soulEntity != null) {
+                        soulEntity.setPos(readSpawnPos(boneChimeraEntity).add(0, 2, 0));
                         EntityUtil.nearPlayerDo(boneChimeraEntity, 32, player -> player.displayClientMessage(TCRCoreMod.getInfo("boss_will_respawn", 10).withStyle(ChatFormatting.GOLD), false));
                     }
                     livingEntity.getPersistentData().putBoolean("already_respawn", true);
@@ -1184,10 +1184,11 @@ public class LivingEntityEventListeners {
     }
 
     public static void saveSpawnPos(Entity entity) {
-        if (!entity.getPersistentData().contains("spawnX")) {
+        if (!entity.getTags().contains("tcr-has-spawn-pos")) {
             entity.getPersistentData().putDouble("spawnX", entity.getX());
             entity.getPersistentData().putDouble("spawnY", entity.getY());
             entity.getPersistentData().putDouble("spawnZ", entity.getZ());
+            entity.getTags().add("tcr-has-spawn-pos");
         }
     }
 
