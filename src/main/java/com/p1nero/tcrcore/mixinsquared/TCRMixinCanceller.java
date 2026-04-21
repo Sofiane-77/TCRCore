@@ -10,7 +10,6 @@ public class TCRMixinCanceller implements MixinCanceller {
         return s.equals("com.obscuria.obscureapi.mixin.client.MixinBossHealthOverlay")
                 || s.contains("com.legacy.lost_aether.mixin.MusicManagerMixins")
                 || s.contains("com.aetherteam.aether.mixin.mixins.client.TitleScreenMixin")
-                || s.contains("com.kamikaguya.ash_of_sin_no_more_too_many_structures.mixin.ChunkGeneratorMixin")
                 || s.contains("net.shelmarow.betterlockon.compat.mixins.BasicMultipleAttackAnimationMixin");
     }
 }
