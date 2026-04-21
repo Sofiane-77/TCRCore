@@ -50,6 +50,7 @@
     "ba_bt.ActiveCorriteSlabMixin",
     "ba_bt.BTBlocksMixin",
     "ba_bt.BTMonolithMixin",
+    "ba_bt.BTObeliskMixin",
     "ba_bt.BTOceanObeliskMixin",
     "ba_bt.CoreMatterBlockMixin",
     "ba_bt.CoreTowerMixin",

@@ -29,5 +29,3 @@ autoResetDimensions = ["cataclysm_dimension:cataclysm_abyssal_depths", "cataclys
 allowWhitelistOverlap = true
 #Enable debug logging for skipped structures/features.
 debug = false
-#If true, whitelisted structures/features will be allowed to overlap with each other.
-allowWhitelistOverlap = true
