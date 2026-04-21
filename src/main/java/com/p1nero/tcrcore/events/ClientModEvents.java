@@ -38,6 +38,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ItemEntityRenderer;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.api.distmarker.Dist;
@@ -51,10 +52,13 @@ import yesman.epicfight.api.asset.AssetAccessor;
 import yesman.epicfight.api.client.event.EpicFightClientHooks;
 import yesman.epicfight.api.client.forgeevent.PatchedRenderersEvent;
 import yesman.epicfight.api.client.model.Meshes;
+import yesman.epicfight.api.client.model.SkinnedMesh;
+import yesman.epicfight.client.ClientEngine;
 import yesman.epicfight.client.camera.EpicFightTpsCameraDisableState;
 import yesman.epicfight.client.mesh.HumanoidMesh;
 import yesman.epicfight.client.renderer.patched.entity.PHumanoidRenderer;
 import yesman.epicfight.client.renderer.patched.entity.PIronGolemRenderer;
+import yesman.epicfight.client.renderer.patched.entity.PresetRenderer;
 
 @Mod.EventBusSubscriber(modid = TCRCoreMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientModEvents {
@@ -161,10 +165,16 @@ public class ClientModEvents {
             }
         }.initLayerLast(context, entityType));
         event.addPatchedEntityRenderer(EntityType.DROWNED, (entityType -> new PHumanoidRenderer<>(Meshes.BIPED_OLD_TEX, context, entityType)));
-
-        event.addPatchedEntityRenderer(EntityRegistry.SUMMONED_SKELETON.get(), (entityType -> new PHumanoidRenderer<>(Meshes.SKELETON, context, entityType)));
+        //雷霆写法
+        event.addPatchedEntityRenderer(EntityRegistry.SUMMONED_SKELETON.get(), (entityType -> {
+            LivingEntityRenderer renderer = ((LivingEntityRenderer) context.getEntityRenderDispatcher().renderers.get(EntityType.SKELETON));
+            return new PresetRenderer(context, entityType, renderer, ((AssetAccessor) Meshes.SKELETON));
+        }));
+        event.addPatchedEntityRenderer(EntityRegistry.SUMMONED_ZOMBIE.get(), (entityType -> {
+            LivingEntityRenderer renderer = ((LivingEntityRenderer) context.getEntityRenderDispatcher().renderers.get(EntityType.ZOMBIE));
+            return new PresetRenderer(context, entityType, renderer, ((AssetAccessor) Meshes.SKELETON));
+        }));
         event.addPatchedEntityRenderer(ForgottenModule.forgottenType, (entityType -> new PHumanoidRenderer<>(Meshes.SKELETON, context, entityType)));
-        event.addPatchedEntityRenderer(EntityRegistry.SUMMONED_ZOMBIE.get(), (entityType -> new PHumanoidRenderer<>(Meshes.BIPED_OLD_TEX, context, entityType)));
         event.addPatchedEntityRenderer(TCRBossEntities.CITADEL_KEEPER.get(), (entityType -> new PHumanoidRenderer<>(Meshes.BIPED_OLD_TEX, context, entityType)));
         event.addPatchedEntityRenderer(AetherEntityTypes.VALKYRIE.get(), (entityType -> new PHumanoidRenderer<>(Meshes.BIPED_OLD_TEX, context, entityType)));
 

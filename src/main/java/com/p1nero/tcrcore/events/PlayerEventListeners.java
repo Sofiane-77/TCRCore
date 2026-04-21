@@ -571,7 +571,11 @@ public class PlayerEventListeners {
 //                    TCRQuests.TALK_TO_AINE_GAME_CLEAR.start(serverPlayer);
 //                }
 //            }
-
+            if(event.getFrom().equals(PBF1Dimensions.SANCTUM_OF_THE_BATTLE_LEVEL_KEY)) {
+                if(serverPlayer.isSpectator()) {
+                    serverPlayer.setGameMode(GameType.SPECTATOR);
+                }
+            }
             updateHealth(serverPlayer, event.getFrom());
             updateHealth(serverPlayer, event.getTo());
         }
