@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smithing_transform",
   "addition": {
-    "item": "minecraft:amethyst_shard"
+    "item": "mowziesmobs:wrought_axe"
   },
   "base": {
     "item": "minecraft:netherite_axe"

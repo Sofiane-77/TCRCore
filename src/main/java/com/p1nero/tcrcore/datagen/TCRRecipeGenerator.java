@@ -1,10 +1,12 @@
 package com.p1nero.tcrcore.datagen;
 
+import com.aetherteam.aether.block.AetherBlocks;
+import com.bobmowzie.mowziesmobs.server.item.ItemHandler;
+import com.cerbon.bosses_of_mass_destruction.item.BMDItems;
 import com.github.L_Ender.cataclysm.init.ModItems;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.datagen.tags.TCRItemTags;
 import com.p1nero.tcrcore.item.TCRItems;
-import io.redspace.ironsspellbooks.registries.ItemRegistry;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
@@ -58,21 +60,21 @@ public class TCRRecipeGenerator extends TCRRecipeProvider implements IConditionB
         SmithingTransformRecipeBuilder.smithing(
                         Ingredient.of(TCRItems.BLOOD_LOTUS.get()),
                         Ingredient.of(EpicFightItems.NETHERITE_DAGGER.get()),
-                        Ingredient.of(Items.AMETHYST_SHARD),
+                        Ingredient.of(ModItems.BLACK_STEEL_INGOT.get()),
                         RecipeCategory.COMBAT,
                         TCRItems.EMBERFANG.get()
                 ).unlocks("has_blood_lotus", has(TCRItems.BLOOD_LOTUS.get()))
                 .save(consumer, modLoc("emberfang_smithing"));
 
-        // 紫金斧 Magmaheart
-        SmithingTransformRecipeBuilder.smithing(
-                        Ingredient.of(TCRItems.BLOOD_LOTUS.get()),
-                        Ingredient.of(Items.NETHERITE_AXE),
-                        Ingredient.of(Items.AMETHYST_SHARD),
-                        RecipeCategory.COMBAT,
-                        TCRItems.MAGMAHEART.get()
-                ).unlocks("has_blood_lotus", has(TCRItems.BLOOD_LOTUS.get()))
-                .save(consumer, modLoc("magmaheart_smithing"));
+        // 紫金斧 Magmaheart 改手写，读config不让datagen
+//        SmithingTransformRecipeBuilder.smithing(
+//                        Ingredient.of(TCRItems.BLOOD_LOTUS.get()),
+//                        Ingredient.of(Items.NETHERITE_AXE),
+//                        Ingredient.of(ItemHandler.WROUGHT_AXE.get()),
+//                        RecipeCategory.COMBAT,
+//                        TCRItems.MAGMAHEART.get()
+//                ).unlocks("has_blood_lotus", has(TCRItems.BLOOD_LOTUS.get()))
+//                .save(consumer, modLoc("magmaheart_smithing"));
 
         // 紫金长刀 Cinderwyrm
         SmithingTransformRecipeBuilder.smithing(
@@ -84,21 +86,21 @@ public class TCRRecipeGenerator extends TCRRecipeProvider implements IConditionB
                 ).unlocks("has_blood_lotus", has(TCRItems.BLOOD_LOTUS.get()))
                 .save(consumer, modLoc("cinderwyrm_smithing"));
 
-        // 紫金雁翎 Purging Swallow
-        SmithingTransformRecipeBuilder.smithing(
-                        Ingredient.of(TCRItems.BLOOD_LOTUS.get()),
-                        Ingredient.of(EpicFightItems.UCHIGATANA.get()),
-                        Ingredient.of(Items.AMETHYST_SHARD),
-                        RecipeCategory.COMBAT,
-                        TCRItems.PURGING_SWALLOW.get()
-                ).unlocks("has_blood_lotus", has(TCRItems.BLOOD_LOTUS.get()))
-                .save(consumer, modLoc("purging_swallow_smithing"));
+        // 紫金雁翎 Purging Swallow 改手写，读config不让datagen
+//        SmithingTransformRecipeBuilder.smithing(
+//                        Ingredient.of(TCRItems.BLOOD_LOTUS.get()),
+//                        Ingredient.of(EpicFightItems.UCHIGATANA.get()),
+//                        Ingredient.of(ItemHandler.SOL_VISAGE.get()),
+//                        RecipeCategory.COMBAT,
+//                        TCRItems.PURGING_SWALLOW.get()
+//                ).unlocks("has_blood_lotus", has(TCRItems.BLOOD_LOTUS.get()))
+//                .save(consumer, modLoc("purging_swallow_smithing"));
 
         // 紫金戟 Ashen Crescent
         SmithingTransformRecipeBuilder.smithing(
                         Ingredient.of(TCRItems.BLOOD_LOTUS.get()),
                         Ingredient.of(EpicFightItems.NETHERITE_SPEAR.get()),
-                        Ingredient.of(Items.AMETHYST_SHARD),
+                        Ingredient.of(BMDItems.VOID_THORN.get()),
                         RecipeCategory.COMBAT,
                         TCRItems.ASHEN_CRESCENT.get()
                 ).unlocks("has_blood_lotus", has(TCRItems.BLOOD_LOTUS.get()))
@@ -108,31 +110,31 @@ public class TCRRecipeGenerator extends TCRRecipeProvider implements IConditionB
         SmithingTransformRecipeBuilder.smithing(
                         Ingredient.of(TCRItems.NINE_HEAVEN_DARKSTEEL.get()),
                         Ingredient.of(Items.NETHERITE_SWORD),
-                        Ingredient.of(Items.DIAMOND),
+                        Ingredient.of(AetherBlocks.GOLDEN_OAK_LEAVES.get()),
                         RecipeCategory.COMBAT,
                         TCRItems.LUX_JADAE.get()
                 ).unlocks("has_nine_heaven_darksteel", has(TCRItems.NINE_HEAVEN_DARKSTEEL.get()))
                 .save(consumer, modLoc("lux_jadae_smithing"));
 
-        // 玉霜 Glacis Jadae
-        SmithingTransformRecipeBuilder.smithing(
-                        Ingredient.of(TCRItems.NINE_HEAVEN_DARKSTEEL.get()),
-                        Ingredient.of(EpicFightItems.NETHERITE_LONGSWORD.get()),
-                        Ingredient.of(Items.DIAMOND),
-                        RecipeCategory.COMBAT,
-                        TCRItems.GLACIS_JADAE.get()
-                ).unlocks("has_nine_heaven_darksteel", has(TCRItems.NINE_HEAVEN_DARKSTEEL.get()))
-                .save(consumer, modLoc("glacis_jadae_smithing"));
+        // 玉霜 Glacis Jadae  改手写，读config不让datagen
+//        SmithingTransformRecipeBuilder.smithing(
+//                        Ingredient.of(TCRItems.NINE_HEAVEN_DARKSTEEL.get()),
+//                        Ingredient.of(EpicFightItems.NETHERITE_LONGSWORD.get()),
+//                        Ingredient.of(ItemHandler.ICE_CRYSTAL.get()),
+//                        RecipeCategory.COMBAT,
+//                        TCRItems.GLACIS_JADAE.get()
+//                ).unlocks("has_nine_heaven_darksteel", has(TCRItems.NINE_HEAVEN_DARKSTEEL.get()))
+//                .save(consumer, modLoc("glacis_jadae_smithing"));
 
-        // 玉岳 Mons Jadae
-        SmithingTransformRecipeBuilder.smithing(
-                        Ingredient.of(TCRItems.NINE_HEAVEN_DARKSTEEL.get()),
-                        Ingredient.of(EpicFightItems.NETHERITE_GREATSWORD.get()),
-                        Ingredient.of(Items.DIAMOND),
-                        RecipeCategory.COMBAT,
-                        TCRItems.MONS_JADAE.get()
-                ).unlocks("has_nine_heaven_darksteel", has(TCRItems.NINE_HEAVEN_DARKSTEEL.get()))
-                .save(consumer, modLoc("mons_jadae_smithing"));
+        // 玉岳 Mons Jadae  改手写，读config不让datagen
+//        SmithingTransformRecipeBuilder.smithing(
+//                        Ingredient.of(TCRItems.NINE_HEAVEN_DARKSTEEL.get()),
+//                        Ingredient.of(EpicFightItems.NETHERITE_GREATSWORD.get()),
+//                        Ingredient.of(ItemHandler.WROUGHT_HELMET.get()),
+//                        RecipeCategory.COMBAT,
+//                        TCRItems.MONS_JADAE.get()
+//                ).unlocks("has_nine_heaven_darksteel", has(TCRItems.NINE_HEAVEN_DARKSTEEL.get()))
+//                .save(consumer, modLoc("mons_jadae_smithing"));
 
         // 玉虹 Iris Jadae
         SmithingTransformRecipeBuilder.smithing(

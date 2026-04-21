@@ -486,6 +486,11 @@
   "structure.mowziesmobs.frostmaw_spawn": "BOSS【霜冻巨兽】",
   "structure.mowziesmobs.wrought_chamber": "BOSS【钢铁守护者】钢之锻造炉",
   "structure.mowziesmobs.umvuthana_grove": "BOSS【太阳鸟】",
-  "structure.mowziesmobs.monastery": "【雕刻家—通臂大师】修道院"
+  "structure.mowziesmobs.monastery": "【雕刻家—通臂大师】修道院",
+  "_comment": "bosses_of_mass_destruction",
+  "structure.bosses_of_mass_destruction.lich_tower": "boss【暗夜巫妖】巫妖塔",
+  "structure.bosses_of_mass_destruction.void_blossom": "boss【虚空之花】",
+  "structure.bosses_of_mass_destruction.gauntlet_arena": "boss【下界铁掌竞技场】",
+  "structure.bosses_of_mass_destruction.obsidilith_arena": "boss【黑曜石柱】黑曜石竞技场"
 }
 

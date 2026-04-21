@@ -25,19 +25,19 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(BTAbstractObelisk.class)
 public abstract class BTObeliskMixin extends Entity {
 
-    @Shadow
+    @Shadow(remap = false)
     protected BTChestBlockEntity golemChest;
 
-    @Shadow
+    @Shadow(remap = false)
     protected Block chestBlock;
 
-    @Shadow
+    @Shadow(remap = false)
     protected Block golemChestBlock;
 
-    @Shadow
+    @Shadow(remap = false)
     protected GolemType golemType;
 
-    @Shadow
+    @Shadow(remap = false)
     protected int checkLayer;
 
     public BTObeliskMixin(EntityType<?> entityType, Level level) {
@@ -47,7 +47,7 @@ public abstract class BTObeliskMixin extends Entity {
     /**
      * 替换为战利品箱子
      */
-    @Inject(method = "checkPos", at = @At("TAIL"))
+    @Inject(method = "checkPos", at = @At("TAIL"), remap = false)
     private void tcr$checkPos(BlockPos toCheck, Level level, CallbackInfo ci) {
         Block block = level.getBlockState(toCheck).getBlock();
         if (block == this.chestBlock) {
@@ -81,7 +81,7 @@ public abstract class BTObeliskMixin extends Entity {
     /**
      * 无需在意
      */
-    @Inject(method = "checkSpawners", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "checkSpawners", at = @At("HEAD"), cancellable = true, remap = false)
     private void tcr$checkSpawners(Level level, CallbackInfo ci) {
         ci.cancel();
     }

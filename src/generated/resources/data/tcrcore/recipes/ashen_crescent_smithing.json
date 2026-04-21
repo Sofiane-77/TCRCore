@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smithing_transform",
   "addition": {
-    "item": "minecraft:amethyst_shard"
+    "item": "bosses_of_mass_destruction:void_thorn"
   },
   "base": {
     "item": "epicfight:netherite_spear"

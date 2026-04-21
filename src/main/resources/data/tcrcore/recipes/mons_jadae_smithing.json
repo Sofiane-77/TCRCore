@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smithing_transform",
   "addition": {
-    "item": "minecraft:diamond"
+    "item": "mowziesmobs:wrought_helmet"
   },
   "base": {
     "item": "epicfight:netherite_greatsword"
