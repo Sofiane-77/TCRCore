@@ -11,10 +11,7 @@
         }
     ],
     "inputs": [
-        { "ingredient": { "item": "cataclysm:essence_of_the_storm" }, "count": 1 },
-        { "ingredient": { "item": "cataclysm:lacrima" }, "count": 3 },
-        { "ingredient": { "item": "minecraft:conduit" }, "count": 1 },
-        { "ingredient": { "item": "aether:golden_oak_leaves" }, "count": 1 }
+        { "ingredient": { "item": "cataclysm:essence_of_the_storm" }, "count": 1 }
     ],
     "recipe_time": 200,
     "block_below": { "block": "minecraft:calcite" },

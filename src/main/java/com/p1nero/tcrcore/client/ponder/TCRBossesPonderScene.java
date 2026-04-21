@@ -34,9 +34,6 @@ public class TCRBossesPonderScene {
         ItemStack catalyst = new ItemStack(Items.GHAST_TEAR);
 
         ItemStack item1 = new ItemStack(ModItems.ESSENCE_OF_THE_STORM.get());
-        ItemStack item2 = new ItemStack(ModItems.LACRIMA.get(), 3);
-        ItemStack item3 = new ItemStack(Items.CONDUIT);
-        ItemStack item4 = new ItemStack(AetherBlocks.GOLDEN_OAK_LEAVES.get());
 
         scene.configureBasePlate(0, 0, 5);
         scene.showBasePlate();
@@ -58,54 +55,6 @@ public class TCRBossesPonderScene {
         });
         scene.idle(20);
 
-        scene.overlay().showText(20)
-                .text(item2.getItem().getDescription().getString() + " × " + item2.getCount())
-                .attachKeyFrame()
-                .pointAt(altarSurface)
-                .placeNearTarget();
-
-        scene.idle(20);
-
-        scene.world().modifyBlockEntity(altarPos, AltarBlockEntity.class, altarBlockEntity -> {
-            altarBlockEntity.handleInteraction(null, item2);
-            if(altarBlockEntity.getLevel() != null) {
-                altarBlockEntity.getLevel().sendBlockUpdated(altarBlockEntity.getBlockPos(), altarBlockEntity.getBlockState(), altarBlockEntity.getBlockState(), 3);
-            }
-        });
-
-        scene.idle(20);
-        scene.overlay().showText(20)
-                .text(item3.getItem().getDescription().getString() + " × " + item3.getCount())
-                .attachKeyFrame()
-                .pointAt(altarSurface)
-                .placeNearTarget();
-
-        scene.idle(20);
-
-        scene.world().modifyBlockEntity(altarPos, AltarBlockEntity.class, altarBlockEntity -> {
-            altarBlockEntity.handleInteraction(null, item3);
-            if(altarBlockEntity.getLevel() != null) {
-                altarBlockEntity.getLevel().sendBlockUpdated(altarBlockEntity.getBlockPos(), altarBlockEntity.getBlockState(), altarBlockEntity.getBlockState(), 3);
-            }
-        });
-
-        scene.idle(20);
-        scene.overlay().showText(20)
-                .text(item4.getItem().getDescription().getString() + " × " + item4.getCount())
-                .attachKeyFrame()
-                .pointAt(altarSurface)
-                .placeNearTarget();
-
-        scene.idle(20);
-
-        scene.world().modifyBlockEntity(altarPos, AltarBlockEntity.class, altarBlockEntity -> {
-            altarBlockEntity.handleInteraction(null, item4);
-            if(altarBlockEntity.getLevel() != null) {
-                altarBlockEntity.getLevel().sendBlockUpdated(altarBlockEntity.getBlockPos(), altarBlockEntity.getBlockState(), altarBlockEntity.getBlockState(), 3);
-            }
-        });
-
-        scene.idle(20);
         scene.overlay().showText(20)
                 .text(catalyst.getItem().getDescription().getString() + " × " + catalyst.getCount())
                 .attachKeyFrame()
@@ -167,7 +116,6 @@ public class TCRBossesPonderScene {
         ItemStack item1 = new ItemStack(ModItems.ANCIENT_METAL_INGOT.get());
         ItemStack item2 = new ItemStack(ModItems.NECKLACE_OF_THE_DESERT.get());
         ItemStack item3 = new ItemStack(Items.BONE, 11);
-        ItemStack item4 = new ItemStack(ModItems.KOBOLETON_BONE.get(), 11);
 
         scene.configureBasePlate(0, 0, 5);
         scene.showBasePlate();
@@ -215,22 +163,6 @@ public class TCRBossesPonderScene {
 
         scene.world().modifyBlockEntity(altarPos, AltarBlockEntity.class, altarBlockEntity -> {
             altarBlockEntity.handleInteraction(null, item3);
-            if(altarBlockEntity.getLevel() != null) {
-                altarBlockEntity.getLevel().sendBlockUpdated(altarBlockEntity.getBlockPos(), altarBlockEntity.getBlockState(), altarBlockEntity.getBlockState(), 3);
-            }
-        });
-
-        scene.idle(20);
-        scene.overlay().showText(20)
-                .text(item4.getItem().getDescription().getString() + " × " + item4.getCount())
-                .attachKeyFrame()
-                .pointAt(altarSurface)
-                .placeNearTarget();
-
-        scene.idle(20);
-
-        scene.world().modifyBlockEntity(altarPos, AltarBlockEntity.class, altarBlockEntity -> {
-            altarBlockEntity.handleInteraction(null, item4);
             if(altarBlockEntity.getLevel() != null) {
                 altarBlockEntity.getLevel().sendBlockUpdated(altarBlockEntity.getBlockPos(), altarBlockEntity.getBlockState(), altarBlockEntity.getBlockState(), 3);
             }
@@ -295,9 +227,7 @@ public class TCRBossesPonderScene {
         ItemStack catalyst = new ItemStack(Items.GHAST_TEAR);
 
         ItemStack item1 = new ItemStack(TCRItems.VOID_CORE.get());
-        ItemStack item2 = new ItemStack(Items.PURPUR_BLOCK, 16);
-        ItemStack item3 = new ItemStack(Items.SHULKER_SHELL, 9);
-        ItemStack item4 = new ItemStack(ModItems.VOID_STONE.get(), 1);
+        ItemStack item3 = new ItemStack(Items.SHULKER_SHELL, 1);
 
         scene.configureBasePlate(0, 0, 5);
         scene.showBasePlate();
@@ -319,21 +249,6 @@ public class TCRBossesPonderScene {
         });
         scene.idle(20);
 
-        scene.overlay().showText(20)
-                .text(item2.getItem().getDescription().getString() + " × " + item2.getCount())
-                .attachKeyFrame()
-                .pointAt(altarSurface)
-                .placeNearTarget();
-
-        scene.idle(20);
-
-        scene.world().modifyBlockEntity(altarPos, AltarBlockEntity.class, altarBlockEntity -> {
-            altarBlockEntity.handleInteraction(null, item2);
-            if(altarBlockEntity.getLevel() != null) {
-                altarBlockEntity.getLevel().sendBlockUpdated(altarBlockEntity.getBlockPos(), altarBlockEntity.getBlockState(), altarBlockEntity.getBlockState(), 3);
-            }
-        });
-
         scene.idle(20);
         scene.overlay().showText(20)
                 .text(item3.getItem().getDescription().getString() + " × " + item3.getCount())
@@ -345,22 +260,6 @@ public class TCRBossesPonderScene {
 
         scene.world().modifyBlockEntity(altarPos, AltarBlockEntity.class, altarBlockEntity -> {
             altarBlockEntity.handleInteraction(null, item3);
-            if(altarBlockEntity.getLevel() != null) {
-                altarBlockEntity.getLevel().sendBlockUpdated(altarBlockEntity.getBlockPos(), altarBlockEntity.getBlockState(), altarBlockEntity.getBlockState(), 3);
-            }
-        });
-
-        scene.idle(20);
-        scene.overlay().showText(20)
-                .text(item4.getItem().getDescription().getString() + " × " + item4.getCount())
-                .attachKeyFrame()
-                .pointAt(altarSurface)
-                .placeNearTarget();
-
-        scene.idle(20);
-
-        scene.world().modifyBlockEntity(altarPos, AltarBlockEntity.class, altarBlockEntity -> {
-            altarBlockEntity.handleInteraction(null, item4);
             if(altarBlockEntity.getLevel() != null) {
                 altarBlockEntity.getLevel().sendBlockUpdated(altarBlockEntity.getBlockPos(), altarBlockEntity.getBlockState(), altarBlockEntity.getBlockState(), 3);
             }
@@ -426,7 +325,6 @@ public class TCRBossesPonderScene {
 
         ItemStack item1 = new ItemStack(ModItems.WITHERITE_INGOT.get());
         ItemStack item2 = new ItemStack(Items.NETHER_STAR, 1);
-        ItemStack item3 = new ItemStack(Items.WITHER_ROSE, 1);
 
         scene.configureBasePlate(0, 0, 5);
         scene.showBasePlate();
@@ -458,22 +356,6 @@ public class TCRBossesPonderScene {
 
         scene.world().modifyBlockEntity(altarPos, AltarBlockEntity.class, altarBlockEntity -> {
             altarBlockEntity.handleInteraction(null, item2);
-            if(altarBlockEntity.getLevel() != null) {
-                altarBlockEntity.getLevel().sendBlockUpdated(altarBlockEntity.getBlockPos(), altarBlockEntity.getBlockState(), altarBlockEntity.getBlockState(), 3);
-            }
-        });
-
-        scene.idle(20);
-        scene.overlay().showText(20)
-                .text(item3.getItem().getDescription().getString() + " × " + item3.getCount())
-                .attachKeyFrame()
-                .pointAt(altarSurface)
-                .placeNearTarget();
-
-        scene.idle(20);
-
-        scene.world().modifyBlockEntity(altarPos, AltarBlockEntity.class, altarBlockEntity -> {
-            altarBlockEntity.handleInteraction(null, item3);
             if(altarBlockEntity.getLevel() != null) {
                 altarBlockEntity.getLevel().sendBlockUpdated(altarBlockEntity.getBlockPos(), altarBlockEntity.getBlockState(), altarBlockEntity.getBlockState(), 3);
             }
@@ -538,30 +420,12 @@ public class TCRBossesPonderScene {
 
         ItemStack catalyst = new ItemStack(Items.GHAST_TEAR);
 
-        ItemStack item1 = new ItemStack(Items.NETHER_WART, 5);
         ItemStack item2 = new ItemStack(Items.MAGMA_BLOCK, 5);
-        ItemStack item3 = new ItemStack(ModItems.BURNING_ASHES.get(), 3);
         ItemStack item4 = new ItemStack(ModItems.IGNITIUM_INGOT.get(), 1);
 
         scene.configureBasePlate(0, 0, 5);
         scene.showBasePlate();
         scene.scaleSceneView(1.0F);
-
-        scene.overlay().showText(20)
-                .text(item1.getItem().getDescription().getString() + " × " + item1.getCount())
-                .attachKeyFrame()
-                .pointAt(altarSurface)
-                .placeNearTarget();
-
-        scene.idle(20);
-
-        scene.world().modifyBlockEntity(altarPos, AltarBlockEntity.class, altarBlockEntity -> {
-            altarBlockEntity.handleInteraction(null, item1);
-            if(altarBlockEntity.getLevel() != null) {
-                altarBlockEntity.getLevel().sendBlockUpdated(altarBlockEntity.getBlockPos(), altarBlockEntity.getBlockState(), altarBlockEntity.getBlockState(), 3);
-            }
-        });
-        scene.idle(20);
 
         scene.overlay().showText(20)
                 .text(item2.getItem().getDescription().getString() + " × " + item2.getCount())
@@ -573,22 +437,6 @@ public class TCRBossesPonderScene {
 
         scene.world().modifyBlockEntity(altarPos, AltarBlockEntity.class, altarBlockEntity -> {
             altarBlockEntity.handleInteraction(null, item2);
-            if(altarBlockEntity.getLevel() != null) {
-                altarBlockEntity.getLevel().sendBlockUpdated(altarBlockEntity.getBlockPos(), altarBlockEntity.getBlockState(), altarBlockEntity.getBlockState(), 3);
-            }
-        });
-
-        scene.idle(20);
-        scene.overlay().showText(20)
-                .text(item3.getItem().getDescription().getString() + " × " + item3.getCount())
-                .attachKeyFrame()
-                .pointAt(altarSurface)
-                .placeNearTarget();
-
-        scene.idle(20);
-
-        scene.world().modifyBlockEntity(altarPos, AltarBlockEntity.class, altarBlockEntity -> {
-            altarBlockEntity.handleInteraction(null, item3);
             if(altarBlockEntity.getLevel() != null) {
                 altarBlockEntity.getLevel().sendBlockUpdated(altarBlockEntity.getBlockPos(), altarBlockEntity.getBlockState(), altarBlockEntity.getBlockState(), 3);
             }
@@ -670,8 +518,6 @@ public class TCRBossesPonderScene {
         ItemStack catalyst = new ItemStack(Items.GHAST_TEAR);
 
         ItemStack item1 = new ItemStack(TCRItems.ABYSS_CORE.get(), 1);
-        ItemStack item2 = new ItemStack(Items.CONDUIT, 1);
-        ItemStack item3 = new ItemStack(ModItems.CORAL_CHUNK.get(), 3);
 
         scene.configureBasePlate(0, 0, 5);
         scene.showBasePlate();
@@ -687,38 +533,6 @@ public class TCRBossesPonderScene {
 
         scene.world().modifyBlockEntity(altarPos, AltarBlockEntity.class, altarBlockEntity -> {
             altarBlockEntity.handleInteraction(null, item1);
-            if(altarBlockEntity.getLevel() != null) {
-                altarBlockEntity.getLevel().sendBlockUpdated(altarBlockEntity.getBlockPos(), altarBlockEntity.getBlockState(), altarBlockEntity.getBlockState(), 3);
-            }
-        });
-        scene.idle(20);
-
-        scene.overlay().showText(20)
-                .text(item2.getItem().getDescription().getString() + " × " + item2.getCount())
-                .attachKeyFrame()
-                .pointAt(altarSurface)
-                .placeNearTarget();
-
-        scene.idle(20);
-
-        scene.world().modifyBlockEntity(altarPos, AltarBlockEntity.class, altarBlockEntity -> {
-            altarBlockEntity.handleInteraction(null, item2);
-            if(altarBlockEntity.getLevel() != null) {
-                altarBlockEntity.getLevel().sendBlockUpdated(altarBlockEntity.getBlockPos(), altarBlockEntity.getBlockState(), altarBlockEntity.getBlockState(), 3);
-            }
-        });
-
-        scene.idle(20);
-        scene.overlay().showText(20)
-                .text(item3.getItem().getDescription().getString() + " × " + item3.getCount())
-                .attachKeyFrame()
-                .pointAt(altarSurface)
-                .placeNearTarget();
-
-        scene.idle(20);
-
-        scene.world().modifyBlockEntity(altarPos, AltarBlockEntity.class, altarBlockEntity -> {
-            altarBlockEntity.handleInteraction(null, item3);
             if(altarBlockEntity.getLevel() != null) {
                 altarBlockEntity.getLevel().sendBlockUpdated(altarBlockEntity.getBlockPos(), altarBlockEntity.getBlockState(), altarBlockEntity.getBlockState(), 3);
             }
@@ -783,11 +597,8 @@ public class TCRBossesPonderScene {
 
         ItemStack catalyst = new ItemStack(Items.GHAST_TEAR);
 
-        ItemStack item1 = new ItemStack(ItemRegistry.FROZEN_BONE_SHARD.get(), 11);
-        ItemStack item2 = new ItemStack(Items.ICE, 11);
+        ItemStack item1 = new ItemStack(ItemRegistry.FROZEN_BONE_SHARD.get(), 3);
         ItemStack item3 = new ItemStack(ModItems.CURSIUM_INGOT.get(), 1);
-        ItemStack item4 = new ItemStack(ModItems.STRANGE_KEY.get(), 3);
-        ItemStack item5 = new ItemStack(BMDItems.SOUL_STAR.get(), 4);
 
         scene.configureBasePlate(0, 0, 5);
         scene.showBasePlate();
@@ -807,22 +618,6 @@ public class TCRBossesPonderScene {
                 altarBlockEntity.getLevel().sendBlockUpdated(altarBlockEntity.getBlockPos(), altarBlockEntity.getBlockState(), altarBlockEntity.getBlockState(), 3);
             }
         });
-        scene.idle(20);
-
-        scene.overlay().showText(20)
-                .text(item2.getItem().getDescription().getString() + " × " + item2.getCount())
-                .attachKeyFrame()
-                .pointAt(altarSurface)
-                .placeNearTarget();
-
-        scene.idle(20);
-
-        scene.world().modifyBlockEntity(altarPos, AltarBlockEntity.class, altarBlockEntity -> {
-            altarBlockEntity.handleInteraction(null, item2);
-            if(altarBlockEntity.getLevel() != null) {
-                altarBlockEntity.getLevel().sendBlockUpdated(altarBlockEntity.getBlockPos(), altarBlockEntity.getBlockState(), altarBlockEntity.getBlockState(), 3);
-            }
-        });
 
         scene.idle(20);
         scene.overlay().showText(20)
@@ -835,38 +630,6 @@ public class TCRBossesPonderScene {
 
         scene.world().modifyBlockEntity(altarPos, AltarBlockEntity.class, altarBlockEntity -> {
             altarBlockEntity.handleInteraction(null, item3);
-            if(altarBlockEntity.getLevel() != null) {
-                altarBlockEntity.getLevel().sendBlockUpdated(altarBlockEntity.getBlockPos(), altarBlockEntity.getBlockState(), altarBlockEntity.getBlockState(), 3);
-            }
-        });
-
-        scene.idle(20);
-        scene.overlay().showText(20)
-                .text(item4.getItem().getDescription().getString() + " × " + item4.getCount())
-                .attachKeyFrame()
-                .pointAt(altarSurface)
-                .placeNearTarget();
-
-        scene.idle(20);
-
-        scene.world().modifyBlockEntity(altarPos, AltarBlockEntity.class, altarBlockEntity -> {
-            altarBlockEntity.handleInteraction(null, item4);
-            if(altarBlockEntity.getLevel() != null) {
-                altarBlockEntity.getLevel().sendBlockUpdated(altarBlockEntity.getBlockPos(), altarBlockEntity.getBlockState(), altarBlockEntity.getBlockState(), 3);
-            }
-        });
-
-        scene.idle(20);
-        scene.overlay().showText(20)
-                .text(item5.getItem().getDescription().getString() + " × " + item5.getCount())
-                .attachKeyFrame()
-                .pointAt(altarSurface)
-                .placeNearTarget();
-
-        scene.idle(20);
-
-        scene.world().modifyBlockEntity(altarPos, AltarBlockEntity.class, altarBlockEntity -> {
-            altarBlockEntity.handleInteraction(null, item5);
             if(altarBlockEntity.getLevel() != null) {
                 altarBlockEntity.getLevel().sendBlockUpdated(altarBlockEntity.getBlockPos(), altarBlockEntity.getBlockState(), altarBlockEntity.getBlockState(), 3);
             }
@@ -930,10 +693,8 @@ public class TCRBossesPonderScene {
 
         ItemStack catalyst = new ItemStack(Items.GHAST_TEAR);
 
-        ItemStack item1 = new ItemStack(Items.CRYING_OBSIDIAN, 8);
-        ItemStack item2 = new ItemStack(Items.OBSIDIAN, 8);
+        ItemStack item1 = new ItemStack(Items.CRYING_OBSIDIAN, 3);
         ItemStack item3 = new ItemStack(ModItems.MONSTROUS_HORN.get(), 1);
-        ItemStack item4 = new ItemStack(ModItems.LAVA_POWER_CELL.get(), 8);
 
         scene.configureBasePlate(0, 0, 5);
         scene.showBasePlate();
@@ -953,22 +714,6 @@ public class TCRBossesPonderScene {
                 altarBlockEntity.getLevel().sendBlockUpdated(altarBlockEntity.getBlockPos(), altarBlockEntity.getBlockState(), altarBlockEntity.getBlockState(), 3);
             }
         });
-        scene.idle(20);
-
-        scene.overlay().showText(20)
-                .text(item2.getItem().getDescription().getString() + " × " + item2.getCount())
-                .attachKeyFrame()
-                .pointAt(altarSurface)
-                .placeNearTarget();
-
-        scene.idle(20);
-
-        scene.world().modifyBlockEntity(altarPos, AltarBlockEntity.class, altarBlockEntity -> {
-            altarBlockEntity.handleInteraction(null, item2);
-            if(altarBlockEntity.getLevel() != null) {
-                altarBlockEntity.getLevel().sendBlockUpdated(altarBlockEntity.getBlockPos(), altarBlockEntity.getBlockState(), altarBlockEntity.getBlockState(), 3);
-            }
-        });
 
         scene.idle(20);
         scene.overlay().showText(20)
@@ -981,22 +726,6 @@ public class TCRBossesPonderScene {
 
         scene.world().modifyBlockEntity(altarPos, AltarBlockEntity.class, altarBlockEntity -> {
             altarBlockEntity.handleInteraction(null, item3);
-            if(altarBlockEntity.getLevel() != null) {
-                altarBlockEntity.getLevel().sendBlockUpdated(altarBlockEntity.getBlockPos(), altarBlockEntity.getBlockState(), altarBlockEntity.getBlockState(), 3);
-            }
-        });
-
-        scene.idle(20);
-        scene.overlay().showText(20)
-                .text(item4.getItem().getDescription().getString() + " × " + item4.getCount())
-                .attachKeyFrame()
-                .pointAt(altarSurface)
-                .placeNearTarget();
-
-        scene.idle(20);
-
-        scene.world().modifyBlockEntity(altarPos, AltarBlockEntity.class, altarBlockEntity -> {
-            altarBlockEntity.handleInteraction(null, item4);
             if(altarBlockEntity.getLevel() != null) {
                 altarBlockEntity.getLevel().sendBlockUpdated(altarBlockEntity.getBlockPos(), altarBlockEntity.getBlockState(), altarBlockEntity.getBlockState(), 3);
             }

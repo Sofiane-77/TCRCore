@@ -13,7 +13,6 @@
     "inputs": [
         { "ingredient": { "item": "cataclysm:ancient_metal_ingot" }, "count": 1 },
         { "ingredient": { "item": "cataclysm:necklace_of_the_desert" }, "count": 1 },
-        { "ingredient": { "item": "cataclysm:koboleton_bone" }, "count": 11 },
         { "ingredient": { "item": "minecraft:bone" }, "count": 11 }
     ],
     "recipe_time": 200,

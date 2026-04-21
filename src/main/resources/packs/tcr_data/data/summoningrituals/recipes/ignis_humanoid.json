@@ -12,9 +12,7 @@
     ],
     "inputs": [
         { "ingredient": { "item": "cataclysm:ignitium_ingot" }, "count": 1 },
-        { "ingredient": { "item": "cataclysm:burning_ashes" }, "count": 3 },
-        { "ingredient": { "item": "minecraft:magma_block" }, "count": 5 },
-        { "ingredient": { "item": "minecraft:nether_wart" }, "count": 5 }
+        { "ingredient": { "item": "minecraft:magma_block" }, "count": 5 }
     ],
     "recipe_time": 200,
     "block_below": { "block": "minecraft:calcite" },
