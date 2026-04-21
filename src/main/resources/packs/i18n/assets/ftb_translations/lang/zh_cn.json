@@ -52,6 +52,8 @@
   "ftbquests.chapter.shen_mo.quest8501765718863884973.subtitle": "生活在\u0026d{travelerstitles.minecraft.the_end}\u0026r下方的虚空中",
   "ftbquests.chapter.shen_mo.quest8501765718863884973.title": "{entity.alexsmobs.void_worm}",
   "ftbquests.chapter.shen_mo.quest867631697875350248.title": "{entity.cataclysm.ignis}",
+  "ftbquests.chapter.shen_mo.common.can_be_search": "&6可在冒险家指南针中搜索到",
+  "ftbquests.chapter.shen_mo.common.in_sanctum": "&6与主城祭坛交互以进入幻境",
   "ftbquests.chapter.shen_mo.title": "\u0026d神魔渊薮",
   "ftbquests.chapter.wu_qi.quest103322110141927354.description1": "\u0026b*定制武器\u0026r",
   "ftbquests.chapter.wu_qi.quest103322110141927354.description2": "获得\u00266{entity.cataclysm.ignis}\u0026r的力量，可释放{entity.cataclysm.ignis}终结技，释放\u0026c炎魂斩\u0026r击退附近魔物",

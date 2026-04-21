@@ -26,9 +26,15 @@
   "structure.block_factorys_bosses.sandworm_nest": "BOSS [Sandworm] Sandworm Nest",
   "structure.block_factorys_bosses.underworld_arena": "BOSS [Underworld Knight] Underworld Arena",
   "structure.block_factorys_bosses.yeti_hideout": "BOSS [Yeti] Yeti Hideout",
+  "_comment": "mowziesmobs",
   "structure.mowziesmobs.frostmaw_spawn": "BOSS [Frostmaw]",
   "structure.mowziesmobs.wrought_chamber": "BOSS [Ferrous Wroughtnaut] Wrought Chamber",
   "structure.mowziesmobs.umvuthana_grove": "BOSS [Umvuthana] Umvuthana Grove",
-  "structure.mowziesmobs.monastery": "[Tongbi, the Sculptor] Monastery"
+  "structure.mowziesmobs.monastery": "BOSS [Tongbi, the Sculptor] Monastery",
+  "_comment": "bosses_of_mass_destruction",
+  "structure.bosses_of_mass_destruction.lich_tower": "BOSS [Night Lich]Lich Tower",
+  "structure.bosses_of_mass_destruction.void_blossom": "BOSS [Void Blossom]",
+  "structure.bosses_of_mass_destruction.gauntlet_arena": "BOSS [Nether Gauntlet]",
+  "structure.bosses_of_mass_destruction.obsidilith_arena": "BOSS[Obsidilith] Obsidilith Arena"
 }
 

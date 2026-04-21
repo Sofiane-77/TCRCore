@@ -52,6 +52,8 @@
   "ftbquests.chapter.shen_mo.quest8501765718863884973.subtitle": "Lives in the void beneath &d{travelerstitles.minecraft.the_end}&r",
   "ftbquests.chapter.shen_mo.quest8501765718863884973.title": "{entity.alexsmobs.void_worm}",
   "ftbquests.chapter.shen_mo.quest867631697875350248.title": "{entity.cataclysm.ignis}",
+  "ftbquests.chapter.shen_mo.common.can_be_search": "&6Can be searched in explorer compass.",
+  "ftbquests.chapter.shen_mo.common.in_sanctum": "&6Interact with the altar in the sanctum to enter the cloudland.",
   "ftbquests.chapter.shen_mo.title": "§dAbyss of Gods and Demons",
   "ftbquests.chapter.wu_qi.quest103322110141927354.description1": "§b*Custom Weapon§r",
   "ftbquests.chapter.wu_qi.quest103322110141927354.description2": "Gain the power of §6{entity.cataclysm.ignis}§r, can release {entity.cataclysm.ignis}'s finisher, unleashing §cFlame Soul Slash§r to knock back nearby monsters.",

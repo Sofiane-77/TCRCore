@@ -2031,6 +2031,7 @@
 						skill: "efn:mortal_blade"
 					}
 				}
+				match_nbt: true
 				type: "item"
 			}]
 			title: "{ftbquests.chapter.wu_qi.quest57E56FB77043E3CB.title}"

@@ -57,6 +57,7 @@
 			}]
 			shape: "none"
 			size: 2.0d
+			subtitle: "{ftbquests.chapter.shen_mo.common.in_sanctum}"
 			tasks: [{
 				entity: "cataclysm:the_leviathan"
 				icon: "tcrcore:abyss_core"
@@ -78,6 +79,7 @@
 			}]
 			shape: "none"
 			size: 2.0d
+			subtitle: "{ftbquests.chapter.shen_mo.common.in_sanctum}"
 			tasks: [{
 				entity: "cataclysm:maledictus"
 				icon: "cataclysm:cursium_ingot"
@@ -99,6 +101,7 @@
 			}]
 			shape: "none"
 			size: 2.0d
+			subtitle: "{ftbquests.chapter.shen_mo.common.in_sanctum}"
 			tasks: [{
 				entity: "cataclysm:scylla"
 				icon: "cataclysm:essence_of_the_storm"
@@ -120,6 +123,7 @@
 			}]
 			shape: "none"
 			size: 2.0d
+			subtitle: "{ftbquests.chapter.shen_mo.common.in_sanctum}"
 			tasks: [{
 				entity: "cataclysm:ancient_remnant"
 				icon: "cataclysm:ancient_metal_ingot"
@@ -141,6 +145,7 @@
 			}]
 			shape: "none"
 			size: 2.0d
+			subtitle: "{ftbquests.chapter.shen_mo.common.in_sanctum}"
 			tasks: [{
 				entity: "cataclysm:ignis"
 				icon: "cataclysm:ignitium_ingot"
@@ -162,6 +167,7 @@
 			}]
 			shape: "none"
 			size: 2.0d
+			subtitle: "{ftbquests.chapter.shen_mo.common.in_sanctum}"
 			tasks: [{
 				entity: "cataclysm:ender_guardian"
 				icon: "tcrcore:void_core"
@@ -183,6 +189,7 @@
 			}]
 			shape: "none"
 			size: 2.0d
+			subtitle: "{ftbquests.chapter.shen_mo.common.in_sanctum}"
 			tasks: [{
 				entity: "cataclysm:netherite_monstrosity"
 				icon: {
@@ -210,6 +217,7 @@
 			}]
 			shape: "none"
 			size: 2.0d
+			subtitle: "{ftbquests.chapter.shen_mo.common.in_sanctum}"
 			tasks: [{
 				entity: "cataclysm:the_harbinger"
 				icon: "cataclysm:witherite_ingot"
@@ -223,6 +231,7 @@
 		}
 		{
 			dependencies: ["68EDC89BB022788B"]
+			description: [""]
 			icon: "efn:deepdark_heart"
 			id: "3460F65A23FDA799"
 			rewards: [{
@@ -233,7 +242,7 @@
 			}]
 			shape: "none"
 			size: 1.5d
-			subtitle: "{ftbquests.chapter.shen_mo.quest3774287354747791257.subtitle}"
+			subtitle: "{ftbquests.chapter.shen_mo.quest3774287354747791257.subtitle}\\n{ftbquests.chapter.shen_mo.common.can_be_search}"
 			tasks: [{
 				entity: "minecraft:warden"
 				icon: "efn:deepdark_heart"
@@ -247,6 +256,7 @@
 		}
 		{
 			dependencies: ["68EDC89BB022788B"]
+			description: [""]
 			id: "5509B6D7C1DF4BB6"
 			rewards: [{
 				count: 3
@@ -256,7 +266,7 @@
 			}]
 			shape: "none"
 			size: 1.5d
-			subtitle: "{ftbquests.chapter.shen_mo.quest6127629805801130934.subtitle}"
+			subtitle: "{ftbquests.chapter.shen_mo.quest6127629805801130934.subtitle}\\n{ftbquests.chapter.shen_mo.common.can_be_search}"
 			tasks: [{
 				entity: "mowziesmobs:ferrous_wroughtnaut"
 				icon: "mowziesmobs:wrought_helmet"
@@ -270,6 +280,7 @@
 		}
 		{
 			dependencies: ["68EDC89BB022788B"]
+			description: [""]
 			id: "29FCA2144193E4B7"
 			rewards: [{
 				count: 3
@@ -279,7 +290,7 @@
 			}]
 			shape: "none"
 			size: 1.5d
-			subtitle: "{ftbquests.chapter.shen_mo.quest3025471257569387703.subtitle}"
+			subtitle: "{ftbquests.chapter.shen_mo.quest3025471257569387703.subtitle}\\n{ftbquests.chapter.shen_mo.common.can_be_search}"
 			tasks: [{
 				entity: "mowziesmobs:frostmaw"
 				icon: {
@@ -299,6 +310,7 @@
 		}
 		{
 			dependencies: ["68EDC89BB022788B"]
+			description: [""]
 			hide_until_deps_complete: false
 			id: "236A628B78740D00"
 			rewards: [{
@@ -309,7 +321,7 @@
 			}]
 			shape: "none"
 			size: 1.5d
-			subtitle: "{ftbquests.chapter.shen_mo.quest2551960490019654912.subtitle}"
+			subtitle: "{ftbquests.chapter.shen_mo.quest2551960490019654912.subtitle}\\n{ftbquests.chapter.shen_mo.common.can_be_search}"
 			tasks: [{
 				entity: "mowziesmobs:umvuthi"
 				icon: "mowziesmobs:sol_visage"
@@ -353,6 +365,7 @@
 		}
 		{
 			dependencies: ["68EDC89BB022788B"]
+			description: [""]
 			id: "7351102E290520AA"
 			rewards: [{
 				count: 3
@@ -362,7 +375,7 @@
 			}]
 			shape: "none"
 			size: 1.5d
-			subtitle: "{ftbquests.chapter.shen_mo.quest7351102E290520AA.subtitle}"
+			subtitle: "{ftbquests.chapter.shen_mo.quest7351102E290520AA.subtitle}\\n{ftbquests.chapter.shen_mo.common.can_be_search}"
 			tasks: [{
 				entity: "bosses_of_mass_destruction:void_blossom"
 				icon: "bosses_of_mass_destruction:void_thorn"
@@ -376,6 +389,7 @@
 		}
 		{
 			dependencies: ["68EDC89BB022788B"]
+			description: [""]
 			id: "1B626D8CAC2DC5F6"
 			rewards: [{
 				count: 3
@@ -385,7 +399,7 @@
 			}]
 			shape: "none"
 			size: 1.5d
-			subtitle: "{ftbquests.chapter.shen_mo.quest1B626D8CAC2DC5F6.subtitle}"
+			subtitle: "{ftbquests.chapter.shen_mo.quest1B626D8CAC2DC5F6.subtitle}\\n{ftbquests.chapter.shen_mo.common.can_be_search}"
 			tasks: [{
 				entity: "bosses_of_mass_destruction:gauntlet"
 				icon: "bosses_of_mass_destruction:blazing_eye"
@@ -399,6 +413,7 @@
 		}
 		{
 			dependencies: ["68EDC89BB022788B"]
+			description: [""]
 			id: "6A0D7B0C41B137EC"
 			rewards: [{
 				count: 3
@@ -408,7 +423,7 @@
 			}]
 			shape: "none"
 			size: 1.5d
-			subtitle: "{ftbquests.chapter.shen_mo.quest6A0D7B0C41B137EC.subtitle}"
+			subtitle: "{ftbquests.chapter.shen_mo.quest6A0D7B0C41B137EC.subtitle}\\n{ftbquests.chapter.shen_mo.common.can_be_search}"
 			tasks: [{
 				entity: "bosses_of_mass_destruction:obsidilith"
 				icon: "bosses_of_mass_destruction:obsidian_heart"

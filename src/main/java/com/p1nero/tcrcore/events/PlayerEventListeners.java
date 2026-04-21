@@ -30,6 +30,7 @@ import com.p1nero.tcrcore.utils.EntityUtil;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tcrcore.utils.WorldUtil;
 import com.p1nero.tcrcore.worldgen.TCRDimensions;
+import com.p1nero.tudigong.item.TDGItems;
 import com.wintercogs.beyonddimensions.api.dimensionnet.DimensionsNet;
 import com.wintercogs.beyonddimensions.api.storage.key.impl.ItemStackKey;
 import com.wintercogs.beyonddimensions.common.init.BDItems;
@@ -175,6 +176,7 @@ public class PlayerEventListeners {
                 ItemUtil.addItem(serverPlayer, Items.BREAD, 32);
                 ItemUtil.addItem(serverPlayer, EpicSkillsItems.ABILIITY_STONE.get(), 1);
                 ItemUtil.addItem(serverPlayer, TCRItems.RESET_SKILL_STONE.get(), 1);
+                ItemUtil.addItem(serverPlayer, TDGItems.TUDI_COMMAND_SPELL.get(), 1);
 
                 net.getUnifiedStorage().insert(new ItemStackKey(BDItems.XP_EXCHANGE_ITEM.get().getDefaultInstance()), 1, false);
             }

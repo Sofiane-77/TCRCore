@@ -54,7 +54,7 @@ public abstract class BTObeliskMixin extends Entity {
             ResourceLocation layerLoot = switch (this.golemType) {
                 case LAND -> checkLayer < 4 ? BuiltInLootTables.SIMPLE_DUNGEON : BuiltInLootTables.WOODLAND_MANSION;
                 case OCEAN -> checkLayer < 4 ? BuiltInLootTables.SHIPWRECK_TREASURE : BuiltInLootTables.BURIED_TREASURE;
-                case CORE -> checkLayer < 4 ? BuiltInLootTables.NETHER_BRIDGE : BuiltInLootTables.BASTION_TREASURE;
+                case CORE -> checkLayer < 4 ? BuiltInLootTables.BASTION_BRIDGE : BuiltInLootTables.BASTION_OTHER;
                 default -> BuiltInLootTables.END_CITY_TREASURE;
             };
             BlockState chest = Blocks.CHEST.defaultBlockState();
