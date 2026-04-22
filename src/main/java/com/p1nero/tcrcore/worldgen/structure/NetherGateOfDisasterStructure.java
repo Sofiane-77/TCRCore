@@ -35,7 +35,6 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.ProtectedBloc
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager;
 import org.jetbrains.annotations.NotNull;
-import yesman.epicfight.world.item.EpicFightItems;
 
 public class NetherGateOfDisasterStructure extends Structure {
     public static final ResourceLocation GATE_OF_DISASTER_P1 = ResourceLocation.fromNamespaceAndPath(TCRCoreMod.MOD_ID, "gate_of_disaster_part1");

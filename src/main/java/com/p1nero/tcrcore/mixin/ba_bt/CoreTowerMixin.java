@@ -20,6 +20,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import com.mojang.datafixers.util.Pair;
 
+/**
+ * 简化定位，虽然位置不准但是搜索更快
+ */
 @Mixin(CoreTower.class)
 public abstract class CoreTowerMixin extends Structure implements TowerStructure {
 

@@ -21,6 +21,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+/**
+ * 简化定位，虽然位置不准但是搜索更快
+ */
 @Mixin(LandTower.class)
 public abstract class LandTowerMixin extends Structure implements TowerStructure {
 

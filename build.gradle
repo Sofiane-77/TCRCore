@@ -14,6 +14,7 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
+    id 'org.parchmentmc.librarian.forgegradle' version '1.+'
     id("me.modmuss50.mod-publish-plugin") version "1.1.0"
 }
 
@@ -221,7 +222,7 @@ dependencies {
 //    implementation fg.deobf("curse.maven:modern-ui-352491:6956345")
 //    implementation fg.deobf("curse.maven:stamp-album-1515506:7934810")
 
-    implementation fg.deobf("curse.maven:ash-of-sin-no-more-too-many-structures-1499971:7873205")
+//    implementation fg.deobf("curse.maven:ash-of-sin-no-more-too-many-structures-1499971:7873205")
 
     implementation fg.deobf("curse.maven:fluid-tick-structure-processor-1369713:7133622")
     implementation fg.deobf("maven.modrinth:epic-fight:${epicfight_version}")
