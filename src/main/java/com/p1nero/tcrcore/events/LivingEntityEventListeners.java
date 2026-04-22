@@ -520,6 +520,7 @@ public class LivingEntityEventListeners {
             if (livingEntity instanceof DragonBase dragonBase) {
                 if (dragonBase.getOwnerUUID() != null) {
                     dragonBase.setHealth(dragonBase.getMaxHealth());
+                    dragonBase.getPersistentData().putBoolean(TRIGGERED, false);
                     ItemStack itemStack = TCRItems.DRAGON_FLUTE.get().getDefaultInstance();
                     DragonFluteItem.saveToItem(itemStack, dragonBase);
                     itemStack.getOrCreateTag().putBoolean("tcr_temp", true);
@@ -535,6 +536,7 @@ public class LivingEntityEventListeners {
                         }
                     }
                 }
+                dragonBase.getPersistentData().putBoolean(TRIGGERED, true);
             }
 
             if (livingEntity instanceof IronGolem ironGolem && WorldUtil.isInStructure(livingEntity, WorldUtil.SKY_GOLEM) && !livingEntity.getPersistentData().getBoolean("already_respawn")) {
@@ -654,7 +656,8 @@ public class LivingEntityEventListeners {
                     }
                 }
 
-                EntityUtil.getNearByEntities(serverPlayer, 20).forEach(entity -> {
+                EntityUtil.getNearByEntities(serverPlayer, 32).forEach(entity -> {
+
                     if (!(entity instanceof OwnableEntity) && entity instanceof LivingEntity living && !(entity instanceof Player)) {
                         //防堆命机制
                         living.setHealth(living.getMaxHealth());
@@ -672,6 +675,15 @@ public class LivingEntityEventListeners {
                             if (livingEntityPatch instanceof ILivingEntityData) {
                                 CEPatchUtils.setStamina(livingEntityPatch, CEPatchUtils.getMaxStamina(livingEntityPatch));
                             }
+                        }
+                    }
+                    //龙送回去
+                    if(entity instanceof OwnableEntity ownableEntity && ownableEntity.getOwner() != null && ownableEntity.getOwner().is(serverPlayer)) {
+                        ServerLevel toRespawnLevel = serverLevel.getServer().getLevel(serverPlayer.getRespawnDimension());
+                        BlockPos pos = serverPlayer.getRespawnPosition();
+                        if(toRespawnLevel != null && pos != null) {
+                            entity.changeDimension(toRespawnLevel);
+                            entity.teleportTo(pos.getX(), pos.getY(), pos.getZ());
                         }
                     }
                 });
@@ -788,15 +800,6 @@ public class LivingEntityEventListeners {
                 event.setCanceled(true);
                 boss.teleportToSpawnPos();
             }
-        } else if (
-                event.getEntity() instanceof Hollow
-                || event.getEntity() instanceof EvilSkeleton
-                || event.getEntity() instanceof Saulomonk) {
-            if (event.getSource().getEntity() instanceof Player player) {
-                player.addEffect(new MobEffectInstance(EFNMobEffectRegistry.SIN_STUN_IMMUNITY.get(), 100, 0));
-                player.addEffect(new MobEffectInstance(EpicFightMobEffects.STUN_IMMUNITY.get(), 100, 0));
-                player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 3));
-            }
         }
 
         //重生保护
@@ -811,6 +814,14 @@ public class LivingEntityEventListeners {
             //被打死重置状态
             if (event.getSource().getEntity() instanceof Bone_Chimera_Entity boneChimeraEntity) {
                 boneChimeraEntity.getPersistentData().putBoolean("fighting", false);
+            } else if (
+                    //被份怪打获得buff
+                    event.getSource().getEntity() instanceof Hollow
+                            || event.getSource().getEntity() instanceof EvilSkeleton
+                            || event.getSource().getEntity() instanceof Saulomonk) {
+                serverPlayer.addEffect(new MobEffectInstance(EFNMobEffectRegistry.SIN_STUN_IMMUNITY.get(), 100, 0));
+                serverPlayer.addEffect(new MobEffectInstance(EpicFightMobEffects.STUN_IMMUNITY.get(), 100, 0));
+                serverPlayer.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 3));
             }
 
             EpicFightCapabilities.getUnparameterizedEntityPatch(serverPlayer, ServerPlayerPatch.class).ifPresent(serverPlayerPatch -> {
