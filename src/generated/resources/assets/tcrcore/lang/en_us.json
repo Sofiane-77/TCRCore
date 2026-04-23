@@ -428,6 +428,7 @@
   "info.tcr.pec_weapon_lock": "Weapon skill locked! In [%s] defeat [%s]  to unlock!",
   "info.tcr.perfect_dodge_tutorial": "§cDodge in time to Perfect Dodge!",
   "info.tcr.perfect_parry_tutorial": "§cBlock in time to Perfect Parry!",
+  "info.tcr.pet_respawn": "Player death detected, [%s] has respawned in sanctum...",
   "info.tcr.please_use_custom_flint_and_steel": "Please use [%s] to spawn portal",
   "info.tcr.press_to_open_battle_mode": "§cPress [%s] to enable Battle Mode!§r",
   "info.tcr.press_to_open_map": "§6[M]§f to view the map",

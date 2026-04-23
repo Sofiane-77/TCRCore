@@ -131,6 +131,7 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.shelmarow.combat_evolution.ai.iml.ILivingEntityData;
 import net.shelmarow.combat_evolution.ai.util.CEPatchUtils;
 import org.merlin204.wraithon.entity.wraithon.WraithonEntity;
+import org.merlin204.wraithon.util.PositionTeleporter;
 import org.merlin204.wraithon.worldgen.WraithonDimensions;
 import reascer.wom.main.WeaponsOfMinecraft;
 import reascer.wom.world.entity.mob.EvilSkeleton;
@@ -689,12 +690,11 @@ public class LivingEntityEventListeners {
                         }
                     }
                     //龙送回去
-                    if(entity instanceof OwnableEntity ownableEntity && ownableEntity.getOwner() != null && ownableEntity.getOwner().is(serverPlayer)) {
-                        ServerLevel toRespawnLevel = serverLevel.getServer().getLevel(serverPlayer.getRespawnDimension());
-                        BlockPos pos = serverPlayer.getRespawnPosition();
-                        if(toRespawnLevel != null && pos != null) {
-                            entity.changeDimension(toRespawnLevel);
-                            entity.teleportTo(pos.getX(), pos.getY(), pos.getZ());
+                    if(entity instanceof DragonBase ownableEntity && ownableEntity.getOwner() != null && ownableEntity.getOwner().is(serverPlayer)) {
+                        ServerLevel toRespawnLevel = serverLevel.getServer().getLevel(TCRDimensions.SANCTUM_LEVEL_KEY);
+                        if(toRespawnLevel != null) {
+                            entity.changeDimension(toRespawnLevel, new PositionTeleporter(new BlockPos(WorldUtil.START_POS)));
+                            serverPlayer.displayClientMessage(TCRCoreMod.getInfo("pet_respawn", ownableEntity.getDisplayName()).withStyle(ChatFormatting.GOLD), false);
                         }
                     }
                 });
@@ -1081,6 +1081,11 @@ public class LivingEntityEventListeners {
                 event.getEntity().setGlowingTag(true);
                 saveSpawnPos(pillager);
             }
+        }
+
+        //防止龙跑远了移除
+        if(event.getEntity() instanceof DragonBase dragonBase) {
+            dragonBase.setPersistenceRequired();
         }
 
     }

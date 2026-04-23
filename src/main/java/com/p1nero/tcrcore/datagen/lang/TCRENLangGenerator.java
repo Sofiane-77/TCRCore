@@ -318,6 +318,7 @@ public class TCRENLangGenerator extends TCRLangProvider {
         this.add(TCRItems.MAGIC_GREATSWORD.get(), "Ninehold");
         this.add(TCRItems.MAGIC_SPEAR.get(), "Heavenrend");
 
+        this.addInfo("pet_respawn", "Player death detected, [%s] has respawned in sanctum...");
         this.addInfo("boss_will_respawn", "Boss will respawn in %ds...");
         this.addInfo("magic_sword_desc", "When playing air attack or dash attack, it will ignore cooldown and mana cost, automatically casting the equipped magic with half level.");
         this.addInfo("obey_rule", "You have defied the destiny!!");
