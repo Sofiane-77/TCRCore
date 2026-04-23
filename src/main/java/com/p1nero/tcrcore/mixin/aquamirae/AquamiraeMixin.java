@@ -1,4 +1,4 @@
-package com.p1nero.tcrcore.mixin;
+package com.p1nero.tcrcore.mixin.aquamirae;
 
 import com.obscuria.aquamirae.Aquamirae;
 import net.minecraftforge.event.TickEvent;
