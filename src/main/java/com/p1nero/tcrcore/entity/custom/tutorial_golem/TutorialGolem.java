@@ -7,8 +7,6 @@ import com.p1nero.tcrcore.entity.custom.tutorial_humanoid.TutorialHumanoid;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
 import com.p1nero.tcrcore.network.packet.clientbound.PlayTitlePacket;
 import com.p1nero.tcrcore.utils.WorldUtil;
-import com.p1nero.tudigong.entity.XianQiEntity;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket;
 import net.minecraft.network.protocol.game.ClientboundSoundPacket;
@@ -32,7 +30,18 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import yesman.epicfight.world.effect.EpicFightMobEffects;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class TutorialGolem extends IronGolem {
+
+    private int damageNumberPos;
+
+    private static final int DPS_WINDOW_TICKS = 60;
+    private final Queue<DamageRecord> damageRecords = new LinkedList<>();
+
+    private record DamageRecord(int tick, float damage) {}
+
     public TutorialGolem(EntityType<? extends IronGolem> entityType, Level level) {
         super(entityType, level);
     }
@@ -50,19 +59,53 @@ public class TutorialGolem extends IronGolem {
     @Override
     public void tick() {
         super.tick();
-        if(!level().isClientSide) {
-            if(this.distanceToSqr(WorldUtil.GOLEM_CENTER_POS_VEC3) > 70 * 70) {
+        if (!level().isClientSide) {
+            if (this.distanceToSqr(WorldUtil.GOLEM_CENTER_POS_VEC3) > 70 * 70) {
                 Vec3 dir = WorldUtil.GOLEM_CENTER_POS_VEC3.subtract(this.position()).normalize();
                 Vec3 targetPos = this.position().add(dir.scale(30));
                 this.getNavigation().moveTo(targetPos.x, targetPos.y, targetPos.z, 1.0F);
             }
+
+            // 清理超出时间窗口的伤害记录
+            int currentTick = tickCount;
+            while (!damageRecords.isEmpty() && currentTick - damageRecords.peek().tick > DPS_WINDOW_TICKS) {
+                damageRecords.poll();
+            }
         }
+    }
+
+    public void addTotalDamage(float value) {
+        damageRecords.add(new DamageRecord(tickCount, value));
+    }
+
+    public float getTotalDamagePerSecond() {
+        if (damageRecords.isEmpty()) {
+            return 0.0F;
+        }
+        int currentTick = tickCount;
+        float totalDamage = 0.0F;
+        int earliestTick = Integer.MAX_VALUE;
+        for (DamageRecord record : damageRecords) {
+            totalDamage += record.damage;
+            if (record.tick < earliestTick) {
+                earliestTick = record.tick;
+            }
+        }
+        int timeSpanTicks = Math.min(currentTick - earliestTick, DPS_WINDOW_TICKS);
+        if (timeSpanTicks < 0) {
+            return 0.0F;
+        }
+        float timeSeconds = timeSpanTicks / 20.0F;
+        //不足1直接算总和，防止分母太小了
+        if(timeSeconds < 1) {
+            return totalDamage;
+        }
+        return totalDamage / timeSeconds;
     }
 
     @Override
     public boolean hurt(@NotNull DamageSource source, float value) {
         if(source.getEntity() instanceof ServerPlayer serverPlayer) {
-            serverPlayer.displayClientMessage(TCRCoreMod.getInfo("hurt_damage", String.format("%.2f", value)).withStyle(ChatFormatting.RED), false);
             if(PlayerDataManager.locked.get(serverPlayer)) {
                 this.addEffect(new MobEffectInstance(EpicFightMobEffects.INSTABILITY.get(), 200, 1));
             } else {
@@ -143,5 +186,9 @@ public class TutorialGolem extends IronGolem {
                 this.setTarget(null);
             }
         }
+    }
+
+    public int getNextNumberPos() {
+        return this.damageNumberPos++;
     }
 }

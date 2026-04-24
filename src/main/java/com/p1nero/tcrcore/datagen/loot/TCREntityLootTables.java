@@ -1,5 +1,6 @@
 package com.p1nero.tcrcore.datagen.loot;
 
+import com.aetherteam.aether.item.AetherItems;
 import com.brass_amber.ba_bt.init.BTItems;
 import com.p1nero.tcr_bosses.entity.TCRBossEntities;
 import com.p1nero.tcrcore.entity.TCREntities;
@@ -113,7 +114,10 @@ public class TCREntityLootTables extends EntityLootSubProvider {
                         .add(LootItem.lootTableItem(ItemRegistry.ARCANE_ESSENCE.get())))
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))
-                        .add(LootItem.lootTableItem(BTItems.SKY_MONOLITH_KEY.get()))));
+                        .add(LootItem.lootTableItem(BTItems.SKY_MONOLITH_KEY.get())))
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(AetherItems.GOLD_DUNGEON_KEY.get()))));
         this.add(TCRBossEntities.VALKYRIE.get(), LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))
@@ -128,7 +132,10 @@ public class TCREntityLootTables extends EntityLootSubProvider {
                         .add(LootItem.lootTableItem(ItemRegistry.ARCANE_ESSENCE.get())))
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))
-                        .add(LootItem.lootTableItem(BTItems.SKY_MONOLITH_KEY.get()))));
+                        .add(LootItem.lootTableItem(BTItems.SKY_MONOLITH_KEY.get())))
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(AetherItems.SILVER_DUNGEON_KEY.get()))));
         this.add(TCRBossEntities.GOLDEN_EXECUTOR.get(),  LootTable.lootTable()
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))

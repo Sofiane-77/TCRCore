@@ -3,6 +3,7 @@ package com.p1nero.tcrcore.item.custom;
 import com.p1nero.tcrcore.TCRCoreMod;
 import net.magister.bookofdragons.advancement.ModAdvancementTriggers;
 import net.magister.bookofdragons.entity.base.dragon.DragonBase;
+import net.magister.bookofdragons.event.DragonDiscoveryEventHandler;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -36,14 +37,24 @@ public class DragonFluteItem extends SimpleDescriptionItem {
             Player pPlayer = onContext.getPlayer();
             ItemStack stack = onContext.getItemInHand();
             LivingEntity livingEntity = releaseEntity(stack, onContext.getLevel(), onContext.getClickLocation());
-            if(livingEntity instanceof DragonBase dragonBase && pPlayer != null && dragonBase.canBeMountedBy(pPlayer)) {
-                boolean ridingSuccess = pPlayer.startRiding(dragonBase);
-                if (ridingSuccess) {
-                    dragonBase.setTarget(null);
-                    dragonBase.getNavigation().stop();
-                    dragonBase.goalSelector.getRunningGoals().forEach(WrappedGoal::stop);
-                    dragonBase.targetSelector.getRunningGoals().forEach(WrappedGoal::stop);
-                    dragonBase.getMoveControl().setWantedPosition(dragonBase.getX(), dragonBase.getY(), dragonBase.getZ(), 0.0F);
+            if(livingEntity instanceof DragonBase dragonBase && pPlayer != null) {
+                if(dragonBase.canBeMountedBy(pPlayer)) {
+                    boolean ridingSuccess = pPlayer.startRiding(dragonBase);
+                    if (ridingSuccess) {
+                        dragonBase.setTarget(null);
+                        dragonBase.getNavigation().stop();
+                        dragonBase.goalSelector.getRunningGoals().forEach(WrappedGoal::stop);
+                        dragonBase.targetSelector.getRunningGoals().forEach(WrappedGoal::stop);
+                        dragonBase.getMoveControl().setWantedPosition(dragonBase.getX(), dragonBase.getY(), dragonBase.getZ(), 0.0F);
+                    }
+                }
+                if(dragonBase.getOwnerUUID() == null) {
+                    dragonBase.tame(pPlayer);
+                    dragonBase.setTamingRitualCompleted(true);
+                    dragonBase.setAwaitingTamingRitual(false);
+                    dragonBase.setTamingRitualTimer(0);
+                    dragonBase.addAffection(pPlayer.getUUID(), 10);
+                    DragonDiscoveryEventHandler.onDragonTamed(pPlayer, dragonBase);
                 }
             }
             if(livingEntity != null) {

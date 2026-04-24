@@ -30,6 +30,7 @@ import com.p1nero.tcrcore.utils.EntityUtil;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tcrcore.utils.WorldUtil;
 import com.p1nero.tcrcore.worldgen.TCRDimensions;
+import com.p1nero.tudigong.item.TDGItems;
 import com.wintercogs.beyonddimensions.api.dimensionnet.DimensionsNet;
 import com.wintercogs.beyonddimensions.api.storage.key.impl.ItemStackKey;
 import com.wintercogs.beyonddimensions.common.init.BDItems;
@@ -175,6 +176,7 @@ public class PlayerEventListeners {
                 ItemUtil.addItem(serverPlayer, Items.BREAD, 32);
                 ItemUtil.addItem(serverPlayer, EpicSkillsItems.ABILIITY_STONE.get(), 1);
                 ItemUtil.addItem(serverPlayer, TCRItems.RESET_SKILL_STONE.get(), 1);
+                ItemUtil.addItem(serverPlayer, TDGItems.TUDI_COMMAND_SPELL.get(), 1);
 
                 net.getUnifiedStorage().insert(new ItemStackKey(BDItems.XP_EXCHANGE_ITEM.get().getDefaultInstance()), 1, false);
             }
@@ -571,7 +573,11 @@ public class PlayerEventListeners {
 //                    TCRQuests.TALK_TO_AINE_GAME_CLEAR.start(serverPlayer);
 //                }
 //            }
-
+            if(event.getFrom().equals(PBF1Dimensions.SANCTUM_OF_THE_BATTLE_LEVEL_KEY)) {
+                if(serverPlayer.isSpectator()) {
+                    serverPlayer.setGameMode(GameType.SPECTATOR);
+                }
+            }
             updateHealth(serverPlayer, event.getFrom());
             updateHealth(serverPlayer, event.getTo());
         }

@@ -520,36 +520,6 @@
       "skill": "wom:soul_protection"
     },
     {
-      "ability_points": 4,
-      "parents": [
-        {
-          "skill": "wom:lethal_focus"
-        }
-      ],
-      "conditions": {
-        "type_specific": {
-          "type": "player",
-          "stats": [
-            {
-              "type": "minecraft:killed",
-              "stat": "wom:evil_skeleton",
-              "value": {
-                "min": 20
-              }
-            }
-          ]
-        }
-      },
-      "unlock_tip": "unlock_tip.epicskills.prodigy.vampirize",
-      "custom_condition": false,
-      "hidden": false,
-      "position_in_screen": [
-        650,
-        300
-      ],
-      "skill": "wom:vampirize"
-    },
-    {
       "ability_points": 6,
       "parents": [
         {
@@ -560,15 +530,6 @@
             ]
           ],
           "skill": "wom:soul_protection"
-        },
-        {
-          "control_points": [
-            [
-              600,
-              300
-            ]
-          ],
-          "skill": "wom:vampirize"
         }
       ],
       "conditions": {
@@ -994,7 +955,7 @@
           "stats": [
             {
               "type": "minecraft:killed",
-              "stat": "minecraft:hollow",
+              "stat": "wom:hollow",
               "value": {
                 "min": 50
               }

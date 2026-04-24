@@ -159,6 +159,7 @@ public class TCRCoreMod {
                     (path) -> new PathPackResources(path, resourcePath, false), PackType.CLIENT_RESOURCES, Pack.Position.TOP, PackSource.BUILT_IN);
             event.addRepositorySource((packConsumer) -> packConsumer.accept(pack));
         }
+
         if (event.getPackType() == PackType.CLIENT_RESOURCES) {
             String name = "zh_cn_patch";
             var resourcePath = ModList.get().getModFileById(MOD_ID).getFile().findResource("packs/" + name);
@@ -166,6 +167,7 @@ public class TCRCoreMod {
                     (path) -> new PathPackResources(path, resourcePath, false), PackType.CLIENT_RESOURCES, Pack.Position.TOP, PackSource.BUILT_IN);
             event.addRepositorySource((packConsumer) -> packConsumer.accept(pack));
         }
+
         if (event.getPackType() == PackType.CLIENT_RESOURCES) {
             String name = "tcr_assets";
             var resourcePath = ModList.get().getModFileById(MOD_ID).getFile().findResource("packs/" + name);
@@ -173,13 +175,15 @@ public class TCRCoreMod {
                     (path) -> new PathPackResources(path, resourcePath, false), PackType.CLIENT_RESOURCES, Pack.Position.TOP, PackSource.BUILT_IN);
             event.addRepositorySource((packConsumer) -> packConsumer.accept(pack));
         }
+
         if (event.getPackType() == PackType.CLIENT_RESOURCES) {
-            String name = "more_beautiful_models_and_trail";
+            String name = "custom_models";
             var resourcePath = ModList.get().getModFileById(MOD_ID).getFile().findResource("packs/" + name);
             var pack = Pack.readMetaAndCreate(name, TCRCoreMod.getInfo("more_beautiful_models_and_trail"), false,
                     (path) -> new PathPackResources(path, resourcePath, false), PackType.CLIENT_RESOURCES, Pack.Position.TOP, PackSource.BUILT_IN);
             event.addRepositorySource((packConsumer) -> packConsumer.accept(pack));
         }
+
         //idas为可选
         if (event.getPackType() == PackType.SERVER_DATA && ModList.get().isLoaded("idas")) {
             String name = "idas_modify";
@@ -193,6 +197,14 @@ public class TCRCoreMod {
             String name = "tcr_data";
             var resourcePath = ModList.get().getModFileById(MOD_ID).getFile().findResource("packs/" + name);
             var pack = Pack.readMetaAndCreate(name, Component.literal("The Casket of Reveries Data - Override"), true,
+                    (path) -> new PathPackResources(path, resourcePath, false), PackType.SERVER_DATA, Pack.Position.TOP, PackSource.WORLD);
+            event.addRepositorySource((packConsumer) -> packConsumer.accept(pack));
+        }
+
+        if (event.getPackType() == PackType.SERVER_DATA) {
+            String name = "structure_set_control";
+            var resourcePath = ModList.get().getModFileById(MOD_ID).getFile().findResource("packs/" + name);
+            var pack = Pack.readMetaAndCreate(name, Component.literal("The Casket of Reveries Structure Sets - Override"), true,
                     (path) -> new PathPackResources(path, resourcePath, false), PackType.SERVER_DATA, Pack.Position.TOP, PackSource.WORLD);
             event.addRepositorySource((packConsumer) -> packConsumer.accept(pack));
 

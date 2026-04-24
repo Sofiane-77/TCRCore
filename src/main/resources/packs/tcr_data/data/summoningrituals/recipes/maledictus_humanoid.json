@@ -12,10 +12,7 @@
     ],
     "inputs": [
         { "ingredient": { "item": "cataclysm:cursium_ingot" }, "count": 1 },
-        { "ingredient": { "item": "cataclysm:strange_key" }, "count": 3 },
-        { "ingredient": { "item": "irons_spellbooks:frozen_bone" }, "count": 11 },
-        { "ingredient": { "item": "minecraft:ice" }, "count": 11 },
-        { "ingredient": { "item": "bosses_of_mass_destruction:soul_star" }, "count": 4 }
+        { "ingredient": { "item": "irons_spellbooks:frozen_bone" }, "count": 3 }
     ],
     "recipe_time": 200,
     "block_below": { "block": "minecraft:calcite" },

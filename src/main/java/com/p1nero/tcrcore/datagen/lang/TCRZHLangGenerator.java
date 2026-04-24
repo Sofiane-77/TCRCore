@@ -316,6 +316,7 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.add(TCRItems.MAGIC_GREATSWORD.get(), "镇九州");
         this.add(TCRItems.MAGIC_SPEAR.get(), "贯长空");
 
+        this.addInfo("pet_respawn", "检测到玩家死亡，[%s] 已在主城重生...");
         this.addInfo("boss_will_respawn", "Boss将在 %ds 后重生...");
         this.addInfo("magic_sword_desc", "释放冲刺或跳跃攻击时将无视冷却无视法力值，自动释放所携带的魔法，但法术等级减半。");
         this.addInfo("obey_rule", "你违反了天意");
@@ -798,6 +799,15 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.addDialogAnswer(TCRBossEntities.VALKYRIE.get(), 2, "%s？还请阁下击败神殿中的诸位护卫拿到十枚[%s]，证明自己的实力吧，我拭目以待。");
         this.addDialogOption(TCRBossEntities.VALKYRIE.get(), 2, "我没资格啊，我没资格(%s)");
         this.addDialogOption(TCRBossEntities.VALKYRIE.get(), 3, "§a[开启挑战]");
+
+        this.addDialogOption(TCRBossEntities.EVENING_GHOST.get(), -1, "[返回]");
+        this.addDialogOption(TCRBossEntities.EVENING_GHOST.get(), 0, "你是何人？");
+        this.addDialogOption(TCRBossEntities.EVENING_GHOST.get(), 1, "关于[%s]");
+        this.addDialogOption(TCRBossEntities.EVENING_GHOST.get(), 2, "[离开]");
+        this.addDialogOption(TCRBossEntities.EVENING_GHOST.get(), 3, "准备迎战！");
+        this.addDialogAnswer(TCRBossEntities.EVENING_GHOST.get(), 0, "...（没有任何生息，似乎只是一具残骸）");
+        this.addDialogAnswer(TCRBossEntities.EVENING_GHOST.get(), 1, "...（没有任何回应）");
+        this.addDialogAnswer(TCRBossEntities.EVENING_GHOST.get(), 2, "！！（似乎警惕了起来）");
 
 
     }

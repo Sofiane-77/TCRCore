@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smithing_transform",
   "addition": {
-    "item": "minecraft:amethyst_shard"
+    "item": "cataclysm:black_steel_ingot"
   },
   "base": {
     "item": "epicfight:netherite_dagger"

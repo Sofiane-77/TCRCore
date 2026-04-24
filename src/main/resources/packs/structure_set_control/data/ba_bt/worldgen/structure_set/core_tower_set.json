@@ -1,0 +1,23 @@
+{
+  "placement": {
+    "type": "yungsapi:enhanced_random_spread",
+    "salt": 123111514,
+    "separation": 32,
+    "spacing": 36,
+    "locate_offset": [
+      8,
+      -60,
+      8
+    ],
+    "enhanced_exclusion_zone": {
+      "other_set": "#ba_bt:core_tower_avoid_structures",
+      "chunk_count": 8
+    }
+  },
+  "structures": [
+    {
+      "structure": "ba_bt:core_tower",
+      "weight": 1
+    }
+  ]
+}

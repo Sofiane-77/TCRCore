@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "mowziesmobs:ice_crystal"
+  },
+  "base": {
+    "item": "epicfight:netherite_longsword"
+  },
+  "result": {
+    "item": "tcrcore:glacis_jadae"
+  },
+  "template": {
+    "item": "tcrcore:nine_heaven_darksteel"
+  }
+}

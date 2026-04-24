@@ -1,0 +1,22 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 4325806,
+    "separation": 32,
+    "spacing": 38
+  },
+  "structures": [
+    {
+      "structure": "aether:silver_dungeon",
+      "weight": 1
+    },
+    {
+      "structure": "aether:gold_dungeon",
+      "weight": 1
+    },
+    {
+      "structure": "lost_aether_content:platinum_dungeon",
+      "weight": 1
+    }
+  ]
+}

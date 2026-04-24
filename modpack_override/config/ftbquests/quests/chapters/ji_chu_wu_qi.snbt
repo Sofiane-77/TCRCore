@@ -1,13 +1,15 @@
 {
-	default_hide_dependency_lines: false
+	default_hide_dependency_lines: true
 	default_quest_shape: ""
 	filename: "404D35C74CC7C412"
 	group: ""
+	hide_quest_until_deps_complete: true
+	hide_quest_until_deps_visible: true
 	icon: {
 		Count: 1
-		id: "tcrcore:nine_heaven_darksteel"
+		id: "epicfight:skillbook"
 		tag: {
-			Damage: 0
+			skill: "dodge_parry_reward:absorb1"
 		}
 	}
 	id: "404D35C74CC7C412"
@@ -17,7 +19,7 @@
 		rotation: 0.0d
 		width: 42.0d
 		x: 1.0d
-		y: -2.0d
+		y: 2.0d
 	}]
 	order_index: 2
 	quest_links: [ ]
@@ -42,11 +44,12 @@
 					}
 				}
 				match_nbt: true
+				only_from_crafting: true
 				type: "item"
 			}]
 			title: "{ftbquests.chapter.ji_chu_wu_qi.quest61761F4F46C96BC9.title}"
-			x: -4.0d
-			y: -10.0d
+			x: -5.0d
+			y: 10.0d
 		}
 		{
 			description: ["{ftbquests.chapter.ji_chu_wu_qi.quest30368EF6A0CB57B7.description1}"]
@@ -67,12 +70,14 @@
 						skill: "efn:efn_parry"
 					}
 				}
+				match_nbt: true
+				only_from_crafting: true
 				type: "item"
 				weak_nbt_match: true
 			}]
 			title: "{ftbquests.chapter.ji_chu_wu_qi.quest61761F4F46C96BC9.title}"
-			x: 0.0d
-			y: -10.0d
+			x: -1.0d
+			y: 10.0d
 		}
 		{
 			description: ["{ftbquests.chapter.ji_chu_wu_qi.quest30368EF6A0CB57B7.description1}"]
@@ -93,12 +98,13 @@
 						skill: "efn:efn_dodge"
 					}
 				}
+				only_from_crafting: true
 				type: "item"
 				weak_nbt_match: true
 			}]
 			title: "{ftbquests.chapter.ji_chu_wu_qi.quest61761F4F46C96BC9.title}"
-			x: 4.0d
-			y: -10.0d
+			x: 3.0d
+			y: 10.0d
 		}
 		{
 			description: ["{ftbquests.chapter.ji_chu_wu_qi.quest30368EF6A0CB57B7.description1}"]
@@ -119,12 +125,13 @@
 						skill: "efn:efn_step"
 					}
 				}
+				only_from_crafting: true
 				type: "item"
 				weak_nbt_match: true
 			}]
 			title: "{ftbquests.chapter.ji_chu_wu_qi.quest61761F4F46C96BC9.title}"
-			x: 8.0d
-			y: -10.0d
+			x: 7.0d
+			y: 10.0d
 		}
 		{
 			description: ["{ftbquests.chapter.ji_chu_wu_qi.quest30368EF6A0CB57B7.description1}"]
@@ -140,7 +147,7 @@
 				id: "10ACCF26D0DE0DBD"
 				item: {
 					Count: 1
-					id: "epicfight:netherite_dagger"
+					id: "epicfight:diamond_dagger"
 					tag: {
 						Damage: 0
 					}
@@ -164,7 +171,7 @@
 				id: "142E1F452D33826A"
 				item: {
 					Count: 1
-					id: "minecraft:netherite_sword"
+					id: "minecraft:diamond_sword"
 					tag: {
 						Damage: 0
 					}
@@ -188,7 +195,7 @@
 				id: "05DE4F7CA225F64A"
 				item: {
 					Count: 1
-					id: "minecraft:netherite_axe"
+					id: "minecraft:diamond_axe"
 					tag: {
 						Damage: 0
 					}
@@ -212,7 +219,7 @@
 				id: "6B01BCB79D095B21"
 				item: {
 					Count: 1
-					id: "epicfight:netherite_longsword"
+					id: "epicfight:diamond_longsword"
 					tag: {
 						Damage: 0
 					}
@@ -236,7 +243,7 @@
 				id: "3B3BFDDB6AE29B06"
 				item: {
 					Count: 1
-					id: "epicfight:netherite_tachi"
+					id: "epicfight:diamond_tachi"
 					tag: {
 						Damage: 0
 					}
@@ -260,7 +267,7 @@
 				id: "2EA7FB8324986D74"
 				item: {
 					Count: 1
-					id: "epicfight:netherite_greatsword"
+					id: "epicfight:diamond_greatsword"
 					tag: {
 						Damage: 0
 					}
@@ -284,7 +291,7 @@
 				id: "154B4FE2FB7EF7C1"
 				item: {
 					Count: 1
-					id: "epicfight:netherite_spear"
+					id: "epicfight:diamond_spear"
 					tag: {
 						Damage: 0
 					}
@@ -295,6 +302,7 @@
 			y: 6.357142857142854d
 		}
 		{
+			dependencies: ["453EAC2C0D277C2F"]
 			hide_dependent_lines: true
 			id: "14620CD5B3468814"
 			rewards: [{
@@ -314,6 +322,7 @@
 			y: 3.0d
 		}
 		{
+			dependencies: ["453EAC2C0D277C2F"]
 			hide_dependent_lines: true
 			id: "3E41C126E3F56891"
 			rewards: [{
@@ -333,7 +342,7 @@
 			y: 3.0d
 		}
 		{
-			dependencies: ["3E41C126E3F56891"]
+			dependencies: ["453EAC2C0D277C2F"]
 			description: ["{ftbquests.chapter.ji_chu_wu_qi.quest30368EF6A0CB57B7.description1}"]
 			id: "4362AD12EC59BBD6"
 			rewards: [{
@@ -358,7 +367,7 @@
 			y: 0.0d
 		}
 		{
-			dependencies: ["3E41C126E3F56891"]
+			dependencies: ["453EAC2C0D277C2F"]
 			description: ["{ftbquests.chapter.ji_chu_wu_qi.quest30368EF6A0CB57B7.description1}"]
 			id: "54F79EF07AA0E6A7"
 			rewards: [{
@@ -383,7 +392,7 @@
 			y: 0.0d
 		}
 		{
-			dependencies: ["3E41C126E3F56891"]
+			dependencies: ["453EAC2C0D277C2F"]
 			description: ["{ftbquests.chapter.ji_chu_wu_qi.quest30368EF6A0CB57B7.description1}"]
 			id: "7172E4C65D230855"
 			rewards: [{
@@ -408,7 +417,7 @@
 			y: 0.0d
 		}
 		{
-			dependencies: ["3E41C126E3F56891"]
+			dependencies: ["453EAC2C0D277C2F"]
 			description: ["{ftbquests.chapter.ji_chu_wu_qi.quest30368EF6A0CB57B7.description1}"]
 			id: "2C2B2B0969037C9A"
 			rewards: [{
@@ -433,7 +442,7 @@
 			y: 0.0d
 		}
 		{
-			dependencies: ["3E41C126E3F56891"]
+			dependencies: ["453EAC2C0D277C2F"]
 			description: ["{ftbquests.chapter.ji_chu_wu_qi.quest30368EF6A0CB57B7.description1}"]
 			id: "63F4D11BFAAFA13E"
 			rewards: [{
@@ -482,7 +491,7 @@
 			y: 6.357142857142854d
 		}
 		{
-			dependencies: ["14620CD5B3468814"]
+			dependencies: ["453EAC2C0D277C2F"]
 			description: ["{ftbquests.chapter.ji_chu_wu_qi.quest30368EF6A0CB57B7.description1}"]
 			id: "5E2DEFDFE102C95D"
 			rewards: [{
@@ -507,7 +516,7 @@
 			y: 0.0d
 		}
 		{
-			dependencies: ["14620CD5B3468814"]
+			dependencies: ["453EAC2C0D277C2F"]
 			description: ["{ftbquests.chapter.ji_chu_wu_qi.quest30368EF6A0CB57B7.description1}"]
 			id: "172FAB5CD9E6833B"
 			rewards: [{
@@ -532,7 +541,7 @@
 			y: 0.0d
 		}
 		{
-			dependencies: ["14620CD5B3468814"]
+			dependencies: ["453EAC2C0D277C2F"]
 			description: ["{ftbquests.chapter.ji_chu_wu_qi.quest30368EF6A0CB57B7.description1}"]
 			id: "4D30B6C25AC66763"
 			rewards: [{
@@ -557,7 +566,7 @@
 			y: 0.0d
 		}
 		{
-			dependencies: ["14620CD5B3468814"]
+			dependencies: ["453EAC2C0D277C2F"]
 			description: ["{ftbquests.chapter.ji_chu_wu_qi.quest30368EF6A0CB57B7.description1}"]
 			id: "59A13DC0FCC26535"
 			rewards: [{
@@ -583,7 +592,7 @@
 			y: 0.0d
 		}
 		{
-			dependencies: ["1976730541157FB1"]
+			dependencies: ["453EAC2C0D277C2F"]
 			description: ["{ftbquests.chapter.ji_chu_wu_qi.quest30368EF6A0CB57B7.description1}"]
 			id: "33C994EFCF8B787C"
 			rewards: [{
@@ -608,7 +617,7 @@
 			y: -6.0d
 		}
 		{
-			dependencies: ["1976730541157FB1"]
+			dependencies: ["453EAC2C0D277C2F"]
 			description: ["{ftbquests.chapter.ji_chu_wu_qi.quest30368EF6A0CB57B7.description1}"]
 			id: "3C2E148B9E29BA72"
 			rewards: [{
@@ -633,7 +642,7 @@
 			y: -6.0d
 		}
 		{
-			dependencies: ["1976730541157FB1"]
+			dependencies: ["453EAC2C0D277C2F"]
 			description: ["{ftbquests.chapter.ji_chu_wu_qi.quest30368EF6A0CB57B7.description1}"]
 			id: "4C9E7F63A632E758"
 			rewards: [{
@@ -658,7 +667,7 @@
 			y: -6.0d
 		}
 		{
-			dependencies: ["1976730541157FB1"]
+			dependencies: ["453EAC2C0D277C2F"]
 			description: ["{ftbquests.chapter.ji_chu_wu_qi.quest30368EF6A0CB57B7.description1}"]
 			id: "69381165F5467600"
 			rewards: [{
@@ -683,7 +692,7 @@
 			y: -6.0d
 		}
 		{
-			dependencies: ["1976730541157FB1"]
+			dependencies: ["453EAC2C0D277C2F"]
 			description: ["{ftbquests.chapter.ji_chu_wu_qi.quest30368EF6A0CB57B7.description1}"]
 			id: "10CBD622E813ACA6"
 			rewards: [{
@@ -708,7 +717,7 @@
 			y: -6.0d
 		}
 		{
-			dependencies: ["1976730541157FB1"]
+			dependencies: ["453EAC2C0D277C2F"]
 			description: ["{ftbquests.chapter.ji_chu_wu_qi.quest30368EF6A0CB57B7.description1}"]
 			id: "7AF0C4D6996EA8F3"
 			rewards: [{
@@ -733,7 +742,7 @@
 			y: -6.0d
 		}
 		{
-			dependencies: ["1976730541157FB1"]
+			dependencies: ["453EAC2C0D277C2F"]
 			description: ["{ftbquests.chapter.ji_chu_wu_qi.quest30368EF6A0CB57B7.description1}"]
 			id: "5E5CC4C90C61DD8E"
 			rewards: [{
@@ -758,7 +767,7 @@
 			y: -6.0d
 		}
 		{
-			dependencies: ["1976730541157FB1"]
+			dependencies: ["453EAC2C0D277C2F"]
 			description: ["{ftbquests.chapter.ji_chu_wu_qi.quest30368EF6A0CB57B7.description1}"]
 			id: "642B3B282621DE2B"
 			rewards: [{
@@ -783,7 +792,7 @@
 			y: -6.0d
 		}
 		{
-			dependencies: ["1976730541157FB1"]
+			dependencies: ["453EAC2C0D277C2F"]
 			description: ["{ftbquests.chapter.ji_chu_wu_qi.quest30368EF6A0CB57B7.description1}"]
 			id: "30368EF6A0CB57B7"
 			rewards: [{
@@ -808,6 +817,7 @@
 			y: -6.0d
 		}
 		{
+			dependencies: ["453EAC2C0D277C2F"]
 			hide_dependent_lines: true
 			id: "1976730541157FB1"
 			rewards: [{
@@ -823,8 +833,40 @@
 				item: "tcrcore:ancient_oracle_fragment"
 				type: "item"
 			}]
-			x: 0.0d
+			x: 1.0d
 			y: -3.0d
+		}
+		{
+			hide_dependency_lines: true
+			hide_dependent_lines: true
+			icon: {
+				Count: 1
+				id: "tcrcore:mysterious_weapons"
+				tag: {
+					fdbosses: { }
+				}
+			}
+			icon_scale: 2.0d
+			id: "453EAC2C0D277C2F"
+			invisible: true
+			rewards: [{
+				id: "02B6F5F4F0450064"
+				type: "xp"
+				xp: 1
+			}]
+			shape: "none"
+			size: 1.5d
+			subtitle: "{ftbquests.chapter.wu_qi.quest3431479692052966900.subtitle}"
+			tasks: [{
+				advancement: "tcrcore:unlock_weapon_armor_book"
+				criterion: ""
+				id: "1658AD0808E48293"
+				title: "{ftbquests.chapter.wu_qi.quest3431479692052966900.task.8718992271418887691.title}"
+				type: "advancement"
+			}]
+			title: "{ftbquests.chapter.ji_chu_wu_qi.title}"
+			x: 0.8095238095238102d
+			y: 3.8095238095238173d
 		}
 	]
 	title: "{ftbquests.chapter.ji_chu_wu_qi.title}"

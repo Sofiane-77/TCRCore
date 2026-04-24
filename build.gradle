@@ -14,6 +14,7 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
+    id 'org.parchmentmc.librarian.forgegradle' version '1.+'
     id("me.modmuss50.mod-publish-plugin") version "1.1.0"
 }
 
@@ -201,6 +202,7 @@ dependencies {
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     implementation "maven.modrinth:preloading-tricks:3.2.2"
+//    implementation fg.deobf("curse.maven:registry-blocker-1118861:6998623")
     implementation ("libs:tcrmodfilter:1.0.4")
 //    implementation fg.deobf("libs:pbf:1.1.0")
     implementation fg.deobf("curse.maven:p1neros-primal-arena-dimension-1369741:7147163")
@@ -216,9 +218,15 @@ dependencies {
     implementation fg.deobf("curse.maven:konkrete-410295:5028413")
     implementation fg.deobf("curse.maven:melody-938643:5109692")
 
+//    implementation fg.deobf("curse.maven:ldlib-626676:7809449")
+//    implementation fg.deobf("curse.maven:modern-ui-352491:6956345")
+//    implementation fg.deobf("curse.maven:stamp-album-1515506:7934810")
+
+//    implementation fg.deobf("curse.maven:ash-of-sin-no-more-too-many-structures-1499971:7873205")
+
     implementation fg.deobf("curse.maven:fluid-tick-structure-processor-1369713:7133622")
     implementation fg.deobf("maven.modrinth:epic-fight:${epicfight_version}")
-//    implementation fg.deobf("libs:epic-fight:20.14.14.1")
+//    implementation fg.deobf("libs:registry-blocker:0.7.1")
 //    implementation fg.deobf("maven.modrinth:epic-fight-skill-tree:${epicskills_version}")
     implementation fg.deobf("libs:epicfight-skilltree:20.2.6.6")
     implementation fg.deobf("curse.maven:p1nero-better-structure-block-970671:6817772")
@@ -236,11 +244,12 @@ dependencies {
     implementation fg.deobf("curse.maven:epic-fight-dodge-parry-reward-1304607:7685159")
     implementation fg.deobf("curse.maven:epic-fight-avalon-1268823:7619938")
     implementation fg.deobf("curse.maven:p1neros-dialogue-lib-1274526:7706756")
-    implementation fg.deobf("curse.maven:entity-respawner-1363764:7105518")
+//    implementation fg.deobf("curse.maven:entity-respawner-1363764:7971738")
+    implementation fg.deobf("libs:entityrespawner:1.1.0")
 
     implementation fg.deobf("curse.maven:epicfight-nightfall-1307848:7788590")
     implementation fg.deobf("curse.maven:combat-evolution-1377795:7780749")
-    implementation fg.deobf("libs:tcr_bosses:1.1.4")
+    implementation fg.deobf("libs:tcr_bosses:1.1.6")
     implementation fg.deobf("libs:tcrmeshes:1.0.0")
     implementation fg.deobf("curse.maven:epic-fight-the-mimic-1360684:7717502")
 
@@ -320,7 +329,7 @@ dependencies {
 //    implementation fg.deobf("curse.maven:from-the-shadow-reborn-986907:7037169")
     implementation fg.deobf("curse.maven:more-hitboxes-1115989:6942239")
     implementation fg.deobf("curse.maven:cataclysm-dimensions-1303494:7748030")
-    implementation fg.deobf("curse.maven:lendercataclysm-551586:7821746")
+    implementation fg.deobf("curse.maven:lendercataclysm-551586:7934870")
 //    implementation fg.deobf("curse.maven:cinematic-cataclysm-1399324:7302287")
     implementation fg.deobf("curse.maven:curios-309927:6418456")
     implementation fg.deobf("curse.maven:lionfish-api-1001614:5922047")
@@ -346,7 +355,6 @@ dependencies {
     implementation fg.deobf("libs:supplementaries:3.1.41")
     implementation fg.deobf("curse.maven:quark-243121:6427817")
     implementation fg.deobf("curse.maven:zeta-968868:6432578")
-    implementation fg.deobf("curse.maven:selene-499980:7119907")
 
     implementation fg.deobf("libs:lukis-grand-capitals:1.1.2")
 //    implementation fg.deobf("libs:trek:B0.5") //内置为数据包，curse forge用数据包形式下载
@@ -399,6 +407,8 @@ dependencies {
         jarJar.ranged(it, "[1.0.0,)")
     }
 
+    implementation fg.deobf("curse.maven:mmmmmmmmmmmm-225738:6860192")
+    implementation fg.deobf("curse.maven:selene-499980:7664875")
     implementation fg.deobf("curse.maven:epic-knights-armor-and-weapons-509041:7756534")//FIXME runData时需注释掉
     implementation fg.deobf("curse.maven:item-borders-513769:5903326")//FIXME runData时需注释掉
     implementation fg.deobf("curse.maven:legendary-tooltips-532127:4662781")//FIXME runData时需注释掉

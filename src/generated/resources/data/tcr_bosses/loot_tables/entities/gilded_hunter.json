@@ -50,6 +50,16 @@
         }
       ],
       "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "aether:gold_dungeon_key"
+        }
+      ],
+      "rolls": 1.0
     }
   ],
   "random_sequence": "tcr_bosses:entities/gilded_hunter"

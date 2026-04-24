@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "mowziesmobs:wrought_axe"
+  },
+  "base": {
+    "item": "minecraft:netherite_axe"
+  },
+  "result": {
+    "item": "tcrcore:magmaheart"
+  },
+  "template": {
+    "item": "tcrcore:blood_lotus"
+  }
+}

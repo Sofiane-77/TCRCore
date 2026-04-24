@@ -11,9 +11,7 @@
         }
     ],
     "inputs": [
-        { "ingredient": { "item": "tcrcore:abyss_core" }, "count": 1 },
-        { "ingredient": { "item": "cataclysm:coral_chunk" }, "count": 3 },
-        { "ingredient": { "item": "minecraft:conduit" }, "count": 1 }
+        { "ingredient": { "item": "tcrcore:abyss_core" }, "count": 1 }
     ],
     "recipe_time": 200,
     "block_below": { "block": "minecraft:calcite" },

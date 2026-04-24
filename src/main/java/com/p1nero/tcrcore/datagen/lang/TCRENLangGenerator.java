@@ -318,6 +318,7 @@ public class TCRENLangGenerator extends TCRLangProvider {
         this.add(TCRItems.MAGIC_GREATSWORD.get(), "Ninehold");
         this.add(TCRItems.MAGIC_SPEAR.get(), "Heavenrend");
 
+        this.addInfo("pet_respawn", "Player death detected, [%s] has respawned in sanctum...");
         this.addInfo("boss_will_respawn", "Boss will respawn in %ds...");
         this.addInfo("magic_sword_desc", "When playing air attack or dash attack, it will ignore cooldown and mana cost, automatically casting the equipped magic with half level.");
         this.addInfo("obey_rule", "You have defied the destiny!!");
@@ -338,7 +339,7 @@ public class TCRENLangGenerator extends TCRLangProvider {
         this.addInfo("i18n_pack", "I18n pack, thanks to all translators!");
         this.addInfo("can_not_dodge", "Boss attacks cannot be dodged!");
         this.addInfo("can_not_guard", "Boss attacks cannot be blocked!");
-        this.addInfo("pec_weapon_lock", "Weapon skill locked! Defeat [%s] in [%s] to unlock!");
+        this.addInfo("pec_weapon_lock", "Weapon skill locked! In [%s] defeat [%s]  to unlock!");
         this.addInfo("resonance_stone_usage", "Can resonate with the location of the Angel's seal");
         this.addInfo("resonance_search_failed", "[ERROR]：Failed to Resonate! Please retry after restarting the game! Please keep the latest.log and report to the author! [%s]");
         this.addInfo("yamato_skill_lock", "[%s] are locked. Requires special enchantment book to unlock!");
@@ -797,5 +798,14 @@ public class TCRENLangGenerator extends TCRLangProvider {
         this.addDialogAnswer(TCRBossEntities.VALKYRIE.get(), 2, "%s? Very well then. Bring me ten %s from my subordinates to prove your worth, then we'll see.");
         this.addDialogOption(TCRBossEntities.VALKYRIE.get(), 2, "[You have no destiny to do this.(%s)]");
         this.addDialogOption(TCRBossEntities.VALKYRIE.get(), 3, "§a[Start Challenge]");
+
+        this.addDialogOption(TCRBossEntities.EVENING_GHOST.get(), -1, "[Return]");
+        this.addDialogOption(TCRBossEntities.EVENING_GHOST.get(), 0, "Who are you?");
+        this.addDialogOption(TCRBossEntities.EVENING_GHOST.get(), 1, "About [%s]");
+        this.addDialogOption(TCRBossEntities.EVENING_GHOST.get(), 2, "[Leave]");
+        this.addDialogOption(TCRBossEntities.EVENING_GHOST.get(), 3, "Prepare to fight!");
+        this.addDialogAnswer(TCRBossEntities.EVENING_GHOST.get(), 0, "... (No sign of life, just a corpse)");
+        this.addDialogAnswer(TCRBossEntities.EVENING_GHOST.get(), 1, "... (No response)");
+        this.addDialogAnswer(TCRBossEntities.EVENING_GHOST.get(), 2, "!! (Seems alert)");
     }
 }

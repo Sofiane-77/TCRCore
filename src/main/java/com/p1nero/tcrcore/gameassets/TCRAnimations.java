@@ -67,14 +67,14 @@ public class TCRAnimations {
     public static AnimationManager.AnimationAccessor<AttackAnimation> TSUNAMI;
     public static AnimationManager.AnimationAccessor<AttackAnimation> SCYTHE_HARVEST;
     public static AnimationManager.AnimationAccessor<StaticAnimation> CLAP;
-    public static AnimationManager.AnimationAccessor<UltimateAttackAnimation> SOLAR_BRASERO_OBSCURIDAD;
+    public static AnimationManager.AnimationAccessor<AttackAnimation> SOLAR_BRASERO_OBSCURIDAD;
 
     @SubscribeEvent
     public static void registerAnimations(AnimationManager.AnimationRegistryEvent event) {
         event.newBuilder(TCRCoreMod.MOD_ID, (builder) -> {
             AssetAccessor<? extends HumanoidArmature> biped = Armatures.BIPED;
             CLAP = builder.nextAccessor("biped/living/clap", staticAnimationAnimationAccessor ->
-               new StaticAnimation(true, staticAnimationAnimationAccessor, biped));
+                    new StaticAnimation(true, staticAnimationAnimationAccessor, biped));
             STEP_F = builder.nextAccessor("dodge/step_forward", (accessor) ->
                     new DodgeAnimation(0.1F, 0.35F, accessor, 0.6F, 1.65F, Armatures.BIPED)
                             .addState(EntityState.LOCKON_ROTATE, true)
@@ -132,8 +132,8 @@ public class TCRAnimations {
                                 Vec3 pos = entitypatch.getOriginal().position();
                                 for (int x = -1; x <= 1; x += 2) {
                                     for (int z = -1; z <= 1; z += 2) {
-                                        Vec3 rand = (new Vec3(Math.random() * (double) x, Math.random(), Math.random() * (double) z)).normalize().scale((double) 2.0F);
-                                        entitypatch.getOriginal().level().addParticle(EpicFightParticles.TSUNAMI_SPLASH.get(), pos.x + rand.x, pos.y + rand.y - (double) 1.0F, pos.z + rand.z, rand.x * 0.1, rand.y * 0.1, rand.z * 0.1);
+                                        Vec3 rand = (new Vec3(Math.random() * x, Math.random(), Math.random() * z)).normalize().scale(2.0F);
+                                        entitypatch.getOriginal().level().addParticle(EpicFightParticles.TSUNAMI_SPLASH.get(), pos.x + rand.x, pos.y + rand.y - 1.0F, pos.z + rand.z, rand.x * 0.1, rand.y * 0.1, rand.z * 0.1);
                                     }
                                 }
                             }, AnimationEvent.Side.CLIENT))
@@ -148,85 +148,74 @@ public class TCRAnimations {
             Joint mainHand = Armatures.BIPED.get().toolR;
             SCYTHE_HARVEST = builder.nextAccessor("biped/scythe/skill/scythe_harvest", (accessor) -> (new AttackAnimation(0.1F, accessor, Armatures.BIPED, (new AttackAnimation.Phase(0.0F, 0.66F, 0.81F, 0.81F, 0.81F, mainHand, SCYTHE_COLLIDER)).addProperty(AnimationProperty.AttackPhaseProperty.SWING_SOUND, (SoundEvent) EFNSounds.WHOOSH_HEAVY_4.get()), (new AttackAnimation.Phase(0.81F, 0.81F, 1.0F, 1.0F, 1.0F, mainHand, SCYTHE_COLLIDER)).addProperty(AnimationProperty.AttackPhaseProperty.SWING_SOUND, (SoundEvent) EFNSounds.WHOOSH_HEAVY_4.get()), (new AttackAnimation.Phase(1.0F, 1.05F, 1.21F, 2.13F, 2.13F, mainHand, SCYTHE_COLLIDER)).addProperty(AnimationProperty.AttackPhaseProperty.SWING_SOUND, EFNSounds.WHOOSH_HEAVY_2.get()))).addProperty(AnimationProperty.StaticAnimationProperty.PLAY_SPEED_MODIFIER, SKILL).newTimePair(0.0F, 1.63F).addStateRemoveOld(EntityState.CAN_BASIC_ATTACK, false).newTimePair(0.0F, 1.83F).addStateRemoveOld(EntityState.CAN_SKILL_EXECUTION, false).addEvents(new AnimationEvent[]{EFNVFXManagers.summonScytheComboVFX(EFNVFXManagers.CRIMSON_SLASH, 25, 0.5F, -0.5F, 0.0F, 4.0F, new Vec3f(0.0F, 0.0F, 17.0F)), EFNVFXManagers.summonScytheComboVFX(EFNVFXManagers.CRIMSON_SLASH, 35, 0.5F, -0.5F, 0.0F, 4.0F, new Vec3f(0.0F, 0.0F, -17.0F))}));
 
-            SOLAR_BRASERO_OBSCURIDAD = builder.nextAccessor("biped/skill/solar_brasero_obscuridad", (accessor) -> (new UltimateAttackAnimation(0.2F, accessor, biped, new AttackAnimation.Phase(0.0F, 0.55F, 0.65F, 0.75F, Float.MAX_VALUE, (biped.get()).rootJoint, WOMWeaponColliders.SOLAR_INFIERNO)).addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(1.0F)).addProperty(AnimationProperty.AttackPhaseProperty.IMPACT_MODIFIER, ValueModifier.multiplier(0.5F)).addProperty(AnimationProperty.AttackPhaseProperty.MAX_STRIKES_MODIFIER, ValueModifier.multiplier(4.0F)).addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.NONE).addProperty(AnimationProperty.AttackPhaseProperty.SOURCE_TAG, Set.of(EpicFightDamageTypeTags.WEAPON_INNATE)).addProperty(AnimationProperty.AttackPhaseProperty.PARTICLE, WOMParticles.SOLAR_POLVORA_HIT).addProperty(AnimationProperty.AttackPhaseProperty.HIT_SOUND, (SoundEvent) WOMSounds.SOLAR_HIT.get()).addProperty(AnimationProperty.AttackAnimationProperty.BASIS_ATTACK_SPEED, 1.6F).addProperty(AnimationProperty.AttackAnimationProperty.FIXED_MOVE_DISTANCE, true).addEvents(
+            SOLAR_BRASERO_OBSCURIDAD = builder.nextAccessor("biped/skill/solar_brasero_obscuridad", (accessor) -> (new AttackAnimation(0.2F, accessor, biped, new AttackAnimation.Phase(0.0F, 0.55F, 0.65F, 0.75F, Float.MAX_VALUE, (biped.get()).rootJoint, WOMWeaponColliders.SOLAR_INFIERNO)).addProperty(AnimationProperty.AttackPhaseProperty.DAMAGE_MODIFIER, ValueModifier.multiplier(1.0F)).addProperty(AnimationProperty.AttackPhaseProperty.IMPACT_MODIFIER, ValueModifier.multiplier(0.5F)).addProperty(AnimationProperty.AttackPhaseProperty.MAX_STRIKES_MODIFIER, ValueModifier.multiplier(4.0F)).addProperty(AnimationProperty.AttackPhaseProperty.STUN_TYPE, StunType.NONE).addProperty(AnimationProperty.AttackPhaseProperty.SOURCE_TAG, Set.of(EpicFightDamageTypeTags.WEAPON_INNATE)).addProperty(AnimationProperty.AttackPhaseProperty.PARTICLE, WOMParticles.SOLAR_POLVORA_HIT).addProperty(AnimationProperty.AttackPhaseProperty.HIT_SOUND, (SoundEvent) WOMSounds.SOLAR_HIT.get()).addProperty(AnimationProperty.AttackAnimationProperty.BASIS_ATTACK_SPEED, 1.6F).addProperty(AnimationProperty.AttackAnimationProperty.FIXED_MOVE_DISTANCE, true).addEvents(
 
-                            AnimationEvent.InTimeEvent.create(0.55F, (entitypatch, self, params) -> {
-                                if (entitypatch instanceof ServerPlayerPatch) {
-                                    if (((PlayerPatch) entitypatch).getSkill(SkillSlots.WEAPON_INNATE).getSkill() == WOMSkills.SOLAR_ARCANO) {
-                                        ((PlayerPatch) entitypatch).getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSync((SkillDataKey) WOMSkillDataKeys.TIMED_ATTACK.get(), 0);
-                                        ((PlayerPatch) entitypatch).getSkill(SkillSlots.WEAPON_INNATE).getDataManager().setDataSync((SkillDataKey) WOMSkillDataKeys.SOLAR_OBSCURIDAD.get(), true);
-                                    }
+                    AnimationEvent.InTimeEvent.create(0.55F, (entitypatch, self, params) -> {
+                        if (entitypatch instanceof ServerPlayerPatch serverPlayerPatch) {
+                            serverPlayerPatch.modifyLivingMotionByCurrentItem(false);
+                            entitypatch.getOriginal().level().playSound(null, entitypatch.getOriginal(), WOMSounds.SOLAR_HIT.get(), SoundSource.MASTER, 0.7F, 0.5F);
+                        }
 
-                                    if (((PlayerPatch) entitypatch).getSkill(SkillSlots.WEAPON_PASSIVE).getSkill() == WOMSkills.SOLAR_PASSIVE) {
-                                        ((PlayerPatch) entitypatch).getSkill(SkillSlots.WEAPON_PASSIVE).getDataManager().setDataSync((SkillDataKey) WOMSkillDataKeys.STORED_HEAT_LEVEL.get(), 0.0F);
-                                        ((PlayerPatch) entitypatch).getSkill(SkillSlots.WEAPON_PASSIVE).getDataManager().setDataSync((SkillDataKey) WOMSkillDataKeys.CYCLE.get(), 0);
-                                        ((PlayerPatch) entitypatch).getSkill(SkillSlots.WEAPON_PASSIVE).getDataManager().setDataSync((SkillDataKey) WOMSkillDataKeys.TIMER.get(), 0);
-                                    }
+                    }, AnimationEvent.Side.SERVER),
 
-                                    ((ServerPlayerPatch) entitypatch).modifyLivingMotionByCurrentItem(false);
-                                    entitypatch.getOriginal().level().playSound((Player) null, entitypatch.getOriginal(), (SoundEvent) WOMSounds.SOLAR_HIT.get(), SoundSource.MASTER, 0.7F, 0.5F);
-                                }
+                    AnimationEvent.InTimeEvent.create(0.55F, (entitypatch, self, params) -> {
+                        OpenMatrix4f transformMatrix = entitypatch.getArmature().getBoundTransformFor(entitypatch.getAnimator().getPose(0.0F), (Armatures.BIPED.get()).toolR);
+                        transformMatrix.translate(new Vec3f(-0.2F, 0.0F, 0.4F));
+                        OpenMatrix4f.mul((new OpenMatrix4f()).rotate(-org.joml.Math.toRadians((entitypatch.getOriginal()).yBodyRotO + 180.0F), new Vec3f(0.0F, 1.0F, 0.0F)), transformMatrix, transformMatrix);
+                        int n = 70;
+                        double r = 0.1;
 
-                            }, AnimationEvent.Side.SERVER),
+                        for (int i = 0; i < n; ++i) {
+                            double theta = (Math.PI * 2D) * (new Random()).nextDouble();
+                            double phi = org.joml.Math.acos(2.0F * (new Random()).nextDouble() - 1.0F);
+                            double x = r * org.joml.Math.sin(phi) * org.joml.Math.cos(theta);
+                            double y = r * org.joml.Math.sin(phi) * org.joml.Math.sin(theta);
+                            double z = r * org.joml.Math.cos(phi);
+                            entitypatch.getOriginal().level().addParticle(ParticleTypes.SOUL_FIRE_FLAME, transformMatrix.m30 + (entitypatch.getOriginal()).getX(), transformMatrix.m31 + (entitypatch.getOriginal()).getY() + ((new Random()).nextFloat() * 2.9F), transformMatrix.m32 + (entitypatch.getOriginal()).getZ(), ((float) x), ((float) y), ((float) z));
+                            if (i % 2 == 0) {
+                                entitypatch.getOriginal().level().addParticle(ParticleTypes.LAVA, transformMatrix.m30 + (entitypatch.getOriginal()).getX(), transformMatrix.m31 + (entitypatch.getOriginal()).getY() + ((new Random()).nextFloat() * 2.9F), transformMatrix.m32 + (entitypatch.getOriginal()).getZ(), ((float) x), ((float) y), ((float) z));
+                            }
+                        }
 
-                            AnimationEvent.InTimeEvent.create(0.55F, (entitypatch, self, params) -> {
-                                OpenMatrix4f transformMatrix = entitypatch.getArmature().getBoundTransformFor(entitypatch.getAnimator().getPose(0.0F), ((HumanoidArmature) Armatures.BIPED.get()).toolR);
-                                transformMatrix.translate(new Vec3f(-0.2F, 0.0F, 0.4F));
-                                OpenMatrix4f.mul((new OpenMatrix4f()).rotate(-org.joml.Math.toRadians(((LivingEntity) entitypatch.getOriginal()).yBodyRotO + 180.0F), new Vec3f(0.0F, 1.0F, 0.0F)), transformMatrix, transformMatrix);
-                                int n = 70;
-                                double r = 0.1;
+                        transformMatrix = entitypatch.getArmature().getBoundTransformFor(entitypatch.getAnimator().getPose(0.0F), (Armatures.BIPED.get()).toolR);
+                        OpenMatrix4f.mul((new OpenMatrix4f()).rotate(-org.joml.Math.toRadians((entitypatch.getOriginal()).yBodyRotO + 180.0F), new Vec3f(0.0F, 1.0F, 0.0F)), transformMatrix, transformMatrix);
+                        transformMatrix.translate(new Vec3f(0.0F, 0.0F, -0.3F));
+                        n = 80;
+                        r = 0.4;
+                        double t = 0.01;
 
-                                for (int i = 0; i < n; ++i) {
-                                    double theta = (Math.PI * 2D) * (new Random()).nextDouble();
-                                    double phi = org.joml.Math.acos((double) 2.0F * (new Random()).nextDouble() - (double) 1.0F);
-                                    double x = r * org.joml.Math.sin(phi) * org.joml.Math.cos(theta);
-                                    double y = r * org.joml.Math.sin(phi) * org.joml.Math.sin(theta);
-                                    double z = r * org.joml.Math.cos(phi);
-                                    entitypatch.getOriginal().level().addParticle(ParticleTypes.SOUL_FIRE_FLAME, (double) transformMatrix.m30 + ((LivingEntity) entitypatch.getOriginal()).getX(), (double) transformMatrix.m31 + ((LivingEntity) entitypatch.getOriginal()).getY() + (double) ((new Random()).nextFloat() * 2.9F), (double) transformMatrix.m32 + ((LivingEntity) entitypatch.getOriginal()).getZ(), (double) ((float) x), (double) ((float) y), (double) ((float) z));
-                                    if (i % 2 == 0) {
-                                        entitypatch.getOriginal().level().addParticle(ParticleTypes.LAVA, (double) transformMatrix.m30 + ((LivingEntity) entitypatch.getOriginal()).getX(), (double) transformMatrix.m31 + ((LivingEntity) entitypatch.getOriginal()).getY() + (double) ((new Random()).nextFloat() * 2.9F), (double) transformMatrix.m32 + ((LivingEntity) entitypatch.getOriginal()).getZ(), (double) ((float) x), (double) ((float) y), (double) ((float) z));
-                                    }
-                                }
+                        for (int i = 0; i < n; ++i) {
+                            double theta = (Math.PI * 2D) * (new Random()).nextDouble();
+                            double phi = ((new Random()).nextDouble() - 0.5F) * Math.PI * t / r;
+                            double x = r * org.joml.Math.cos(phi) * org.joml.Math.cos(theta);
+                            double y = r * org.joml.Math.cos(phi) * org.joml.Math.sin(theta);
+                            double z = r * org.joml.Math.sin(phi);
+                            Vec3f direction = new Vec3f((float) x, (float) y, (float) z);
+                            OpenMatrix4f rotation = (new OpenMatrix4f()).rotate(org.joml.Math.toRadians(-((LivingEntity) entitypatch.getOriginal()).yBodyRotO + 90.0F), new Vec3f(0.0F, 1.0F, 0.0F));
+                            rotation.rotate(org.joml.Math.toRadians(110.0F), new Vec3f(1.0F, 0.0F, 0.0F));
+                            OpenMatrix4f.transform3v(rotation, direction, direction);
+                            entitypatch.getOriginal().level().addParticle(ParticleTypes.SOUL_FIRE_FLAME, transformMatrix.m30 + (entitypatch.getOriginal()).getX(), transformMatrix.m31 + ((LivingEntity) entitypatch.getOriginal()).getY(), transformMatrix.m32 + ((LivingEntity) entitypatch.getOriginal()).getZ(), direction.x, direction.y, direction.z);
+                        }
 
-                                transformMatrix = entitypatch.getArmature().getBoundTransformFor(entitypatch.getAnimator().getPose(0.0F), ((HumanoidArmature) Armatures.BIPED.get()).toolR);
-                                OpenMatrix4f.mul((new OpenMatrix4f()).rotate(-org.joml.Math.toRadians(((LivingEntity) entitypatch.getOriginal()).yBodyRotO + 180.0F), new Vec3f(0.0F, 1.0F, 0.0F)), transformMatrix, transformMatrix);
-                                transformMatrix.translate(new Vec3f(0.0F, 0.0F, -0.3F));
-                                n = 80;
-                                r = 0.4;
-                                double t = 0.01;
+                        for (int i = 0; i < n; ++i) {
+                            double theta = (Math.PI * 2D) * (new Random()).nextDouble();
+                            double phi = ((new Random()).nextDouble() - 0.5F) * Math.PI * t / r;
+                            double x = r * org.joml.Math.cos(phi) * org.joml.Math.cos(theta);
+                            double y = r * org.joml.Math.cos(phi) * org.joml.Math.sin(theta);
+                            double z = r * org.joml.Math.sin(phi);
+                            Vec3f direction = new Vec3f((float) x, (float) y, (float) z);
+                            OpenMatrix4f rotation = (new OpenMatrix4f()).rotate(org.joml.Math.toRadians(-(entitypatch.getOriginal()).yBodyRotO + 90.0F), new Vec3f(0.0F, 1.0F, 0.0F));
+                            rotation.rotate(org.joml.Math.toRadians(70.0F), new Vec3f(1.0F, 0.0F, 0.0F));
+                            OpenMatrix4f.transform3v(rotation, direction, direction);
+                            entitypatch.getOriginal().level().addParticle(ParticleTypes.SOUL_FIRE_FLAME, transformMatrix.m30 + (entitypatch.getOriginal()).getX(), transformMatrix.m31 + ((LivingEntity) entitypatch.getOriginal()).getY(), transformMatrix.m32 + (entitypatch.getOriginal()).getZ(), direction.x, direction.y, direction.z);
+                        }
 
-                                for (int i = 0; i < n; ++i) {
-                                    double theta = (Math.PI * 2D) * (new Random()).nextDouble();
-                                    double phi = ((new Random()).nextDouble() - (double) 0.5F) * Math.PI * t / r;
-                                    double x = r * org.joml.Math.cos(phi) * org.joml.Math.cos(theta);
-                                    double y = r * org.joml.Math.cos(phi) * org.joml.Math.sin(theta);
-                                    double z = r * org.joml.Math.sin(phi);
-                                    Vec3f direction = new Vec3f((float) x, (float) y, (float) z);
-                                    OpenMatrix4f rotation = (new OpenMatrix4f()).rotate(org.joml.Math.toRadians(-((LivingEntity) entitypatch.getOriginal()).yBodyRotO + 90.0F), new Vec3f(0.0F, 1.0F, 0.0F));
-                                    rotation.rotate(org.joml.Math.toRadians(110.0F), new Vec3f(1.0F, 0.0F, 0.0F));
-                                    OpenMatrix4f.transform3v(rotation, direction, direction);
-                                    entitypatch.getOriginal().level().addParticle(ParticleTypes.SOUL_FIRE_FLAME, (double) transformMatrix.m30 + ( entitypatch.getOriginal()).getX(), (double) transformMatrix.m31 + ((LivingEntity) entitypatch.getOriginal()).getY(), (double) transformMatrix.m32 + ((LivingEntity) entitypatch.getOriginal()).getZ(), (double) direction.x, (double) direction.y, (double) direction.z);
-                                }
-
-                                for (int i = 0; i < n; ++i) {
-                                    double theta = (Math.PI * 2D) * (new Random()).nextDouble();
-                                    double phi = ((new Random()).nextDouble() - (double) 0.5F) * Math.PI * t / r;
-                                    double x = r * org.joml.Math.cos(phi) * org.joml.Math.cos(theta);
-                                    double y = r * org.joml.Math.cos(phi) * org.joml.Math.sin(theta);
-                                    double z = r * org.joml.Math.sin(phi);
-                                    Vec3f direction = new Vec3f((float) x, (float) y, (float) z);
-                                    OpenMatrix4f rotation = (new OpenMatrix4f()).rotate(org.joml.Math.toRadians(-( entitypatch.getOriginal()).yBodyRotO + 90.0F), new Vec3f(0.0F, 1.0F, 0.0F));
-                                    rotation.rotate(org.joml.Math.toRadians(70.0F), new Vec3f(1.0F, 0.0F, 0.0F));
-                                    OpenMatrix4f.transform3v(rotation, direction, direction);
-                                    entitypatch.getOriginal().level().addParticle(ParticleTypes.SOUL_FIRE_FLAME, (double) transformMatrix.m30 + ( entitypatch.getOriginal()).getX(), (double) transformMatrix.m31 + ((LivingEntity) entitypatch.getOriginal()).getY(), (double) transformMatrix.m32 + ( entitypatch.getOriginal()).getZ(),  direction.x,  direction.y,  direction.z);
-                                }
-
-                            }, AnimationEvent.Side.CLIENT),
-                            AnimationEvent.InTimeEvent.create(0.55F, (entitypatch, animation, params) -> {
-                                entitypatch.getOriginal().addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 400, 2));
-                                entitypatch.getOriginal().addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 400, 1));
-                                entitypatch.getOriginal().addEffect(new MobEffectInstance(PECEffects.SOUL_INCINERATOR.get(), 400, 1));
-                            }, AnimationEvent.Side.SERVER)))
+                    }, AnimationEvent.Side.CLIENT),
+                    AnimationEvent.InTimeEvent.create(0.55F, (entityPatch, animation, params) -> {
+                        entityPatch.getOriginal().addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 400, 2));
+                        entityPatch.getOriginal().addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 400, 1));
+                        entityPatch.getOriginal().addEffect(new MobEffectInstance(PECEffects.SOUL_INCINERATOR.get(), 400, 1));
+                    }, AnimationEvent.Side.SERVER)))
                     .setResourceLocation(WeaponsOfMinecraft.MODID, "biped/skill/solar_brasero_obscuridad"));
 
         });

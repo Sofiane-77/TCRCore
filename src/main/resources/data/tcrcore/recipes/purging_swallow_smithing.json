@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "mowziesmobs:sol_visage"
+  },
+  "base": {
+    "item": "epicfight:uchigatana"
+  },
+  "result": {
+    "item": "tcrcore:purging_swallow"
+  },
+  "template": {
+    "item": "tcrcore:blood_lotus"
+  }
+}

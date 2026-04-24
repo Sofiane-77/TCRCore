@@ -1,7 +1,7 @@
 {
     "model": "epicfight:entity/skeleton",
     "armature": "epicfight:entity/skeleton",
-    "renderer": "minecraft:skeleton",
+    "renderer": "",
     "isHumanoid": true,
     "faction": "undead",
     "attributes": {
@@ -39,7 +39,9 @@
               }
             ],
     "stun_command_list":[ 										
-           {"command":"", "stun_type": "neutralize", "execute_at_target":false}
+		{"command":"execute as @e[type=skeleton,distance=0..7,nbt={HandItems:[{id:\"minecraft:bow\"}]}] run item replace entity @s weapon.mainhand with air", "stun_type": "short", "execute_at_target":false},
+		{"command":"execute as @e[type=skeleton,distance=0..7,nbt={HandItems:[{id:\"minecraft:bow\"}]}] run item replace entity @s weapon.offhand with air", "stun_type": "short", "execute_at_target":false},
+		{"command":"execute as @e[type=skeleton,distance=0..7,nbt={HandItems:[{id:\"minecraft:bow\"}]}] run indestructible @s set_phase 0", "stun_type": "short", "execute_at_target":false}
           ],
 	"custom_guard_motion": [   
 		{ 
@@ -132,6 +134,27 @@
 							"animation": "efn:biped/dodge/dodge_b", 		 								
 							"stamina": 10,		
 				         	"play_speed": 1.1
+						}
+                    ]                 
+				},
+				{
+					"weight": 1.5,
+					"canBeInterrupted": true,
+					"looping": false,
+					"cooldown":50,
+					"behaviors": [					
+						{
+							"conditions": [
+								  {"predicate":"epicfight:within_eye_height"},  {"predicate":"epicfight:within_distance", "min": 7.0, "max": 15.0}
+							],
+							"animation": "efn:biped/nf_skill/biped_flashblock2", 		
+							"convert_time": 0.1,			
+							 "play_speed": 1.1,		
+							 "command_list": [									
+								 {"time":0.1, "command":"item replace entity @s weapon.mainhand with bow", "execute_at_target":false},
+								 {"time":0.1, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
+							 ],																												
+							 "set_phase": 0
 						}
                     ]                 
 				},
@@ -1190,6 +1213,27 @@
 				},
 				{
 					"weight": 1.5,
+					"canBeInterrupted": true,
+					"looping": false,
+					"cooldown":50,
+					"behaviors": [					
+						{
+							"conditions": [
+								  {"predicate":"epicfight:within_eye_height"},  {"predicate":"epicfight:within_distance", "min": 7.0, "max": 15.0}
+							],
+							"animation": "efn:biped/nf_skill/biped_flashblock2", 		
+							"convert_time": 0.1,			
+							 "play_speed": 1.1,		
+							 "command_list": [									
+								 {"time":0.1, "command":"item replace entity @s weapon.mainhand with bow", "execute_at_target":false},
+								 {"time":0.1, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
+							 ],																												
+							 "set_phase": 0
+						}
+                    ]                 
+				},
+				{
+					"weight": 1.5,
 					"canBeInterrupted": false,
 					"looping": false,
 					"cooldown":50,
@@ -1718,6 +1762,27 @@
 				},
 				{
 					"weight": 1.5,
+					"canBeInterrupted": true,
+					"looping": false,
+					"cooldown":50,
+					"behaviors": [					
+						{
+							"conditions": [
+								  {"predicate":"epicfight:within_eye_height"},  {"predicate":"epicfight:within_distance", "min": 7.0, "max": 15.0}
+							],
+							"animation": "efn:biped/nf_skill/biped_flashblock2", 		
+							"convert_time": 0.1,			
+							 "play_speed": 1.1,		
+							 "command_list": [									
+								 {"time":0.1, "command":"item replace entity @s weapon.mainhand with bow", "execute_at_target":false},
+								 {"time":0.1, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
+							 ],																												
+							 "set_phase": 0
+						}
+                    ]                 
+				},
+				{
+					"weight": 1.5,
 					"canBeInterrupted": false,
 					"looping": false,
 					"cooldown":50,
@@ -2241,6 +2306,27 @@
 							"animation": "efn:biped/dodge/dodge_b", 		 								
 							"stamina": 10,		
 				         	"play_speed": 1.1
+						}
+                    ]                 
+				},
+				{
+					"weight": 1.5,
+					"canBeInterrupted": true,
+					"looping": false,
+					"cooldown":50,
+					"behaviors": [					
+						{
+							"conditions": [
+								  {"predicate":"epicfight:within_eye_height"},  {"predicate":"epicfight:within_distance", "min": 7.0, "max": 15.0}
+							],
+							"animation": "efn:biped/nf_skill/biped_flashblock2", 		
+							"convert_time": 0.1,			
+							 "play_speed": 1.1,		
+							 "command_list": [									
+								 {"time":0.1, "command":"item replace entity @s weapon.mainhand with bow", "execute_at_target":false},
+								 {"time":0.1, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
+							 ],																												
+							 "set_phase": 0
 						}
                     ]                 
 				},
@@ -2785,6 +2871,27 @@
 					"behaviors": [					
 						{
 							"conditions": [
+								  {"predicate":"epicfight:within_eye_height"},  {"predicate":"epicfight:within_distance", "min": 7.0, "max": 15.0}
+							],
+							"animation": "efn:biped/nf_skill/biped_flashblock2", 		
+							"convert_time": 0.1,			
+							 "play_speed": 1.1,		
+							 "command_list": [									
+								 {"time":0.1, "command":"item replace entity @s weapon.mainhand with bow", "execute_at_target":false},
+								 {"time":0.1, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
+							 ],																												
+							 "set_phase": 0
+						}
+                    ]                 
+				},
+				{
+					"weight": 1.5,
+					"canBeInterrupted": true,
+					"looping": false,
+					"cooldown":50,
+					"behaviors": [					
+						{
+							"conditions": [
 								{"predicate":"indestructible:phase", "min": 0, "max": 2},{"predicate": "indestructible:stamina", "stamina": 0.11, "comparator": "greater_ratio"},{"predicate":"indestructible:attack_level", "min": 1, "max": 1}, {"predicate":"epicfight:within_eye_height"},  {"predicate":"epicfight:within_distance", "min": 0.0, "max": 6.0}
 							],
 							"animation": "efn:biped/dodge/step_l", 
@@ -3290,6 +3397,27 @@
 							"animation": "efn:biped/dodge/dodge_b", 		 								
 							"stamina": 10,		
 				         	"play_speed": 1.1
+						}
+                    ]                 
+				},
+				{
+					"weight": 1.5,
+					"canBeInterrupted": true,
+					"looping": false,
+					"cooldown":50,
+					"behaviors": [					
+						{
+							"conditions": [
+								  {"predicate":"epicfight:within_eye_height"},  {"predicate":"epicfight:within_distance", "min": 7.0, "max": 15.0}
+							],
+							"animation": "efn:biped/nf_skill/biped_flashblock2", 		
+							"convert_time": 0.1,			
+							 "play_speed": 1.1,		
+							 "command_list": [									
+								 {"time":0.1, "command":"item replace entity @s weapon.mainhand with bow", "execute_at_target":false},
+								 {"time":0.1, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
+							 ],																												
+							 "set_phase": 0
 						}
                     ]                 
 				},
@@ -3852,6 +3980,27 @@
 				},
 				{
 					"weight": 1.5,
+					"canBeInterrupted": true,
+					"looping": false,
+					"cooldown":50,
+					"behaviors": [					
+						{
+							"conditions": [
+								  {"predicate":"epicfight:within_eye_height"},  {"predicate":"epicfight:within_distance", "min": 7.0, "max": 15.0}
+							],
+							"animation": "efn:biped/nf_skill/biped_flashblock2", 		
+							"convert_time": 0.1,			
+							 "play_speed": 1.1,		
+							 "command_list": [									
+								 {"time":0.1, "command":"item replace entity @s weapon.mainhand with bow", "execute_at_target":false},
+								 {"time":0.1, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
+							 ],																												
+							 "set_phase": 0
+						}
+                    ]                 
+				},
+				{
+					"weight": 1.5,
 					"canBeInterrupted": false,
 					"looping": false,
 					"cooldown":50,
@@ -4363,14 +4512,14 @@
 				"behaviors": [					
 					{
 						"conditions": [
-							{"predicate":"indestructible:phase", "min": 0, "max": 0}, {"predicate":"epicfight:within_distance", "min": 0.0, "max": 100.0}
+							{"predicate":"indestructible:phase", "min": 0, "max": 0}, {"predicate":"epicfight:within_distance", "min": 10.0, "max": 100.0}
 						],
-						"animation": "efn:biped/yamato/biped_hit_ground_l0", 	
-						"convert_time": -0.7,			
+						"animation": "efn:biped/nf_skill/biped_flashblock1", 	
+						"convert_time": 0.1,			
 						 "play_speed": 1.1,		
 						 "command_list": [									
-							 {"time":0.8, "command":"item replace entity @s weapon.mainhand with air", "execute_at_target":false},
-							 {"time":0.8, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
+							 {"time":0.1, "command":"item replace entity @s weapon.mainhand with bow", "execute_at_target":false},
+							 {"time":0.1, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
 						 ],																												
 						 "set_phase": 1
 					}
@@ -4386,12 +4535,12 @@
 						"conditions": [
 							{"predicate":"indestructible:phase", "min": 0, "max": 0}, {"predicate":"epicfight:within_distance", "min": 0.0, "max": 100.0}
 						],
-						"animation": "efn:biped/yamato/biped_hit_ground_l0", 	
-						"convert_time": -0.7,			
+						"animation": "efn:biped/nf_skill/biped_flashblock1", 	
+						"convert_time": 0.1,			
 						 "play_speed": 1.1,		
 						 "command_list": [									
-							 {"time":0.8, "command":"item replace entity @s weapon.mainhand with air", "execute_at_target":false},
-							 {"time":0.8, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
+							 {"time":0.1, "command":"item replace entity @s weapon.mainhand with minecraft:stone_sword", "execute_at_target":false},
+							 {"time":0.1, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
 						 ],																												
 						 "set_phase": 1
 					}
@@ -4407,12 +4556,12 @@
 						"conditions": [
 							{"predicate":"indestructible:phase", "min": 0, "max": 0}, {"predicate":"epicfight:within_distance", "min": 0.0, "max": 100.0}
 						],
-						"animation": "efn:biped/yamato/biped_hit_ground_l0", 	
-						"convert_time": -0.7,			
+						"animation": "efn:biped/nf_skill/biped_flashblock1", 	
+						"convert_time": 0.1,			
 						 "play_speed": 1.1,		
 						 "command_list": [									
-							 {"time":0.8, "command":"item replace entity @s weapon.mainhand with air", "execute_at_target":false},
-							 {"time":0.8, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
+							 {"time":0.1, "command":"item replace entity @s weapon.mainhand with minecraft:iron_sword", "execute_at_target":false},
+							 {"time":0.1, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
 						 ],																												
 						 "set_phase": 1
 					}
@@ -4428,12 +4577,12 @@
 						"conditions": [
 							{"predicate":"indestructible:phase", "min": 0, "max": 0}, {"predicate":"epicfight:within_distance", "min": 0.0, "max": 100.0}
 						],
-						"animation": "efn:biped/yamato/biped_hit_ground_l0", 	
-						"convert_time": -0.7,			
+						"animation": "efn:biped/nf_skill/biped_flashblock1", 	
+						"convert_time": 0.1,			
 						 "play_speed": 1.1,		
 						 "command_list": [									
-							 {"time":0.8, "command":"item replace entity @s weapon.mainhand with air", "execute_at_target":false},
-							 {"time":0.8, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
+							 {"time":0.1, "command":"item replace entity @s weapon.mainhand with epicfight:stone_longsword", "execute_at_target":false},
+							 {"time":0.1, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
 						 ],																												
 						 "set_phase": 1
 					}
@@ -4449,12 +4598,12 @@
 						"conditions": [
 							{"predicate":"indestructible:phase", "min": 0, "max": 0}, {"predicate":"epicfight:within_distance", "min": 0.0, "max": 100.0}
 						],
-						"animation": "efn:biped/yamato/biped_hit_ground_l0", 	
-						"convert_time": -0.7,			
+						"animation": "efn:biped/nf_skill/biped_flashblock1", 	
+						"convert_time": 0.1,			
 						 "play_speed": 1.1,		
 						 "command_list": [									
-							 {"time":0.8, "command":"item replace entity @s weapon.mainhand with air", "execute_at_target":false},
-							 {"time":0.8, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
+							 {"time":0.1, "command":"item replace entity @s weapon.mainhand with epicfight:iron_longsword", "execute_at_target":false},
+							 {"time":0.1, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
 						 ],																												
 						 "set_phase": 1
 					}
@@ -4470,12 +4619,12 @@
 						"conditions": [
 							{"predicate":"indestructible:phase", "min": 0, "max": 0}, {"predicate":"epicfight:within_distance", "min": 0.0, "max": 100.0}
 						],
-						"animation": "efn:biped/yamato/biped_hit_ground_l0", 	
-						"convert_time": -0.7,			
+						"animation": "efn:biped/nf_skill/biped_flashblock1", 	
+						"convert_time": 0.1,			
 						 "play_speed": 1.1,		
 						 "command_list": [									
-							 {"time":0.8, "command":"item replace entity @s weapon.mainhand with epicfight:glove", "execute_at_target":false},
-							 {"time":0.8, "command":"item replace entity @s weapon.offhand with epicfight:glove", "execute_at_target":false}
+							 {"time":0.1, "command":"item replace entity @s weapon.mainhand with epicfight:stone_greatsword", "execute_at_target":false},
+							 {"time":0.1, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
 						 ],																												
 						 "set_phase": 1
 					}
@@ -4491,12 +4640,12 @@
 						"conditions": [
 							{"predicate":"indestructible:phase", "min": 0, "max": 0}, {"predicate":"epicfight:within_distance", "min": 0.0, "max": 100.0}
 						],
-						"animation": "efn:biped/yamato/biped_hit_ground_l0", 	
-						"convert_time": -0.7,			
+						"animation": "efn:biped/nf_skill/biped_flashblock1", 	
+						"convert_time": 0.1,			
 						 "play_speed": 1.1,		
 						 "command_list": [									
-							 {"time":0.8, "command":"item replace entity @s weapon.mainhand with minecraft:stone_sword", "execute_at_target":false},
-							 {"time":0.8, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
+							 {"time":0.1, "command":"item replace entity @s weapon.mainhand with epicfight:stone_spear", "execute_at_target":false},
+							 {"time":0.1, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
 						 ],																												
 						 "set_phase": 1
 					}
@@ -4512,12 +4661,12 @@
 						"conditions": [
 							{"predicate":"indestructible:phase", "min": 0, "max": 0}, {"predicate":"epicfight:within_distance", "min": 0.0, "max": 100.0}
 						],
-						"animation": "efn:biped/yamato/biped_hit_ground_l0", 	
-						"convert_time": -0.7,			
+						"animation": "efn:biped/nf_skill/biped_flashblock1", 	
+						"convert_time": 0.1,			
 						 "play_speed": 1.1,		
 						 "command_list": [									
-							 {"time":0.8, "command":"item replace entity @s weapon.mainhand with minecraft:iron_sword", "execute_at_target":false},
-							 {"time":0.8, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
+							 {"time":0.1, "command":"item replace entity @s weapon.mainhand with epicfight:iron_spear", "execute_at_target":false},
+							 {"time":0.1, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
 						 ],																												
 						 "set_phase": 1
 					}
@@ -4533,12 +4682,12 @@
 						"conditions": [
 							{"predicate":"indestructible:phase", "min": 0, "max": 0}, {"predicate":"epicfight:within_distance", "min": 0.0, "max": 100.0}
 						],
-						"animation": "efn:biped/yamato/biped_hit_ground_l0", 	
-						"convert_time": -0.7,			
+						"animation": "efn:biped/nf_skill/biped_flashblock1", 	
+						"convert_time": 0.1,			
 						 "play_speed": 1.1,		
 						 "command_list": [									
-							 {"time":0.8, "command":"item replace entity @s weapon.mainhand with epicfight:stone_longsword", "execute_at_target":false},
-							 {"time":0.8, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
+							 {"time":0.1, "command":"item replace entity @s weapon.mainhand with epicfight:stone_tachi", "execute_at_target":false},
+							 {"time":0.1, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
 						 ],																												
 						 "set_phase": 1
 					}
@@ -4554,12 +4703,12 @@
 						"conditions": [
 							{"predicate":"indestructible:phase", "min": 0, "max": 0}, {"predicate":"epicfight:within_distance", "min": 0.0, "max": 100.0}
 						],
-						"animation": "efn:biped/yamato/biped_hit_ground_l0", 	
-						"convert_time": -0.7,			
+						"animation": "efn:biped/nf_skill/biped_flashblock1", 	
+						"convert_time": 0.1,			
 						 "play_speed": 1.1,		
 						 "command_list": [									
-							 {"time":0.8, "command":"item replace entity @s weapon.mainhand with epicfight:iron_longsword", "execute_at_target":false},
-							 {"time":0.8, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
+							 {"time":0.1, "command":"item replace entity @s weapon.mainhand with epicfight:iron_tachi", "execute_at_target":false},
+							 {"time":0.1, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
 						 ],																												
 						 "set_phase": 1
 					}
@@ -4575,12 +4724,12 @@
 						"conditions": [
 							{"predicate":"indestructible:phase", "min": 0, "max": 0}, {"predicate":"epicfight:within_distance", "min": 0.0, "max": 100.0}
 						],
-						"animation": "efn:biped/yamato/biped_hit_ground_l0", 	
-						"convert_time": -0.7,			
+						"animation": "efn:biped/nf_skill/biped_flashblock1", 	
+						"convert_time": 0.1,			
 						 "play_speed": 1.1,		
 						 "command_list": [									
-							 {"time":0.8, "command":"item replace entity @s weapon.mainhand with epicfight:stone_greatsword", "execute_at_target":false},
-							 {"time":0.8, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
+							 {"time":0.1, "command":"item replace entity @s weapon.mainhand with epicfight:uchigatana", "execute_at_target":false},
+							 {"time":0.1, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
 						 ],																												
 						 "set_phase": 1
 					}
@@ -4596,12 +4745,12 @@
 						"conditions": [
 							{"predicate":"indestructible:phase", "min": 0, "max": 0}, {"predicate":"epicfight:within_distance", "min": 0.0, "max": 100.0}
 						],
-						"animation": "efn:biped/yamato/biped_hit_ground_l0", 	
-						"convert_time": -0.7,			
+						"animation": "efn:biped/nf_skill/biped_flashblock1", 	
+						"convert_time": 0.1,			
 						 "play_speed": 1.1,		
 						 "command_list": [									
-							 {"time":0.8, "command":"item replace entity @s weapon.mainhand with epicfight:stone_spear", "execute_at_target":false},
-							 {"time":0.8, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
+							 {"time":0.1, "command":"item replace entity @s weapon.mainhand with epicfight:iron_dagger", "execute_at_target":false},
+							 {"time":0.1, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
 						 ],																												
 						 "set_phase": 1
 					}
@@ -4617,12 +4766,12 @@
 						"conditions": [
 							{"predicate":"indestructible:phase", "min": 0, "max": 0}, {"predicate":"epicfight:within_distance", "min": 0.0, "max": 100.0}
 						],
-						"animation": "efn:biped/yamato/biped_hit_ground_l0", 	
-						"convert_time": -0.7,			
+						"animation": "efn:biped/nf_skill/biped_flashblock1", 	
+						"convert_time": 0.1,			
 						 "play_speed": 1.1,		
 						 "command_list": [									
-							 {"time":0.8, "command":"item replace entity @s weapon.mainhand with epicfight:iron_spear", "execute_at_target":false},
-							 {"time":0.8, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
+							 {"time":0.1, "command":"item replace entity @s weapon.mainhand with epicfight:iron_dagger", "execute_at_target":false},
+							 {"time":0.1, "command":"item replace entity @s weapon.offhand with epicfight:iron_dagger", "execute_at_target":false}
 						 ],																												
 						 "set_phase": 1
 					}
@@ -4638,117 +4787,12 @@
 						"conditions": [
 							{"predicate":"indestructible:phase", "min": 0, "max": 0}, {"predicate":"epicfight:within_distance", "min": 0.0, "max": 100.0}
 						],
-						"animation": "efn:biped/yamato/biped_hit_ground_l0", 	
-						"convert_time": -0.7,			
+						"animation": "efn:biped/nf_skill/biped_flashblock1", 	
+						"convert_time": 0.1,			
 						 "play_speed": 1.1,		
 						 "command_list": [									
-							 {"time":0.8, "command":"item replace entity @s weapon.mainhand with epicfight:stone_tachi", "execute_at_target":false},
-							 {"time":0.8, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
-						 ],																												
-						 "set_phase": 1
-					}
-				]                 
-			},
-			{
-				"weight": 1.5,
-				"canBeInterrupted": true,
-				"looping": false,
-				"cooldown":50,
-				"behaviors": [					
-					{
-						"conditions": [
-							{"predicate":"indestructible:phase", "min": 0, "max": 0}, {"predicate":"epicfight:within_distance", "min": 0.0, "max": 100.0}
-						],
-						"animation": "efn:biped/yamato/biped_hit_ground_l0", 	
-						"convert_time": -0.7,			
-						 "play_speed": 1.1,		
-						 "command_list": [									
-							 {"time":0.8, "command":"item replace entity @s weapon.mainhand with epicfight:iron_tachi", "execute_at_target":false},
-							 {"time":0.8, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
-						 ],																												
-						 "set_phase": 1
-					}
-				]                 
-			},
-			{
-				"weight": 1.5,
-				"canBeInterrupted": true,
-				"looping": false,
-				"cooldown":50,
-				"behaviors": [					
-					{
-						"conditions": [
-							{"predicate":"indestructible:phase", "min": 0, "max": 0}, {"predicate":"epicfight:within_distance", "min": 0.0, "max": 100.0}
-						],
-						"animation": "efn:biped/yamato/biped_hit_ground_l0", 	
-						"convert_time": -0.7,			
-						 "play_speed": 1.1,		
-						 "command_list": [									
-							 {"time":0.8, "command":"item replace entity @s weapon.mainhand with epicfight:uchigatana", "execute_at_target":false},
-							 {"time":0.8, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
-						 ],																												
-						 "set_phase": 1
-					}
-				]                 
-			},
-			{
-				"weight": 1.5,
-				"canBeInterrupted": true,
-				"looping": false,
-				"cooldown":50,
-				"behaviors": [					
-					{
-						"conditions": [
-							{"predicate":"indestructible:phase", "min": 0, "max": 0}, {"predicate":"epicfight:within_distance", "min": 0.0, "max": 100.0}
-						],
-						"animation": "efn:biped/yamato/biped_hit_ground_l0", 	
-						"convert_time": -0.7,			
-						 "play_speed": 1.1,		
-						 "command_list": [									
-							 {"time":0.8, "command":"item replace entity @s weapon.mainhand with epicfight:iron_dagger", "execute_at_target":false},
-							 {"time":0.8, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
-						 ],																												
-						 "set_phase": 1
-					}
-				]                 
-			},
-			{
-				"weight": 1.5,
-				"canBeInterrupted": true,
-				"looping": false,
-				"cooldown":50,
-				"behaviors": [					
-					{
-						"conditions": [
-							{"predicate":"indestructible:phase", "min": 0, "max": 0}, {"predicate":"epicfight:within_distance", "min": 0.0, "max": 100.0}
-						],
-						"animation": "efn:biped/yamato/biped_hit_ground_l0", 	
-						"convert_time": -0.7,			
-						 "play_speed": 1.1,		
-						 "command_list": [									
-							 {"time":0.8, "command":"item replace entity @s weapon.mainhand with epicfight:iron_dagger", "execute_at_target":false},
-							 {"time":0.8, "command":"item replace entity @s weapon.offhand with epicfight:iron_dagger", "execute_at_target":false}
-						 ],																												
-						 "set_phase": 1
-					}
-				]                 
-			},
-			{
-				"weight": 1.5,
-				"canBeInterrupted": true,
-				"looping": false,
-				"cooldown":50,
-				"behaviors": [					
-					{
-						"conditions": [
-							{"predicate":"indestructible:phase", "min": 0, "max": 0}, {"predicate":"epicfight:within_distance", "min": 0.0, "max": 100.0}
-						],
-						"animation": "efn:biped/yamato/biped_hit_ground_l0", 	
-						"convert_time": -0.7,			
-						 "play_speed": 1.1,		
-						 "command_list": [									
-							 {"time":0.8, "command":"item replace entity @s weapon.mainhand with iron_sword", "execute_at_target":false},
-							 {"time":0.8, "command":"item replace entity @s weapon.offhand with iron_sword", "execute_at_target":false}
+							 {"time":0.1, "command":"item replace entity @s weapon.mainhand with iron_sword", "execute_at_target":false},
+							 {"time":0.1, "command":"item replace entity @s weapon.offhand with iron_sword", "execute_at_target":false}
 						 ],																												
 						 "set_phase": 1
 					}
@@ -4767,6 +4811,27 @@
 							"animation": "efn:biped/dodge/dodge_b", 		 								
 							"stamina": 10,		
 				         	"play_speed": 1.1
+						}
+                    ]                 
+				},
+				{
+					"weight": 1.5,
+					"canBeInterrupted": true,
+					"looping": false,
+					"cooldown":50,
+					"behaviors": [					
+						{
+							"conditions": [
+								  {"predicate":"epicfight:within_eye_height"},  {"predicate":"epicfight:within_distance", "min": 7.0, "max": 15.0}
+							],
+							"animation": "efn:biped/nf_skill/biped_flashblock2", 		
+							"convert_time": 0.1,			
+							 "play_speed": 1.1,		
+							 "command_list": [									
+								 {"time":0.1, "command":"item replace entity @s weapon.mainhand with bow", "execute_at_target":false},
+								 {"time":0.1, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
+							 ],																												
+							 "set_phase": 0
 						}
                     ]                 
 				},
@@ -5300,6 +5365,27 @@
 							"animation": "efn:biped/dodge/dodge_b", 		 								
 							"stamina": 10,		
 				         	"play_speed": 1.1
+						}
+                    ]                 
+				},
+				{
+					"weight": 1.5,
+					"canBeInterrupted": true,
+					"looping": false,
+					"cooldown":50,
+					"behaviors": [					
+						{
+							"conditions": [
+								  {"predicate":"epicfight:within_eye_height"},  {"predicate":"epicfight:within_distance", "min": 7.0, "max": 15.0}
+							],
+							"animation": "efn:biped/nf_skill/biped_flashblock2", 		
+							"convert_time": 0.1,			
+							 "play_speed": 1.1,		
+							 "command_list": [									
+								 {"time":0.1, "command":"item replace entity @s weapon.mainhand with bow", "execute_at_target":false},
+								 {"time":0.1, "command":"item replace entity @s weapon.offhand with air", "execute_at_target":false}
+							 ],																												
+							 "set_phase": 0
 						}
                     ]                 
 				},

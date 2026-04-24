@@ -12,8 +12,7 @@
     ],
     "inputs": [
         { "ingredient": { "item": "cataclysm:witherite_ingot" }, "count": 1 },
-        { "ingredient": { "item": "minecraft:nether_star" }, "count": 1 },
-        { "ingredient": { "item": "minecraft:wither_rose" }, "count": 1 }
+        { "ingredient": { "item": "minecraft:nether_star" }, "count": 1 }
     ],
     "recipe_time": 200,
     "block_below": { "block": "minecraft:calcite" },

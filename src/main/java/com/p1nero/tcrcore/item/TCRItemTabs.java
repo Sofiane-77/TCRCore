@@ -4,8 +4,8 @@ import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.block.TCRBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
@@ -14,11 +14,38 @@ public class TCRItemTabs {
 
     public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, TCRCoreMod.MOD_ID);
 
+    public static final RegistryObject<CreativeModeTab> WEAPONS = TABS.register("weapons",
+            () -> CreativeModeTab.builder()
+                    .title(Component.translatable("itemGroup.tcr.weapons"))
+                    .icon(() -> new ItemStack(TCRItems.GLACIS_JADAE.get()))
+                    .withTabsAfter(CreativeModeTabs.BUILDING_BLOCKS)
+                    .displayItems((params, output) -> {
+                        output.accept(TCRItems.EMBERFANG.get());
+                        output.accept(TCRItems.MAGMAHEART.get());
+                        output.accept(TCRItems.CINDERWYRM.get());
+                        output.accept(TCRItems.PURGING_SWALLOW.get());
+                        output.accept(TCRItems.ASHEN_CRESCENT.get());
+                        output.accept(TCRItems.LUX_JADAE.get());
+                        output.accept(TCRItems.GLACIS_JADAE.get());
+                        output.accept(TCRItems.MONS_JADAE.get());
+                        output.accept(TCRItems.IRIS_JADAE.get());
+                        output.accept(TCRItems.MAGIC_DAGGER.get());
+                        output.accept(TCRItems.MAGIC_AXE.get());
+                        output.accept(TCRItems.MAGIC_TACHI.get());
+                        output.accept(TCRItems.MAGIC_KATANA.get());
+                        output.accept(TCRItems.MAGIC_HALBERD.get());
+                        output.accept(TCRItems.MAGIC_SWORD.get());
+                        output.accept(TCRItems.MAGIC_LONGSWORD.get());
+                        output.accept(TCRItems.MAGIC_GREATSWORD.get());
+                        output.accept(TCRItems.MAGIC_SPEAR.get());
+                    }).build());
+
+
     public static final RegistryObject<CreativeModeTab> ITEMS = TABS.register("items",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.tcr.items"))
                     .icon(() -> new ItemStack(TCRItems.ANCIENT_ORACLE_FRAGMENT.get()))
-                    .withTabsBefore(TCRCoreMod.prefix("weapons"))
+                    .withTabsAfter(WEAPONS.getId())
                     .displayItems((params, output) -> {
                         output.accept(TCRBlocks.CURSED_ALTAR_BLOCK.get());
                         output.accept(TCRBlocks.ABYSS_ALTAR_BLOCK.get());
@@ -63,31 +90,5 @@ public class TCRItemTabs {
                         output.accept(TCRItems.RETRACEMENT_STONE.get());
                         output.accept(TCRItems.BLOOD_LOTUS.get());
                         output.accept(TCRItems.NINE_HEAVEN_DARKSTEEL.get());
-                    }).build());
-
-    public static final RegistryObject<CreativeModeTab> WEAPONS = TABS.register("weapons",
-            () -> CreativeModeTab.builder()
-                    .title(Component.translatable("itemGroup.tcr.weapons"))
-                    .icon(() -> new ItemStack(TCRItems.GLACIS_JADAE.get()))
-                    .withTabsAfter(TCRCoreMod.prefix("items"))
-                    .displayItems((params, output) -> {
-                        output.accept(TCRItems.EMBERFANG.get());
-                        output.accept(TCRItems.MAGMAHEART.get());
-                        output.accept(TCRItems.CINDERWYRM.get());
-                        output.accept(TCRItems.PURGING_SWALLOW.get());
-                        output.accept(TCRItems.ASHEN_CRESCENT.get());
-                        output.accept(TCRItems.LUX_JADAE.get());
-                        output.accept(TCRItems.GLACIS_JADAE.get());
-                        output.accept(TCRItems.MONS_JADAE.get());
-                        output.accept(TCRItems.IRIS_JADAE.get());
-                        output.accept(TCRItems.MAGIC_DAGGER.get());
-                        output.accept(TCRItems.MAGIC_AXE.get());
-                        output.accept(TCRItems.MAGIC_TACHI.get());
-                        output.accept(TCRItems.MAGIC_KATANA.get());
-                        output.accept(TCRItems.MAGIC_HALBERD.get());
-                        output.accept(TCRItems.MAGIC_SWORD.get());
-                        output.accept(TCRItems.MAGIC_LONGSWORD.get());
-                        output.accept(TCRItems.MAGIC_GREATSWORD.get());
-                        output.accept(TCRItems.MAGIC_SPEAR.get());
                     }).build());
 }

@@ -32,7 +32,7 @@ public class ValkyrieQueenDialogExtension implements IEntityDialogueExtension<Va
 
     @Override
     public boolean canInteractWith(Player player, ValkyrieQueenEntity valkyrieQueenEntity) {
-        return !valkyrieQueenEntity.isInFighting();
+        return !valkyrieQueenEntity.shouldAttack(player);
     }
 
     @Override

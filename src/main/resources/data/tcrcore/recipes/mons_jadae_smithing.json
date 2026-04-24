@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "mowziesmobs:wrought_helmet"
+  },
+  "base": {
+    "item": "epicfight:netherite_greatsword"
+  },
+  "result": {
+    "item": "tcrcore:mons_jadae"
+  },
+  "template": {
+    "item": "tcrcore:nine_heaven_darksteel"
+  }
+}

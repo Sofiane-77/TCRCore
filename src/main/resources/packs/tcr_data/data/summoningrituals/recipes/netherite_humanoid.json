@@ -12,9 +12,7 @@
     ],
     "inputs": [
         { "ingredient": { "item": "cataclysm:monstrous_horn" }, "count": 1 },
-        { "ingredient": { "item": "cataclysm:lava_power_cell" }, "count": 8 },
-        { "ingredient": { "item": "minecraft:obsidian" }, "count": 8 },
-        { "ingredient": { "item": "minecraft:crying_obsidian" }, "count": 8 }
+        { "ingredient": { "item": "minecraft:crying_obsidian" }, "count": 3 }
     ],
     "recipe_time": 200,
     "block_below": { "block": "minecraft:calcite" },

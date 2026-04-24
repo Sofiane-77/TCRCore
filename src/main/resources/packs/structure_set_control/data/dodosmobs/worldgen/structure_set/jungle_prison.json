@@ -1,0 +1,14 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 62351819,
+    "separation": 32,
+    "spacing": 40
+  },
+  "structures": [
+    {
+      "structure": "dodosmobs:jungle_prison",
+      "weight": 1
+    }
+  ]
+}
