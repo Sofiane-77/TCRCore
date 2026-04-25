@@ -45,7 +45,6 @@
     "WOMDropLootTableMixin",
     "WOMLivingEntityEventsMixin",
     "WraithonEntityMixin",
-    "aquamirae.MawMixin",
     "ba_bt.AbstractDestructionEntityMixin",
     "ba_bt.AbstractGolemInvoker",
     "ba_bt.ActiveCorriteBlockMixin",

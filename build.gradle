@@ -298,7 +298,7 @@ dependencies {
 
     implementation fg.deobf("curse.maven:patchouli-306770:6164575")
 
-    implementation fg.deobf("curse.maven:aquamirae-536254:7890786")
+    implementation fg.deobf("curse.maven:aquamirae-536254:7980736")
     implementation fg.deobf("curse.maven:obscure-api-638417:7171906")
 
     //ftb
