@@ -113,15 +113,15 @@ public class PlayerEventListeners {
     /**
      * 同步团队进度给新人，前提是默认团队所有人进度都一样= =
      */
-    public static void syncQuestFromTeam(ServerPlayer serverPlayer, Team team) {
+    public static boolean syncQuestFromTeam(ServerPlayer serverPlayer, Team team) {
         if(serverPlayer == null || team == null) {
-            return;
+            return false;
         }
         TCRPlayer tcrPlayer = TCRCapabilityProvider.getTCRPlayer(serverPlayer);
         if(!team.getOnlineMembers().isEmpty()) {
             ServerPlayer oldPlayer = new ArrayList<>(team.getOnlineMembers()).get(0);
             if(oldPlayer == serverPlayer) {
-                return;
+                return false;
             }
             ServerPlayer toBroadcast;
             if(tcrPlayer.copyQuestsFrom(oldPlayer)) {
@@ -133,7 +133,9 @@ public class PlayerEventListeners {
             TCRQuestManager.ensureQuest(toBroadcast);
             tcrPlayer.syncToClient(toBroadcast);
             PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new RefreshClientQuestsPacket(), toBroadcast);
+            return true;
         }
+        return false;
     }
 
     @SubscribeEvent
@@ -176,8 +178,10 @@ public class PlayerEventListeners {
     public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
         Player player = event.getEntity();
         if (player instanceof ServerPlayer serverPlayer) {
-//            TCRCapabilityProvider.syncPlayerDataToClient(serverPlayer);//syncQuestFromTeam已经同步玩家了，无需重复操作
-            syncQuestFromTeam(serverPlayer, FTBTeamUtils.getTeam(serverPlayer));
+            //如果同步成功就不用发包了
+            if(!syncQuestFromTeam(serverPlayer, FTBTeamUtils.getTeam(serverPlayer))) {
+                TCRCapabilityProvider.syncPlayerDataToClient(serverPlayer);
+            }
             TCRPlayer.updateSardineCount(serverPlayer);
             handleFirstJoin(serverPlayer, false);
         }
