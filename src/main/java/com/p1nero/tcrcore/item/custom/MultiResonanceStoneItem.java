@@ -3,6 +3,7 @@ package com.p1nero.tcrcore.item.custom;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.TCRCapabilityProvider;
 import com.p1nero.tcrcore.capability.TCRPlayer;
+import com.p1nero.tcrcore.utils.FTBTeamUtils;
 import com.p1nero.tcrcore.utils.WorldUtil;
 import com.yesman.epicskills.registry.entry.EpicSkillsSounds;
 import net.minecraft.ChatFormatting;
@@ -82,6 +83,13 @@ public class MultiResonanceStoneItem extends Item {
     public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player, @NotNull InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
         if (player instanceof ServerPlayer serverPlayer && !itemStack.getOrCreateTag().getBoolean("searching")) {
+            //仅队长可用
+            ServerPlayer leader = FTBTeamUtils.getTeamLeader(serverPlayer);
+            if(leader != null && leader != serverPlayer) {
+                serverPlayer.displayClientMessage(TCRCoreMod.getInfo("only_team_leader_can_use").withStyle(ChatFormatting.RED), false);
+                return InteractionResultHolder.fail(itemStack);
+            }
+
             // 开始搜索，防止重复使用
             itemStack.getOrCreateTag().putBoolean("searching", true);
 

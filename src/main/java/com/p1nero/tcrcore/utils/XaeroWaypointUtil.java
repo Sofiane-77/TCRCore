@@ -5,6 +5,7 @@ import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
 import com.p1nero.tcrcore.network.packet.clientbound.AddXaeroWaypointPacket;
 import com.p1nero.tcrcore.network.packet.clientbound.RemoveXaeroWaypointPacket;
+import dev.ftb.mods.ftbteams.api.Team;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
@@ -44,10 +45,28 @@ public class XaeroWaypointUtil {
 
     public static void sendWaypoint(ServerPlayer player, String key, Component displayName, BlockPos pos, WaypointColor color, WaypointVisibilityType type) {
         PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new AddXaeroWaypointPacket(key, displayName, pos, color, type), player);
+        //全队共享任务标点
+        Team team = FTBTeamUtils.getTeam(player);
+        if(team != null) {
+            team.getOnlineMembers().forEach(serverPlayer -> {
+                if(serverPlayer != player) {
+                    PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new AddXaeroWaypointPacket(key, displayName, pos, color, type), serverPlayer);
+                }
+            });
+        }
     }
 
     public static void removeWaypoint(ServerPlayer player, String key, BlockPos pos) {
         PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new RemoveXaeroWaypointPacket(key, pos), player);
+        //全队共享任务标点
+        Team team = FTBTeamUtils.getTeam(player);
+        if(team != null) {
+            team.getOnlineMembers().forEach(serverPlayer -> {
+                if(serverPlayer != player) {
+                    PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new RemoveXaeroWaypointPacket(key, pos), serverPlayer);
+                }
+            });
+        }
     }
 
     @OnlyIn(Dist.CLIENT)

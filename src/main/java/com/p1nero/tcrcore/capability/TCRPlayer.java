@@ -12,6 +12,7 @@ import com.p1nero.tcrcore.utils.EntityUtil;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tcrcore.utils.WorldUtil;
 import com.yesman.epicskills.registry.entry.EpicSkillsItems;
+import dev.ftb.mods.ftbteams.api.event.PlayerChangedTeamEvent;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
@@ -216,6 +217,20 @@ public class TCRPlayer {
             finishedQuests.add(id);
         }
         sardine = tag.getInt("sardine");
+    }
+
+    /**
+     * 给ftb团队用的
+     */
+    public void copyQuestsFrom(ServerPlayer serverPlayer) {
+        copyQuestsFrom(TCRCapabilityProvider.getTCRPlayer(serverPlayer));
+    }
+
+    public void copyQuestsFrom(TCRPlayer old) {
+        this.resonanceStoneInCooldown = old.resonanceStoneInCooldown;
+        this.resonanceStoneStartTime = old.resonanceStoneStartTime;
+        this.currentQuests = old.currentQuests;
+        this.finishedQuests = old.finishedQuests;
     }
 
     public void copyFrom(TCRPlayer old) {

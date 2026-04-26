@@ -25,6 +25,8 @@ public class TCRCapabilityProvider implements ICapabilityProvider, INBTSerializa
 
     private TCRPlayer TCRPlayer = null;
 
+    public static TCRPlayer EMPTY = new TCRPlayer();
+
     private final LazyOptional<TCRPlayer> optional = LazyOptional.of(this::createTCRPlayer);
 
     private TCRPlayer createTCRPlayer() {
@@ -95,9 +97,9 @@ public class TCRCapabilityProvider implements ICapabilityProvider, INBTSerializa
 
     public static TCRPlayer getTCRPlayer(Player player) {
         if(player == null) {
-            return new TCRPlayer();
+            return EMPTY;
         }
-        return player.getCapability(TCRCapabilityProvider.TCR_PLAYER).orElse(new TCRPlayer());
+        return player.getCapability(TCRCapabilityProvider.TCR_PLAYER).orElse(EMPTY);
     }
 
     /**
