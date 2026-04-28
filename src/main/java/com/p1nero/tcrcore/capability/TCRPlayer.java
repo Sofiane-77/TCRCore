@@ -36,8 +36,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import org.merlin204.mimic.worldgen.WraithonDimensions;
-import org.merlin204.wraithon.entity.WraithonEntities;
-import org.merlin204.wraithon.entity.wraithon.WraithonEntity;
 import yesman.epicfight.world.entity.ai.attribute.EpicFightAttributes;
 
 import java.util.ArrayList;

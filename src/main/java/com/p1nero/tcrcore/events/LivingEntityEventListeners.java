@@ -499,11 +499,11 @@ public class LivingEntityEventListeners {
             }
 
             //打似战灵爆mimic
-            else if (livingEntity instanceof WraithonEntity) {
-                if (serverLevel.getEntities(TCREntities.TCR_MIMIC.get(), (Entity::isAlive)).isEmpty()) {
-                    TCREntities.TCR_MIMIC.get().spawn(serverLevel, livingEntity.getOnPos().above(5), MobSpawnType.MOB_SUMMONED);
-                }
-            }
+//            else if (livingEntity instanceof WraithonEntity) {
+//                if (serverLevel.getEntities(TCREntities.TCR_MIMIC.get(), (Entity::isAlive)).isEmpty()) {
+//                    TCREntities.TCR_MIMIC.get().spawn(serverLevel, livingEntity.getOnPos().above(5), MobSpawnType.MOB_SUMMONED);
+//                }
+//            }
 
             //打似最终boss处理通关
             else if (livingEntity instanceof TCRMimic) {
@@ -1078,11 +1078,11 @@ public class LivingEntityEventListeners {
         }
 
         //保护措施
-        if (event.getEntity() instanceof WraithonEntity wraithonEntity) {
-            if (!serverLevel.getEntities(TCREntities.TCR_MIMIC.get(), LivingEntity::isAlive).isEmpty()) {
-                wraithonEntity.discard();
-            }
-        }
+//        if (event.getEntity() instanceof WraithonEntity wraithonEntity) {
+//            if (!serverLevel.getEntities(TCREntities.TCR_MIMIC.get(), LivingEntity::isAlive).isEmpty()) {
+//                wraithonEntity.discard();
+//            }
+//        }
 
         //海灵船长发光
         if (event.getEntity() instanceof Pillager pillager) {
