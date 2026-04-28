@@ -1,5 +1,17 @@
 [
     {
+      "structure": "dungeons_arise:mechanical_nest",
+      "hostile": true,
+      "mincount": {
+        "amount": 3,
+        "perchunk": true
+      },
+      "maxcount": {
+        "amount": 45
+      },
+      "result": "deny"
+    },
+    {
         "spawner": true,
         "result": "allow"
     },
