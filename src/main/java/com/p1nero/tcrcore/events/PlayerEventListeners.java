@@ -38,7 +38,6 @@ import com.yesman.epicskills.registry.entry.EpicSkillsSkillTrees;
 import com.yesman.epicskills.skilltree.SkillTree;
 import com.yesman.epicskills.world.capability.SkillTreeProgression;
 import com.yungnickyoung.minecraft.betterendisland.world.IDragonFight;
-import dev.ftb.mods.ftbteams.api.Team;
 import dev.ftb.mods.ftbteams.api.event.PlayerChangedTeamEvent;
 import net.blay09.mods.waystones.block.ModBlocks;
 import net.minecraft.ChatFormatting;
@@ -107,35 +106,7 @@ public class PlayerEventListeners {
         if(serverPlayer == null) {
             return;
         }
-        syncQuestFromTeam(serverPlayer, playerChangedTeamEvent.getTeam());
-    }
-
-    /**
-     * 同步团队进度给新人，前提是默认团队所有人进度都一样= =
-     */
-    public static boolean syncQuestFromTeam(ServerPlayer serverPlayer, Team team) {
-        if(serverPlayer == null || team == null) {
-            return false;
-        }
-        TCRPlayer tcrPlayer = TCRCapabilityProvider.getTCRPlayer(serverPlayer);
-        if(!team.getOnlineMembers().isEmpty()) {
-            ServerPlayer oldPlayer = new ArrayList<>(team.getOnlineMembers()).get(0);
-            if(oldPlayer == serverPlayer) {
-                return false;
-            }
-            ServerPlayer toBroadcast;
-            if(tcrPlayer.copyQuestsFrom(oldPlayer)) {
-                toBroadcast = serverPlayer;
-            } else {
-                toBroadcast = oldPlayer;
-            }
-            toBroadcast.displayClientMessage(TCRCoreMod.getInfo("team_progress_synced").withStyle(ChatFormatting.GOLD), false);
-            TCRQuestManager.ensureQuest(toBroadcast);
-            tcrPlayer.syncToClient(toBroadcast);
-            PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new RefreshClientQuestsPacket(), toBroadcast);
-            return true;
-        }
-        return false;
+        FTBTeamUtils.syncDataFromTeam(serverPlayer, playerChangedTeamEvent.getTeam());
     }
 
     @SubscribeEvent
@@ -179,7 +150,7 @@ public class PlayerEventListeners {
         Player player = event.getEntity();
         if (player instanceof ServerPlayer serverPlayer) {
             //如果同步成功就不用发包了
-            if(!syncQuestFromTeam(serverPlayer, FTBTeamUtils.getTeam(serverPlayer))) {
+            if(!FTBTeamUtils.syncDataFromTeam(serverPlayer)) {
                 TCRCapabilityProvider.syncPlayerDataToClient(serverPlayer);
             }
             TCRPlayer.updateSardineCount(serverPlayer);
@@ -278,7 +249,7 @@ public class PlayerEventListeners {
             }
 
             //和女神像交互的处理
-            if (blockState.is(com.github.L_Ender.cataclysm.init.ModBlocks.GODDESS_STATUE.get()) && ItemUtil.eyesItems.contains(serverPlayer.getMainHandItem().getItem())) {
+            else if (blockState.is(com.github.L_Ender.cataclysm.init.ModBlocks.GODDESS_STATUE.get()) && ItemUtil.eyesItems.contains(serverPlayer.getMainHandItem().getItem())) {
                 TCRPlayer tcrPlayer = TCRCapabilityProvider.getTCRPlayer(serverPlayer);
                 ServerLevel serverLevel = serverPlayer.serverLevel();
                 BlockPos blessPos = event.getPos();
@@ -293,7 +264,7 @@ public class PlayerEventListeners {
             }
 
             //击败boss前禁止交互
-            if (CataclysmDimensions.LEVELS.contains(serverPlayer.serverLevel().dimension())) {
+            else if (CataclysmDimensions.LEVELS.contains(serverPlayer.serverLevel().dimension())) {
                 boolean isChest = event.getLevel().getBlockState(event.getPos()).is(Blocks.CHEST) || event.getLevel().getBlockState(event.getPos()).is(noobanidus.mods.lootr.init.ModBlocks.CHEST.get());
                 if (isChest && !TCRDimSaveData.get(serverPlayer.serverLevel()).isBossKilled()) {
                     serverPlayer.displayClientMessage(TCRCoreMod.getInfo("dim_block_no_interact"), true);

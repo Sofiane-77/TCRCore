@@ -112,7 +112,7 @@ public class TCRQuestManager {
         if(team != null) {
             team.getOnlineMembers().forEach(teamPlayer -> {
                 if(teamPlayer != player) {
-                    ServerPlayer toBroadcast = TCRCapabilityProvider.getTCRPlayer(teamPlayer).copyQuestsFrom(tcrPlayer) ? teamPlayer : player;
+                    ServerPlayer toBroadcast = TCRCapabilityProvider.getTCRPlayer(teamPlayer).copyFromFTBTeamMember(tcrPlayer) ? teamPlayer : player;
                     ensureQuest(toBroadcast);
                     tcrPlayer.syncToClient(toBroadcast);
                     PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new RefreshClientQuestsPacket(), toBroadcast);
@@ -165,7 +165,7 @@ public class TCRQuestManager {
         if(team != null) {
             team.getOnlineMembers().forEach(teamPlayer -> {
                 if(teamPlayer != player) {
-                    ServerPlayer toBroadcast = TCRCapabilityProvider.getTCRPlayer(teamPlayer).copyQuestsFrom(tcrPlayer) ? teamPlayer : player;
+                    ServerPlayer toBroadcast = TCRCapabilityProvider.getTCRPlayer(teamPlayer).copyFromFTBTeamMember(tcrPlayer) ? teamPlayer : player;
                     ensureQuest(toBroadcast);
                     tcrPlayer.syncToClient(toBroadcast);
                     PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new RefreshClientQuestsPacket(), toBroadcast);

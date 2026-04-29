@@ -561,7 +561,7 @@ public class LivingEntityEventListeners {
             else if(livingEntity instanceof EveningGhostEntity entity) {
                 SoulEntity soulEntity = EntityRespawnerMod.createSoulEntity(entity, 1200, true);
                 if(soulEntity != null) {
-                    soulEntity.setPos(entity.getSpawnPos().above().getCenter());
+                    soulEntity.setPos(entity.getSpawnPos().getCenter());
                     EntityUtil.nearPlayerDo(entity, 32, player -> player.displayClientMessage(TCRCoreMod.getInfo("boss_will_respawn", 60).withStyle(ChatFormatting.GOLD), false));
                 }
             }
@@ -569,14 +569,14 @@ public class LivingEntityEventListeners {
             else if(livingEntity instanceof ValkyrieQueenEntity entity) {
                 SoulEntity soulEntity = EntityRespawnerMod.createSoulEntity(entity, 1200, true);
                 if(soulEntity != null) {
-                    soulEntity.setPos(entity.getSpawnPos().above().getCenter());
+                    soulEntity.setPos(entity.getSpawnPos().getCenter());
                     EntityUtil.nearPlayerDo(entity, 32, player -> player.displayClientMessage(TCRCoreMod.getInfo("boss_will_respawn", 60).withStyle(ChatFormatting.GOLD), false));
                 }
             }
             else if(livingEntity instanceof GildedHunterEntity entity) {
                 SoulEntity soulEntity = EntityRespawnerMod.createSoulEntity(entity, 1200, true);
                 if(soulEntity != null) {
-                    soulEntity.setPos(entity.getSpawnPos().above().getCenter());
+                    soulEntity.setPos(entity.getSpawnPos().getCenter());
                     EntityUtil.nearPlayerDo(entity, 32, player -> player.displayClientMessage(TCRCoreMod.getInfo("boss_will_respawn", 60).withStyle(ChatFormatting.GOLD), false));
                 }
             }
