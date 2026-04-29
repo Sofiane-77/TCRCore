@@ -599,7 +599,7 @@ public class LivingEntityEventListeners {
                     SoulEntity soulEntity = EntityRespawnerMod.createSoulEntity(boneChimeraEntity, 200, true);
                     TCREntityPatch patch = TCREntityCapabilityProvider.getTCREntityPatch(boneChimeraEntity);
                     if (!patch.isEmpty() && patch.hasSpawnPos() && soulEntity != null) {
-                        soulEntity.setPos(patch.getSpawnPos().getCenter().add(0, 2, 0));
+                        soulEntity.setPos(patch.getSpawnPos().getCenter());
                         EntityUtil.nearPlayerDo(boneChimeraEntity, 32, player -> player.displayClientMessage(TCRCoreMod.getInfo("boss_will_respawn", 10).withStyle(ChatFormatting.GOLD), false));
                     }
                     livingEntity.getPersistentData().putBoolean("already_respawn", true);
