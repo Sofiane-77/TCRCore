@@ -313,6 +313,9 @@ public class OrnnEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
         ItemStack judgementCutEnd = new ItemStack(Items.ENCHANTED_BOOK);
         EnchantmentHelper.setEnchantments(Map.of(EFNEnchantment.YAMATO_JUDGEMENT_CUT_END.get(), 1), judgementCutEnd);
 
+        ItemStack heavyRain = new ItemStack(Items.ENCHANTED_BOOK);
+        EnchantmentHelper.setEnchantments(Map.of(EFNEnchantment.YAMATO_HEAVY_RAIN.get(), 1), heavyRain);
+
         ItemStack doppelganger = new ItemStack(Items.ENCHANTED_BOOK);
         EnchantmentHelper.setEnchantments(Map.of(EFNEnchantment.YAMATO_DOPPELGANGER.get(), 1), doppelganger);
 
@@ -351,6 +354,11 @@ public class OrnnEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
                 new ItemStack(TCRItems.STORM_FRAGMENT.get(), 1),
                 new ItemStack(TCRItems.ABYSS_FRAGMENT.get(), 1),
                 judgementCutEnd,
+                142857, 0, 0.01f));
+        offers.add(new MerchantOffer(
+                new ItemStack(TCRItems.STORM_FRAGMENT.get(), 1),
+                new ItemStack(TCRItems.ABYSS_FRAGMENT.get(), 1),
+                heavyRain,
                 142857, 0, 0.01f));
         offers.add(new MerchantOffer(
                 new ItemStack(TCRItems.MECH_FRAGMENT.get(), 1),
