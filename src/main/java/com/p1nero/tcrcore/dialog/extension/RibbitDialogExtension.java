@@ -115,9 +115,9 @@ public class RibbitDialogExtension implements IEntityDialogueExtension<RibbitEnt
         //解锁避水咒
         if(i == 1) {
             TCRQuests.GIVE_AMETHYST_BLOCK_TO_RIBBITS.finish(serverPlayer, true);
-            ItemUtil.addItemEntity(serverPlayer, artifacts.registry.ModItems.CHARM_OF_SINKING.get(), 1);
             serverPlayer.getMainHandItem().shrink(12);
-            FTBTeamUtils.onlineTeamMembersDo(serverPlayer, (player -> {
+            FTBTeamUtils.onlineTeamMembersDoWithSelf(serverPlayer, (player -> {
+                ItemUtil.addItemEntity(player, artifacts.registry.ModItems.CHARM_OF_SINKING.get(), 1);
                 player.getCapability(SkillTreeProgression.SKILL_TREE_PROGRESSION).ifPresent(skillTreeProgression -> {
                     ResourceKey<SkillTree> resourceKey = ResourceKey.create(SkillTree.SKILL_TREE_REGISTRY_KEY, ResourceLocation.fromNamespaceAndPath(DodgeParryRewardMod.MOD_ID, "passive"));
                     skillTreeProgression.unlockTree(resourceKey, player);
@@ -127,7 +127,7 @@ public class RibbitDialogExtension implements IEntityDialogueExtension<RibbitEnt
                 player.displayClientMessage(TCRCoreMod.getInfo("unlock_new_skill", Component.translatable(TCRSkills.WATER_AVOID.getTranslationKey()).withStyle(ChatFormatting.AQUA)), false);
                 player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.PLAYERS, 1.0F, 1.0F);
                 PlayerDataManager.waterAvoidUnlocked.put(player, true);
-            }), false);
+            }));
         }
         if(i == 2) {
             //开始交易
