@@ -20,6 +20,7 @@ import com.p1nero.tcrcore.network.TCRPacketHandler;
 import com.p1nero.tcrcore.network.packet.clientbound.PlayTitlePacket;
 import com.p1nero.tcrcore.save_data.TCRDimSaveData;
 import com.p1nero.tcrcore.utils.EntityUtil;
+import com.p1nero.tcrcore.utils.FTBTeamUtils;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tcrcore.utils.WorldUtil;
 import com.yesman.epicskills.registry.entry.EpicSkillsSkillTrees;
@@ -413,17 +414,19 @@ public class ChronosSolEntity extends PathfinderMob implements IEntityNpc, GeoEn
             TCRQuests.TALK_TO_CHRONOS_8.finish(player);
             ItemUtil.addItemEntity(player, TCRItems.CORE_FLINT.get(), 1, ChatFormatting.DARK_RED.getColor());
             ItemUtil.addItemEntity(player, TCRItems.NETHER_RESONANCE_STONE.get(), 1, ChatFormatting.DARK_RED.getColor());
-            TCRQuests.GO_TO_NETHER.start(player);
             PlayerDataManager.canEnterNether.put(player, true);
-            player.getCapability(SkillTreeProgression.SKILL_TREE_PROGRESSION).ifPresent(skillTreeProgression -> {
-                ResourceKey<SkillTree> resourceKey = ResourceKey.create(SkillTree.SKILL_TREE_REGISTRY_KEY, ResourceLocation.fromNamespaceAndPath(DodgeParryRewardMod.MOD_ID, "passive"));
-                skillTreeProgression.unlockTree(resourceKey, player);
-                skillTreeProgression.unlockNode(resourceKey, TCRSkills.FIRE_AVOID, player);
-            });
-            PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PlayTitlePacket(PlayTitlePacket.UNLOCK_NEW_SKILL), player);
-            player.displayClientMessage(TCRCoreMod.getInfo("unlock_new_skill", Component.translatable(TCRSkills.FIRE_AVOID.getTranslationKey()).withStyle(ChatFormatting.RED)), false);
-            player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.PLAYERS, 1.0F, 1.0F);
             PlayerDataManager.fireAvoidUnlocked.put(player, true);
+            FTBTeamUtils.onlineTeamMembersDoWithSelf(player, member -> {
+                member.getCapability(SkillTreeProgression.SKILL_TREE_PROGRESSION).ifPresent(skillTreeProgression -> {
+                    ResourceKey<SkillTree> resourceKey = ResourceKey.create(SkillTree.SKILL_TREE_REGISTRY_KEY, ResourceLocation.fromNamespaceAndPath(DodgeParryRewardMod.MOD_ID, "passive"));
+                    skillTreeProgression.unlockTree(resourceKey, member);
+                    skillTreeProgression.unlockNode(resourceKey, TCRSkills.FIRE_AVOID, member);
+                });
+                PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PlayTitlePacket(PlayTitlePacket.UNLOCK_NEW_SKILL), member);
+                member.displayClientMessage(TCRCoreMod.getInfo("unlock_new_skill", Component.translatable(TCRSkills.FIRE_AVOID.getTranslationKey()).withStyle(ChatFormatting.RED)), false);
+                member.level().playSound(null, member.getX(), member.getY(), member.getZ(), SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.PLAYERS, 1.0F, 1.0F);
+            });
+            TCRQuests.GO_TO_NETHER.start(player);
         }
 
         //开启凋零任务
@@ -444,18 +447,21 @@ public class ChronosSolEntity extends PathfinderMob implements IEntityNpc, GeoEn
         if(code == 12) {
             TCRQuests.TALK_TO_CHRONOS_11.finish(player);
             ItemUtil.addItemEntity(player, TCRItems.SKY_RESONANCE_STONE.get(), 1, ChatFormatting.AQUA.getColor());
-            TCRQuests.GO_TO_AETHER.start(player);
+
             PlayerDataManager.canEnterAether.put(player, true);
-            player.getCapability(SkillTreeProgression.SKILL_TREE_PROGRESSION).ifPresent(skillTreeProgression -> {
-                ResourceKey<SkillTree> resourceKey = EpicSkillsSkillTrees.BATTLEBORN;
-                skillTreeProgression.unlockTree(resourceKey, player);
-                skillTreeProgression.unlockNode(resourceKey, FlyingSkills.SWORD_SOARING_ELYTRA_MASTER, player);
-                skillTreeProgression.unlockNode(resourceKey, FlyingSkills.SWORD_SOARING_MASTER, player);
-            });
-            PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PlayTitlePacket(PlayTitlePacket.UNLOCK_NEW_SKILL), player);
-            player.displayClientMessage(TCRCoreMod.getInfo("unlock_new_skill", Component.translatable(FlyingSkills.SWORD_SOARING_MASTER.getTranslationKey()).withStyle(ChatFormatting.AQUA)), false);
-            player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.PLAYERS, 1.0F, 1.0F);
             PlayerDataManager.swordSoaringUnlocked.put(player, true);
+            FTBTeamUtils.onlineTeamMembersDoWithSelf(player, member -> {
+                member.getCapability(SkillTreeProgression.SKILL_TREE_PROGRESSION).ifPresent(skillTreeProgression -> {
+                    ResourceKey<SkillTree> resourceKey = EpicSkillsSkillTrees.BATTLEBORN;
+                    skillTreeProgression.unlockTree(resourceKey, member);
+                    skillTreeProgression.unlockNode(resourceKey, FlyingSkills.SWORD_SOARING_ELYTRA_MASTER, member);
+                    skillTreeProgression.unlockNode(resourceKey, FlyingSkills.SWORD_SOARING_MASTER, member);
+                });
+                PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PlayTitlePacket(PlayTitlePacket.UNLOCK_NEW_SKILL), member);
+                member.displayClientMessage(TCRCoreMod.getInfo("unlock_new_skill", Component.translatable(FlyingSkills.SWORD_SOARING_MASTER.getTranslationKey()).withStyle(ChatFormatting.AQUA)), false);
+                member.level().playSound(null, member.getX(), member.getY(), member.getZ(), SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.PLAYERS, 1.0F, 1.0F);
+            });
+            TCRQuests.GO_TO_AETHER.start(player);
         }
 
         //去末地

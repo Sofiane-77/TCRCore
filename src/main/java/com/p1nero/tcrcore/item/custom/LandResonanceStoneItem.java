@@ -46,12 +46,12 @@ public class LandResonanceStoneItem extends ResonanceStoneItem{
     public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player, @NotNull InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
         if(player instanceof ServerPlayer serverPlayer && !itemStack.getOrCreateTag().getBoolean("searching")) {
-            //仅队长可用
-            ServerPlayer leader = FTBTeamUtils.getTeamLeader(serverPlayer);
-            if(leader != null && leader != serverPlayer) {
-                serverPlayer.displayClientMessage(TCRCoreMod.getInfo("only_team_leader_can_use").withStyle(ChatFormatting.RED), false);
-                return InteractionResultHolder.fail(itemStack);
-            }
+//            //仅队长可用
+//            ServerPlayer leader = FTBTeamUtils.getTeamLeader(serverPlayer);
+//            if(leader != null && leader != serverPlayer) {
+//                serverPlayer.displayClientMessage(TCRCoreMod.getInfo("only_team_leader_can_use").withStyle(ChatFormatting.RED), false);
+//                return InteractionResultHolder.fail(itemStack);
+//            }
             if(predicate.test(serverPlayer) && level.dimension().equals(Level.OVERWORLD)) {
                 itemStack.getOrCreateTag().putBoolean("searching", true);
                 serverPlayer.displayClientMessage(TCRCoreMod.getInfo("resonance_stone_working", this.getDescription()), true);
