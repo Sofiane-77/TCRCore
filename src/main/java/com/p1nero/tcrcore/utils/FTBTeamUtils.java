@@ -13,7 +13,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.server.level.ServerPlayer;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.UUID;
 import java.util.function.Consumer;
 
@@ -25,7 +24,7 @@ public class FTBTeamUtils {
     @Nullable
     public static ServerPlayer getTeamLeader(ServerPlayer player) {
         Team team = getTeam(player);
-        if(team == null) {
+        if(team == null || !team.isPartyTeam()) {
             return null;
         }
         UUID ownerId = team.getOwner();
@@ -34,7 +33,7 @@ public class FTBTeamUtils {
 
     @Nullable
     public static Team getTeam(ServerPlayer player) {
-        return FTBTeamsAPI.api().getManager().getTeamForPlayer(player).orElse(null);
+        return FTBTeamsAPI.api().getManager().getTeamForPlayer(player).filter(Team::isPartyTeam).orElse(null);
     }
 
     public static void onlineTeamMembersDoWithSelf(ServerPlayer player, Consumer<ServerPlayer> consumer) {
@@ -49,7 +48,7 @@ public class FTBTeamUtils {
         if(!ignoreSelf) {
             consumer.accept(player);//防止没团队？虽然一个人默认就一个团队，但是以防万一
         }
-        FTBTeamsAPI.api().getManager().getTeamForPlayer(player).ifPresent(team -> {
+        FTBTeamsAPI.api().getManager().getTeamForPlayer(player).filter(Team::isPlayerTeam).ifPresent(team -> {
             team.getOnlineMembers().forEach(member -> {
                 if(member == player) {
                     return;
@@ -73,8 +72,14 @@ public class FTBTeamUtils {
         }
         TCRPlayer tcrPlayer = TCRCapabilityProvider.getTCRPlayer(serverPlayer);
         if(!team.getOnlineMembers().isEmpty()) {
-            ServerPlayer oldPlayer = new ArrayList<>(team.getOnlineMembers()).get(0);
-            if(oldPlayer == serverPlayer) {
+            ServerPlayer oldPlayer = null;
+            for (ServerPlayer onlineMember : team.getOnlineMembers()) {
+                if(onlineMember != serverPlayer) {
+                    oldPlayer = onlineMember;
+                    break;
+                }
+            }
+            if(oldPlayer == null) {
                 return false;
             }
             ServerPlayer toBroadcast;
