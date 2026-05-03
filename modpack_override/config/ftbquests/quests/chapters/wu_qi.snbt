@@ -468,8 +468,8 @@
 					type: "item"
 				}
 			]
-			x: 2.5d
-			y: -14.5d
+			x: 2.4285714285714164d
+			y: -15.613095238095234d
 		}
 		{
 			dependencies: ["3A35B2F3F4ED6EDC"]
@@ -1592,7 +1592,6 @@
 					Count: 1
 					id: "epicfight:skillbook"
 					tag: {
-						fdbosses: { }
 						skill: "efn:zansetsu"
 					}
 				}
@@ -1604,10 +1603,7 @@
 			y: -18.0d
 		}
 		{
-			dependencies: [
-				"4A769401A7590B3F"
-				"0D76D92CF8D39AE7"
-			]
+			dependencies: ["2F9F109962C8ADF4"]
 			dependency_requirement: "one_completed"
 			hide_until_deps_visible: true
 			icon: {
@@ -1636,7 +1632,7 @@
 			y: -11.0d
 		}
 		{
-			dependencies: ["49526E12F56F14D0"]
+			dependencies: ["2F9F109962C8ADF4"]
 			dependency_requirement: "one_completed"
 			hide_until_deps_visible: true
 			icon: {
@@ -1665,10 +1661,7 @@
 			y: -11.0d
 		}
 		{
-			dependencies: [
-				"74F850F3C8C76ED4"
-				"40217A88C9D46BB1"
-			]
+			dependencies: ["2F9F109962C8ADF4"]
 			dependency_requirement: "one_completed"
 			hide_until_deps_visible: true
 			icon: {
@@ -1698,6 +1691,7 @@
 		}
 		{
 			dependencies: ["627E4A2C0428CC5A"]
+			description: ["{enchantment.efn.yamato_guard.desc}"]
 			id: "3254967D776D648C"
 			rewards: [{
 				id: "5274468D1B56667C"
@@ -1717,18 +1711,18 @@
 							id: "efn:yamato_guard"
 							lvl: 1s
 						}]
-						fdbosses: { }
 					}
 				}
 				match_nbt: true
 				type: "item"
 			}]
 			title: "{ftbquests.chapter.wu_qi.quest3254967D776D648C.title}"
-			x: -1.5d
-			y: -14.5d
+			x: 0.0d
+			y: -13.0d
 		}
 		{
 			dependencies: ["627E4A2C0428CC5A"]
+			description: ["{enchantment.efn.yamato_doppelganger.desc}"]
 			id: "6533118C2C897C1E"
 			rewards: [{
 				id: "56ED6545CAF38BA6"
@@ -1748,18 +1742,18 @@
 							id: "efn:yamato_doppelganger"
 							lvl: 1s
 						}]
-						fdbosses: { }
 					}
 				}
 				match_nbt: true
 				type: "item"
 			}]
 			title: "{ftbquests.chapter.wu_qi.quest6533118C2C897C1E.title}"
-			x: 0.5d
-			y: -17.5d
+			x: -1.0d
+			y: -17.0d
 		}
 		{
 			dependencies: ["627E4A2C0428CC5A"]
+			description: ["{enchantment.efn.yamato_summoned_sword.desc}"]
 			id: "4108291A69C3FFF6"
 			rewards: [{
 				id: "68A7E29FE488F6BA"
@@ -1779,18 +1773,18 @@
 							id: "efn:yamato_summoned_sword"
 							lvl: 1s
 						}]
-						fdbosses: { }
 					}
 				}
 				match_nbt: true
 				type: "item"
 			}]
 			title: "{ftbquests.chapter.wu_qi.quest4108291A69C3FFF6.title}"
-			x: 4.5d
-			y: -17.5d
+			x: 6.0d
+			y: -17.0d
 		}
 		{
 			dependencies: ["627E4A2C0428CC5A"]
+			description: ["{enchantment.efn.yamato_judgement_cut_end.desc}"]
 			id: "5DBFF2EAFF720ABF"
 			rewards: [{
 				id: "325D10F10ECBA98C"
@@ -1810,18 +1804,17 @@
 							id: "efn:yamato_judgement_cut_end"
 							lvl: 1s
 						}]
-						fdbosses: { }
 					}
 				}
 				match_nbt: true
 				type: "item"
 			}]
 			title: "{ftbquests.chapter.wu_qi.quest5DBFF2EAFF720ABF.title}"
-			x: 6.5d
-			y: -14.5d
+			x: 4.428571428571431d
+			y: -12.898809523809518d
 		}
 		{
-			dependencies: ["016F12E968740FBA"]
+			dependencies: ["2F9F109962C8ADF4"]
 			dependency_requirement: "one_completed"
 			hide_until_deps_visible: true
 			icon: {
@@ -1850,7 +1843,7 @@
 			y: -11.0d
 		}
 		{
-			dependencies: ["12C6899DBC971D90"]
+			dependencies: ["2F9F109962C8ADF4"]
 			dependency_requirement: "one_completed"
 			hide_until_deps_visible: true
 			icon: {
@@ -1879,7 +1872,7 @@
 			y: -11.0d
 		}
 		{
-			dependencies: ["72C5DAEE93ACFDD5"]
+			dependencies: ["2F9F109962C8ADF4"]
 			dependency_requirement: "one_completed"
 			hide_until_deps_visible: true
 			icon: {
@@ -1908,7 +1901,7 @@
 			y: -11.0d
 		}
 		{
-			dependencies: ["04A38D08B97A07B0"]
+			dependencies: ["2F9F109962C8ADF4"]
 			dependency_requirement: "one_completed"
 			hide_until_deps_visible: true
 			icon: {
@@ -1937,7 +1930,7 @@
 			y: -11.0d
 		}
 		{
-			dependencies: ["093CCFF3131C851E"]
+			dependencies: ["2F9F109962C8ADF4"]
 			dependency_requirement: "one_completed"
 			hide_until_deps_visible: true
 			icon: {
@@ -2145,6 +2138,37 @@
 			}]
 			x: 9.0d
 			y: 3.0d
+		}
+		{
+			dependencies: ["627E4A2C0428CC5A"]
+			description: ["{enchantment.efn.yamato_heavy_rain.desc}"]
+			id: "274826600E2C8D2E"
+			rewards: [{
+				id: "50ECE3170020B44F"
+				type: "xp"
+				xp: 1
+			}]
+			shape: "none"
+			size: 2.0d
+			subtitle: "{ftbquests.chapter.wu_qi.quest6533118C2C897C1E.subtitle}"
+			tasks: [{
+				id: "1932E623FDA2916B"
+				item: {
+					Count: 1
+					id: "minecraft:enchanted_book"
+					tag: {
+						StoredEnchantments: [{
+							id: "efn:yamato_heavy_rain"
+							lvl: 1s
+						}]
+					}
+				}
+				match_nbt: true
+				type: "item"
+			}]
+			title: "{enchantment.efn.yamato_heavy_rain}"
+			x: 2.5d
+			y: -19.005952380952387d
 		}
 	]
 	title: "{ftbquests.chapter.wu_qi.title}"

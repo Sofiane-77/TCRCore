@@ -9,10 +9,12 @@ import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.client.sound.CorneliaMusicPlayer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
@@ -23,6 +25,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -34,7 +37,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
  */
 @Mixin(CaptainCornelia.class)
 public abstract class CaptainCorneliaMixin extends Monster {
-    @Shadow(remap = false) protected abstract boolean doHurtTarget(LivingEntity entity, DamageSource source, float amount);
 
     protected CaptainCorneliaMixin(EntityType<? extends Monster> p_33002_, Level p_33003_) {
         super(p_33002_, p_33003_);
@@ -65,17 +67,35 @@ public abstract class CaptainCorneliaMixin extends Monster {
 
             if (item instanceof WhisperOfTheAbyssItem) {
                 living.setLastHurtByMob(this);
-                cir.setReturnValue(this.doHurtTarget(living, this.damageSources().mobAttack(this), 8.0F));
+                cir.setReturnValue(this.tcr$doHurtTarget(living, this.damageSources().mobAttack(this), 8.0F));
             }
 
             if (item instanceof DividerItem) {
                 living.setLastHurtByMob(this);
-                cir.setReturnValue(this.doHurtTarget(living, this.damageSources().mobAttack(this), Math.max(4.0F, living.getHealth() / 2.0F)));
+                cir.setReturnValue(this.tcr$doHurtTarget(living, this.damageSources().mobAttack(this), Math.max(4.0F, living.getHealth() / 2.0F)));
             }
 
         }
         cir.setReturnValue(super.doHurtTarget(entity));
     }
+
+    @Unique
+    private boolean tcr$doHurtTarget(LivingEntity entity, DamageSource source, float amount) {
+        boolean hurt = entity.hurt(source, amount);
+        if (hurt) {
+            float knockback = (float)this.getAttributeValue(Attributes.ATTACK_KNOCKBACK);
+            if (knockback > 0.0F) {
+                entity.knockback((knockback * 0.5F),  Mth.sin(this.getYRot() * ((float)Math.PI / 180F)), (-Mth.cos(this.getYRot() * ((float)Math.PI / 180F))));
+                this.setDeltaMovement(this.getDeltaMovement().multiply(0.6, 1.0F, 0.6));
+            }
+
+//            this.doEnchantDamageEffects(this, entity);
+            this.setLastHurtMob(entity);
+        }
+
+        return hurt;
+    }
+
 
     @Inject(method = "dropEquipment", at = @At("HEAD"), cancellable = true)
     private void tcr$dropEquipment(CallbackInfo ci) {

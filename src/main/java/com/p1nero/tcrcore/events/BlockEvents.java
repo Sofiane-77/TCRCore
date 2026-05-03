@@ -42,7 +42,7 @@ public class BlockEvents {
             }
             if(CataclysmDimensions.LEVELS.contains(event.getPlayer().level().dimension())) {
                 if(!TCRDimSaveData.get(serverLevel).isBossKilled()) {
-                    event.getPlayer().displayClientMessage(TCRCoreMod.getInfo("c"), true);
+                    event.getPlayer().displayClientMessage(TCRCoreMod.getInfo("dim_block_no_interact_no_drop"), true);
                     event.setCanceled(true);
                     serverLevel.destroyBlock(event.getPos(), false);
                 }

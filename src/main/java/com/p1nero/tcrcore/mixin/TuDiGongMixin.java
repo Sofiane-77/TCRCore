@@ -8,6 +8,7 @@ import com.p1nero.dialog_lib.client.screen.builder.DialogueScreenBuilder;
 import com.p1nero.dialog_lib.client.screen.builder.StreamDialogueScreenBuilder;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
+import com.p1nero.tcrcore.utils.FTBTeamUtils;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tudigong.TuDiGongMod;
 import com.p1nero.tudigong.entity.TudiGongEntity;
@@ -60,9 +61,11 @@ public abstract class TuDiGongMixin implements IEntityNpc {
     private void tcr$handle(ServerPlayer serverPlayer, int i, CallbackInfo ci) {
         if(i == 111) {
             if(!PlayerDataManager.tudigongGiftGet.get(serverPlayer)) {
-                ItemUtil.addItemEntity(serverPlayer, new ItemStack(ExplorersCompass.explorersCompass));
-                ItemUtil.addItemEntity(serverPlayer, new ItemStack(NaturesCompass.naturesCompass));
-                serverPlayer.displayClientMessage(TCRCoreMod.getInfo("tudigong_gift_get"), false);
+                FTBTeamUtils.onlineTeamMembersDoWithSelf(serverPlayer, member -> {
+                    ItemUtil.addItemEntity(member, new ItemStack(ExplorersCompass.explorersCompass));
+                    ItemUtil.addItemEntity(member, new ItemStack(NaturesCompass.naturesCompass));
+                    member.displayClientMessage(TCRCoreMod.getInfo("tudigong_gift_get"), false);
+                });
                 PlayerDataManager.tudigongGiftGet.put(serverPlayer, true);
                 this.setMarkRemoved();
             }

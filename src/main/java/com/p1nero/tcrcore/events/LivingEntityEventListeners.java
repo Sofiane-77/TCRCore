@@ -23,6 +23,7 @@ import com.github.L_Ender.cataclysm.entity.InternalAnimationMonster.The_Prowler_
 import com.github.L_Ender.cataclysm.entity.InternalAnimationMonster.Wadjet_Entity;
 import com.github.L_Ender.cataclysm.init.ModItems;
 import com.github.dodo.dodosmobs.entity.InternalAnimationMonster.IABossMonsters.Bone_Chimera_Entity;
+import com.github.dodo.dodosmobs.init.ModEntities;
 import com.hm.efn.registries.EFNItem;
 import com.hm.efn.registries.EFNMobEffectRegistry;
 import com.obscuria.aquamirae.Aquamirae;
@@ -498,11 +499,11 @@ public class LivingEntityEventListeners {
             }
 
             //打似战灵爆mimic
-            else if (livingEntity instanceof WraithonEntity) {
-                if (serverLevel.getEntities(TCREntities.TCR_MIMIC.get(), (Entity::isAlive)).isEmpty()) {
-                    TCREntities.TCR_MIMIC.get().spawn(serverLevel, livingEntity.getOnPos().above(5), MobSpawnType.MOB_SUMMONED);
-                }
-            }
+//            else if (livingEntity instanceof WraithonEntity) {
+//                if (serverLevel.getEntities(TCREntities.TCR_MIMIC.get(), (Entity::isAlive)).isEmpty()) {
+//                    TCREntities.TCR_MIMIC.get().spawn(serverLevel, livingEntity.getOnPos().above(5), MobSpawnType.MOB_SUMMONED);
+//                }
+//            }
 
             //打似最终boss处理通关
             else if (livingEntity instanceof TCRMimic) {
@@ -560,7 +561,7 @@ public class LivingEntityEventListeners {
             else if(livingEntity instanceof EveningGhostEntity entity) {
                 SoulEntity soulEntity = EntityRespawnerMod.createSoulEntity(entity, 1200, true);
                 if(soulEntity != null) {
-                    soulEntity.setPos(entity.getSpawnPos().above().getCenter());
+                    soulEntity.setPos(entity.getSpawnPos().getCenter());
                     EntityUtil.nearPlayerDo(entity, 32, player -> player.displayClientMessage(TCRCoreMod.getInfo("boss_will_respawn", 60).withStyle(ChatFormatting.GOLD), false));
                 }
             }
@@ -568,14 +569,14 @@ public class LivingEntityEventListeners {
             else if(livingEntity instanceof ValkyrieQueenEntity entity) {
                 SoulEntity soulEntity = EntityRespawnerMod.createSoulEntity(entity, 1200, true);
                 if(soulEntity != null) {
-                    soulEntity.setPos(entity.getSpawnPos().above().getCenter());
+                    soulEntity.setPos(entity.getSpawnPos().getCenter());
                     EntityUtil.nearPlayerDo(entity, 32, player -> player.displayClientMessage(TCRCoreMod.getInfo("boss_will_respawn", 60).withStyle(ChatFormatting.GOLD), false));
                 }
             }
             else if(livingEntity instanceof GildedHunterEntity entity) {
                 SoulEntity soulEntity = EntityRespawnerMod.createSoulEntity(entity, 1200, true);
                 if(soulEntity != null) {
-                    soulEntity.setPos(entity.getSpawnPos().above().getCenter());
+                    soulEntity.setPos(entity.getSpawnPos().getCenter());
                     EntityUtil.nearPlayerDo(entity, 32, player -> player.displayClientMessage(TCRCoreMod.getInfo("boss_will_respawn", 60).withStyle(ChatFormatting.GOLD), false));
                 }
             }
@@ -596,8 +597,9 @@ public class LivingEntityEventListeners {
                 if (WorldUtil.isInStructure(livingEntity, WorldUtil.BONE_CHIMERA_STRUCTURE) && !livingEntity.getPersistentData().getBoolean("already_respawn")) {
                     //偷懒，直接秽土转生
                     SoulEntity soulEntity = EntityRespawnerMod.createSoulEntity(boneChimeraEntity, 200, true);
-                    if (boneChimeraEntity.getTags().contains("tcr-has-spawn-pos") && soulEntity != null) {
-                        soulEntity.setPos(readSpawnPos(boneChimeraEntity).add(0, 2, 0));
+                    TCREntityPatch patch = TCREntityCapabilityProvider.getTCREntityPatch(boneChimeraEntity);
+                    if (!patch.isEmpty() && patch.hasSpawnPos() && soulEntity != null) {
+                        soulEntity.setPos(patch.getSpawnPos().getCenter());
                         EntityUtil.nearPlayerDo(boneChimeraEntity, 32, player -> player.displayClientMessage(TCRCoreMod.getInfo("boss_will_respawn", 10).withStyle(ChatFormatting.GOLD), false));
                     }
                     livingEntity.getPersistentData().putBoolean("already_respawn", true);
@@ -693,7 +695,7 @@ public class LivingEntityEventListeners {
                     if(entity instanceof DragonBase ownableEntity && ownableEntity.getOwner() != null && ownableEntity.getOwner().is(serverPlayer)) {
                         ServerLevel toRespawnLevel = serverLevel.getServer().getLevel(TCRDimensions.SANCTUM_LEVEL_KEY);
                         if(toRespawnLevel != null) {
-                            entity.changeDimension(toRespawnLevel, new PositionTeleporter(new BlockPos(WorldUtil.START_POS)));
+                            entity.teleportTo(toRespawnLevel, WorldUtil.START_POS.getX(), WorldUtil.START_POS.getY(), WorldUtil.START_POS.getZ(), Set.of(), 0, 0);
                             serverPlayer.displayClientMessage(TCRCoreMod.getInfo("pet_respawn", ownableEntity.getDisplayName()).withStyle(ChatFormatting.GOLD), false);
                         }
                     }
@@ -986,6 +988,10 @@ public class LivingEntityEventListeners {
         if(event.getEntity() instanceof BaseSmallBossEntity boss) {
             if(!boss.hasSpawnPos()) {
                 if(FMLEnvironment.production) {
+                    BlockPos pos = boss.getOnPos();
+                    while (!serverLevel.getBlockState(pos).isAir()) {
+                        pos = pos.above();
+                    }
                     boss.setSpawnPos(boss.getOnPos());
                 } else {
                     TCRCoreMod.LOGGER.info("开发环境，跳过设置[{}]的出生点", boss.getDisplayName().getString());
@@ -1001,7 +1007,14 @@ public class LivingEntityEventListeners {
 
         if (event.getEntity() instanceof Bone_Chimera_Entity boneChimeraEntity) {
             if (WorldUtil.isInStructure(boneChimeraEntity, WorldUtil.BONE_CHIMERA_STRUCTURE)) {
-                saveSpawnPos(boneChimeraEntity);
+                TCREntityPatch patch = TCREntityCapabilityProvider.getTCREntityPatch(boneChimeraEntity);
+                if(patch.isEmpty()) {
+                    ModEntities.BONE_CHIMERA.get().spawn(serverLevel, boneChimeraEntity.getOnPos(), MobSpawnType.MOB_SUMMONED);
+                    boneChimeraEntity.discard();
+                    return;
+                } else if(!patch.hasSpawnPos()) {
+                    patch.setSpawnPos(boneChimeraEntity.getOnPos());
+                }
             }
         }
 
@@ -1069,11 +1082,11 @@ public class LivingEntityEventListeners {
         }
 
         //保护措施
-        if (event.getEntity() instanceof WraithonEntity wraithonEntity) {
-            if (!serverLevel.getEntities(TCREntities.TCR_MIMIC.get(), LivingEntity::isAlive).isEmpty()) {
-                wraithonEntity.discard();
-            }
-        }
+//        if (event.getEntity() instanceof WraithonEntity wraithonEntity) {
+//            if (!serverLevel.getEntities(TCREntities.TCR_MIMIC.get(), LivingEntity::isAlive).isEmpty()) {
+//                wraithonEntity.discard();
+//            }
+//        }
 
         //海灵船长发光
         if (event.getEntity() instanceof Pillager pillager) {
@@ -1086,6 +1099,11 @@ public class LivingEntityEventListeners {
         //防止龙跑远了移除
         if(event.getEntity() instanceof DragonBase dragonBase) {
             dragonBase.setPersistenceRequired();
+        }
+
+        //回满血
+        if(event.getEntity() instanceof TutorialGolem tutorialGolem) {
+            tutorialGolem.setHealth(tutorialGolem.getMaxHealth());
         }
 
     }

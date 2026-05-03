@@ -2,12 +2,10 @@ package com.p1nero.tcrcore.skills;
 
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageTypes;
-import yesman.epicfight.api.animation.types.StaticAnimation;
 import yesman.epicfight.api.utils.AttackResult;
 import yesman.epicfight.skill.Skill;
 import yesman.epicfight.skill.SkillBuilder;
 import yesman.epicfight.skill.SkillContainer;
-import yesman.epicfight.world.entity.eventlistener.ComboCounterHandleEvent;
 import yesman.epicfight.world.entity.eventlistener.PlayerEventListener;
 
 import java.util.UUID;

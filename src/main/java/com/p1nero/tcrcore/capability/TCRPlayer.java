@@ -9,6 +9,7 @@ import com.p1nero.tcrcore.network.TCRPacketHandler;
 import com.p1nero.tcrcore.network.packet.clientbound.OpenEndScreenPacket;
 import com.p1nero.tcrcore.network.packet.clientbound.SyncTCRPlayerPacket;
 import com.p1nero.tcrcore.utils.EntityUtil;
+import com.p1nero.tcrcore.utils.FTBTeamUtils;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tcrcore.utils.WorldUtil;
 import com.yesman.epicskills.registry.entry.EpicSkillsItems;
@@ -18,8 +19,10 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtUtils;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundSoundPacket;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -34,10 +37,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 import org.merlin204.mimic.worldgen.WraithonDimensions;
-import org.merlin204.wraithon.entity.WraithonEntities;
-import org.merlin204.wraithon.entity.wraithon.WraithonEntity;
 import yesman.epicfight.world.entity.ai.attribute.EpicFightAttributes;
 
 import java.util.ArrayList;
@@ -52,7 +54,7 @@ public class TCRPlayer {
     private double healthAdder = 0;
     private int tickAfterBossDieLeft;
     private int tickAfterBless;
-    private BlockPos blessPos;
+    private BlockPos blessPos = BlockPos.ZERO;
     private Item blessItem;
 
     //=======共鸣石冷却任务计时=======
@@ -180,6 +182,12 @@ public class TCRPlayer {
         tag.putDouble("healthAdder", healthAdder);
         tag.putInt("tickAfterBossDieLeft", tickAfterBossDieLeft);
         tag.putInt("tickAfterBless", tickAfterBless);
+        if(blessPos != null) {
+            tag.put("blessPos", NbtUtils.writeBlockPos(blessPos));
+        }
+        if(blessItem != null &&ForgeRegistries.ITEMS.containsValue(blessItem)) {
+            tag.putString("blessItem", ForgeRegistries.ITEMS.getKey(blessItem).toString());
+        }
         tag.putBoolean("resonanceStoneInCooldown", resonanceStoneInCooldown);
         tag.putLong("resonanceStoneStartTime", resonanceStoneStartTime);
         tag.putInt("questSize", currentQuests.size());
@@ -199,6 +207,8 @@ public class TCRPlayer {
         healthAdder = tag.getDouble("healthAdder");
         tickAfterBossDieLeft = tag.getInt("tickAfterBossDieLeft");
         tickAfterBless = tag.getInt("tickAfterBless");
+        blessItem = ForgeRegistries.ITEMS.getValue(ResourceLocation.parse(tag.getString("blessItem")));
+        blessPos = NbtUtils.readBlockPos(tag.getCompound("blessPos"));
         currentQuests.clear();
         resonanceStoneInCooldown = tag.getBoolean("resonanceStoneInCooldown");
         resonanceStoneStartTime = tag.getLong("resonanceStoneStartTime");
@@ -216,6 +226,30 @@ public class TCRPlayer {
             finishedQuests.add(id);
         }
         sardine = tag.getInt("sardine");
+    }
+
+    /**
+     * 给ftb团队用的
+     */
+    public boolean copyFromFTBTeamMember(ServerPlayer serverPlayer) {
+        return copyFromFTBTeamMember(TCRCapabilityProvider.getTCRPlayer(serverPlayer));
+    }
+
+    /**
+     * @param old 被复制的
+     * @return 复制或被复制
+     */
+    public boolean copyFromFTBTeamMember(TCRPlayer old) {
+        if(this == old) {
+            return false;
+        }
+        // 从完成的多的复制到完成得少的身上
+        if(old.finishedQuests.size() < this.finishedQuests.size()) {
+            old.copyFrom(this);
+            return false;
+        }
+        this.copyFrom(old);
+        return true;
     }
 
     public void copyFrom(TCRPlayer old) {
@@ -463,45 +497,43 @@ public class TCRPlayer {
             if (tickAfterBless == 0) {
                 final double oldAdder = healthAdder;
                 ItemStack item = blessItem == null ? serverPlayer.getMainHandItem() : blessItem.getDefaultInstance();
-                if (item.is(ModItems.STORM_EYE.get()) && PlayerDataManager.stormEyeGotten.get(serverPlayer) && !PlayerDataManager.stormEyeBlessed.get(serverPlayer)) {
+                if (item.is(ModItems.STORM_EYE.get())  && !PlayerDataManager.stormEyeBlessed.get(serverPlayer)) {
                     healthAdder += 2.0;
-                    ItemUtil.addItemEntity(serverPlayer, EpicSkillsItems.ABILIITY_STONE.get(), 2, ChatFormatting.GOLD.getColor());
                     PlayerDataManager.stormEyeBlessed.put(serverPlayer, true);
-                } else if (item.is(ModItems.ABYSS_EYE.get()) && PlayerDataManager.abyssEyeGotten.get(serverPlayer) && !PlayerDataManager.abyssEyeBlessed.get(serverPlayer)) {
+                } else if (item.is(ModItems.ABYSS_EYE.get()) && !PlayerDataManager.abyssEyeBlessed.get(serverPlayer)) {
                     healthAdder += 2.0;
-                    ItemUtil.addItemEntity(serverPlayer, EpicSkillsItems.ABILIITY_STONE.get(), 2, ChatFormatting.GOLD.getColor());
                     PlayerDataManager.abyssEyeBlessed.put(serverPlayer, true);
-                } else if (item.is(ModItems.DESERT_EYE.get()) && PlayerDataManager.desertEyeGotten.get(serverPlayer) && !PlayerDataManager.desertEyeBlessed.get(serverPlayer)) {
+                } else if (item.is(ModItems.DESERT_EYE.get()) && !PlayerDataManager.desertEyeBlessed.get(serverPlayer)) {
                     healthAdder += 2.0;
-                    ItemUtil.addItemEntity(serverPlayer, EpicSkillsItems.ABILIITY_STONE.get(), 2, ChatFormatting.GOLD.getColor());
                     PlayerDataManager.desertEyeBlessed.put(serverPlayer, true);
-                } else if (item.is(ModItems.CURSED_EYE.get()) && PlayerDataManager.cursedEyeGotten.get(serverPlayer) && !PlayerDataManager.cursedEyeBlessed.get(serverPlayer)) {
+                } else if (item.is(ModItems.CURSED_EYE.get()) && !PlayerDataManager.cursedEyeBlessed.get(serverPlayer)) {
                     healthAdder += 2.0;
-                    ItemUtil.addItemEntity(serverPlayer, EpicSkillsItems.ABILIITY_STONE.get(), 2, ChatFormatting.GOLD.getColor());
                     PlayerDataManager.cursedEyeBlessed.put(serverPlayer, true);
-                } else if (item.is(ModItems.FLAME_EYE.get()) && PlayerDataManager.flameEyeGotten.get(serverPlayer) && !PlayerDataManager.flameEyeBlessed.get(serverPlayer)) {
+                } else if (item.is(ModItems.FLAME_EYE.get()) && !PlayerDataManager.flameEyeBlessed.get(serverPlayer)) {
                     healthAdder += 2.0;
-                    ItemUtil.addItemEntity(serverPlayer, EpicSkillsItems.ABILIITY_STONE.get(), 2, ChatFormatting.GOLD.getColor());
                     serverPlayer.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.END_PORTAL_SPAWN), SoundSource.PLAYERS, serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ(), 1.0F, 1.0F, serverPlayer.getRandom().nextInt()));
                     PlayerDataManager.flameEyeBlessed.put(serverPlayer, true);
                 } else if (item.is(ModItems.MONSTROUS_EYE.get()) && !PlayerDataManager.monstEyeBlessed.get(serverPlayer)) {
                     healthAdder += 2.0;
-                    ItemUtil.addItemEntity(serverPlayer, EpicSkillsItems.ABILIITY_STONE.get(), 2, ChatFormatting.GOLD.getColor());
                     serverPlayer.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.END_PORTAL_SPAWN), SoundSource.PLAYERS, serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ(), 1.0F, 1.0F, serverPlayer.getRandom().nextInt()));
                     PlayerDataManager.monstEyeBlessed.put(serverPlayer, true);
                 } else if (item.is(ModItems.MECH_EYE.get()) && !PlayerDataManager.mechEyeBlessed.get(serverPlayer)) {
                     healthAdder += 2.0;
-                    ItemUtil.addItemEntity(serverPlayer, EpicSkillsItems.ABILIITY_STONE.get(), 2, ChatFormatting.GOLD.getColor());
                     serverPlayer.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.END_PORTAL_SPAWN), SoundSource.PLAYERS, serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ(), 1.0F, 1.0F, serverPlayer.getRandom().nextInt()));
                     PlayerDataManager.mechEyeBlessed.put(serverPlayer, true);
                 } else if (item.is(ModItems.VOID_EYE.get()) && !PlayerDataManager.voidEyeBlessed.get(serverPlayer)) {
                     healthAdder += 2.0;
-                    ItemUtil.addItemEntity(serverPlayer, EpicSkillsItems.ABILIITY_STONE.get(), 2, ChatFormatting.GOLD.getColor());
                     serverPlayer.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.END_PORTAL_SPAWN), SoundSource.PLAYERS, serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ(), 1.0F, 1.0F, serverPlayer.getRandom().nextInt()));
                     PlayerDataManager.voidEyeBlessed.put(serverPlayer, true);
                 }
                 if (oldAdder < healthAdder) {
                     updateHealth(serverPlayer, true, oldAdder);
+                    FTBTeamUtils.syncDataToTeamMembers(serverPlayer);
+                    ItemUtil.addItemEntity(serverPlayer, EpicSkillsItems.ABILIITY_STONE.get(), 2, ChatFormatting.GOLD.getColor());
+                    FTBTeamUtils.onlineTeamMembersDo(serverPlayer, member -> {
+                        TCRCapabilityProvider.getTCRPlayer(member).updateHealth(member, true, 0);
+                        ItemUtil.addItemEntity(member, EpicSkillsItems.ABILIITY_STONE.get(), 2, ChatFormatting.GOLD.getColor());
+                    });
                     if(TCRQuestManager.hasQuest(serverPlayer, TCRQuests.BLESS_ON_THE_GODNESS_STATUE)){
                         TCRQuests.BLESS_ON_THE_GODNESS_STATUE.finish(serverPlayer, true);
                     }

@@ -21,12 +21,10 @@ import com.p1nero.tcrcore.entity.custom.fake_npc.fake_boss.FakeBossNpc;
 import com.p1nero.tcrcore.entity.custom.fake_npc.fake_end_golem.FakeEndGolem;
 import com.p1nero.tcrcore.item.TCRItems;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
-import com.p1nero.tcrcore.network.packet.clientbound.CSTipPacket;
-import com.p1nero.tcrcore.network.packet.clientbound.OpenCustomDialogPacket;
-import com.p1nero.tcrcore.network.packet.clientbound.PlayItemPickupParticlePacket;
-import com.p1nero.tcrcore.network.packet.clientbound.PlayTitlePacket;
+import com.p1nero.tcrcore.network.packet.clientbound.*;
 import com.p1nero.tcrcore.save_data.TCRDimSaveData;
 import com.p1nero.tcrcore.utils.EntityUtil;
+import com.p1nero.tcrcore.utils.FTBTeamUtils;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tcrcore.utils.WorldUtil;
 import com.p1nero.tcrcore.worldgen.TCRDimensions;
@@ -40,6 +38,7 @@ import com.yesman.epicskills.registry.entry.EpicSkillsSkillTrees;
 import com.yesman.epicskills.skilltree.SkillTree;
 import com.yesman.epicskills.world.capability.SkillTreeProgression;
 import com.yungnickyoung.minecraft.betterendisland.world.IDragonFight;
+import dev.ftb.mods.ftbteams.api.event.PlayerChangedTeamEvent;
 import net.blay09.mods.waystones.block.ModBlocks;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -102,6 +101,14 @@ import java.util.*;
 @Mod.EventBusSubscriber(modid = TCRCoreMod.MOD_ID)
 public class PlayerEventListeners {
 
+    public static void onPlayerTeamChanged(PlayerChangedTeamEvent playerChangedTeamEvent) {
+        ServerPlayer serverPlayer = playerChangedTeamEvent.getPlayer();
+        if(serverPlayer == null) {
+            return;
+        }
+        FTBTeamUtils.syncDataFromTeam(serverPlayer, playerChangedTeamEvent.getTeam());
+    }
+
     @SubscribeEvent
     public static void onPlayerAdvancementEarn(AdvancementEvent.AdvancementEarnEvent event) {
         if (event.getEntity() instanceof ServerPlayer player) {
@@ -142,7 +149,10 @@ public class PlayerEventListeners {
     public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
         Player player = event.getEntity();
         if (player instanceof ServerPlayer serverPlayer) {
-            TCRCapabilityProvider.syncPlayerDataToClient(serverPlayer);
+            //如果同步成功就不用发包了
+            if(!FTBTeamUtils.syncDataFromTeam(serverPlayer)) {
+                TCRCapabilityProvider.syncPlayerDataToClient(serverPlayer);
+            }
             TCRPlayer.updateSardineCount(serverPlayer);
             handleFirstJoin(serverPlayer, false);
         }
@@ -239,7 +249,7 @@ public class PlayerEventListeners {
             }
 
             //和女神像交互的处理
-            if (blockState.is(com.github.L_Ender.cataclysm.init.ModBlocks.GODDESS_STATUE.get()) && ItemUtil.eyesItems.contains(serverPlayer.getMainHandItem().getItem())) {
+            else if (blockState.is(com.github.L_Ender.cataclysm.init.ModBlocks.GODDESS_STATUE.get()) && ItemUtil.eyesItems.contains(serverPlayer.getMainHandItem().getItem())) {
                 TCRPlayer tcrPlayer = TCRCapabilityProvider.getTCRPlayer(serverPlayer);
                 ServerLevel serverLevel = serverPlayer.serverLevel();
                 BlockPos blessPos = event.getPos();
@@ -254,7 +264,7 @@ public class PlayerEventListeners {
             }
 
             //击败boss前禁止交互
-            if (CataclysmDimensions.LEVELS.contains(serverPlayer.serverLevel().dimension())) {
+            else if (CataclysmDimensions.LEVELS.contains(serverPlayer.serverLevel().dimension())) {
                 boolean isChest = event.getLevel().getBlockState(event.getPos()).is(Blocks.CHEST) || event.getLevel().getBlockState(event.getPos()).is(noobanidus.mods.lootr.init.ModBlocks.CHEST.get());
                 if (isChest && !TCRDimSaveData.get(serverPlayer.serverLevel()).isBossKilled()) {
                     serverPlayer.displayClientMessage(TCRCoreMod.getInfo("dim_block_no_interact"), true);

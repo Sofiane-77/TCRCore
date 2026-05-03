@@ -4,7 +4,9 @@ import com.p1nero.fast_tpa.network.PacketRelay;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
 import com.p1nero.tcrcore.network.packet.clientbound.RefreshClientQuestsPacket;
+import com.p1nero.tcrcore.utils.FTBTeamUtils;
 import com.p1nero.tcrcore.utils.XaeroWaypointUtil;
+import dev.ftb.mods.ftbteams.api.Team;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
@@ -104,6 +106,20 @@ public class TCRQuestManager {
         ensureQuest(player);
         tcrPlayer.syncToClient(player);
         PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new RefreshClientQuestsPacket(), player);
+
+        //同步任务数据给队友
+        Team team = FTBTeamUtils.getTeam(player);
+        if(team != null) {
+            team.getOnlineMembers().forEach(teamPlayer -> {
+                if(teamPlayer != player) {
+                    ServerPlayer toBroadcast = TCRCapabilityProvider.getTCRPlayer(teamPlayer).copyFromFTBTeamMember(tcrPlayer) ? teamPlayer : player;
+                    ensureQuest(toBroadcast);
+                    tcrPlayer.syncToClient(toBroadcast);
+                    PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new RefreshClientQuestsPacket(), toBroadcast);
+                }
+            });
+        }
+
         //大地图标点，仅大地图可见
         if(quest.getTrackingPos() != null && quest.getDimension().equals(player.level().dimension())) {
             if(TCRCoreMod.isXaeroMapLoaded()) {
@@ -143,6 +159,19 @@ public class TCRQuestManager {
         ensureQuest(player);
         tcrPlayer.syncToClient(player);
         PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new RefreshClientQuestsPacket(), player);
+
+        //同步任务数据给队友
+        Team team = FTBTeamUtils.getTeam(player);
+        if(team != null) {
+            team.getOnlineMembers().forEach(teamPlayer -> {
+                if(teamPlayer != player) {
+                    ServerPlayer toBroadcast = TCRCapabilityProvider.getTCRPlayer(teamPlayer).copyFromFTBTeamMember(tcrPlayer) ? teamPlayer : player;
+                    ensureQuest(toBroadcast);
+                    tcrPlayer.syncToClient(toBroadcast);
+                    PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new RefreshClientQuestsPacket(), toBroadcast);
+                }
+            });
+        }
         //移除大地图标点
         if(quest.getTrackingPos() != null && quest.getDimension().equals(player.level().dimension())) {
             if(TCRCoreMod.isXaeroMapLoaded()) {
@@ -162,7 +191,7 @@ public class TCRQuestManager {
     }
 
     /**
-     * 保险措施，确保当前选中的任务位于任务列表内。否则随便选一个
+     * 保险措施，确保当前选中的任务位于任务列表内。否则选第一个
      */
     public static void ensureQuest(Player player) {
         Quest selectedQuest = getCurrentQuest(player);

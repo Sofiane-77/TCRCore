@@ -30,7 +30,6 @@ import yesman.epicfight.api.forgeevent.EntityPatchRegistryEvent;
 import yesman.epicfight.gameasset.Armatures;
 import yesman.epicfight.world.capabilities.entitypatch.Factions;
 import yesman.epicfight.world.capabilities.entitypatch.mob.IronGolemPatch;
-import yesman.epicfight.world.capabilities.entitypatch.mob.ZombiePatch;
 
 @Mod.EventBusSubscriber(modid = TCRCoreMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class TCREntities {

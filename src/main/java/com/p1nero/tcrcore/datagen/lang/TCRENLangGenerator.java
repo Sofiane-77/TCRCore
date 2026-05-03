@@ -318,6 +318,8 @@ public class TCRENLangGenerator extends TCRLangProvider {
         this.add(TCRItems.MAGIC_GREATSWORD.get(), "Ninehold");
         this.add(TCRItems.MAGIC_SPEAR.get(), "Heavenrend");
 
+        this.addInfo("team_progress_synced", "Team progress synced!");
+        this.addInfo("only_team_leader_can_use", "To prevent progress error, only the team leader can use it!");
         this.addInfo("pet_respawn", "Player death detected, [%s] has respawned in sanctum...");
         this.addInfo("boss_will_respawn", "Boss will respawn in %ds...");
         this.addInfo("magic_sword_desc", "When playing air attack or dash attack, it will ignore cooldown and mana cost, automatically casting the equipped magic with half level.");

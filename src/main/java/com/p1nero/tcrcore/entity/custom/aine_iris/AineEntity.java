@@ -23,6 +23,7 @@ import com.p1nero.tcrcore.item.TCRItems;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
 import com.p1nero.tcrcore.network.packet.clientbound.PlayTitlePacket;
 import com.p1nero.tcrcore.utils.EntityUtil;
+import com.p1nero.tcrcore.utils.FTBTeamUtils;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tcrcore.utils.WorldUtil;
 import com.yesman.epicskills.skilltree.SkillTree;
@@ -316,12 +317,14 @@ public class AineEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
     public void handleNpcInteraction(ServerPlayer serverPlayer, int code) {
         //初次对话&领取时装
         if (code == 1) {
-            ItemUtil.addItemEntity(serverPlayer, ModItems.SKIN_TEMPLATE.get(), 20, ChatFormatting.GOLD.getColor());
-            ItemUtil.addItemEntity(serverPlayer, ModItems.SKIN_LIBRARY_GLOBAL.get(), 1, ChatFormatting.GOLD.getColor());
-            ItemUtil.addItemEntity(serverPlayer, ModItems.SKIN_LIBRARY.get(), 1, ChatFormatting.GOLD.getColor());
-            ItemUtil.addItemEntity(serverPlayer, ModItems.SKINNING_TABLE.get(), 1, ChatFormatting.GOLD.getColor());
             TCRQuests.TALK_TO_AINE_0.finish(serverPlayer);
-            PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PlayTitlePacket(PlayTitlePacket.UNLOCK_NEW_CHAPTER), serverPlayer);
+            FTBTeamUtils.onlineTeamMembersDoWithSelf(serverPlayer, (member -> {
+                ItemUtil.addItemEntity(member, ModItems.SKIN_TEMPLATE.get(), 20, ChatFormatting.GOLD.getColor());
+                ItemUtil.addItemEntity(member, ModItems.SKIN_LIBRARY_GLOBAL.get(), 1, ChatFormatting.GOLD.getColor());
+                ItemUtil.addItemEntity(member, ModItems.SKIN_LIBRARY.get(), 1, ChatFormatting.GOLD.getColor());
+                ItemUtil.addItemEntity(member, ModItems.SKINNING_TABLE.get(), 1, ChatFormatting.GOLD.getColor());
+                PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PlayTitlePacket(PlayTitlePacket.UNLOCK_NEW_CHAPTER), member);
+            }));
         }
         //聊幻境
         if (code == 2) {
@@ -353,19 +356,23 @@ public class AineEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
         if (code == 5) {
             TCRQuests.TALK_TO_AINE_MAGIC.finish(serverPlayer);
             TCRQuests.TRY_TO_LEARN_MAGIC.start(serverPlayer);
-            TCRAdvancementData.finishAdvancement("unlock_magic_and_boss", serverPlayer);
-            ItemUtil.addItemEntity(serverPlayer, getSpellScroll(SpellRegistry.MAGIC_ARROW_SPELL.get()), ChatFormatting.AQUA.getColor());
-            PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PlayTitlePacket(PlayTitlePacket.UNLOCK_NEW_CHAPTER), serverPlayer);
+            FTBTeamUtils.onlineTeamMembersDoWithSelf(serverPlayer, (member -> {
+                TCRAdvancementData.finishAdvancement("unlock_magic_and_boss", member);
+                ItemUtil.addItemEntity(member, getSpellScroll(SpellRegistry.MAGIC_ARROW_SPELL.get()), ChatFormatting.AQUA.getColor());
+                PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PlayTitlePacket(PlayTitlePacket.UNLOCK_NEW_CHAPTER), member);
+            }));
         }
 
         //获得蓝瓶
         if (code == 6) {
             TCRQuests.TALK_TO_AINE_MAGIC_2.finish(serverPlayer);
-            ItemUtil.addItemEntity(serverPlayer, TCRItems.MAGIC_BOTTLE.get(), 1, ChatFormatting.AQUA.getColor());
-            PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PlayTitlePacket(PlayTitlePacket.UNLOCK_NEW_SKILL), serverPlayer);
-            serverPlayer.getCapability(SkillTreeProgression.SKILL_TREE_PROGRESSION).ifPresent(skillTreeProgression -> {
-                skillTreeProgression.unlockTree(TCRSkillTreeProvider.MAGIC, serverPlayer);
-            });
+            FTBTeamUtils.onlineTeamMembersDoWithSelf(serverPlayer, (member -> {
+                ItemUtil.addItemEntity(member, TCRItems.MAGIC_BOTTLE.get(), 1, ChatFormatting.AQUA.getColor());
+                PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PlayTitlePacket(PlayTitlePacket.UNLOCK_NEW_SKILL), member);
+                member.getCapability(SkillTreeProgression.SKILL_TREE_PROGRESSION).ifPresent(skillTreeProgression -> {
+                    skillTreeProgression.unlockTree(TCRSkillTreeProvider.MAGIC, member);
+                });
+            }));
         }
 
         if (code == 8) {
@@ -383,8 +390,11 @@ public class AineEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
         if (code == 10) {
             TCRQuests.TALK_TO_AINE_SAMSARA.finish(serverPlayer);
             TCRQuests.GO_TO_SAMSARA.start(serverPlayer);
-            TCRAdvancementData.finishAdvancement("unlock_epic_boss", serverPlayer);
-            PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PlayTitlePacket(PlayTitlePacket.UNLOCK_NEW_CHAPTER), serverPlayer);
+            FTBTeamUtils.onlineTeamMembersDoWithSelf(serverPlayer, (member -> {
+                TCRAdvancementData.finishAdvancement("unlock_epic_boss", member);
+                PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PlayTitlePacket(PlayTitlePacket.UNLOCK_NEW_CHAPTER), member);
+            }));
+
         }
 
         if (code == 11) {
@@ -393,8 +403,10 @@ public class AineEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
 
         if (code == 12) {
             TCRQuests.TALK_TO_AINE_GAME_CLEAR.finish(serverPlayer);
-            PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PlayTitlePacket(PlayTitlePacket.TO_BE_CONTINUE), serverPlayer);
-            EntityUtil.playLocalSound(serverPlayer, SoundEvents.UI_TOAST_CHALLENGE_COMPLETE);
+            FTBTeamUtils.onlineTeamMembersDoWithSelf(serverPlayer, (member -> {
+                PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PlayTitlePacket(PlayTitlePacket.TO_BE_CONTINUE), member);
+                EntityUtil.playLocalSound(member, SoundEvents.UI_TOAST_CHALLENGE_COMPLETE);
+            }));
         }
 
         //法术交易

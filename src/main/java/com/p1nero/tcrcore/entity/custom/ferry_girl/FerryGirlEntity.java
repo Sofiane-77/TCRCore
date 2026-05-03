@@ -16,6 +16,7 @@ import com.p1nero.tcrcore.entity.TCREntities;
 import com.p1nero.tcrcore.events.OverworldVillageTeleporter;
 import com.p1nero.tcrcore.events.PlayerEventListeners;
 import com.p1nero.tcrcore.item.TCRItems;
+import com.p1nero.tcrcore.utils.FTBTeamUtils;
 import com.p1nero.tcrcore.utils.ItemUtil;
 import com.p1nero.tcrcore.utils.WorldUtil;
 import net.blay09.mods.waystones.block.ModBlocks;
@@ -309,54 +310,59 @@ public class FerryGirlEntity extends PathfinderMob implements IEntityNpc, GeoEnt
 
         //获得龙龙，以及养大龙龙的任务
         if (i >= 3 && i <= 9) {
-            Mob babyDragon = type.create(serverPlayer.serverLevel());
-            if (babyDragon != null) {
-                if (babyDragon instanceof DragonBase dragonBase) {
-                    int inheritedVariant;
-                    if (this.random.nextFloat() < 0.1F) {
-                        String dragonTypeName = dragonBase.getDragonType().name().toLowerCase();
-                        inheritedVariant = DragonVariantConfig.selectWeightedVariant(dragonTypeName, this.random);
-                    } else {
-                        inheritedVariant = 0;
+            EntityType<? extends Mob> finalType = type;
+            FTBTeamUtils.onlineTeamMembersDoWithSelf(serverPlayer, member -> {
+                Mob babyDragon = finalType.create(member.serverLevel());
+                if (babyDragon != null) {
+                    if (babyDragon instanceof DragonBase dragonBase) {
+                        int inheritedVariant;
+                        if (this.random.nextFloat() < 0.1F) {
+                            String dragonTypeName = dragonBase.getDragonType().name().toLowerCase();
+                            inheritedVariant = DragonVariantConfig.selectWeightedVariant(dragonTypeName, this.random);
+                        } else {
+                            inheritedVariant = 0;
+                        }
+
+                        dragonBase.setVariant(inheritedVariant);
+                        try {
+                            String dragonType = dragonBase.getDragonType().name().toLowerCase();
+                            SpeciesGeneticsConfig geneticsConfig = SpeciesGeneticsConfigRegistry.getConfig(dragonType);
+                            GeneticsSpawner spawner = new GeneticsSpawner(this.random);
+                            GeneticsSpawner.SpawnResult result = spawner.generateWildGenotype(geneticsConfig, dragonType);
+                            dragonBase.setGenotypeAndDraws(result.genotype, result.paletteDraws);
+                            dragonBase.recalculateStats();
+                        } catch (Exception e) {
+                            TCRCoreMod.LOGGER.error("[GENETICS ERROR] Failed to generate genotype for {}: {}", dragonBase.getDragonType(), e.getMessage(), e);
+                        }
+                        dragonBase.tame(member);
+                        dragonBase.setAge(-24000);
+                        dragonBase.startSpawnAnimation();
+                        dragonBase.setTamingRitualCompleted(true);
+                        dragonBase.setAwaitingTamingRitual(false);
+                        dragonBase.setTamingRitualTimer(0);
+                        dragonBase.setCommand(2);
+                        dragonBase.addAffection(member.getUUID(), 10);
+                        DragonDiscoveryEventHandler.onDragonTamed(member, dragonBase);
                     }
 
-                    dragonBase.setVariant(inheritedVariant);
-                    try {
-                        String dragonType = dragonBase.getDragonType().name().toLowerCase();
-                        SpeciesGeneticsConfig geneticsConfig = SpeciesGeneticsConfigRegistry.getConfig(dragonType);
-                        GeneticsSpawner spawner = new GeneticsSpawner(this.random);
-                        GeneticsSpawner.SpawnResult result = spawner.generateWildGenotype(geneticsConfig, dragonType);
-                        dragonBase.setGenotypeAndDraws(result.genotype, result.paletteDraws);
-                        dragonBase.recalculateStats();
-                    } catch (Exception e) {
-                        TCRCoreMod.LOGGER.error("[GENETICS ERROR] Failed to generate genotype for {}: {}", dragonBase.getDragonType(), e.getMessage(), e);
-                    }
-                    dragonBase.tame(serverPlayer);
-                    dragonBase.setAge(-24000);
-                    dragonBase.startSpawnAnimation();
-                    dragonBase.setTamingRitualCompleted(true);
-                    dragonBase.setAwaitingTamingRitual(false);
-                    dragonBase.setTamingRitualTimer(0);
-                    dragonBase.setCommand(2);
-                    dragonBase.addAffection(serverPlayer.getUUID(), 10);
-                    DragonDiscoveryEventHandler.onDragonTamed(serverPlayer, dragonBase);
+                    babyDragon.moveTo(member.getX(), member.getY(), member.getZ(), this.random.nextFloat() * 360.0F, 0.0F);
+                    member.serverLevel().addFreshEntity(babyDragon);
+                    this.level().playSound(null, this.blockPosition(), SoundEvents.TURTLE_EGG_HATCH, SoundSource.NEUTRAL, 1.0F, 1.0F);
                 }
-
-                babyDragon.moveTo(serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ(), this.random.nextFloat() * 360.0F, 0.0F);
-                serverPlayer.serverLevel().addFreshEntity(babyDragon);
-                this.level().playSound(null, this.blockPosition(), SoundEvents.TURTLE_EGG_HATCH, SoundSource.NEUTRAL, 1.0F, 1.0F);
-            }
-            ItemUtil.addItemEntity(serverPlayer, ModItems.BOOK_OF_DRAGONS.get().getDefaultInstance());
-            ItemUtil.addItemEntity(serverPlayer, TCRItems.DRAGON_FLUTE.get().getDefaultInstance());
-            ItemUtil.addItemEntity(serverPlayer, ModItems.RATTLE_STAFF.get().getDefaultInstance());
+                ItemUtil.addItemEntity(member, ModItems.BOOK_OF_DRAGONS.get().getDefaultInstance());
+                ItemUtil.addItemEntity(member, TCRItems.DRAGON_FLUTE.get().getDefaultInstance());
+                ItemUtil.addItemEntity(member, ModItems.RATTLE_STAFF.get().getDefaultInstance());
+            });
             TCRQuests.TAME_DRAGON.start(serverPlayer, false);
             PlayerDataManager.ferryGirlGiftGet.put(serverPlayer, true);
         }
 
         //将龙养大
         if(i == 10) {
-            ItemUtil.addItemEntity(serverPlayer, Items.SADDLE.getDefaultInstance());
-            ItemUtil.addItemEntity(serverPlayer, DIItemRegistry.COLLAR_TAG.get().getDefaultInstance());
+            FTBTeamUtils.onlineTeamMembersDoWithSelf(serverPlayer, member -> {
+                ItemUtil.addItemEntity(member, Items.SADDLE.getDefaultInstance());
+                ItemUtil.addItemEntity(member, DIItemRegistry.COLLAR_TAG.get().getDefaultInstance());
+            });
             TCRQuests.TAME_DRAGON_BACK_TO_FERRY_GIRL.finish(serverPlayer);
         }
 

@@ -1,22 +1,15 @@
 [
     {
-        "dimension": [
-            "tcrcore:sanctum"
-        ],
-        "mob": [
-            "tcrcore:custom_color_item",
-            "tcrcore:girl",
-            "tcrcore:guider",
-            "tcrcore:tutorial_golem"
-        ],
-        "result": "allow"
-    },
-    {
-        "dimension": [
-            "tcrcore:sanctum",
-            "tcrcore:real"
-        ],
-        "result": "deny"
+      "structure": "dungeons_arise:mechanical_nest",
+      "hostile": true,
+      "mincount": {
+        "amount": 3,
+        "perchunk": true
+      },
+      "maxcount": {
+        "amount": 45
+      },
+      "result": "deny"
     },
     {
         "spawner": true,

@@ -117,6 +117,9 @@ public class TCREntityLootTables extends EntityLootSubProvider {
                         .add(LootItem.lootTableItem(BTItems.SKY_MONOLITH_KEY.get())))
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(TCRItems.DIVINE_FRAGMENT.get())))
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1.0F))
                         .add(LootItem.lootTableItem(AetherItems.GOLD_DUNGEON_KEY.get()))));
         this.add(TCRBossEntities.VALKYRIE.get(), LootTable.lootTable()
                 .withPool(LootPool.lootPool()
@@ -133,6 +136,9 @@ public class TCREntityLootTables extends EntityLootSubProvider {
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))
                         .add(LootItem.lootTableItem(BTItems.SKY_MONOLITH_KEY.get())))
+                .withPool(LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootItem.lootTableItem(TCRItems.DIVINE_FRAGMENT.get())))
                 .withPool(LootPool.lootPool()
                         .setRolls(ConstantValue.exactly(1.0F))
                         .add(LootItem.lootTableItem(AetherItems.SILVER_DUNGEON_KEY.get()))));

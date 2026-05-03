@@ -316,6 +316,8 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.add(TCRItems.MAGIC_GREATSWORD.get(), "镇九州");
         this.add(TCRItems.MAGIC_SPEAR.get(), "贯长空");
 
+        this.addInfo("team_progress_synced", "团队进度同步！");
+        this.addInfo("only_team_leader_can_use", "为了防止进度混乱，仅队长可以使用！");
         this.addInfo("pet_respawn", "检测到玩家死亡，[%s] 已在主城重生...");
         this.addInfo("boss_will_respawn", "Boss将在 %ds 后重生...");
         this.addInfo("magic_sword_desc", "释放冲刺或跳跃攻击时将无视冷却无视法力值，自动释放所携带的魔法，但法术等级减半。");

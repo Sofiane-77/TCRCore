@@ -41,6 +41,9 @@ public class YatamoItemMixin {
         if(!enchantments.contains(EFNEnchantment.YAMATO_SUMMONED_SWORD.get())) {
             tooltip.add(TCRCoreMod.getInfo("yamato_skill_lock", Component.translatable(EFNEnchantment.YAMATO_SUMMONED_SWORD.get().getDescriptionId()).withStyle(ChatFormatting.GOLD)).withStyle(ChatFormatting.RED));
         }
+        if(!enchantments.contains(EFNEnchantment.YAMATO_HEAVY_RAIN.get())) {
+            tooltip.add(TCRCoreMod.getInfo("yamato_skill_lock", Component.translatable(EFNEnchantment.YAMATO_HEAVY_RAIN.get().getDescriptionId()).withStyle(ChatFormatting.GOLD)).withStyle(ChatFormatting.RED));
+        }
     }
 
 }

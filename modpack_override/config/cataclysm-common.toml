@@ -524,7 +524,7 @@
 
 		[mobs.ignis.ignore_mobgriefing_config]
 			#Ignore MobGriefing
-			ignore_mobgriefing = true
+			ignore_mobgriefing = false
 
 	[mobs.ignited_revenant]
 		#Ashen Breath Damage
