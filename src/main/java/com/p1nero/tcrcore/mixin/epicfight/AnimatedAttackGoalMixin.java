@@ -1,7 +1,7 @@
 package com.p1nero.tcrcore.mixin.epicfight;
 
 import com.p1nero.tcr_bosses.entity.cataclysm.BaseBossEntity;
-import com.p1nero.tcrcore.utils.EntityUtil;
+import com.p1nero.tcrcore.utils.EntityUtils;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.ai.goal.Goal;
@@ -46,7 +46,7 @@ public abstract class AnimatedAttackGoalMixin <T extends MobPatch<?>> extends Go
 
     @Unique
     private boolean tcr$check() {
-        List<Entity> list = EntityUtil.getNearByEntities(this.mobpatch.getOriginal(), 6);
+        List<Entity> list = EntityUtils.getNearByEntities(this.mobpatch.getOriginal(), 6);
         if(this.mobpatch.getOriginal() instanceof BaseBossEntity) {
             return false;
         }

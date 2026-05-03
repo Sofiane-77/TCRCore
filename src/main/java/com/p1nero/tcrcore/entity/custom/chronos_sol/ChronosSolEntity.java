@@ -19,10 +19,7 @@ import com.p1nero.tcrcore.item.TCRItems;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
 import com.p1nero.tcrcore.network.packet.clientbound.PlayTitlePacket;
 import com.p1nero.tcrcore.save_data.TCRDimSaveData;
-import com.p1nero.tcrcore.utils.EntityUtil;
-import com.p1nero.tcrcore.utils.FTBTeamUtils;
-import com.p1nero.tcrcore.utils.ItemUtil;
-import com.p1nero.tcrcore.utils.WorldUtil;
+import com.p1nero.tcrcore.utils.*;
 import com.yesman.epicskills.registry.entry.EpicSkillsSkillTrees;
 import com.yesman.epicskills.skilltree.SkillTree;
 import com.yesman.epicskills.world.capability.SkillTreeProgression;
@@ -59,7 +56,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.merlin204.mimic.util.PositionTeleporter;
 import org.merlin204.wraithon.WraithonMod;
-import org.merlin204.wraithon.entity.WraithonEntities;
 import org.merlin204.wraithon.worldgen.WraithonDimensions;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -100,8 +96,8 @@ public class ChronosSolEntity extends PathfinderMob implements IEntityNpc, GeoEn
             //位置矫正保险
             if(tickCount % 100 == 0) {
                 BlockPos myPos = this.getOnPos();
-                if(myPos.getX() != WorldUtil.CHRONOS_SOL_BLOCK_POS.getX() || myPos.getZ() != WorldUtil.CHRONOS_SOL_BLOCK_POS.getZ()) {
-                    this.setPos(new BlockPos(WorldUtil.CHRONOS_SOL_BLOCK_POS).getCenter());
+                if(myPos.getX() != WorldUtils.CHRONOS_SOL_BLOCK_POS.getX() || myPos.getZ() != WorldUtils.CHRONOS_SOL_BLOCK_POS.getZ()) {
+                    this.setPos(new BlockPos(WorldUtils.CHRONOS_SOL_BLOCK_POS).getCenter());
                 }
             }
         }
@@ -292,13 +288,13 @@ public class ChronosSolEntity extends PathfinderMob implements IEntityNpc, GeoEn
 
         } else if(TCRQuests.TALK_TO_CHRONOS_12.equals(currentQuest)) {
             root = new DialogNode(dBuilder.ans(42, ModItems.STORM_EYE.get().getDescription()));
-            DialogNode chronos = new DialogNode(dBuilder.ans(43, WorldUtil.AETHER_NAME, TCREntities.CHRONOS_SOL.get().getDescription()), dBuilder.opt(14, TCREntities.CHRONOS_SOL.get().getDescription()));
-            DialogNode known = new DialogNode(dBuilder.ans(43, WorldUtil.AETHER_NAME, TCREntities.CHRONOS_SOL.get().getDescription()), dBuilder.opt(15));
+            DialogNode chronos = new DialogNode(dBuilder.ans(43, WorldUtils.AETHER_NAME, TCREntities.CHRONOS_SOL.get().getDescription()), dBuilder.opt(14, TCREntities.CHRONOS_SOL.get().getDescription()));
+            DialogNode known = new DialogNode(dBuilder.ans(43, WorldUtils.AETHER_NAME, TCREntities.CHRONOS_SOL.get().getDescription()), dBuilder.opt(15));
 
             DialogNode next = new DialogNode(dBuilder.ans(44), dBuilder.opt(-1))
                     .addChild(new DialogNode(dBuilder.ans(45), dBuilder.opt(-1))
                             .addChild(new DialogNode(dBuilder.ans(46), dBuilder.opt(-1))
-                                    .addChild(new DialogNode(dBuilder.ans(47, WorldUtil.getStructureName(WorldUtil.STRONG_HOLD)), dBuilder.opt(-1))
+                                    .addChild(new DialogNode(dBuilder.ans(47, WorldUtils.getStructureName(WorldUtils.STRONG_HOLD)), dBuilder.opt(-1))
                                             .addLeaf(dBuilder.opt(-2), 13))));
 
             chronos.addChild(next);
@@ -341,14 +337,14 @@ public class ChronosSolEntity extends PathfinderMob implements IEntityNpc, GeoEn
     @Override
     public void handleNpcInteraction(ServerPlayer player, int code) {
         if(code == -1) {
-            EntityUtil.playLocalSound(player, SoundEvents.WITCH_CELEBRATE);
+            EntityUtils.playLocalSound(player, SoundEvents.WITCH_CELEBRATE);
         }
         //初次对话，准备启程
         if(code == 1) {
             TCRQuests.TALK_TO_CHRONOS_0.finish(player);
             TCRQuests.TALK_TO_FERRY_GIRL_0.start(player);
             TCRQuests.TALK_TO_ORNN_0.start(player);
-            ItemUtil.addItemEntity(player, TCRItems.LAND_RESONANCE_STONE.get(), 1, ChatFormatting.YELLOW.getColor());
+            ItemUtils.addItemEntity(player, TCRItems.LAND_RESONANCE_STONE.get(), 1, ChatFormatting.YELLOW.getColor());
             PlayerDataManager.chronosTalked.put(player, true);
         }
 
@@ -371,7 +367,7 @@ public class ChronosSolEntity extends PathfinderMob implements IEntityNpc, GeoEn
         //领海洋共鸣石
         if(code == 3) {
             TCRQuests.TALK_TO_CHRONOS_2.finish(player);
-            ItemUtil.addItemEntity(player, TCRItems.OCEAN_RESONANCE_STONE.get(), 1, ChatFormatting.BLUE.getColor());
+            ItemUtils.addItemEntity(player, TCRItems.OCEAN_RESONANCE_STONE.get(), 1, ChatFormatting.BLUE.getColor());
             TCRQuests.GO_TO_OVERWORLD_OCEAN.start(player);
         }
 
@@ -384,7 +380,7 @@ public class ChronosSolEntity extends PathfinderMob implements IEntityNpc, GeoEn
         //问到后回报
         if(code == 5) {
             TCRQuests.TALK_TO_CHRONOS_4.finish(player);
-            ItemUtil.addItemEntity(player, TCRItems.CURSED_RESONANCE_STONE.get(), 1, ChatFormatting.DARK_GREEN.getColor());
+            ItemUtils.addItemEntity(player, TCRItems.CURSED_RESONANCE_STONE.get(), 1, ChatFormatting.DARK_GREEN.getColor());
             TCRQuests.GO_TO_OVERWORLD_CURSED.start(player);
         }
 
@@ -398,7 +394,7 @@ public class ChronosSolEntity extends PathfinderMob implements IEntityNpc, GeoEn
         //领炉心共鸣石
         if(code == 7) {
             TCRQuests.TALK_TO_CHRONOS_6.finish(player);
-            ItemUtil.addItemEntity(player, TCRItems.CORE_RESONANCE_STONE.get(), 1, ChatFormatting.RED.getColor());
+            ItemUtils.addItemEntity(player, TCRItems.CORE_RESONANCE_STONE.get(), 1, ChatFormatting.RED.getColor());
             TCRQuests.GO_TO_OVERWORLD_CORE.start(player);
         }
 
@@ -412,19 +408,12 @@ public class ChronosSolEntity extends PathfinderMob implements IEntityNpc, GeoEn
         //领地狱共鸣石
         if(code == 9) {
             TCRQuests.TALK_TO_CHRONOS_8.finish(player);
-            ItemUtil.addItemEntity(player, TCRItems.CORE_FLINT.get(), 1, ChatFormatting.DARK_RED.getColor());
-            ItemUtil.addItemEntity(player, TCRItems.NETHER_RESONANCE_STONE.get(), 1, ChatFormatting.DARK_RED.getColor());
+            ItemUtils.addItemEntity(player, TCRItems.CORE_FLINT.get(), 1, ChatFormatting.DARK_RED.getColor());
+            ItemUtils.addItemEntity(player, TCRItems.NETHER_RESONANCE_STONE.get(), 1, ChatFormatting.DARK_RED.getColor());
             PlayerDataManager.canEnterNether.put(player, true);
             PlayerDataManager.fireAvoidUnlocked.put(player, true);
             FTBTeamUtils.onlineTeamMembersDoWithSelf(player, member -> {
-                member.getCapability(SkillTreeProgression.SKILL_TREE_PROGRESSION).ifPresent(skillTreeProgression -> {
-                    ResourceKey<SkillTree> resourceKey = ResourceKey.create(SkillTree.SKILL_TREE_REGISTRY_KEY, ResourceLocation.fromNamespaceAndPath(DodgeParryRewardMod.MOD_ID, "passive"));
-                    skillTreeProgression.unlockTree(resourceKey, member);
-                    skillTreeProgression.unlockNode(resourceKey, TCRSkills.FIRE_AVOID, member);
-                });
-                PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PlayTitlePacket(PlayTitlePacket.UNLOCK_NEW_SKILL), member);
-                member.displayClientMessage(TCRCoreMod.getInfo("unlock_new_skill", Component.translatable(TCRSkills.FIRE_AVOID.getTranslationKey()).withStyle(ChatFormatting.RED)), false);
-                member.level().playSound(null, member.getX(), member.getY(), member.getZ(), SoundEvents.UI_TOAST_CHALLENGE_COMPLETE, SoundSource.PLAYERS, 1.0F, 1.0F);
+                EFUtils.unlockSkillOnSkillTree(member, ResourceLocation.fromNamespaceAndPath(DodgeParryRewardMod.MOD_ID, "passive"), TCRSkills.FIRE_AVOID);
             });
             TCRQuests.GO_TO_NETHER.start(player);
         }
@@ -446,7 +435,7 @@ public class ChronosSolEntity extends PathfinderMob implements IEntityNpc, GeoEn
         //出发天域
         if(code == 12) {
             TCRQuests.TALK_TO_CHRONOS_11.finish(player);
-            ItemUtil.addItemEntity(player, TCRItems.SKY_RESONANCE_STONE.get(), 1, ChatFormatting.AQUA.getColor());
+            ItemUtils.addItemEntity(player, TCRItems.SKY_RESONANCE_STONE.get(), 1, ChatFormatting.AQUA.getColor());
 
             PlayerDataManager.canEnterAether.put(player, true);
             PlayerDataManager.swordSoaringUnlocked.put(player, true);
@@ -468,7 +457,7 @@ public class ChronosSolEntity extends PathfinderMob implements IEntityNpc, GeoEn
         if(code == 13) {
             TCRQuests.TALK_TO_CHRONOS_12.finish(player);
             TCRQuests.GO_TO_OVERWORLD_END.start(player);
-            ItemUtil.addItemEntity(player, TCRItems.END_RESONANCE_STONE.get(), 1, ChatFormatting.LIGHT_PURPLE.getColor());
+            ItemUtils.addItemEntity(player, TCRItems.END_RESONANCE_STONE.get(), 1, ChatFormatting.LIGHT_PURPLE.getColor());
         }
 
         //打最终boss

@@ -1,7 +1,6 @@
 package com.p1nero.tcrcore.entity.custom.ornn;
 
 import com.asanginxst.epicfightx.registries.EFXItems;
-import com.github.alexthe668.domesticationinnovation.server.item.DIItemRegistry;
 import com.hm.efn.gameasset.EFNEnchantment;
 import com.hm.efn.gameasset.EFNSkills;
 import com.hm.efn.registries.EFNItem;
@@ -21,8 +20,8 @@ import com.p1nero.tcrcore.item.TCRItems;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
 import com.p1nero.tcrcore.network.packet.clientbound.PlayTitlePacket;
 import com.p1nero.tcrcore.utils.FTBTeamUtils;
-import com.p1nero.tcrcore.utils.ItemUtil;
-import com.p1nero.tcrcore.utils.WorldUtil;
+import com.p1nero.tcrcore.utils.ItemUtils;
+import com.p1nero.tcrcore.utils.WorldUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
@@ -182,39 +181,39 @@ public class OrnnEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
     @Override
     public void handleNpcInteraction(ServerPlayer player, int i) {
         if(i == 1) {
-            BlockState blockState = player.level().getBlockState(WorldUtil.SMITH_BLOCK_POS);
-            player.openMenu(blockState.getMenuProvider(player.level(), WorldUtil.SMITH_BLOCK_POS));
+            BlockState blockState = player.level().getBlockState(WorldUtils.SMITH_BLOCK_POS);
+            player.openMenu(blockState.getMenuProvider(player.level(), WorldUtils.SMITH_BLOCK_POS));
             player.awardStat(Stats.INTERACT_WITH_SMITHING_TABLE);
         }
 
         if(i == 2) {
             FTBTeamUtils.onlineTeamMembersDoWithSelf(player, member -> {
-                ItemUtil.addItemEntity(member, EpicFightItems.IRON_DAGGER.get().getDefaultInstance());
+                ItemUtils.addItemEntity(member, EpicFightItems.IRON_DAGGER.get().getDefaultInstance());
             });
         }
         if(i == 3) {
             FTBTeamUtils.onlineTeamMembersDoWithSelf(player, member -> {
-                ItemUtil.addItemEntity(member, Items.IRON_SWORD.getDefaultInstance());
+                ItemUtils.addItemEntity(member, Items.IRON_SWORD.getDefaultInstance());
             });
         }
         if(i == 4) {
             FTBTeamUtils.onlineTeamMembersDoWithSelf(player, member -> {
-                ItemUtil.addItemEntity(member, EpicFightItems.GOLDEN_LONGSWORD.get().getDefaultInstance());
+                ItemUtils.addItemEntity(member, EpicFightItems.GOLDEN_LONGSWORD.get().getDefaultInstance());
             });
         }
         if(i == 5) {
             FTBTeamUtils.onlineTeamMembersDoWithSelf(player, member -> {
-                ItemUtil.addItemEntity(member, EpicFightItems.GOLDEN_TACHI.get().getDefaultInstance());
+                ItemUtils.addItemEntity(member, EpicFightItems.GOLDEN_TACHI.get().getDefaultInstance());
             });
         }
         if(i == 6) {
             FTBTeamUtils.onlineTeamMembersDoWithSelf(player, member -> {
-                ItemUtil.addItemEntity(member, EpicFightItems.GOLDEN_SPEAR.get().getDefaultInstance());
+                ItemUtils.addItemEntity(member, EpicFightItems.GOLDEN_SPEAR.get().getDefaultInstance());
             });
         }
         if(i == 7) {
             FTBTeamUtils.onlineTeamMembersDoWithSelf(player, member -> {
-                ItemUtil.addItemEntity(member, EpicFightItems.WOODEN_GREATSWORD.get().getDefaultInstance());
+                ItemUtils.addItemEntity(member, EpicFightItems.WOODEN_GREATSWORD.get().getDefaultInstance());
             });
         }
 
@@ -231,7 +230,7 @@ public class OrnnEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
                 PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PlayTitlePacket(PlayTitlePacket.UNLOCK_NEW_CHAPTER), member);
                 member.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE), SoundSource.PLAYERS, member.getX(), member.getY(), member.getZ(), 1.0F, 1.0F, member.getRandom().nextInt()));
             });
-            ItemUtil.searchAndConsumeItem(player, TCRItems.MYSTERIOUS_WEAPONS.get(), 1);
+            ItemUtils.searchAndConsumeItem(player, TCRItems.MYSTERIOUS_WEAPONS.get(), 1);
         }
 
         if(i == 9) {
@@ -263,8 +262,8 @@ public class OrnnEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
 
             if(tickCount % 100 == 0) {
                 BlockPos myPos = this.getOnPos();
-                if(myPos.getX() != WorldUtil.ORNN_POS.getX() || myPos.getZ() != WorldUtil.ORNN_POS.getZ()) {
-                    this.setPos(new BlockPos(WorldUtil.ORNN_POS).getCenter());
+                if(myPos.getX() != WorldUtils.ORNN_POS.getX() || myPos.getZ() != WorldUtils.ORNN_POS.getZ()) {
+                    this.setPos(new BlockPos(WorldUtils.ORNN_POS).getCenter());
                 }
             }
         }

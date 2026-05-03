@@ -13,8 +13,8 @@ import com.p1nero.tcrcore.entity.TCREntities;
 import com.p1nero.tcrcore.entity.custom.fake_npc.FakeNPCEntity;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
 import com.p1nero.tcrcore.network.packet.clientbound.SetThirdPersonPacket;
-import com.p1nero.tcrcore.utils.EntityUtil;
-import com.p1nero.tcrcore.utils.ItemUtil;
+import com.p1nero.tcrcore.utils.EntityUtils;
+import com.p1nero.tcrcore.utils.ItemUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -88,15 +88,15 @@ public class FakeEndGolem extends FakeNPCEntity {
         if(i == 1 || i == 2) {
             canBeHurt = true;
             PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new SetThirdPersonPacket(), player);
-            ItemUtil.addItemEntity(player, ModItems.VOID_EYE.get(), 1, ChatFormatting.LIGHT_PURPLE.getColor().intValue());
+            ItemUtils.addItemEntity(player, ModItems.VOID_EYE.get(), 1, ChatFormatting.LIGHT_PURPLE.getColor().intValue());
             if(i == 2) {
-                ItemUtil.addItemEntity(player, EFNItem.YAMATO_DMC_IN_SHEATH.get(), 1, ChatFormatting.LIGHT_PURPLE.getColor().intValue());
+                ItemUtils.addItemEntity(player, EFNItem.YAMATO_DMC_IN_SHEATH.get(), 1, ChatFormatting.LIGHT_PURPLE.getColor().intValue());
             }
             if(!ExecutionHandler.isHoldingWeapon(player)) {
-                ItemUtil.addItemEntity(player, player.getMainHandItem().copy());
+                ItemUtils.addItemEntity(player, player.getMainHandItem().copy());
                 player.setItemInHand(InteractionHand.MAIN_HAND, Items.IRON_SWORD.getDefaultInstance());
             }
-            EntityUtil.entityForceExecuteToDie(player, this);
+            EntityUtils.entityForceExecuteToDie(player, this);
         }
         setConversingPlayer(null);
     }

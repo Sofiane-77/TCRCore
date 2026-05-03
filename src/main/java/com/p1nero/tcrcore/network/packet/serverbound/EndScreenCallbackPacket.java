@@ -3,8 +3,8 @@ import com.p1nero.dialog_lib.network.packet.BasePacket;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
 import com.p1nero.tcrcore.capability.TCRQuests;
 import com.p1nero.tcrcore.item.TCRItems;
-import com.p1nero.tcrcore.utils.ItemUtil;
-import com.p1nero.tcrcore.utils.WorldUtil;
+import com.p1nero.tcrcore.utils.ItemUtils;
+import com.p1nero.tcrcore.utils.WorldUtils;
 import com.p1nero.tcrcore.worldgen.TCRDimensions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -30,8 +30,8 @@ public record EndScreenCallbackPacket() implements BasePacket {
                 if(TCRQuests.KILL_MAD_CHRONOS.finish(serverPlayer, true)) {
                     PlayerDataManager.gameCleared.put(serverPlayer, true);
                     PlayerDataManager.finalBossKilled.put(serverPlayer, true);
-                    ItemUtil.addItem(player, TCRItems.STONE_OF_REINCARNATION.get().getDefaultInstance());
-                    serverPlayer.changeDimension(real, new PositionTeleporter(new BlockPos(WorldUtil.BED_POS)));
+                    ItemUtils.addItem(player, TCRItems.STONE_OF_REINCARNATION.get().getDefaultInstance());
+                    serverPlayer.changeDimension(real, new PositionTeleporter(new BlockPos(WorldUtils.BED_POS)));
                 }
             }
         }

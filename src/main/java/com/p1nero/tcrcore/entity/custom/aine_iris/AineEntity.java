@@ -8,7 +8,6 @@ import com.p1nero.dialog_lib.api.component.DialogueComponentBuilder;
 import com.p1nero.dialog_lib.api.entity.custom.IEntityNpc;
 import com.p1nero.dialog_lib.client.screen.DialogueScreen;
 import com.p1nero.dialog_lib.client.screen.builder.StreamDialogueScreenBuilder;
-import com.p1nero.dpr.DodgeParryRewardMod;
 import com.p1nero.fast_tpa.network.PacketRelay;
 import com.p1nero.tcr_bosses.entity.TCRBossEntities;
 import com.p1nero.tcrcore.TCRCoreMod;
@@ -18,15 +17,13 @@ import com.p1nero.tcrcore.capability.TCRQuests;
 import com.p1nero.tcrcore.datagen.TCRAdvancementData;
 import com.p1nero.tcrcore.datagen.TCRSkillTreeProvider;
 import com.p1nero.tcrcore.entity.TCREntities;
-import com.p1nero.tcrcore.gameassets.TCRSkills;
 import com.p1nero.tcrcore.item.TCRItems;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
 import com.p1nero.tcrcore.network.packet.clientbound.PlayTitlePacket;
-import com.p1nero.tcrcore.utils.EntityUtil;
+import com.p1nero.tcrcore.utils.EntityUtils;
 import com.p1nero.tcrcore.utils.FTBTeamUtils;
-import com.p1nero.tcrcore.utils.ItemUtil;
-import com.p1nero.tcrcore.utils.WorldUtil;
-import com.yesman.epicskills.skilltree.SkillTree;
+import com.p1nero.tcrcore.utils.ItemUtils;
+import com.p1nero.tcrcore.utils.WorldUtils;
 import com.yesman.epicskills.world.capability.SkillTreeProgression;
 import io.redspace.ironsspellbooks.api.registry.SchoolRegistry;
 import io.redspace.ironsspellbooks.api.registry.SpellRegistry;
@@ -42,7 +39,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -236,14 +232,14 @@ public class AineEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
         } else if (TCRQuests.TALK_TO_AINE_SAMSARA.equals(currentQuest)) {
             //打开轮回绝境
             return dialogueScreenBuilder.start(dBuilder.ans(24, localPlayer.getDisplayName()))
-                    .addOption(dBuilder.opt(7, TCRItems.WITHER_SOUL_STONE.get().getDescription()), dBuilder.ans(30, Items.GHAST_TEAR.getDescription().copy().withStyle(ChatFormatting.AQUA), WorldUtil.SAMSARA_NAME.copy().withStyle(ChatFormatting.GOLD)))
-                    .addOption(dBuilder.opt(17, WorldUtil.SAMSARA_NAME), dBuilder.ans(31, WorldUtil.SAMSARA_NAME, WorldUtil.SAMSARA_NAME))
+                    .addOption(dBuilder.opt(7, TCRItems.WITHER_SOUL_STONE.get().getDescription()), dBuilder.ans(30, Items.GHAST_TEAR.getDescription().copy().withStyle(ChatFormatting.AQUA), WorldUtils.SAMSARA_NAME.copy().withStyle(ChatFormatting.GOLD)))
+                    .addOption(dBuilder.opt(17, WorldUtils.SAMSARA_NAME), dBuilder.ans(31, WorldUtils.SAMSARA_NAME, WorldUtils.SAMSARA_NAME))
                     .addOption(-1, 32)
                     .addFinalOption(-2, 10)
                     .build();
         } else if (TCRQuests.TALK_TO_AINE_2.equals(currentQuest)) {
-            return dialogueScreenBuilder.start(dBuilder.ans(33, localPlayer.getDisplayName(), WorldUtil.AETHER_NAME))
-                    .addOption(dBuilder.ans(34, WorldUtil.AETHER_NAME, TCREntities.AINE.get().getDescription()), dBuilder.opt(18, TCREntities.AINE.get().getDescription()))
+            return dialogueScreenBuilder.start(dBuilder.ans(33, localPlayer.getDisplayName(), WorldUtils.AETHER_NAME))
+                    .addOption(dBuilder.ans(34, WorldUtils.AETHER_NAME, TCREntities.AINE.get().getDescription()), dBuilder.opt(18, TCREntities.AINE.get().getDescription()))
                     .addOption(dBuilder.ans(35), dBuilder.opt(13, TCREntities.AINE.get().getDescription()))
                     .addOption(dBuilder.ans(36, com.github.L_Ender.cataclysm.init.ModItems.VOID_EYE.get().getDescription(), localPlayer.getDisplayName()), dBuilder.opt(-1))
                     .addFinalOption(dBuilder.opt(-2), 11)
@@ -319,10 +315,10 @@ public class AineEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
         if (code == 1) {
             TCRQuests.TALK_TO_AINE_0.finish(serverPlayer);
             FTBTeamUtils.onlineTeamMembersDoWithSelf(serverPlayer, (member -> {
-                ItemUtil.addItemEntity(member, ModItems.SKIN_TEMPLATE.get(), 20, ChatFormatting.GOLD.getColor());
-                ItemUtil.addItemEntity(member, ModItems.SKIN_LIBRARY_GLOBAL.get(), 1, ChatFormatting.GOLD.getColor());
-                ItemUtil.addItemEntity(member, ModItems.SKIN_LIBRARY.get(), 1, ChatFormatting.GOLD.getColor());
-                ItemUtil.addItemEntity(member, ModItems.SKINNING_TABLE.get(), 1, ChatFormatting.GOLD.getColor());
+                ItemUtils.addItemEntity(member, ModItems.SKIN_TEMPLATE.get(), 20, ChatFormatting.GOLD.getColor());
+                ItemUtils.addItemEntity(member, ModItems.SKIN_LIBRARY_GLOBAL.get(), 1, ChatFormatting.GOLD.getColor());
+                ItemUtils.addItemEntity(member, ModItems.SKIN_LIBRARY.get(), 1, ChatFormatting.GOLD.getColor());
+                ItemUtils.addItemEntity(member, ModItems.SKINNING_TABLE.get(), 1, ChatFormatting.GOLD.getColor());
                 PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PlayTitlePacket(PlayTitlePacket.UNLOCK_NEW_CHAPTER), member);
             }));
         }
@@ -343,7 +339,7 @@ public class AineEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
                     0, 0.1, 0,
                     0.1f
             );
-            EntityUtil.playLocalSound(serverPlayer, SoundEvents.BEACON_ACTIVATE);
+            EntityUtils.playLocalSound(serverPlayer, SoundEvents.BEACON_ACTIVATE);
             return;
         }
 
@@ -358,7 +354,7 @@ public class AineEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
             TCRQuests.TRY_TO_LEARN_MAGIC.start(serverPlayer);
             FTBTeamUtils.onlineTeamMembersDoWithSelf(serverPlayer, (member -> {
                 TCRAdvancementData.finishAdvancement("unlock_magic_and_boss", member);
-                ItemUtil.addItemEntity(member, getSpellScroll(SpellRegistry.MAGIC_ARROW_SPELL.get()), ChatFormatting.AQUA.getColor());
+                ItemUtils.addItemEntity(member, getSpellScroll(SpellRegistry.MAGIC_ARROW_SPELL.get()), ChatFormatting.AQUA.getColor());
                 PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PlayTitlePacket(PlayTitlePacket.UNLOCK_NEW_CHAPTER), member);
             }));
         }
@@ -367,7 +363,7 @@ public class AineEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
         if (code == 6) {
             TCRQuests.TALK_TO_AINE_MAGIC_2.finish(serverPlayer);
             FTBTeamUtils.onlineTeamMembersDoWithSelf(serverPlayer, (member -> {
-                ItemUtil.addItemEntity(member, TCRItems.MAGIC_BOTTLE.get(), 1, ChatFormatting.AQUA.getColor());
+                ItemUtils.addItemEntity(member, TCRItems.MAGIC_BOTTLE.get(), 1, ChatFormatting.AQUA.getColor());
                 PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PlayTitlePacket(PlayTitlePacket.UNLOCK_NEW_SKILL), member);
                 member.getCapability(SkillTreeProgression.SKILL_TREE_PROGRESSION).ifPresent(skillTreeProgression -> {
                     skillTreeProgression.unlockTree(TCRSkillTreeProvider.MAGIC, member);
@@ -377,8 +373,8 @@ public class AineEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
 
         if (code == 8) {
             //打开奥术铁砧
-            BlockState blockState = serverPlayer.level().getBlockState(WorldUtil.ARCANE_ANVIL_BLOCK_POS);
-            serverPlayer.openMenu(blockState.getMenuProvider(serverPlayer.level(), WorldUtil.ARCANE_ANVIL_BLOCK_POS));
+            BlockState blockState = serverPlayer.level().getBlockState(WorldUtils.ARCANE_ANVIL_BLOCK_POS);
+            serverPlayer.openMenu(blockState.getMenuProvider(serverPlayer.level(), WorldUtils.ARCANE_ANVIL_BLOCK_POS));
             serverPlayer.awardStat(Stats.INTERACT_WITH_ANVIL);
         }
 
@@ -405,7 +401,7 @@ public class AineEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
             TCRQuests.TALK_TO_AINE_GAME_CLEAR.finish(serverPlayer);
             FTBTeamUtils.onlineTeamMembersDoWithSelf(serverPlayer, (member -> {
                 PacketRelay.sendToPlayer(TCRPacketHandler.INSTANCE, new PlayTitlePacket(PlayTitlePacket.TO_BE_CONTINUE), member);
-                EntityUtil.playLocalSound(member, SoundEvents.UI_TOAST_CHALLENGE_COMPLETE);
+                EntityUtils.playLocalSound(member, SoundEvents.UI_TOAST_CHALLENGE_COMPLETE);
             }));
         }
 
@@ -436,8 +432,8 @@ public class AineEntity extends PathfinderMob implements IEntityNpc, GeoEntity, 
             //位置矫正保险
             if (tickCount % 100 == 0) {
                 BlockPos myPos = this.getOnPos();
-                if (myPos.getX() != WorldUtil.AINE_POS.getX() || myPos.getZ() != WorldUtil.AINE_POS.getZ()) {
-                    this.setPos(new BlockPos(WorldUtil.AINE_POS).getCenter());
+                if (myPos.getX() != WorldUtils.AINE_POS.getX() || myPos.getZ() != WorldUtils.AINE_POS.getZ()) {
+                    this.setPos(new BlockPos(WorldUtils.AINE_POS).getCenter());
                 }
             }
             if (getConversingPlayer() != null && (getConversingPlayer().isRemoved() || getConversingPlayer().isDeadOrDying() || getConversingPlayer().distanceTo(this) > 5)) {

@@ -1,7 +1,7 @@
 package com.p1nero.tcrcore.item.custom;
 
-import com.p1nero.tcrcore.utils.EntityUtil;
-import com.p1nero.tcrcore.utils.WorldUtil;
+import com.p1nero.tcrcore.utils.EntityUtils;
+import com.p1nero.tcrcore.utils.WorldUtils;
 import com.yesman.epicskills.registry.entry.EpicSkillsSounds;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
@@ -38,10 +38,10 @@ public class BlueBottleItem extends SimpleDescriptionItem{
     public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, @NotNull Player player, @NotNull InteractionHand hand) {
         ItemStack itemStack = player.getItemInHand(hand);
         //在主城则直接回满
-        if(WorldUtil.inMainLand(player)) {
+        if(WorldUtils.inMainLand(player)) {
             itemStack.getOrCreateTag().putInt(DATA_KEY, 3);
             if(player instanceof ServerPlayer serverPlayer) {
-                EntityUtil.playLocalSound(serverPlayer, EpicSkillsSounds.GAIN_ABILITY_POINTS.get());
+                EntityUtils.playLocalSound(serverPlayer, EpicSkillsSounds.GAIN_ABILITY_POINTS.get());
             }
             return InteractionResultHolder.sidedSuccess(itemStack, level.isClientSide);
         }

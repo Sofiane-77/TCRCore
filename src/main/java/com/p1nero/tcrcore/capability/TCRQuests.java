@@ -14,7 +14,7 @@ import com.p1nero.tcrcore.capability.TCRQuestManager.Quest;
 import com.p1nero.tcrcore.entity.TCREntities;
 import com.p1nero.tcrcore.gameassets.TCRSkills;
 import com.p1nero.tcrcore.item.TCRItems;
-import com.p1nero.tcrcore.utils.WorldUtil;
+import com.p1nero.tcrcore.utils.WorldUtils;
 import com.p1nero.tcrcore.worldgen.TCRDimensions;
 import com.yungnickyoung.minecraft.ribbits.module.EntityTypeModule;
 import io.redspace.ironsspellbooks.registries.ItemRegistry;
@@ -215,77 +215,77 @@ public class TCRQuests {
                 .withIcon(SIDE_QUEST_1)
                 .shortDescParam(ModItems.DESERT_EYE.get().getDescription().copy().withStyle(ChatFormatting.YELLOW))
                 .descParam(ModItems.DESERT_EYE.get().getDescription().copy().withStyle(ChatFormatting.YELLOW))
-                .withTrackingPos(new BlockPos(WorldUtil.DESERT_EYE_ALTAR_POS.above()), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.DESERT_EYE_ALTAR_POS.above()), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         PUT_ABYSS_EYE_ON_ALTAR = TCRQuestManager.create("put_abyss_eye_on_altar")
                 .withIcon(SIDE_QUEST_1)
                 .shortDescParam(ModItems.ABYSS_EYE.get().getDescription().copy().withStyle(ChatFormatting.BLUE))
                 .descParam(ModItems.ABYSS_EYE.get().getDescription().copy().withStyle(ChatFormatting.BLUE))
-                .withTrackingPos(new BlockPos(WorldUtil.ABYSS_EYE_ALTAR_POS.above()), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.ABYSS_EYE_ALTAR_POS.above()), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         PUT_CURSED_EYE_ON_ALTAR = TCRQuestManager.create("put_cursed_eye_on_altar")
                 .withIcon(SIDE_QUEST_1)
                 .shortDescParam(ModItems.CURSED_EYE.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN))
                 .descParam(ModItems.CURSED_EYE.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN))
-                .withTrackingPos(new BlockPos(WorldUtil.CURSED_EYE_ALTAR_POS.above()), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.CURSED_EYE_ALTAR_POS.above()), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         PUT_FLAME_EYE_ON_ALTAR = TCRQuestManager.create("put_flame_eye_on_altar")
                 .withIcon(SIDE_QUEST_1)
                 .shortDescParam(ModItems.FLAME_EYE.get().getDescription().copy().withStyle(ChatFormatting.RED))
                 .descParam(ModItems.FLAME_EYE.get().getDescription().copy().withStyle(ChatFormatting.RED))
-                .withTrackingPos(new BlockPos(WorldUtil.FLAME_EYE_ALTAR_POS.above()), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.FLAME_EYE_ALTAR_POS.above()), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         PUT_MECH_EYE_ON_ALTAR = TCRQuestManager.create("put_mech_eye_on_altar")
                 .withIcon(SIDE_QUEST_1)
                 .shortDescParam(ModItems.MECH_EYE.get().getDescription().copy().withStyle(ChatFormatting.GOLD))
                 .descParam(ModItems.MECH_EYE.get().getDescription().copy().withStyle(ChatFormatting.GOLD))
-                .withTrackingPos(new BlockPos(WorldUtil.MECH_EYE_ALTAR_POS.above()), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.MECH_EYE_ALTAR_POS.above()), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         PUT_STORM_EYE_ON_ALTAR = TCRQuestManager.create("put_storm_eye_on_altar")
                 .withIcon(SIDE_QUEST_1)
                 .shortDescParam(ModItems.STORM_EYE.get().getDescription().copy().withStyle(ChatFormatting.AQUA))
                 .descParam(ModItems.STORM_EYE.get().getDescription().copy().withStyle(ChatFormatting.AQUA))
-                .withTrackingPos(new BlockPos(WorldUtil.STORM_EYE_ALTAR_POS.above()), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.STORM_EYE_ALTAR_POS.above()), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         PUT_VOID_EYE_ON_ALTAR = TCRQuestManager.create("put_void_eye_on_altar")
                 .withIcon(SIDE_QUEST_1)
                 .shortDescParam(ModItems.VOID_EYE.get().getDescription().copy().withStyle(ChatFormatting.LIGHT_PURPLE))
                 .descParam(ModItems.VOID_EYE.get().getDescription().copy().withStyle(ChatFormatting.LIGHT_PURPLE))
-                .withTrackingPos(new BlockPos(WorldUtil.VOID_EYE_ALTAR_POS.above()), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.VOID_EYE_ALTAR_POS.above()), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         PUT_MONST_EYE_ON_ALTAR = TCRQuestManager.create("put_monst_eye_on_altar")
                 .withIcon(SIDE_QUEST_1)
                 .shortDescParam(ModItems.MONSTROUS_EYE.get().getDescription().copy().withStyle(ChatFormatting.DARK_RED))
                 .descParam(ModItems.MONSTROUS_EYE.get().getDescription().copy().withStyle(ChatFormatting.DARK_RED))
-                .withTrackingPos(new BlockPos(WorldUtil.MONST_EYE_ALTAR_POS.above()), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.MONST_EYE_ALTAR_POS.above()), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         BLESS_ON_THE_GODNESS_STATUE = TCRQuestManager.create("bless_on_the_godness_statue")
                 .withIcon(SIDE_QUEST_1)
-                .withTrackingPos(new BlockPos(WorldUtil.GODNESS_STATUE_POS), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.GODNESS_STATUE_POS), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         TALK_TO_AINE_CLOUDLAND = TCRQuestManager.create("talk_to_aine_cloudland")
                 .withIcon(SIDE_QUEST_1)
                 .shortDescParam(TCREntities.AINE.get().getDescription())
                 .descParam(TCREntities.AINE.get().getDescription())
-                .withTrackingPos(new BlockPos(WorldUtil.AINE_POS.above(2)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.AINE_POS.above(2)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         TALK_TO_AINE_0 = TCRQuestManager.create("talk_to_aine_0")
                 .withIcon(SIDE_QUEST_1)
                 .shortDescParam(TCREntities.AINE.get().getDescription())
                 .descParam(TCREntities.AINE.get().getDescription(), TCREntities.AINE.get().getDescription())
-                .withTrackingPos(new BlockPos(WorldUtil.AINE_POS.above(2)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.AINE_POS.above(2)), TCRDimensions.SANCTUM_LEVEL_KEY);
         TALK_TO_CHRONOS_0 = TCRQuestManager.create("talk_to_col_0")
                 .descParam(TCREntities.AINE.get().getDescription(), TCREntities.AINE.get().getDescription())
-                .withTrackingPos(new BlockPos(WorldUtil.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
         TALK_TO_FERRY_GIRL_0 = TCRQuestManager.create("talk_to_ferry_girl_0")
-                .shortDescParam(WorldUtil.OVERWORLD_NAME)
-                .descParam(TCREntities.FERRY_GIRL.get().getDescription(), WorldUtil.OVERWORLD_NAME)
-                .withTrackingPos(new BlockPos(WorldUtil.FERRY_GIRL_POS.above(1)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .shortDescParam(WorldUtils.OVERWORLD_NAME)
+                .descParam(TCREntities.FERRY_GIRL.get().getDescription(), WorldUtils.OVERWORLD_NAME)
+                .withTrackingPos(new BlockPos(WorldUtils.FERRY_GIRL_POS.above(1)), TCRDimensions.SANCTUM_LEVEL_KEY);
         TALK_TO_ORNN_0 = TCRQuestManager.create("talk_to_ornn_0")
                 .withIcon(SIDE_QUEST_1)
                 .shortDescParam(TCREntities.ORNN.get().getDescription())
                 .descParam(TCREntities.CHRONOS_SOL.get().getDescription(), TCREntities.ORNN.get().getDescription())
-                .withTrackingPos(new BlockPos(WorldUtil.ORNN_POS.above(3)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.ORNN_POS.above(3)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         TAME_DRAGON = TCRQuestManager.create("tame_dragon")
                 .withIcon(SIDE_QUEST_1)
@@ -298,11 +298,11 @@ public class TCRQuests {
                 .shortDescParam(TCREntities.FERRY_GIRL.get().getDescription())
                 .descParam(TCREntities.FERRY_GIRL.get().getDescription(), TCREntities.FERRY_GIRL.get().getDescription(), Items.SADDLE.getDescription(), DIItemRegistry.COLLAR_TAG.get().getDescription())
                 .withIcon(SIDE_QUEST_1)
-                .withTrackingPos(new BlockPos(WorldUtil.FERRY_GIRL_POS.above(1)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.FERRY_GIRL_POS.above(1)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         USE_LAND_RESONANCE_STONE = TCRQuestManager.create("use_land_resonance_stone")
                 .shortDescParam(TCRItems.LAND_RESONANCE_STONE.get().getDescription())
-                .descParam(WorldUtil.OVERWORLD_NAME, TCRItems.LAND_RESONANCE_STONE.get().getDescription());
+                .descParam(WorldUtils.OVERWORLD_NAME, TCRItems.LAND_RESONANCE_STONE.get().getDescription());
 
         GET_DESERT_EYE = TCRQuestManager.create("get_desert_eye")
                 .shortDescParam(ModItems.DESERT_EYE.get().getDescription().copy().withStyle(ChatFormatting.YELLOW))
@@ -314,32 +314,32 @@ public class TCRQuests {
         BONE_CHIMERA_QUEST = TCRQuestManager.create("bone_chimera_quest")
                 .withIcon(SIDE_QUEST_1)
                 .descParam(TCRItems.LAND_RESONANCE_STONE.get().getDescription(), TCRItems.MYSTERIOUS_WEAPONS.get().getDescription())
-                .shortDescParam(WorldUtil.getStructureName(WorldUtil.BONE_CHIMERA_STRUCTURE));
+                .shortDescParam(WorldUtils.getStructureName(WorldUtils.BONE_CHIMERA_STRUCTURE));
 
         TALK_TO_ORNN_1 = TCRQuestManager.create("talk_to_ornn_1")
                 .withIcon(SIDE_QUEST_1)
                 .shortDescParam(TCREntities.ORNN.get().getDescription())
                 .descParam(com.github.dodo.dodosmobs.init.ModEntities.BONE_CHIMERA.get().getDescription(), TCRItems.MYSTERIOUS_WEAPONS.get().getDescription(),TCREntities.ORNN.get().getDescription())
-                .withTrackingPos(new BlockPos(WorldUtil.ORNN_POS.above(3)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.ORNN_POS.above(3)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         TALK_TO_CHRONOS_1 = TCRQuestManager.create("talk_to_chronos_1")
                 .shortDescParam(TCREntities.CHRONOS_SOL.get().getDescription())
                 .descParam(ModItems.DESERT_EYE.get().getDescription().copy().withStyle(ChatFormatting.YELLOW), TCREntities.CHRONOS_SOL.get().getDescription())
-                .withTrackingPos(new BlockPos(WorldUtil.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         TALK_TO_CHRONOS_2 = TCRQuestManager.create("talk_to_chronos_2")
                 .shortDescParam(TCREntities.CHRONOS_SOL.get().getDescription())
                 .descParam(TCRItems.RESONANCE_STONE.get().getDescription(), TCREntities.CHRONOS_SOL.get().getDescription())
-                .withTrackingPos(new BlockPos(WorldUtil.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         GO_TO_OVERWORLD_OCEAN = TCRQuestManager.create("go_to_overworld_ocean")
-                .shortDescParam(WorldUtil.OVERWORLD_NAME)
-                .descParam(TCRItems.RESONANCE_STONE.get().getDescription(), WorldUtil.OVERWORLD_NAME,
+                .shortDescParam(WorldUtils.OVERWORLD_NAME)
+                .descParam(TCRItems.RESONANCE_STONE.get().getDescription(), WorldUtils.OVERWORLD_NAME,
                         ModItems.ABYSS_EYE.get().getDescription().copy().withStyle(ChatFormatting.BLUE));
 
         USE_OCEAN_RESONANCE_STONE = TCRQuestManager.create("use_ocean_resonance_stone")
                 .shortDescParam(TCRItems.OCEAN_RESONANCE_STONE.get().getDescription())
-                .descParam(WorldUtil.OVERWORLD_NAME, TCRItems.OCEAN_RESONANCE_STONE.get().getDescription(),
+                .descParam(WorldUtils.OVERWORLD_NAME, TCRItems.OCEAN_RESONANCE_STONE.get().getDescription(),
                         ModItems.ABYSS_EYE.get().getDescription().copy().withStyle(ChatFormatting.BLUE));
 
         GET_OCEAN_EYE = TCRQuestManager.create("get_ocean_eye")
@@ -354,11 +354,11 @@ public class TCRQuests {
                 .descParam(ModItems.ABYSS_EYE.get().getDescription().copy().withStyle(ChatFormatting.BLUE),
                         TCREntities.CHRONOS_SOL.get().getDescription(),
                         AquamiraeItems.SHIP_GRAVEYARD_ECHO.get().getDescription())
-                .withTrackingPos(new BlockPos(WorldUtil.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         RIBBITS_QUEST = TCRQuestManager.create("ribbits_quest")
                 .withIcon(SIDE_QUEST_1)
-                .shortDescParam(WorldUtil.getStructureName(WorldUtil.RIBBIT_VILLAGE))
+                .shortDescParam(WorldUtils.getStructureName(WorldUtils.RIBBIT_VILLAGE))
                 .descParam(TCRItems.OCEAN_RESONANCE_STONE.get().getDescription(),
                         Component.translatable(TCRSkills.WATER_AVOID.getTranslationKey()),
                         artifacts.registry.ModItems.CHARM_OF_SINKING.get().getDescription());
@@ -376,27 +376,27 @@ public class TCRQuests {
                 .descParam(TCREntities.CHRONOS_SOL.get().getDescription(),
                         AquamiraeItems.SHIP_GRAVEYARD_ECHO.get().getDescription().copy().withStyle(ChatFormatting.AQUA),
                         TCREntities.AINE.get().getDescription())
-                .withTrackingPos(new BlockPos(WorldUtil.AINE_POS.above(2)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.AINE_POS.above(2)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         TALK_TO_CHRONOS_4 = TCRQuestManager.create("talk_to_chronos_4")
                 .shortDescParam(TCREntities.CHRONOS_SOL.get().getDescription())
                 .descParam(TCREntities.AINE.get().getDescription(),
                         AquamiraeItems.SHIP_GRAVEYARD_ECHO.get().getDescription().copy().withStyle(ChatFormatting.AQUA),
                         TCREntities.CHRONOS_SOL.get().getDescription())
-                .withTrackingPos(new BlockPos(WorldUtil.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         GO_TO_OVERWORLD_CURSED = TCRQuestManager.create("go_to_overworld_cursed")
-                .shortDescParam(WorldUtil.OVERWORLD_NAME)
+                .shortDescParam(WorldUtils.OVERWORLD_NAME)
                 .descParam(AquamiraeItems.SHIP_GRAVEYARD_ECHO.get().getDescription().copy().withStyle(ChatFormatting.AQUA),
                         ModItems.CURSED_EYE.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN),
-                        WorldUtil.OVERWORLD_NAME,
+                        WorldUtils.OVERWORLD_NAME,
                         TCRItems.CURSED_RESONANCE_STONE.get().getDescription());
 
         USE_CURSED_RESONANCE_STONE = TCRQuestManager.create("use_cursed_resonance_stone")
                 .shortDescParam(TCRItems.CURSED_RESONANCE_STONE.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN))
                 .descParam(AquamiraeItems.SHIP_GRAVEYARD_ECHO.get().getDescription().copy().withStyle(ChatFormatting.AQUA),
                         ModItems.CURSED_EYE.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN),
-                        WorldUtil.OVERWORLD_NAME,
+                        WorldUtils.OVERWORLD_NAME,
                         TCRItems.CURSED_RESONANCE_STONE.get().getDescription());
 
         GET_CURSED_EYE = TCRQuestManager.create("get_cursed_eye")
@@ -410,7 +410,7 @@ public class TCRQuests {
                 .shortDescParam(TCREntities.CHRONOS_SOL.get().getDescription())
                 .descParam(ModItems.CURSED_EYE.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN),
                         TCREntities.CHRONOS_SOL.get().getDescription())
-                .withTrackingPos(new BlockPos(WorldUtil.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         TALK_TO_AINE_MAGIC = TCRQuestManager.create("talk_to_aine_magic")
                 .shortDescParam(TCREntities.AINE.get().getDescription())
@@ -418,33 +418,33 @@ public class TCRQuests {
                         TCRItems.NECROMANCY_SCROLL.get().getDescription(),
                         TCREntities.AINE.get().getDescription())
                 .withIcon(SIDE_QUEST_1)
-                .withTrackingPos(new BlockPos(WorldUtil.AINE_POS.above(2)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.AINE_POS.above(2)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         TRY_TO_LEARN_MAGIC = TCRQuestManager.create("try_to_learn_magic")
                 .withIcon(SIDE_QUEST_1)
                 .descParam(TCRItems.NECROMANCY_SCROLL.get().getDescription(), TCREntities.AINE.get().getDescription(),
                         TCREntities.AINE.get().getDescription())
-                .withTrackingPos(new BlockPos(WorldUtil.AINE_POS.above(2)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.AINE_POS.above(2)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         TALK_TO_AINE_MAGIC_2 = TCRQuestManager.create("talk_to_aine_magic_2")
                 .shortDescParam(TCREntities.AINE.get().getDescription())
                 .descParam(TCREntities.AINE.get().getDescription())
                 .withIcon(SIDE_QUEST_1)
-                .withTrackingPos(new BlockPos(WorldUtil.AINE_POS.above(2)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.AINE_POS.above(2)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         TALK_TO_CHRONOS_6 = TCRQuestManager.create("talk_to_chronos_6")
                 .shortDescParam(TCREntities.CHRONOS_SOL.get().getDescription())
                 .descParam(TCRItems.RESONANCE_STONE.get().getDescription(), TCREntities.CHRONOS_SOL.get().getDescription())
-                .withTrackingPos(new BlockPos(WorldUtil.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         GO_TO_OVERWORLD_CORE = TCRQuestManager.create("go_to_overworld_core")
-                .shortDescParam(WorldUtil.OVERWORLD_NAME)
-                .descParam(TCRItems.RESONANCE_STONE.get().getDescription(), WorldUtil.OVERWORLD_NAME,
+                .shortDescParam(WorldUtils.OVERWORLD_NAME)
+                .descParam(TCRItems.RESONANCE_STONE.get().getDescription(), WorldUtils.OVERWORLD_NAME,
                         ModItems.FLAME_EYE.get().getDescription().copy().withStyle(ChatFormatting.RED));
 
         USE_CORE_RESONANCE_STONE = TCRQuestManager.create("use_core_resonance_stone")
                 .shortDescParam(TCRItems.CORE_RESONANCE_STONE.get().getDescription().copy().withStyle(ChatFormatting.RED))
-                .descParam(WorldUtil.OVERWORLD_NAME, TCRItems.CORE_RESONANCE_STONE.get().getDescription().copy().withStyle(ChatFormatting.RED),
+                .descParam(WorldUtils.OVERWORLD_NAME, TCRItems.CORE_RESONANCE_STONE.get().getDescription().copy().withStyle(ChatFormatting.RED),
                         ModItems.FLAME_EYE.get().getDescription().copy().withStyle(ChatFormatting.RED));
 
         GET_FLAME_EYE = TCRQuestManager.create("get_flame_eye")
@@ -458,26 +458,26 @@ public class TCRQuests {
                 .shortDescParam(TCREntities.CHRONOS_SOL.get().getDescription())
                 .descParam(ModItems.FLAME_EYE.get().getDescription().copy().withStyle(ChatFormatting.RED),
                         TCREntities.CHRONOS_SOL.get().getDescription())
-                .withTrackingPos(new BlockPos(WorldUtil.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         TALK_TO_AINE_1 = TCRQuestManager.create("talk_to_aine_1")
                 .withIcon(SIDE_QUEST_1)
                 .shortDescParam(TCREntities.AINE.get().getDescription())
                 .descParam(TCREntities.AINE.get().getDescription())
-                .withTrackingPos(new BlockPos(WorldUtil.AINE_POS.above(2)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.AINE_POS.above(2)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         TALK_TO_CHRONOS_8 = TCRQuestManager.create("talk_to_chronos_8")
                 .shortDescParam(TCREntities.CHRONOS_SOL.get().getDescription())
                 .descParam(TCRItems.RESONANCE_STONE.get().getDescription(), TCREntities.CHRONOS_SOL.get().getDescription())
-                .withTrackingPos(new BlockPos(WorldUtil.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         GO_TO_NETHER = TCRQuestManager.create("go_to_nether")
-                .shortDescParam(WorldUtil.NETHER_NAME)
-                .descParam(WorldUtil.OVERWORLD_NAME, WorldUtil.OVERWORLD_NAME, TCREntities.CHRONOS_SOL.get().getDescription(), TCRItems.CORE_FLINT.get().getDescription(), Blocks.NETHER_PORTAL.getName());
+                .shortDescParam(WorldUtils.NETHER_NAME)
+                .descParam(WorldUtils.OVERWORLD_NAME, WorldUtils.OVERWORLD_NAME, TCREntities.CHRONOS_SOL.get().getDescription(), TCRItems.CORE_FLINT.get().getDescription(), Blocks.NETHER_PORTAL.getName());
 
         USE_NETHER_RESONANCE_STONE = TCRQuestManager.create("use_nether_resonance_stone")
                 .shortDescParam(TCRItems.NETHER_RESONANCE_STONE.get().getDescription().copy().withStyle(ChatFormatting.DARK_RED))
-                .descParam(WorldUtil.NETHER_NAME, TCRItems.NETHER_RESONANCE_STONE.get().getDescription().copy().withStyle(ChatFormatting.DARK_RED),
+                .descParam(WorldUtils.NETHER_NAME, TCRItems.NETHER_RESONANCE_STONE.get().getDescription().copy().withStyle(ChatFormatting.DARK_RED),
                         ModItems.MONSTROUS_EYE.get().getDescription().copy().withStyle(ChatFormatting.DARK_RED));
 
         GET_NETHER_MONOLITH_KEY_1 = TCRQuestManager.create("get_nether_monolith_key_1")
@@ -486,7 +486,7 @@ public class TCRQuests {
                 .descParam(
                         BTEntityType.NETHER_MONOLITH.get().getDescription().copy().withStyle(ChatFormatting.GOLD),
                         BTItems.NETHER_MONOLITH_KEY.get().getDescription().copy().withStyle(ChatFormatting.GOLD),
-                        WorldUtil.getStructureName(WorldUtil.NETHER_KEY_1),
+                        WorldUtils.getStructureName(WorldUtils.NETHER_KEY_1),
                         ItemRegistry.CINDEROUS_SOULCALLER.get().getDescription().copy().withStyle(ChatFormatting.GOLD),
                         BTEntityType.NETHER_MONOLITH.get().getDescription().copy().withStyle(ChatFormatting.GOLD),
                         TCRBossEntities.GOLDEN_EXECUTOR.get().getDescription().copy().withStyle(ChatFormatting.RED),
@@ -497,8 +497,8 @@ public class TCRQuests {
                 .descParam(
                         BTEntityType.NETHER_MONOLITH.get().getDescription().copy().withStyle(ChatFormatting.GOLD),
                         BTItems.NETHER_MONOLITH_KEY.get().getDescription().copy().withStyle(ChatFormatting.GOLD),
-                        WorldUtil.getStructureName(WorldUtil.NETHER_KEY_2),
-                        WorldUtil.getStructureName(WorldUtil.NETHER_KEY_2),
+                        WorldUtils.getStructureName(WorldUtils.NETHER_KEY_2),
+                        WorldUtils.getStructureName(WorldUtils.NETHER_KEY_2),
                         BTEntityType.NETHER_MONOLITH.get().getDescription().copy().withStyle(ChatFormatting.GOLD),
                         TCRBossEntities.EVENING_GHOST.get().getDescription().copy().withStyle(ChatFormatting.RED),
                         BTItems.NETHER_MONOLITH_KEY.get().getDescription().copy().withStyle(ChatFormatting.GOLD));
@@ -514,7 +514,7 @@ public class TCRQuests {
                 .shortDescParam(TCREntities.CHRONOS_SOL.get().getDescription())
                 .descParam(ModItems.MONSTROUS_EYE.get().getDescription().copy().withStyle(ChatFormatting.DARK_RED),
                         TCREntities.CHRONOS_SOL.get().getDescription())
-                .withTrackingPos(new BlockPos(WorldUtil.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         GET_WITHER_EYE = TCRQuestManager.create("get_wither_eye")
                 .shortDescParam(ModItems.MECH_EYE.get().getDescription().copy().withStyle(ChatFormatting.GOLD))
@@ -524,7 +524,7 @@ public class TCRQuests {
         TALK_TO_CHRONOS_10 = TCRQuestManager.create("talk_to_chronos_10")
                 .shortDescParam(TCREntities.CHRONOS_SOL.get().getDescription())
                 .descParam(ModItems.MECH_EYE.get().getDescription().copy().withStyle(ChatFormatting.GOLD), TCREntities.CHRONOS_SOL.get().getDescription())
-                .withTrackingPos(new BlockPos(WorldUtil.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         TALK_TO_AINE_SAMSARA = TCRQuestManager.create("talk_to_aine_samsara")
                 .shortDescParam(TCREntities.AINE.get().getDescription())
@@ -532,7 +532,7 @@ public class TCRQuests {
                         Component.translatable("travelerstitles.pbf1.sanctum_of_the_battle1"),
                         Component.translatable("travelerstitles.pbf1.sanctum_of_the_battle1"),
                         TCREntities.AINE.get().getDescription())
-                .withTrackingPos(new BlockPos(WorldUtil.AINE_POS.above(2)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.AINE_POS.above(2)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         GO_TO_SAMSARA = TCRQuestManager.create("go_to_samsara")
                 .withIcon(SIDE_QUEST_1)
@@ -544,10 +544,10 @@ public class TCRQuests {
         TALK_TO_CHRONOS_11 = TCRQuestManager.create("talk_to_chronos_11")
                 .shortDescParam(TCREntities.CHRONOS_SOL.get().getDescription())
                 .descParam(TCRItems.RESONANCE_STONE.get().getDescription(), TCREntities.CHRONOS_SOL.get().getDescription())
-                .withTrackingPos(new BlockPos(WorldUtil.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         GO_TO_AETHER = TCRQuestManager.create("go_to_aether")
-                .shortDescParam(WorldUtil.AETHER_NAME)
+                .shortDescParam(WorldUtils.AETHER_NAME)
                 .descParam(Blocks.WATER.getName().withStyle(ChatFormatting.BLUE), Blocks.GLOWSTONE.getName().withStyle(ChatFormatting.YELLOW));
 
         USE_AETHER_RESONANCE_STONE = TCRQuestManager.create("use_aether_resonance_stone")
@@ -559,8 +559,8 @@ public class TCRQuests {
                 .shortDescParam(BTItems.SKY_MONOLITH_KEY.get().getDescription().copy().withStyle(ChatFormatting.AQUA))
                 .descParam(BTEntityType.SKY_MONOLITH.get().getDescription().copy().withStyle(ChatFormatting.AQUA),
                         BTItems.SKY_MONOLITH_KEY.get().getDescription().copy().withStyle(ChatFormatting.AQUA),
-                        WorldUtil.getStructureName(WorldUtil.AETHER_KEY_1),
-                        WorldUtil.getStructureName(WorldUtil.AETHER_KEY_1),
+                        WorldUtils.getStructureName(WorldUtils.AETHER_KEY_1),
+                        WorldUtils.getStructureName(WorldUtils.AETHER_KEY_1),
                         BTItems.SKY_MONOLITH_KEY.get().getDescription().copy().withStyle(ChatFormatting.AQUA),
                         TCRBossEntities.VALKYRIE.get().getDescription().copy().withStyle(ChatFormatting.GOLD),
                         BTItems.SKY_MONOLITH_KEY.get().getDescription().copy().withStyle(ChatFormatting.AQUA));
@@ -569,8 +569,8 @@ public class TCRQuests {
                 .shortDescParam(BTItems.SKY_MONOLITH_KEY.get().getDescription().copy().withStyle(ChatFormatting.AQUA))
                 .descParam(BTEntityType.SKY_MONOLITH.get().getDescription().copy().withStyle(ChatFormatting.AQUA),
                         BTItems.SKY_MONOLITH_KEY.get().getDescription().copy().withStyle(ChatFormatting.AQUA),
-                        WorldUtil.getStructureName(WorldUtil.AETHER_KEY_2),
-                        WorldUtil.getStructureName(WorldUtil.AETHER_KEY_2),
+                        WorldUtils.getStructureName(WorldUtils.AETHER_KEY_2),
+                        WorldUtils.getStructureName(WorldUtils.AETHER_KEY_2),
                         BTItems.SKY_MONOLITH_KEY.get().getDescription().copy().withStyle(ChatFormatting.AQUA),
                         TCRBossEntities.GILDED_HUNTER.get().getDescription().copy().withStyle(ChatFormatting.GOLD),
                         BTItems.SKY_MONOLITH_KEY.get().getDescription().copy().withStyle(ChatFormatting.AQUA));
@@ -589,61 +589,61 @@ public class TCRQuests {
                 .shortDescParam(TCREntities.CHRONOS_SOL.get().getDescription())
                 .descParam(ModItems.STORM_EYE.get().getDescription().copy().withStyle(ChatFormatting.AQUA),
                         TCREntities.CHRONOS_SOL.get().getDescription())
-                .withTrackingPos(new BlockPos(WorldUtil.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         TALK_TO_AINE_2 = TCRQuestManager.create("talk_to_aine_2")
                 .withIcon(SIDE_QUEST_1)
                 .shortDescParam(TCREntities.AINE.get().getDescription())
                 .descParam(ModItems.STORM_EYE.get().getDescription().copy().withStyle(ChatFormatting.AQUA),
                         TCREntities.AINE.get().getDescription())
-                .withTrackingPos(new BlockPos(WorldUtil.AINE_POS.above(2)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.AINE_POS.above(2)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         GO_TO_OVERWORLD_END = TCRQuestManager.create("go_to_overworld_end")
-                .shortDescParam(WorldUtil.OVERWORLD_NAME)
+                .shortDescParam(WorldUtils.OVERWORLD_NAME)
                 .descParam(TCREntities.CHRONOS_SOL.get().getDescription(),
-                        WorldUtil.END_NAME,
-                        WorldUtil.OVERWORLD_NAME,
-                        WorldUtil.END_NAME,
-                        WorldUtil.getStructureName(WorldUtil.STRONG_HOLD),
-                        WorldUtil.END_NAME);
+                        WorldUtils.END_NAME,
+                        WorldUtils.OVERWORLD_NAME,
+                        WorldUtils.END_NAME,
+                        WorldUtils.getStructureName(WorldUtils.STRONG_HOLD),
+                        WorldUtils.END_NAME);
 
         USE_END_RESONANCE_STONE = TCRQuestManager.create("use_end_resonance_stone")
                 .shortDescParam(TCRItems.END_RESONANCE_STONE.get().getDescription())
                 .descParam(TCREntities.CHRONOS_SOL.get().getDescription(),
-                        WorldUtil.END_NAME,
-                        WorldUtil.OVERWORLD_NAME,
-                        WorldUtil.END_NAME,
-                        WorldUtil.getStructureName(WorldUtil.STRONG_HOLD),
-                        WorldUtil.END_NAME);
+                        WorldUtils.END_NAME,
+                        WorldUtils.OVERWORLD_NAME,
+                        WorldUtils.END_NAME,
+                        WorldUtils.getStructureName(WorldUtils.STRONG_HOLD),
+                        WorldUtils.END_NAME);
 
         GO_TO_THE_END = TCRQuestManager.create("go_to_the_end")
-                .shortDescParam(WorldUtil.END_NAME)
+                .shortDescParam(WorldUtils.END_NAME)
                 .descParam(TCRItems.END_RESONANCE_STONE.get().getDescription(),
-                        WorldUtil.getStructureName(WorldUtil.STRONG_HOLD),
-                        WorldUtil.END_NAME);
+                        WorldUtils.getStructureName(WorldUtils.STRONG_HOLD),
+                        WorldUtils.END_NAME);
 
         GET_VOID_EYE = TCRQuestManager.create("get_void_eye")
                 .shortDescParam(ModItems.VOID_EYE.get().getDescription().copy().withStyle(ChatFormatting.LIGHT_PURPLE))
                 .descParam(ModItems.VOID_EYE.get().getDescription().copy().withStyle(ChatFormatting.LIGHT_PURPLE),
-                        WorldUtil.END_NAME);
+                        WorldUtils.END_NAME);
 
         TALK_TO_ORNN_YAMATO = TCRQuestManager.create("talk_to_ornn_yamato")
                 .withIcon(SIDE_QUEST_1)
                 .shortDescParam(TCREntities.ORNN.get().getDescription())
                 .descParam(EFNItem.YAMATO_DMC_IN_SHEATH.get().getDescription(), TCREntities.ORNN.get().getDescription())
-                .withTrackingPos(new BlockPos(WorldUtil.ORNN_POS.above(3)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.ORNN_POS.above(3)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         TALK_TO_CHRONOS_END = TCRQuestManager.create("talk_to_chronos_end")
                 .shortDescParam(TCREntities.CHRONOS_SOL.get().getDescription())
                 .descParam(ModItems.VOID_EYE.get().getDescription().copy().withStyle(ChatFormatting.LIGHT_PURPLE))
-                .withTrackingPos(new BlockPos(WorldUtil.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         KILL_MAD_CHRONOS = TCRQuestManager.create("kill_mad_chronos")
-                .withTrackingPos(new BlockPos(WorldUtil.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         TALK_TO_AINE_GAME_CLEAR = TCRQuestManager.create("talk_to_aine_game_clear")
                 .shortDescParam(TCREntities.AINE.get().getDescription())
-                .withTrackingPos(new BlockPos(WorldUtil.AINE_POS.above(2)), TCRDimensions.SANCTUM_LEVEL_KEY);
+                .withTrackingPos(new BlockPos(WorldUtils.AINE_POS.above(2)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
     }
 }

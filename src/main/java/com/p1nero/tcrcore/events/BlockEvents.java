@@ -6,8 +6,8 @@ import com.github.L_Ender.cataclysm.init.ModBlocks;
 import com.p1nero.cataclysm_dimension.worldgen.CataclysmDimensions;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.save_data.TCRDimSaveData;
-import com.p1nero.tcrcore.utils.ItemUtil;
-import com.p1nero.tcrcore.utils.WorldUtil;
+import com.p1nero.tcrcore.utils.ItemUtils;
+import com.p1nero.tcrcore.utils.WorldUtils;
 import net.mehvahdjukaar.supplementaries.common.block.blocks.BookPileBlock;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.EntityType;
@@ -29,14 +29,14 @@ public class BlockEvents {
         }
         if(event.getPlayer().level() instanceof ServerLevel serverLevel) {
             //主城不可破坏，除了书堆= =
-            if(WorldUtil.inMainLand(event.getPlayer()) || WorldUtil.inReal(event.getPlayer())) {
+            if(WorldUtils.inMainLand(event.getPlayer()) || WorldUtils.inReal(event.getPlayer())) {
                 if(event.getState().getBlock() instanceof BookPileBlock) {
                     return;
                 }
                 event.setCanceled(true);
             }
             //不可破坏神像
-            if(event.getState().is(ModBlocks.GODDESS_STATUE.get()) && WorldUtil.inMainLand(event.getPlayer())) {
+            if(event.getState().is(ModBlocks.GODDESS_STATUE.get()) && WorldUtils.inMainLand(event.getPlayer())) {
                 EntityType.LIGHTNING_BOLT.spawn(serverLevel, event.getPos(), MobSpawnType.MOB_SUMMONED);
                 event.setCanceled(true);
             }
@@ -48,7 +48,7 @@ public class BlockEvents {
                 }
             }
             //在呱呱村庄打爆紫水晶块概率出遗忘者
-            if(WorldUtil.isInStructure(event.getPlayer(), WorldUtil.RIBBIT_VILLAGE) && serverLevel.isDay()){
+            if(WorldUtils.isInStructure(event.getPlayer(), WorldUtils.RIBBIT_VILLAGE) && serverLevel.isDay()){
                 if(event.getState().is(Blocks.AMETHYST_BLOCK)) {
                     if(serverLevel.random.nextInt(serverLevel.isDay() ? 5 : 100) == 1) {
                         Forgotten forgotten = ForgottenModule.forgottenType.spawn(serverLevel, event.getPos(), MobSpawnType.SPAWNER);
@@ -62,14 +62,14 @@ public class BlockEvents {
 
             //挖刷怪笼直接得钥匙，防止坏掉
             if(event.getState().getBlock() instanceof BTSpawnerBlock) {
-                if(WorldUtil.isInStructure(serverLevel, event.getPos().getCenter(), WorldUtil.LAND_GOLEM)) {
-                    ItemUtil.addItemEntity(serverLevel, event.getPos(), BTItems.LAND_MONOLITH_KEY.get().getDefaultInstance());
+                if(WorldUtils.isInStructure(serverLevel, event.getPos().getCenter(), WorldUtils.LAND_GOLEM)) {
+                    ItemUtils.addItemEntity(serverLevel, event.getPos(), BTItems.LAND_MONOLITH_KEY.get().getDefaultInstance());
                 }
-                if(WorldUtil.isInStructure(serverLevel, event.getPos().getCenter(), WorldUtil.OCEAN_GOLEM)) {
-                    ItemUtil.addItemEntity(serverLevel, event.getPos(), BTItems.OCEAN_MONOLITH_KEY.get().getDefaultInstance());
+                if(WorldUtils.isInStructure(serverLevel, event.getPos().getCenter(), WorldUtils.OCEAN_GOLEM)) {
+                    ItemUtils.addItemEntity(serverLevel, event.getPos(), BTItems.OCEAN_MONOLITH_KEY.get().getDefaultInstance());
                 }
-                if(WorldUtil.isInStructure(serverLevel, event.getPos().getCenter(), WorldUtil.CORE_GOLEM)) {
-                    ItemUtil.addItemEntity(serverLevel, event.getPos(), BTItems.CORE_MONOLITH_KEY.get().getDefaultInstance());
+                if(WorldUtils.isInStructure(serverLevel, event.getPos().getCenter(), WorldUtils.CORE_GOLEM)) {
+                    ItemUtils.addItemEntity(serverLevel, event.getPos(), BTItems.CORE_MONOLITH_KEY.get().getDefaultInstance());
                 }
             }
 
@@ -83,7 +83,7 @@ public class BlockEvents {
         }
         if(event.getEntity() != null) {
             //主城保护，除了书堆= =
-            if(WorldUtil.inMainLand(event.getEntity()) || WorldUtil.inReal(event.getEntity())) {
+            if(WorldUtils.inMainLand(event.getEntity()) || WorldUtils.inReal(event.getEntity())) {
                 if(event.getState().getBlock() instanceof BookPileBlock) {
                     return;
                 }

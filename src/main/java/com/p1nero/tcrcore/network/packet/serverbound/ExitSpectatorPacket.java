@@ -2,7 +2,7 @@ package com.p1nero.tcrcore.network.packet.serverbound;
 
 import com.p1nero.battle_field1.worldgen.PBF1Dimensions;
 import com.p1nero.dialog_lib.network.packet.BasePacket;
-import com.p1nero.tcrcore.utils.WorldUtil;
+import com.p1nero.tcrcore.utils.WorldUtils;
 import com.p1nero.tcrcore.worldgen.TCRDimensions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -29,7 +29,7 @@ public record ExitSpectatorPacket() implements BasePacket {
                 if(serverPlayer.isSpectator()) {
                     ServerLevel sanctum = serverPlayer.server.getLevel(TCRDimensions.SANCTUM_LEVEL_KEY);
                     if(sanctum != null) {
-                        player.changeDimension(sanctum, new PositionTeleporter(new BlockPos(WorldUtil.START_POS)));
+                        player.changeDimension(sanctum, new PositionTeleporter(new BlockPos(WorldUtils.START_POS)));
                     }
                     serverPlayer.setGameMode(GameType.SURVIVAL);
                 }

@@ -1,6 +1,6 @@
 package com.p1nero.tcrcore.mixin.iss;
 
-import com.p1nero.tcrcore.utils.ItemUtil;
+import com.p1nero.tcrcore.utils.ItemUtils;
 import io.redspace.ironsspellbooks.gui.overlays.CastBarOverlay;
 import io.redspace.ironsspellbooks.player.ClientMagicData;
 import net.minecraft.client.Minecraft;
@@ -17,7 +17,7 @@ public class CastBarOverlayMixin {
     @Inject(method = "render", at = @At("HEAD"), cancellable = true, remap = false)
     private void tcr$render(ForgeGui gui, GuiGraphics guiHelper, float partialTick, int screenWidth, int screenHeight, CallbackInfo ci) {
         if(ClientMagicData.isCasting() && ClientMagicData.getCastDuration() <= 1) {
-            if(Minecraft.getInstance().player != null && ItemUtil.isBetterMagicWeaponItems(Minecraft.getInstance().player.getMainHandItem())) {
+            if(Minecraft.getInstance().player != null && ItemUtils.isBetterMagicWeaponItems(Minecraft.getInstance().player.getMainHandItem())) {
                 ci.cancel();
             }
         }

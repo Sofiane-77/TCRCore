@@ -3,7 +3,7 @@ package com.p1nero.tcrcore.mixin;
 import com.p1nero.tcrcore.capability.TCRQuestManager;
 import com.p1nero.tcrcore.capability.TCRQuests;
 import com.p1nero.tcrcore.item.TCRItems;
-import com.p1nero.tcrcore.utils.EntityUtil;
+import com.p1nero.tcrcore.utils.EntityUtils;
 import net.magister.bookofdragons.entity.base.dragon.DragonBase;
 import net.magister.bookofdragons.entity.component.simulation.DragonNeedsSystem;
 import net.minecraft.server.level.ServerPlayer;
@@ -62,7 +62,7 @@ public abstract class DragonBaseMixin extends TamableAnimal implements GeoEntity
         FoodProperties foodProperties = mainHand.getItem().getFoodProperties(mainHand, pPlayer);
         if (pPlayer instanceof ServerPlayer serverPlayer && foodProperties != null && this.isTame()) {
             this.setGrowthProgress(this.getGrowthProgress() + foodProperties.getNutrition() * 200);
-            EntityUtil.playLocalSound(serverPlayer, SoundEvents.GENERIC_EAT);
+            EntityUtils.playLocalSound(serverPlayer, SoundEvents.GENERIC_EAT);
             this.getNeedsSystem().setFoodLevel((int) (DragonNeedsSystem.getMaxHunger() * 0.8));
             if (!pPlayer.isCreative()) {
                 mainHand.shrink(1);

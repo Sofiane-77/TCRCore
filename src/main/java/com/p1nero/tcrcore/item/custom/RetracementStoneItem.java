@@ -1,7 +1,7 @@
 package com.p1nero.tcrcore.item.custom;
 
 import com.p1nero.battle_field1.worldgen.PBF1Dimensions;
-import com.p1nero.tcrcore.utils.WorldUtil;
+import com.p1nero.tcrcore.utils.WorldUtils;
 import com.yesman.epicskills.registry.entry.EpicSkillsSounds;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleTypes;
@@ -56,6 +56,6 @@ public class RetracementStoneItem extends SimpleDescriptionItem {
 
     @Override
     public void appendHoverText(@NotNull ItemStack itemStack, @Nullable Level level, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
-        list.add(Component.translatable(this.getDescriptionId() + ".usage", WorldUtil.SAMSARA_NAME).withStyle(ChatFormatting.GRAY));
+        list.add(Component.translatable(this.getDescriptionId() + ".usage", WorldUtils.SAMSARA_NAME).withStyle(ChatFormatting.GRAY));
     }
 }

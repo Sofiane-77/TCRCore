@@ -2,7 +2,7 @@ package com.p1nero.tcrcore.mixin;
 
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.item.TCRItems;
-import com.p1nero.tcrcore.utils.EntityUtil;
+import com.p1nero.tcrcore.utils.EntityUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
@@ -32,7 +32,7 @@ public abstract class BaseFireBlockMixin {
                 Optional<PortalShape> optional = PortalShape.findEmptyPortalShape(level, pos, Direction.Axis.X);
                 optional = net.minecraftforge.event.ForgeEventFactory.onTrySpawnPortal(level, pos, optional);
                 if (optional.isPresent()) {
-                    EntityUtil.nearPlayerDo(level, pos.getCenter(), 10, (player -> {
+                    EntityUtils.nearPlayerDo(level, pos.getCenter(), 10, (player -> {
                         player.displayClientMessage(TCRCoreMod.getInfo("please_use_custom_flint_and_steel", TCRItems.CORE_FLINT.get().getDescription()), true);
                     }));
                     ci.cancel();

@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 @SuppressWarnings("deprecation")
-public class XaeroWaypointUtil {
+public class XaeroWaypointUtils {
 
     public static void sendWaypoint(ServerPlayer player, String key, Component displayName, BlockPos pos, WaypointColor color) {
         sendWaypoint(player, key, displayName, pos, color, WaypointVisibilityType.LOCAL);

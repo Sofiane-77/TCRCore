@@ -4,12 +4,11 @@ import com.chaosthedude.explorerscompass.ExplorersCompass;
 import com.chaosthedude.naturescompass.NaturesCompass;
 import com.p1nero.dialog_lib.api.entity.custom.IEntityNpc;
 import com.p1nero.dialog_lib.client.screen.DialogueScreen;
-import com.p1nero.dialog_lib.client.screen.builder.DialogueScreenBuilder;
 import com.p1nero.dialog_lib.client.screen.builder.StreamDialogueScreenBuilder;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
 import com.p1nero.tcrcore.utils.FTBTeamUtils;
-import com.p1nero.tcrcore.utils.ItemUtil;
+import com.p1nero.tcrcore.utils.ItemUtils;
 import com.p1nero.tudigong.TuDiGongMod;
 import com.p1nero.tudigong.entity.TudiGongEntity;
 import net.minecraft.nbt.CompoundTag;
@@ -62,8 +61,8 @@ public abstract class TuDiGongMixin implements IEntityNpc {
         if(i == 111) {
             if(!PlayerDataManager.tudigongGiftGet.get(serverPlayer)) {
                 FTBTeamUtils.onlineTeamMembersDoWithSelf(serverPlayer, member -> {
-                    ItemUtil.addItemEntity(member, new ItemStack(ExplorersCompass.explorersCompass));
-                    ItemUtil.addItemEntity(member, new ItemStack(NaturesCompass.naturesCompass));
+                    ItemUtils.addItemEntity(member, new ItemStack(ExplorersCompass.explorersCompass));
+                    ItemUtils.addItemEntity(member, new ItemStack(NaturesCompass.naturesCompass));
                     member.displayClientMessage(TCRCoreMod.getInfo("tudigong_gift_get"), false);
                 });
                 PlayerDataManager.tudigongGiftGet.put(serverPlayer, true);

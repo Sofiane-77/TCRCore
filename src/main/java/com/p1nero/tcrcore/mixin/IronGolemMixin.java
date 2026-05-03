@@ -2,7 +2,7 @@ package com.p1nero.tcrcore.mixin;
 
 import com.p1nero.dialog_lib.DialogueLib;
 import com.p1nero.tcrcore.capability.TCRCapabilityProvider;
-import com.p1nero.tcrcore.utils.WorldUtil;
+import com.p1nero.tcrcore.utils.WorldUtils;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -27,7 +27,7 @@ public class IronGolemMixin extends AbstractGolem {
 
     @Inject(method = "mobInteract", at = @At("HEAD"))
     private void tcr$interact(Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
-        if(this.getTarget() == null && player instanceof ServerPlayer serverPlayer && serverPlayer.isAlive() && WorldUtil.isInStructure(player, WorldUtil.SKY_GOLEM)) {
+        if(this.getTarget() == null && player instanceof ServerPlayer serverPlayer && serverPlayer.isAlive() && WorldUtils.isInStructure(player, WorldUtils.SKY_GOLEM)) {
             TCRCapabilityProvider.getTCRPlayer(serverPlayer).setCurrentTalkingEntity(this);
             CompoundTag tag = new CompoundTag();
             DialogueLib.sendDialog((IronGolem)(Object)this, tag, serverPlayer);

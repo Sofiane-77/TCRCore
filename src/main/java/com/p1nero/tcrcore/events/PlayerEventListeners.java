@@ -23,10 +23,10 @@ import com.p1nero.tcrcore.item.TCRItems;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
 import com.p1nero.tcrcore.network.packet.clientbound.*;
 import com.p1nero.tcrcore.save_data.TCRDimSaveData;
-import com.p1nero.tcrcore.utils.EntityUtil;
+import com.p1nero.tcrcore.utils.EntityUtils;
 import com.p1nero.tcrcore.utils.FTBTeamUtils;
-import com.p1nero.tcrcore.utils.ItemUtil;
-import com.p1nero.tcrcore.utils.WorldUtil;
+import com.p1nero.tcrcore.utils.ItemUtils;
+import com.p1nero.tcrcore.utils.WorldUtils;
 import com.p1nero.tcrcore.worldgen.TCRDimensions;
 import com.p1nero.tudigong.item.TDGItems;
 import com.wintercogs.beyonddimensions.api.dimensionnet.DimensionsNet;
@@ -38,6 +38,7 @@ import com.yesman.epicskills.registry.entry.EpicSkillsSkillTrees;
 import com.yesman.epicskills.skilltree.SkillTree;
 import com.yesman.epicskills.world.capability.SkillTreeProgression;
 import com.yungnickyoung.minecraft.betterendisland.world.IDragonFight;
+import dev.ftb.mods.ftbteams.api.Team;
 import dev.ftb.mods.ftbteams.api.event.PlayerChangedTeamEvent;
 import net.blay09.mods.waystones.block.ModBlocks;
 import net.minecraft.ChatFormatting;
@@ -106,7 +107,11 @@ public class PlayerEventListeners {
         if(serverPlayer == null) {
             return;
         }
-        FTBTeamUtils.syncDataFromTeam(serverPlayer, playerChangedTeamEvent.getTeam());
+        Team team = playerChangedTeamEvent.getTeam();
+        if(team == null || !team.isPartyTeam()) {
+            return;
+        }
+        FTBTeamUtils.syncDataFromTeam(serverPlayer, team);
     }
 
     @SubscribeEvent
@@ -160,9 +165,9 @@ public class PlayerEventListeners {
 
     public static void handleFirstJoin(ServerPlayer serverPlayer, boolean isNGPlus) {
         if (!PlayerDataManager.firstJoint.get(serverPlayer)) {
-            serverPlayer.setRespawnPosition(TCRDimensions.SANCTUM_LEVEL_KEY, new BlockPos(WorldUtil.START_POS), 90, true, false);
+            serverPlayer.setRespawnPosition(TCRDimensions.SANCTUM_LEVEL_KEY, new BlockPos(WorldUtils.START_POS), 90, true, false);
             ServerLevel targetLevel = serverPlayer.server.getLevel(TCRDimensions.SANCTUM_LEVEL_KEY);
-            serverPlayer = (ServerPlayer) serverPlayer.changeDimension(targetLevel, new PositionTeleporter(new BlockPos(WorldUtil.START_POS)));
+            serverPlayer = (ServerPlayer) serverPlayer.changeDimension(targetLevel, new PositionTeleporter(new BlockPos(WorldUtils.START_POS)));
             TCRAdvancementData.finishAdvancement(TCRCoreMod.MOD_ID, serverPlayer);
             if (!isNGPlus) {
                 serverPlayer.server.getGameRules().getRule(GameRules.RULE_KEEPINVENTORY).set(true, serverPlayer.server);
@@ -182,11 +187,11 @@ public class PlayerEventListeners {
 
                 DimensionsNet net = addBeyondDimensionNet(serverPlayer);
 
-                ItemUtil.addItem(serverPlayer, Items.LANTERN, 1);
-                ItemUtil.addItem(serverPlayer, Items.BREAD, 32);
-                ItemUtil.addItem(serverPlayer, EpicSkillsItems.ABILIITY_STONE.get(), 1);
-                ItemUtil.addItem(serverPlayer, TCRItems.RESET_SKILL_STONE.get(), 1);
-                ItemUtil.addItem(serverPlayer, TDGItems.TUDI_COMMAND_SPELL.get(), 1);
+                ItemUtils.addItem(serverPlayer, Items.LANTERN, 1);
+                ItemUtils.addItem(serverPlayer, Items.BREAD, 32);
+                ItemUtils.addItem(serverPlayer, EpicSkillsItems.ABILIITY_STONE.get(), 1);
+                ItemUtils.addItem(serverPlayer, TCRItems.RESET_SKILL_STONE.get(), 1);
+                ItemUtils.addItem(serverPlayer, TDGItems.TUDI_COMMAND_SPELL.get(), 1);
 
                 net.getUnifiedStorage().insert(new ItemStackKey(BDItems.XP_EXCHANGE_ITEM.get().getDefaultInstance()), 1, false);
             }
@@ -242,14 +247,14 @@ public class PlayerEventListeners {
             //第一次交互给传送石和提示
             if (blockState.is(ModBlocks.waystone)) {
                 if (!PlayerDataManager.wayStoneInteracted.get(serverPlayer)) {
-                    ItemUtil.addItemEntity(serverPlayer, net.blay09.mods.waystones.item.ModItems.warpStone.getDefaultInstance());
+                    ItemUtils.addItemEntity(serverPlayer, net.blay09.mods.waystones.item.ModItems.warpStone.getDefaultInstance());
                     serverPlayer.displayClientMessage(TCRCoreMod.getInfo("press_to_open_portal_screen2"), false);
                     PlayerDataManager.wayStoneInteracted.put(serverPlayer, true);
                 }
             }
 
             //和女神像交互的处理
-            else if (blockState.is(com.github.L_Ender.cataclysm.init.ModBlocks.GODDESS_STATUE.get()) && ItemUtil.eyesItems.contains(serverPlayer.getMainHandItem().getItem())) {
+            else if (blockState.is(com.github.L_Ender.cataclysm.init.ModBlocks.GODDESS_STATUE.get()) && ItemUtils.eyesItems.contains(serverPlayer.getMainHandItem().getItem())) {
                 TCRPlayer tcrPlayer = TCRCapabilityProvider.getTCRPlayer(serverPlayer);
                 ServerLevel serverLevel = serverPlayer.serverLevel();
                 BlockPos blessPos = event.getPos();
@@ -293,13 +298,13 @@ public class PlayerEventListeners {
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.phase == TickEvent.Phase.START) {
 
-            if (event.player.isLocalPlayer() && WorldUtil.inMainLand(event.player)) {
+            if (event.player.isLocalPlayer() && WorldUtils.inMainLand(event.player)) {
                 if (isNearBarrier(event.player)) {
                     event.player.displayClientMessage(TCRCoreMod.getInfo("hit_barrier"), true);
                 }
             }
             if (event.player instanceof ServerPlayer serverPlayer) {
-                if (WorldUtil.inMainLand(serverPlayer) && serverPlayer.isCreative()) {
+                if (WorldUtils.inMainLand(serverPlayer) && serverPlayer.isCreative()) {
                     if (serverPlayer.isSprinting()) {
                         serverPlayer.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 10, 2, false, false, true));
                     }
@@ -375,7 +380,7 @@ public class PlayerEventListeners {
                 if (event.getDimension() == PBF1Dimensions.SANCTUM_OF_THE_BATTLE_LEVEL_KEY) {
                     ServerLevel targetLevel = serverPlayer.server.getLevel(PBF1Dimensions.SANCTUM_OF_THE_BATTLE_LEVEL_KEY);
                     if (targetLevel != null) {
-                        boolean hasNonCreativeOrSpectator = EntityUtil.hasNonCreativeOrSpectator(targetLevel);
+                        boolean hasNonCreativeOrSpectator = EntityUtils.hasNonCreativeOrSpectator(targetLevel);
                         if (hasNonCreativeOrSpectator) {
                             serverPlayer.displayClientMessage(TCRCoreMod.getInfo("dim_max_players"), true);
                             serverPlayer.setGameMode(GameType.SPECTATOR);
@@ -438,7 +443,7 @@ public class PlayerEventListeners {
             if (event.getFrom() == WraithonDimensions.SANCTUM_OF_THE_WRAITHON_LEVEL_KEY) {
                 ServerLevel wraithonLevel = serverPlayer.server.getLevel(WraithonDimensions.SANCTUM_OF_THE_WRAITHON_LEVEL_KEY);
                 if (wraithonLevel != null && wraithonLevel.players().isEmpty()) {
-                    EntityUtil.safelyClearAll(wraithonLevel);
+                    EntityUtils.safelyClearAll(wraithonLevel);
                     TCRDimSaveData.get(wraithonLevel).setBossSummoned(false);
                 }
             }
@@ -531,9 +536,9 @@ public class PlayerEventListeners {
             //摆床
             if (event.getTo().equals(TCRDimensions.REAL_LEVEL_KEY)) {
 
-                if (!serverPlayer.serverLevel().getBlockState(new BlockPos(WorldUtil.BED_POS)).is(Blocks.WHITE_BED)) {
-                    serverPlayer.serverLevel().setBlockAndUpdate(new BlockPos(WorldUtil.BED_POS).east(), Blocks.WHITE_BED.defaultBlockState().setValue(BlockStateProperties.BED_PART, BedPart.HEAD).setValue(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST));
-                    serverPlayer.serverLevel().setBlockAndUpdate(new BlockPos(WorldUtil.BED_POS), Blocks.WHITE_BED.defaultBlockState().setValue(BlockStateProperties.BED_PART, BedPart.FOOT).setValue(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST));
+                if (!serverPlayer.serverLevel().getBlockState(new BlockPos(WorldUtils.BED_POS)).is(Blocks.WHITE_BED)) {
+                    serverPlayer.serverLevel().setBlockAndUpdate(new BlockPos(WorldUtils.BED_POS).east(), Blocks.WHITE_BED.defaultBlockState().setValue(BlockStateProperties.BED_PART, BedPart.HEAD).setValue(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST));
+                    serverPlayer.serverLevel().setBlockAndUpdate(new BlockPos(WorldUtils.BED_POS), Blocks.WHITE_BED.defaultBlockState().setValue(BlockStateProperties.BED_PART, BedPart.FOOT).setValue(BlockStateProperties.HORIZONTAL_FACING, Direction.EAST));
                 }
 
                 ServerLevel realLevel = serverPlayer.server.getLevel(TCRDimensions.REAL_LEVEL_KEY);
@@ -563,12 +568,12 @@ public class PlayerEventListeners {
 
                         FakeBossNpc fakeBossNpc = entityTypes.get(i).create(realLevel);
                         if (fakeBossNpc != null) {
-                            fakeBossNpc.setPos(WorldUtil.BED_POS.getX() + dx, WorldUtil.BED_POS.getY(), WorldUtil.BED_POS.getZ() + dz);
-                            Vec3 dir = new BlockPos(WorldUtil.BED_POS).getCenter().subtract(fakeBossNpc.position());
+                            fakeBossNpc.setPos(WorldUtils.BED_POS.getX() + dx, WorldUtils.BED_POS.getY(), WorldUtils.BED_POS.getZ() + dz);
+                            Vec3 dir = new BlockPos(WorldUtils.BED_POS).getCenter().subtract(fakeBossNpc.position());
                             float yRot = (float) MathUtils.getYRotOfVector(dir);
                             fakeBossNpc.setYRot(yRot);
                             fakeBossNpc.setYBodyRot(yRot);
-                            fakeBossNpc.getLookControl().setLookAt(WorldUtil.BED_POS.getX(), WorldUtil.BED_POS.getY() + 2, WorldUtil.BED_POS.getZ());
+                            fakeBossNpc.getLookControl().setLookAt(WorldUtils.BED_POS.getX(), WorldUtils.BED_POS.getY() + 2, WorldUtils.BED_POS.getZ());
                             realLevel.addFreshEntity(fakeBossNpc);
                         }
                     }

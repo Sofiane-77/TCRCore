@@ -1,24 +1,16 @@
 package com.p1nero.tcrcore.events;
 
-import com.github.L_Ender.cataclysm.init.ModItems;
-import com.github.alexthe668.domesticationinnovation.server.block.DIBlockRegistry;
-import com.github.alexthe668.domesticationinnovation.server.item.DIItemRegistry;
-import com.hm.efn.registries.EFNItem;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.PlayerDataManager;
-import com.p1nero.tcrcore.utils.ItemUtil;
-import com.yesman.epicskills.registry.entry.EpicSkillsItems;
+import com.p1nero.tcrcore.utils.ItemUtils;
 import net.genzyuro.uniqueaccessories.registry.UAItems;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.Items;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.apache.commons.lang3.SystemUtils;
-
-import java.util.List;
 
 
 @Mod.EventBusSubscriber(modid = TCRCoreMod.MOD_ID)
@@ -31,7 +23,7 @@ public class ItemEvents {
         if(!FMLEnvironment.production && SystemUtils.IS_OS_MAC) {
             event.getToolTip().add(1, Component.literal(BuiltInRegistries.ITEM.getKey(event.getItemStack().getItem()).toString()));
         }
-        if(ItemUtil.additionalInfoItems.contains(event.getItemStack().getItem())) {
+        if(ItemUtils.additionalInfoItems.contains(event.getItemStack().getItem())) {
             event.getToolTip().add(1, Component.translatable(event.getItemStack().getItem().getDescriptionId() + ".tcr_info"));
         }
 

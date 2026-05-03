@@ -1,7 +1,7 @@
 package com.p1nero.tcrcore.network.packet.clientbound;
 
 import com.p1nero.dialog_lib.network.packet.BasePacket;
-import com.p1nero.tcrcore.utils.XaeroWaypointUtil;
+import com.p1nero.tcrcore.utils.XaeroWaypointUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -24,7 +24,7 @@ public record RemoveXaeroWaypointPacket(String name, BlockPos pos) implements Ba
     @Override
     public void execute(@Nullable Player playerEntity) {
         if (Minecraft.getInstance().player != null && Minecraft.getInstance().level != null) {
-            XaeroWaypointUtil.removeWayPoint(pos, name);
+            XaeroWaypointUtils.removeWayPoint(pos, name);
         }
     }
 }

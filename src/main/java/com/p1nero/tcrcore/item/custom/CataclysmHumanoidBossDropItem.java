@@ -2,7 +2,7 @@ package com.p1nero.tcrcore.item.custom;
 
 import com.p1nero.tcr_bosses.entity.cataclysm.BaseBossEntity;
 import com.p1nero.tcrcore.TCRCoreMod;
-import com.p1nero.tcrcore.utils.WorldUtil;
+import com.p1nero.tcrcore.utils.WorldUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EntityType;
@@ -29,6 +29,6 @@ public class CataclysmHumanoidBossDropItem extends SimpleDescriptionItem {
         if (cache == null) {
             cache = supplier.get();
         }
-        list.add(TCRCoreMod.getInfo("cataclysm_humanoid_drop_desc", WorldUtil.SAMSARA_NAME.withStyle(ChatFormatting.GOLD), cache.getDescription().copy().withStyle(ChatFormatting.GOLD)).withStyle(ChatFormatting.GRAY));
+        list.add(TCRCoreMod.getInfo("cataclysm_humanoid_drop_desc", WorldUtils.SAMSARA_NAME.withStyle(ChatFormatting.GOLD), cache.getDescription().copy().withStyle(ChatFormatting.GOLD)).withStyle(ChatFormatting.GRAY));
     }
 }

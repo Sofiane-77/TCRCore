@@ -6,7 +6,7 @@ import com.p1nero.tcrcore.capability.PlayerDataManager;
 import com.p1nero.tcrcore.entity.custom.tutorial_humanoid.TutorialHumanoid;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
 import com.p1nero.tcrcore.network.packet.clientbound.PlayTitlePacket;
-import com.p1nero.tcrcore.utils.WorldUtil;
+import com.p1nero.tcrcore.utils.WorldUtils;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket;
 import net.minecraft.network.protocol.game.ClientboundSoundPacket;
@@ -60,8 +60,8 @@ public class TutorialGolem extends IronGolem {
     public void tick() {
         super.tick();
         if (!level().isClientSide) {
-            if (this.distanceToSqr(WorldUtil.GOLEM_CENTER_POS_VEC3) > 70 * 70) {
-                Vec3 dir = WorldUtil.GOLEM_CENTER_POS_VEC3.subtract(this.position()).normalize();
+            if (this.distanceToSqr(WorldUtils.GOLEM_CENTER_POS_VEC3) > 70 * 70) {
+                Vec3 dir = WorldUtils.GOLEM_CENTER_POS_VEC3.subtract(this.position()).normalize();
                 Vec3 targetPos = this.position().add(dir.scale(30));
                 this.getNavigation().moveTo(targetPos.x, targetPos.y, targetPos.z, 1.0F);
             }

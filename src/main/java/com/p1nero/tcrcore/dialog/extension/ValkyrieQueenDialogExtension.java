@@ -12,7 +12,7 @@ import com.p1nero.dialog_lib.client.screen.builder.StreamDialogueScreenBuilder;
 import com.p1nero.tcr_bosses.entity.TCRBossEntities;
 import com.p1nero.tcr_bosses.entity.custom.aether.valkyrie.ValkyrieQueenEntity;
 import com.p1nero.tcrcore.TCRCoreMod;
-import com.p1nero.tcrcore.utils.ItemUtil;
+import com.p1nero.tcrcore.utils.ItemUtils;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
@@ -70,7 +70,7 @@ public class ValkyrieQueenDialogExtension implements IEntityDialogueExtension<Va
     @Override
     public void handleNpcInteraction(ValkyrieQueenEntity valkyrieQueenEntity, ServerPlayer serverPlayer, int i) {
         if(i == 1) {
-            ItemUtil.searchAndConsumeItem(serverPlayer,AetherItems.VICTORY_MEDAL.get(), 10);
+            ItemUtils.searchAndConsumeItem(serverPlayer,AetherItems.VICTORY_MEDAL.get(), 10);
             valkyrieQueenEntity.setInFighting(true);
             valkyrieQueenEntity.setFightDelay(61);
             valkyrieQueenEntity.getTags().add("started");

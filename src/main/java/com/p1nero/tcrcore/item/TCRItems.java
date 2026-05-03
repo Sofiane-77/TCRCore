@@ -10,8 +10,8 @@ import com.p1nero.tcrcore.capability.TCRQuestManager;
 import com.p1nero.tcrcore.capability.TCRQuests;
 import com.p1nero.tcrcore.compat.JourneyMapCompat;
 import com.p1nero.tcrcore.item.custom.*;
-import com.p1nero.tcrcore.utils.XaeroWaypointUtil;
-import com.p1nero.tcrcore.utils.WorldUtil;
+import com.p1nero.tcrcore.utils.XaeroWaypointUtils;
+import com.p1nero.tcrcore.utils.WorldUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.network.chat.Component;
@@ -56,15 +56,15 @@ public class TCRItems {
     public static final RegistryObject<Item> RETRACEMENT_STONE = REGISTRY.register("retracement_stone", () -> new RetracementStoneItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
 
     public static final RegistryObject<Item> LAND_RESONANCE_STONE = REGISTRY.register("land_resonance_stone",
-            () -> new LandResonanceStoneItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant(), ResourceLocation.parse(WorldUtil.LAND_GOLEM), ResonanceStoneItem.SURFACE, Level.OVERWORLD, (serverPlayer) ->
+            () -> new LandResonanceStoneItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant(), ResourceLocation.parse(WorldUtils.LAND_GOLEM), ResonanceStoneItem.SURFACE, Level.OVERWORLD, (serverPlayer) ->
                     TCRQuestManager.hasQuest(serverPlayer, TCRQuests.USE_LAND_RESONANCE_STONE) || serverPlayer.isCreative(),
                     ((pos, serverPlayer) -> {
                         if (pos != null) {
                             if (TCRCoreMod.isXaeroMapLoaded()) {
-                                XaeroWaypointUtil.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", ModItems.DESERT_EYE.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtil.LAND_GOLEM)))), pos, WaypointColor.YELLOW);
+                                XaeroWaypointUtils.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", ModItems.DESERT_EYE.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtils.LAND_GOLEM)))), pos, WaypointColor.YELLOW);
                             }
                             if (TCRCoreMod.isJourneyMapLoaded()) {
-                                JourneyMapCompat.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", ModItems.DESERT_EYE.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtil.LAND_GOLEM)))), pos, ChatFormatting.YELLOW);
+                                JourneyMapCompat.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", ModItems.DESERT_EYE.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtils.LAND_GOLEM)))), pos, ChatFormatting.YELLOW);
                             }
                             TCRQuests.USE_LAND_RESONANCE_STONE.finish(serverPlayer, true);
                             TCRQuests.GET_DESERT_EYE.start(serverPlayer);
@@ -73,15 +73,15 @@ public class TCRItems {
     );
 
     public static final RegistryObject<Item> OCEAN_RESONANCE_STONE = REGISTRY.register("ocean_resonance_stone",
-            () -> new OceanResonanceStoneItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant(), ResourceLocation.parse(WorldUtil.OCEAN_GOLEM), 63, Level.OVERWORLD, (serverPlayer) ->
+            () -> new OceanResonanceStoneItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant(), ResourceLocation.parse(WorldUtils.OCEAN_GOLEM), 63, Level.OVERWORLD, (serverPlayer) ->
                     TCRQuestManager.hasQuest(serverPlayer, TCRQuests.USE_OCEAN_RESONANCE_STONE) || serverPlayer.isCreative(),
                     ((pos, serverPlayer) ->
                     {
                         if (TCRCoreMod.isXaeroMapLoaded()) {
-                            XaeroWaypointUtil.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", ModItems.ABYSS_EYE.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtil.OCEAN_GOLEM)))), pos, WaypointColor.BLUE);
+                            XaeroWaypointUtils.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", ModItems.ABYSS_EYE.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtils.OCEAN_GOLEM)))), pos, WaypointColor.BLUE);
                         }
                         if (TCRCoreMod.isJourneyMapLoaded()) {
-                            JourneyMapCompat.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", ModItems.ABYSS_EYE.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtil.OCEAN_GOLEM)))), pos, ChatFormatting.BLUE);
+                            JourneyMapCompat.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", ModItems.ABYSS_EYE.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtils.OCEAN_GOLEM)))), pos, ChatFormatting.BLUE);
                         }
                         TCRQuests.USE_OCEAN_RESONANCE_STONE.finish(serverPlayer, true);
                         TCRQuests.GET_OCEAN_EYE.start(serverPlayer);
@@ -89,12 +89,12 @@ public class TCRItems {
     );
 
     public static final RegistryObject<Item> CURSED_RESONANCE_STONE = REGISTRY.register("cursed_resonance_stone",
-            () -> new ResonanceStoneItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant(), ResourceLocation.parse(WorldUtil.AQUAMIRAE_SHIP_STRUCTURE), 63, Level.OVERWORLD, (serverPlayer) ->
+            () -> new ResonanceStoneItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant(), ResourceLocation.parse(WorldUtils.AQUAMIRAE_SHIP_STRUCTURE), 63, Level.OVERWORLD, (serverPlayer) ->
                     TCRQuestManager.hasQuest(serverPlayer, TCRQuests.USE_CURSED_RESONANCE_STONE) || serverPlayer.isCreative(),
                     ((pos, serverPlayer) ->
                     {
                         if (TCRCoreMod.isXaeroMapLoaded()) {
-                            XaeroWaypointUtil.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", ModItems.CURSED_EYE.get().getDescription(), Component.translatable("structure.aquamirae.ice_maze")), pos, WaypointColor.DARK_GREEN);
+                            XaeroWaypointUtils.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", ModItems.CURSED_EYE.get().getDescription(), Component.translatable("structure.aquamirae.ice_maze")), pos, WaypointColor.DARK_GREEN);
                         }
                         if (TCRCoreMod.isJourneyMapLoaded()) {
                             JourneyMapCompat.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", ModItems.CURSED_EYE.get().getDescription(), Component.translatable("structure.aquamirae.ice_maze")), pos, ChatFormatting.DARK_GREEN);
@@ -105,15 +105,15 @@ public class TCRItems {
     );
 
     public static final RegistryObject<Item> CORE_RESONANCE_STONE = REGISTRY.register("core_resonance_stone",
-            () -> new ResonanceStoneItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant(), ResourceLocation.parse(WorldUtil.CORE_GOLEM), -56, Level.OVERWORLD, (serverPlayer) ->
+            () -> new ResonanceStoneItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant(), ResourceLocation.parse(WorldUtils.CORE_GOLEM), -56, Level.OVERWORLD, (serverPlayer) ->
                     TCRQuestManager.hasQuest(serverPlayer, TCRQuests.USE_CORE_RESONANCE_STONE) || serverPlayer.isCreative(),
                     ((pos, serverPlayer) ->
                     {
                         if (TCRCoreMod.isXaeroMapLoaded()) {
-                            XaeroWaypointUtil.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", ModItems.FLAME_EYE.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtil.CORE_GOLEM)))), pos, WaypointColor.RED);
+                            XaeroWaypointUtils.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", ModItems.FLAME_EYE.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtils.CORE_GOLEM)))), pos, WaypointColor.RED);
                         }
                         if (TCRCoreMod.isJourneyMapLoaded()) {
-                            JourneyMapCompat.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", ModItems.FLAME_EYE.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtil.CORE_GOLEM)))), pos, ChatFormatting.RED);
+                            JourneyMapCompat.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", ModItems.FLAME_EYE.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtils.CORE_GOLEM)))), pos, ChatFormatting.RED);
                         }
                         TCRQuests.USE_CORE_RESONANCE_STONE.finish(serverPlayer, true);
                         TCRQuests.GET_FLAME_EYE.start(serverPlayer);
@@ -123,38 +123,38 @@ public class TCRItems {
     public static final RegistryObject<Item> NETHER_RESONANCE_STONE = REGISTRY.register("nether_resonance_stone",
             () -> new MultiResonanceStoneItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant(),
                     //地狱傀儡位置
-                    List.of(new MultiResonanceStoneItem.TargetProperties(ResourceLocation.parse(WorldUtil.NETHER_GOLEM), 35, Level.NETHER, (serverPlayer) ->
+                    List.of(new MultiResonanceStoneItem.TargetProperties(ResourceLocation.parse(WorldUtils.NETHER_GOLEM), 35, Level.NETHER, (serverPlayer) ->
                             TCRQuestManager.hasQuest(serverPlayer, TCRQuests.USE_NETHER_RESONANCE_STONE) || serverPlayer.isCreative(),
                             ((pos, serverPlayer) ->
                             {
                                 if (TCRCoreMod.isXaeroMapLoaded()) {
-                                    XaeroWaypointUtil.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", ModItems.MONSTROUS_EYE.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtil.NETHER_GOLEM)))), pos, WaypointColor.DARK_RED);
+                                    XaeroWaypointUtils.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", ModItems.MONSTROUS_EYE.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtils.NETHER_GOLEM)))), pos, WaypointColor.DARK_RED);
                                 }
                                 if (TCRCoreMod.isJourneyMapLoaded()) {
-                                    JourneyMapCompat.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", ModItems.MONSTROUS_EYE.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtil.NETHER_GOLEM)))), pos, ChatFormatting.DARK_RED);
+                                    JourneyMapCompat.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", ModItems.MONSTROUS_EYE.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtils.NETHER_GOLEM)))), pos, ChatFormatting.DARK_RED);
                                 }
                             }))
                             , //地狱钥匙位置1魔法城堡
-                            new MultiResonanceStoneItem.TargetProperties(ResourceLocation.parse(WorldUtil.NETHER_KEY_1), 35, Level.NETHER, (serverPlayer) ->
+                            new MultiResonanceStoneItem.TargetProperties(ResourceLocation.parse(WorldUtils.NETHER_KEY_1), 35, Level.NETHER, (serverPlayer) ->
                             TCRQuestManager.hasQuest(serverPlayer, TCRQuests.USE_NETHER_RESONANCE_STONE) || serverPlayer.isCreative(),
                             ((pos, serverPlayer) ->
                             {
                                 if (TCRCoreMod.isXaeroMapLoaded()) {
-                                    XaeroWaypointUtil.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", BTItems.NETHER_MONOLITH_KEY.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtil.NETHER_KEY_1)))), pos, WaypointColor.DARK_RED);
+                                    XaeroWaypointUtils.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", BTItems.NETHER_MONOLITH_KEY.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtils.NETHER_KEY_1)))), pos, WaypointColor.DARK_RED);
                                 }
                                 if (TCRCoreMod.isJourneyMapLoaded()) {
-                                    JourneyMapCompat.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", BTItems.NETHER_MONOLITH_KEY.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtil.NETHER_KEY_1)))), pos, ChatFormatting.DARK_RED);
+                                    JourneyMapCompat.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", BTItems.NETHER_MONOLITH_KEY.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtils.NETHER_KEY_1)))), pos, ChatFormatting.DARK_RED);
                                 }
                                 //地狱钥匙位置2地狱堡垒
-                            })), new MultiResonanceStoneItem.TargetProperties(ResourceLocation.parse(WorldUtil.NETHER_KEY_2), 35, Level.NETHER, (serverPlayer) ->
+                            })), new MultiResonanceStoneItem.TargetProperties(ResourceLocation.parse(WorldUtils.NETHER_KEY_2), 35, Level.NETHER, (serverPlayer) ->
                             TCRQuestManager.hasQuest(serverPlayer, TCRQuests.USE_NETHER_RESONANCE_STONE) || serverPlayer.isCreative(),
                             ((pos, serverPlayer) ->
                             {
                                 if (TCRCoreMod.isXaeroMapLoaded()) {
-                                    XaeroWaypointUtil.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", BTItems.NETHER_MONOLITH_KEY.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtil.NETHER_KEY_2)))), pos, WaypointColor.DARK_RED);
+                                    XaeroWaypointUtils.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", BTItems.NETHER_MONOLITH_KEY.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtils.NETHER_KEY_2)))), pos, WaypointColor.DARK_RED);
                                 }
                                 if (TCRCoreMod.isJourneyMapLoaded()) {
-                                    JourneyMapCompat.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", BTItems.NETHER_MONOLITH_KEY.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtil.NETHER_KEY_2)))), pos, ChatFormatting.DARK_RED);
+                                    JourneyMapCompat.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", BTItems.NETHER_MONOLITH_KEY.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtils.NETHER_KEY_2)))), pos, ChatFormatting.DARK_RED);
                                 }
                             }))
                     ),
@@ -170,39 +170,39 @@ public class TCRItems {
     public static final RegistryObject<Item> SKY_RESONANCE_STONE = REGISTRY.register("sky_resonance_stone",
             () -> new MultiResonanceStoneItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant(),
                     //天域傀儡位置
-                    List.of(new MultiResonanceStoneItem.TargetProperties(ResourceLocation.parse(WorldUtil.SKY_GOLEM), 160, AetherDimensions.AETHER_LEVEL, (serverPlayer) ->
+                    List.of(new MultiResonanceStoneItem.TargetProperties(ResourceLocation.parse(WorldUtils.SKY_GOLEM), 160, AetherDimensions.AETHER_LEVEL, (serverPlayer) ->
                             TCRQuestManager.hasQuest(serverPlayer, TCRQuests.USE_AETHER_RESONANCE_STONE) || serverPlayer.isCreative(),
                             ((pos, serverPlayer) ->
                             {
                                 if (TCRCoreMod.isXaeroMapLoaded()) {
-                                    XaeroWaypointUtil.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", ModItems.STORM_EYE.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtil.SKY_GOLEM)))), pos, WaypointColor.AQUA);
+                                    XaeroWaypointUtils.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", ModItems.STORM_EYE.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtils.SKY_GOLEM)))), pos, WaypointColor.AQUA);
                                 }
                                 if (TCRCoreMod.isJourneyMapLoaded()) {
-                                    JourneyMapCompat.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", ModItems.STORM_EYE.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtil.SKY_GOLEM)))), pos, ChatFormatting.AQUA);
+                                    JourneyMapCompat.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", ModItems.STORM_EYE.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtils.SKY_GOLEM)))), pos, ChatFormatting.AQUA);
                                 }
 
                             }))
                             //天域钥匙位置1
-                            , new MultiResonanceStoneItem.TargetProperties(ResourceLocation.parse(WorldUtil.AETHER_KEY_1), ResonanceStoneItem.SURFACE, AetherDimensions.AETHER_LEVEL, (serverPlayer) ->
+                            , new MultiResonanceStoneItem.TargetProperties(ResourceLocation.parse(WorldUtils.AETHER_KEY_1), ResonanceStoneItem.SURFACE, AetherDimensions.AETHER_LEVEL, (serverPlayer) ->
                             TCRQuestManager.hasQuest(serverPlayer, TCRQuests.USE_AETHER_RESONANCE_STONE) || serverPlayer.isCreative(),
                             ((pos, serverPlayer) ->
                             {
                                 if (TCRCoreMod.isXaeroMapLoaded()) {
-                                    XaeroWaypointUtil.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", BTItems.SKY_MONOLITH_KEY.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtil.AETHER_KEY_1)))), pos, WaypointColor.AQUA);
+                                    XaeroWaypointUtils.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", BTItems.SKY_MONOLITH_KEY.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtils.AETHER_KEY_1)))), pos, WaypointColor.AQUA);
                                 }
                                 if (TCRCoreMod.isJourneyMapLoaded()) {
-                                    JourneyMapCompat.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", BTItems.SKY_MONOLITH_KEY.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtil.AETHER_KEY_1)))), pos, ChatFormatting.AQUA);
+                                    JourneyMapCompat.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", BTItems.SKY_MONOLITH_KEY.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtils.AETHER_KEY_1)))), pos, ChatFormatting.AQUA);
                                 }
                                 //天域钥匙位置2
-                            })), new MultiResonanceStoneItem.TargetProperties(ResourceLocation.parse(WorldUtil.AETHER_KEY_2), 100, AetherDimensions.AETHER_LEVEL, (serverPlayer) ->
+                            })), new MultiResonanceStoneItem.TargetProperties(ResourceLocation.parse(WorldUtils.AETHER_KEY_2), 100, AetherDimensions.AETHER_LEVEL, (serverPlayer) ->
                             TCRQuestManager.hasQuest(serverPlayer, TCRQuests.USE_AETHER_RESONANCE_STONE) || serverPlayer.isCreative(),
                             ((pos, serverPlayer) ->
                             {
                                 if (TCRCoreMod.isXaeroMapLoaded()) {
-                                    XaeroWaypointUtil.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", BTItems.SKY_MONOLITH_KEY.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtil.AETHER_KEY_2)))), pos, WaypointColor.AQUA);
+                                    XaeroWaypointUtils.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", BTItems.SKY_MONOLITH_KEY.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtils.AETHER_KEY_2)))), pos, WaypointColor.AQUA);
                                 }
                                 if (TCRCoreMod.isJourneyMapLoaded()) {
-                                    JourneyMapCompat.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", BTItems.SKY_MONOLITH_KEY.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtil.AETHER_KEY_2)))), pos, ChatFormatting.AQUA);
+                                    JourneyMapCompat.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", BTItems.SKY_MONOLITH_KEY.get().getDescription(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtils.AETHER_KEY_2)))), pos, ChatFormatting.AQUA);
                                 }
                             }))
                     ),
@@ -216,15 +216,15 @@ public class TCRItems {
     );
 
     public static final RegistryObject<Item> END_RESONANCE_STONE = REGISTRY.register("end_resonance_stone",
-            () -> new ResonanceStoneItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant(), ResourceLocation.parse(WorldUtil.STRONG_HOLD), ResonanceStoneItem.SURFACE, Level.OVERWORLD, (serverPlayer) ->
+            () -> new ResonanceStoneItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant(), ResourceLocation.parse(WorldUtils.STRONG_HOLD), ResonanceStoneItem.SURFACE, Level.OVERWORLD, (serverPlayer) ->
                     TCRQuestManager.hasQuest(serverPlayer, TCRQuests.USE_END_RESONANCE_STONE) || serverPlayer.isCreative(),
                     ((pos, serverPlayer) ->
                     {
                         if (TCRCoreMod.isXaeroMapLoaded()) {
-                            XaeroWaypointUtil.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", Blocks.END_PORTAL.getName(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtil.STRONG_HOLD)))), pos, WaypointColor.PURPLE);
+                            XaeroWaypointUtils.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", Blocks.END_PORTAL.getName(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtils.STRONG_HOLD)))), pos, WaypointColor.PURPLE);
                         }
                         if (TCRCoreMod.isJourneyMapLoaded()) {
-                            JourneyMapCompat.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", Blocks.END_PORTAL.getName(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtil.STRONG_HOLD)))), pos, ChatFormatting.DARK_PURPLE);
+                            JourneyMapCompat.sendWaypoint(serverPlayer, "eye_pos_mark", TCRCoreMod.getInfo("eye_pos_mark", Blocks.END_PORTAL.getName(), Component.translatable(Util.makeDescriptionId("structure", ResourceLocation.parse(WorldUtils.STRONG_HOLD)))), pos, ChatFormatting.DARK_PURPLE);
                         }
                         TCRQuests.USE_END_RESONANCE_STONE.finish(serverPlayer, true);
                         TCRQuests.GO_TO_THE_END.start(serverPlayer);

@@ -35,7 +35,7 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class WorldUtil {
+public class WorldUtils {
     //维度翻译名
     public static final MutableComponent REAL_NAME = Component.translatable("travelerstitles.tcrcore.real");
     public static final MutableComponent SANCTUM_NAME = Component.translatable("travelerstitles.tcrcore.sanctum");

@@ -1,7 +1,7 @@
 package com.p1nero.tcrcore.mixin.epicfight;
 
 import com.p1nero.tcrcore.utils.ISSUtils;
-import com.p1nero.tcrcore.utils.ItemUtil;
+import com.p1nero.tcrcore.utils.ItemUtils;
 import io.redspace.ironsspellbooks.api.magic.MagicData;
 import io.redspace.ironsspellbooks.api.magic.SpellSelectionManager;
 import io.redspace.ironsspellbooks.api.spells.CastType;
@@ -15,7 +15,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import yesman.epicfight.api.animation.AnimationPlayer;
-import yesman.epicfight.api.animation.Animator;
 import yesman.epicfight.skill.BasicAttack;
 import yesman.epicfight.skill.SkillContainer;
 
@@ -26,7 +25,7 @@ public class BasicAttackMixin {
     private void tcr$executeOnServer(SkillContainer skillContainer, FriendlyByteBuf args, CallbackInfo ci) {
         ServerPlayer serverPlayer = skillContainer.getServerExecutor().getOriginal();
         //触发魔纹技能
-        if(ItemUtil.isBetterMagicWeaponItems(serverPlayer.getMainHandItem())) {
+        if(ItemUtils.isBetterMagicWeaponItems(serverPlayer.getMainHandItem())) {
             boolean dashAttack = serverPlayer.isSprinting();
             boolean airAttack = !serverPlayer.onGround() && !serverPlayer.isInWater();
             //仅限冲刺和跳跃攻击可以

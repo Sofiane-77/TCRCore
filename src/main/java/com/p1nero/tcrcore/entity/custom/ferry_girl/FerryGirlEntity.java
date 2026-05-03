@@ -17,8 +17,8 @@ import com.p1nero.tcrcore.events.OverworldVillageTeleporter;
 import com.p1nero.tcrcore.events.PlayerEventListeners;
 import com.p1nero.tcrcore.item.TCRItems;
 import com.p1nero.tcrcore.utils.FTBTeamUtils;
-import com.p1nero.tcrcore.utils.ItemUtil;
-import com.p1nero.tcrcore.utils.WorldUtil;
+import com.p1nero.tcrcore.utils.ItemUtils;
+import com.p1nero.tcrcore.utils.WorldUtils;
 import net.blay09.mods.waystones.block.ModBlocks;
 import net.genzyuro.uniqueaccessories.item.UAUniqueCurioItem;
 import net.genzyuro.uniqueaccessories.registry.UAItems;
@@ -26,7 +26,6 @@ import net.magister.bookofdragons.entity.ModEntities;
 import net.magister.bookofdragons.entity.base.dragon.DragonBase;
 import net.magister.bookofdragons.entity.data.DragonVariantConfig;
 import net.magister.bookofdragons.event.DragonDiscoveryEventHandler;
-import net.magister.bookofdragons.genetics.GeneticsCrossover;
 import net.magister.bookofdragons.genetics.GeneticsSpawner;
 import net.magister.bookofdragons.genetics.config.SpeciesGeneticsConfig;
 import net.magister.bookofdragons.genetics.config.SpeciesGeneticsConfigRegistry;
@@ -47,7 +46,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
@@ -107,8 +105,8 @@ public class FerryGirlEntity extends PathfinderMob implements IEntityNpc, GeoEnt
         if (!level().isClientSide) {
             if (tickCount % 100 == 0) {
                 BlockPos myPos = this.getOnPos();
-                if (myPos.getX() != WorldUtil.FERRY_GIRL_POS.getX() || myPos.getZ() != WorldUtil.FERRY_GIRL_POS.getZ()) {
-                    this.setPos(new BlockPos(WorldUtil.FERRY_GIRL_POS).getCenter());
+                if (myPos.getX() != WorldUtils.FERRY_GIRL_POS.getX() || myPos.getZ() != WorldUtils.FERRY_GIRL_POS.getZ()) {
+                    this.setPos(new BlockPos(WorldUtils.FERRY_GIRL_POS).getCenter());
                 }
             }
             if (getConversingPlayer() != null && (getConversingPlayer().isRemoved() || getConversingPlayer().isDeadOrDying() || getConversingPlayer().distanceTo(this) > 5)) {
@@ -349,9 +347,9 @@ public class FerryGirlEntity extends PathfinderMob implements IEntityNpc, GeoEnt
                     member.serverLevel().addFreshEntity(babyDragon);
                     this.level().playSound(null, this.blockPosition(), SoundEvents.TURTLE_EGG_HATCH, SoundSource.NEUTRAL, 1.0F, 1.0F);
                 }
-                ItemUtil.addItemEntity(member, ModItems.BOOK_OF_DRAGONS.get().getDefaultInstance());
-                ItemUtil.addItemEntity(member, TCRItems.DRAGON_FLUTE.get().getDefaultInstance());
-                ItemUtil.addItemEntity(member, ModItems.RATTLE_STAFF.get().getDefaultInstance());
+                ItemUtils.addItemEntity(member, ModItems.BOOK_OF_DRAGONS.get().getDefaultInstance());
+                ItemUtils.addItemEntity(member, TCRItems.DRAGON_FLUTE.get().getDefaultInstance());
+                ItemUtils.addItemEntity(member, ModItems.RATTLE_STAFF.get().getDefaultInstance());
             });
             TCRQuests.TAME_DRAGON.start(serverPlayer, false);
             PlayerDataManager.ferryGirlGiftGet.put(serverPlayer, true);
@@ -360,8 +358,8 @@ public class FerryGirlEntity extends PathfinderMob implements IEntityNpc, GeoEnt
         //将龙养大
         if(i == 10) {
             FTBTeamUtils.onlineTeamMembersDoWithSelf(serverPlayer, member -> {
-                ItemUtil.addItemEntity(member, Items.SADDLE.getDefaultInstance());
-                ItemUtil.addItemEntity(member, DIItemRegistry.COLLAR_TAG.get().getDefaultInstance());
+                ItemUtils.addItemEntity(member, Items.SADDLE.getDefaultInstance());
+                ItemUtils.addItemEntity(member, DIItemRegistry.COLLAR_TAG.get().getDefaultInstance());
             });
             TCRQuests.TAME_DRAGON_BACK_TO_FERRY_GIRL.finish(serverPlayer);
         }

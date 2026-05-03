@@ -1,7 +1,7 @@
 package com.p1nero.tcrcore.events;
 
 import com.p1nero.tcrcore.save_data.TCRMainLevelSaveData;
-import com.p1nero.tcrcore.utils.WorldUtil;
+import com.p1nero.tcrcore.utils.WorldUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
@@ -21,9 +21,9 @@ public class OverworldVillageTeleporter implements ITeleporter {
 
         BlockPos targetPos = BlockPos.ZERO;
         if(TCRMainLevelSaveData.get(destWorld).getVillagePos().equals(BlockPos.ZERO)){
-            Vec2i villagePos = WorldUtil.getNearbyStructurePos(destWorld, newEntity.position(), VILLAGE);
+            Vec2i villagePos = WorldUtils.getNearbyStructurePos(destWorld, newEntity.position(), VILLAGE);
             if(villagePos != null) {
-                targetPos = WorldUtil.getSurfaceBlockPos(destWorld, villagePos.x, villagePos.y);
+                targetPos = WorldUtils.getSurfaceBlockPos(destWorld, villagePos.x, villagePos.y);
                 TCRMainLevelSaveData.get(destWorld).setVillagePos(targetPos);
             }
         } else {

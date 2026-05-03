@@ -32,7 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class EntityUtil {
+public class EntityUtils {
 
     public static boolean hasNonCreativeOrSpectator(ServerLevel targetLevel) {
         if(targetLevel.players().isEmpty()) {

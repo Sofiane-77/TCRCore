@@ -6,16 +6,11 @@ import com.p1nero.dialog_lib.client.screen.builder.StreamDialogueScreenBuilder;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.client.sound.TCRSounds;
 import com.p1nero.tcrcore.entity.custom.fake_npc.FakeNPCEntity;
-import com.p1nero.tcrcore.utils.EntityUtil;
-import com.p1nero.tcrcore.utils.WorldUtil;
-import com.yesman.epicskills.registry.entry.EpicSkillsSounds;
+import com.p1nero.tcrcore.utils.WorldUtils;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -54,7 +49,7 @@ public class FakeBossNpc extends FakeNPCEntity {
             }
         }
         if(tickCount < 60) {
-            this.getLookControl().setLookAt(new BlockPos(WorldUtil.BED_POS).above(1).getCenter());
+            this.getLookControl().setLookAt(new BlockPos(WorldUtils.BED_POS).above(1).getCenter());
         }
     }
 

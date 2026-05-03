@@ -1,16 +1,24 @@
 package com.p1nero.tcrcore.utils;
 
+import com.p1nero.dpr.DodgeParryRewardMod;
 import com.p1nero.fast_tpa.network.PacketRelay;
 import com.p1nero.tcrcore.TCRCoreMod;
+import com.p1nero.tcrcore.capability.PlayerDataManager;
 import com.p1nero.tcrcore.capability.TCRCapabilityProvider;
 import com.p1nero.tcrcore.capability.TCRPlayer;
 import com.p1nero.tcrcore.capability.TCRQuestManager;
+import com.p1nero.tcrcore.gameassets.TCRSkills;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
 import com.p1nero.tcrcore.network.packet.clientbound.RefreshClientQuestsPacket;
+import com.yesman.epicskills.registry.entry.EpicSkillsSkillTrees;
+import com.yesman.epicskills.skilltree.SkillTree;
 import dev.ftb.mods.ftbteams.api.FTBTeamsAPI;
 import dev.ftb.mods.ftbteams.api.Team;
 import net.minecraft.ChatFormatting;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.p1nero.ss.gameassets.skills.FlyingSkills;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
@@ -66,15 +74,15 @@ public class FTBTeamUtils {
         return syncDataFromTeam(serverPlayer, getTeam(serverPlayer));
     }
 
-    public static boolean syncDataFromTeam(ServerPlayer serverPlayer, Team team) {
-        if(serverPlayer == null || team == null) {
+    public static boolean syncDataFromTeam(ServerPlayer newComer, Team team) {
+        if(newComer == null || team == null) {
             return false;
         }
-        TCRPlayer tcrPlayer = TCRCapabilityProvider.getTCRPlayer(serverPlayer);
+        TCRPlayer tcrPlayer = TCRCapabilityProvider.getTCRPlayer(newComer);
         if(!team.getOnlineMembers().isEmpty()) {
             ServerPlayer oldPlayer = null;
             for (ServerPlayer onlineMember : team.getOnlineMembers()) {
-                if(onlineMember != serverPlayer) {
+                if(onlineMember != newComer) {
                     oldPlayer = onlineMember;
                     break;
                 }
@@ -82,12 +90,44 @@ public class FTBTeamUtils {
             if(oldPlayer == null) {
                 return false;
             }
+
+            //处理后入队的没解锁某技能的问题
+            if(PlayerDataManager.fireAvoidUnlocked.get(oldPlayer) && !PlayerDataManager.fireAvoidUnlocked.get(newComer)) {
+                EFUtils.unlockSkillOnSkillTree(newComer, ResourceLocation.fromNamespaceAndPath(DodgeParryRewardMod.MOD_ID, "passive"), TCRSkills.FIRE_AVOID);
+            }
+            if(!PlayerDataManager.fireAvoidUnlocked.get(oldPlayer) && PlayerDataManager.fireAvoidUnlocked.get(newComer)) {
+                onlineTeamMembersDoWithSelf(oldPlayer, member -> {
+                    EFUtils.unlockSkillOnSkillTree(member, ResourceLocation.fromNamespaceAndPath(DodgeParryRewardMod.MOD_ID, "passive"), TCRSkills.FIRE_AVOID);
+                });
+            }
+            ResourceKey<SkillTree> waterTree = ResourceKey.create(SkillTree.SKILL_TREE_REGISTRY_KEY, ResourceLocation.fromNamespaceAndPath(DodgeParryRewardMod.MOD_ID, "passive"));
+            if(PlayerDataManager.waterAvoidUnlocked.get(oldPlayer) && !PlayerDataManager.waterAvoidUnlocked.get(newComer)) {
+                EFUtils.unlockSkillOnSkillTree(newComer, waterTree, TCRSkills.WATER_AVOID);
+            }
+            if(!PlayerDataManager.waterAvoidUnlocked.get(oldPlayer) && PlayerDataManager.waterAvoidUnlocked.get(newComer)) {
+                onlineTeamMembersDoWithSelf(oldPlayer, member -> {
+                    EFUtils.unlockSkillOnSkillTree(member, waterTree, TCRSkills.WATER_AVOID);
+                });
+            }
+            if(PlayerDataManager.swordSoaringUnlocked.get(oldPlayer) && !PlayerDataManager.swordSoaringUnlocked.get(newComer)) {
+                EFUtils.unlockSkillOnSkillTree(newComer, EpicSkillsSkillTrees.BATTLEBORN, FlyingSkills.SWORD_SOARING_ELYTRA_MASTER);
+                EFUtils.unlockSkillOnSkillTree(newComer, EpicSkillsSkillTrees.BATTLEBORN, FlyingSkills.SWORD_SOARING_MASTER);
+            }
+            if(!PlayerDataManager.swordSoaringUnlocked.get(oldPlayer) && PlayerDataManager.swordSoaringUnlocked.get(newComer)) {
+                onlineTeamMembersDoWithSelf(oldPlayer, member -> {
+                    EFUtils.unlockSkillOnSkillTree(member, EpicSkillsSkillTrees.BATTLEBORN, FlyingSkills.SWORD_SOARING_ELYTRA_MASTER);
+                    EFUtils.unlockSkillOnSkillTree(member, EpicSkillsSkillTrees.BATTLEBORN, FlyingSkills.SWORD_SOARING_MASTER);
+                });
+            }
+
+            //播报给被覆盖的
             ServerPlayer toBroadcast;
             if(tcrPlayer.copyFromFTBTeamMember(oldPlayer)) {
-                toBroadcast = serverPlayer;
+                toBroadcast = newComer;
             } else {
                 toBroadcast = oldPlayer;
             }
+
             toBroadcast.displayClientMessage(TCRCoreMod.getInfo("team_progress_synced").withStyle(ChatFormatting.GOLD), false);
             TCRQuestManager.ensureQuest(toBroadcast);
             tcrPlayer.syncToClient(toBroadcast);

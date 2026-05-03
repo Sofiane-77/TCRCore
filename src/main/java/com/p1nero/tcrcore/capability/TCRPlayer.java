@@ -8,10 +8,10 @@ import com.p1nero.tcrcore.entity.custom.mimic.TCRMimic;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
 import com.p1nero.tcrcore.network.packet.clientbound.OpenEndScreenPacket;
 import com.p1nero.tcrcore.network.packet.clientbound.SyncTCRPlayerPacket;
-import com.p1nero.tcrcore.utils.EntityUtil;
+import com.p1nero.tcrcore.utils.EntityUtils;
 import com.p1nero.tcrcore.utils.FTBTeamUtils;
-import com.p1nero.tcrcore.utils.ItemUtil;
-import com.p1nero.tcrcore.utils.WorldUtil;
+import com.p1nero.tcrcore.utils.ItemUtils;
+import com.p1nero.tcrcore.utils.WorldUtils;
 import com.yesman.epicskills.registry.entry.EpicSkillsItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
@@ -297,11 +297,11 @@ public class TCRPlayer {
      */
     private void handleUpdateNearestQuest(ServerPlayer serverPlayer) {
         if(serverPlayer.tickCount % 10 == 0) {
-            if(WorldUtil.inMainLand(serverPlayer)) {
-                trySearchNearestQuest(WorldUtil.AINE_BLOCK_POS, serverPlayer);
-                trySearchNearestQuest(WorldUtil.ORNN_BLOCK_POS, serverPlayer);
-                trySearchNearestQuest(WorldUtil.CHRONOS_SOL_BLOCK_POS, serverPlayer);
-                trySearchNearestQuest(WorldUtil.FERRY_GIRL_BLOCK_POS, serverPlayer);
+            if(WorldUtils.inMainLand(serverPlayer)) {
+                trySearchNearestQuest(WorldUtils.AINE_BLOCK_POS, serverPlayer);
+                trySearchNearestQuest(WorldUtils.ORNN_BLOCK_POS, serverPlayer);
+                trySearchNearestQuest(WorldUtils.CHRONOS_SOL_BLOCK_POS, serverPlayer);
+                trySearchNearestQuest(WorldUtils.FERRY_GIRL_BLOCK_POS, serverPlayer);
             }
         }
     }
@@ -313,7 +313,7 @@ public class TCRPlayer {
                 for (TCRQuestManager.Quest quest : TCRQuestManager.getQuests(serverPlayer)) {
                     if(quest.getTrackingPos() != null && quest.getTrackingPos().closerThan(targetPos, 5)) {
                         TCRQuestManager.setCurrentQuest(serverPlayer, quest);
-                        EntityUtil.playLocalSound(serverPlayer, SoundEvents.EXPERIENCE_ORB_PICKUP);
+                        EntityUtils.playLocalSound(serverPlayer, SoundEvents.EXPERIENCE_ORB_PICKUP);
                         serverPlayer.displayClientMessage(TCRCoreMod.getInfo("quest_updated").withStyle(ChatFormatting.GOLD), true);
                         break;
                     }
@@ -529,10 +529,10 @@ public class TCRPlayer {
                 if (oldAdder < healthAdder) {
                     updateHealth(serverPlayer, true, oldAdder);
                     FTBTeamUtils.syncDataToTeamMembers(serverPlayer);
-                    ItemUtil.addItemEntity(serverPlayer, EpicSkillsItems.ABILIITY_STONE.get(), 2, ChatFormatting.GOLD.getColor());
+                    ItemUtils.addItemEntity(serverPlayer, EpicSkillsItems.ABILIITY_STONE.get(), 2, ChatFormatting.GOLD.getColor());
                     FTBTeamUtils.onlineTeamMembersDo(serverPlayer, member -> {
                         TCRCapabilityProvider.getTCRPlayer(member).updateHealth(member, true, 0);
-                        ItemUtil.addItemEntity(member, EpicSkillsItems.ABILIITY_STONE.get(), 2, ChatFormatting.GOLD.getColor());
+                        ItemUtils.addItemEntity(member, EpicSkillsItems.ABILIITY_STONE.get(), 2, ChatFormatting.GOLD.getColor());
                     });
                     if(TCRQuestManager.hasQuest(serverPlayer, TCRQuests.BLESS_ON_THE_GODNESS_STATUE)){
                         TCRQuests.BLESS_ON_THE_GODNESS_STATUE.finish(serverPlayer, true);

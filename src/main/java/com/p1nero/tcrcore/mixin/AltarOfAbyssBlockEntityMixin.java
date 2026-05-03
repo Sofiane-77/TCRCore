@@ -3,7 +3,7 @@ package com.p1nero.tcrcore.mixin;
 import com.github.L_Ender.cataclysm.blockentities.AltarOfAbyss_Block_Entity;
 import com.github.L_Ender.cataclysm.init.ModItems;
 import com.p1nero.tcrcore.TCRCoreMod;
-import com.p1nero.tcrcore.utils.EntityUtil;
+import com.p1nero.tcrcore.utils.EntityUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
@@ -25,7 +25,7 @@ public abstract class AltarOfAbyssBlockEntityMixin extends BaseContainerBlockEnt
     @Inject(method = "setItem", at = @At("HEAD"))
     private void tcr$setItem(int index, ItemStack stack, CallbackInfo ci) {
         if(!stack.is(ModItems.ABYSSAL_SACRIFICE.get()) && this.level != null) {
-            EntityUtil.nearPlayerDo(this.level, this.getBlockPos().getCenter(), 5, (player -> {
+            EntityUtils.nearPlayerDo(this.level, this.getBlockPos().getCenter(), 5, (player -> {
                 player.displayClientMessage(TCRCoreMod.getInfo("require_item_to_wake", ModItems.ABYSSAL_SACRIFICE.get().getDescription()).withStyle(ChatFormatting.LIGHT_PURPLE), true);
             }));
         }

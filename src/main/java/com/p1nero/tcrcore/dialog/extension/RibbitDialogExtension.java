@@ -17,7 +17,7 @@ import com.p1nero.tcrcore.gameassets.TCRSkills;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
 import com.p1nero.tcrcore.network.packet.clientbound.PlayTitlePacket;
 import com.p1nero.tcrcore.utils.FTBTeamUtils;
-import com.p1nero.tcrcore.utils.ItemUtil;
+import com.p1nero.tcrcore.utils.ItemUtils;
 import com.yesman.epicskills.skilltree.SkillTree;
 import com.yesman.epicskills.world.capability.SkillTreeProgression;
 import com.yungnickyoung.minecraft.ribbits.entity.RibbitEntity;
@@ -117,7 +117,8 @@ public class RibbitDialogExtension implements IEntityDialogueExtension<RibbitEnt
             TCRQuests.GIVE_AMETHYST_BLOCK_TO_RIBBITS.finish(serverPlayer, true);
             serverPlayer.getMainHandItem().shrink(12);
             FTBTeamUtils.onlineTeamMembersDoWithSelf(serverPlayer, (player -> {
-                ItemUtil.addItemEntity(player, artifacts.registry.ModItems.CHARM_OF_SINKING.get(), 1);
+                ItemUtils.addItemEntity(player, artifacts.registry.ModItems.CHARM_OF_SINKING.get(), 1);
+
                 player.getCapability(SkillTreeProgression.SKILL_TREE_PROGRESSION).ifPresent(skillTreeProgression -> {
                     ResourceKey<SkillTree> resourceKey = ResourceKey.create(SkillTree.SKILL_TREE_REGISTRY_KEY, ResourceLocation.fromNamespaceAndPath(DodgeParryRewardMod.MOD_ID, "passive"));
                     skillTreeProgression.unlockTree(resourceKey, player);

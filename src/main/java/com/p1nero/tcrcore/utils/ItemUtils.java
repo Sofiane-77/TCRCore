@@ -29,7 +29,7 @@ import java.util.function.Predicate;
  * @author P1nero
  * 做一些通用的物品栏处理
 */
-public class ItemUtil {
+public class ItemUtils {
 
     public static Set<Item> additionalInfoItems = new HashSet<>();
     public static Set<Item> eyesItems = new HashSet<>();

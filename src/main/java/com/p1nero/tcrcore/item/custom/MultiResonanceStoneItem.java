@@ -3,18 +3,14 @@ package com.p1nero.tcrcore.item.custom;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.TCRCapabilityProvider;
 import com.p1nero.tcrcore.capability.TCRPlayer;
-import com.p1nero.tcrcore.utils.FTBTeamUtils;
-import com.p1nero.tcrcore.utils.WorldUtil;
+import com.p1nero.tcrcore.utils.WorldUtils;
 import com.yesman.epicskills.registry.entry.EpicSkillsSounds;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.locale.Language;
-import net.minecraft.network.chat.ClickEvent;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.ComponentUtils;
-import net.minecraft.network.chat.HoverEvent;
 import net.minecraft.network.protocol.game.ClientboundSoundPacket;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -118,7 +114,7 @@ public class MultiResonanceStoneItem extends Item {
                 // 2. 搜索结构位置
                 BlockPos pos = null;
                 try {
-                    pos = WorldUtil.getNearbyStructurePos(serverPlayer, prop.targetStructure.toString(), prop.y, prop.ignoreFounded);
+                    pos = WorldUtils.getNearbyStructurePos(serverPlayer, prop.targetStructure.toString(), prop.y, prop.ignoreFounded);
                 } catch (Exception e) {
                     TCRCoreMod.LOGGER.error("TCRCore : Error finding structure [{}]: ", prop.targetStructure, e);
                     player.displayClientMessage(TCRCoreMod.getInfo("resonance_search_failed", prop.targetStructure).withStyle(ChatFormatting.RED), false);
@@ -134,7 +130,7 @@ public class MultiResonanceStoneItem extends Item {
 
                 // 3. 处理Y坐标（表面修正）
                 if (prop.y == ResonanceStoneItem.SURFACE) {
-                    pos = WorldUtil.getSurfaceBlockPos(serverPlayer.serverLevel(), pos);
+                    pos = WorldUtils.getSurfaceBlockPos(serverPlayer.serverLevel(), pos);
                 }
 
                 foundPositions.add(pos);

@@ -4,12 +4,11 @@ import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.entity.TCREntities;
 import com.p1nero.tcrcore.save_data.TCRMainLevelSaveData;
 import com.p1nero.tcrcore.utils.DimensionResourceCopier;
-import com.p1nero.tcrcore.utils.WorldUtil;
+import com.p1nero.tcrcore.utils.WorldUtils;
 import com.p1nero.tcrcore.worldgen.TCRDimensions;
 import net.blay09.mods.waystones.block.ModBlocks;
 import net.blay09.mods.waystones.block.WaystoneBlock;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.MobSpawnType;
@@ -18,7 +17,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.event.server.ServerAboutToStartEvent;
-import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.loading.FMLPaths;
@@ -39,7 +37,7 @@ public class ServerEvents {
     @SubscribeEvent
     public static void onWorldLoad(LevelEvent.CreateSpawnPosition e) {
         if (e.getLevel() instanceof ServerLevel serverLevel && serverLevel.dimension() == TCRDimensions.SANCTUM_LEVEL_KEY) {
-            serverLevel.setDefaultSpawnPos(new BlockPos(WorldUtil.START_POS), 1.0F);
+            serverLevel.setDefaultSpawnPos(new BlockPos(WorldUtils.START_POS), 1.0F);
             e.setCanceled(true);
         }
     }
@@ -50,13 +48,13 @@ public class ServerEvents {
             //懒得重新搞地图了
             TCRMainLevelSaveData tcrMainLevelSaveData = TCRMainLevelSaveData.get(serverLevel);
             if(!tcrMainLevelSaveData.isNPCPlaced()) {
-                TCREntities.FERRY_GIRL.get().spawn(serverLevel, new BlockPos(WorldUtil.FERRY_GIRL_POS), MobSpawnType.SPAWNER);
-                TCREntities.CHRONOS_SOL.get().spawn(serverLevel, new BlockPos(WorldUtil.CHRONOS_SOL_BLOCK_POS), MobSpawnType.SPAWNER);
-                TCREntities.AINE.get().spawn(serverLevel, new BlockPos(WorldUtil.AINE_POS), MobSpawnType.SPAWNER);
-                TCREntities.ORNN.get().spawn(serverLevel, new BlockPos(WorldUtil.ORNN_POS), MobSpawnType.SPAWNER);
-                TCREntities.TUTORIAL_HUMANOID.get().spawn(serverLevel, new BlockPos(WorldUtil.GOLEM_CENTER_POS_VEC3I).above(5), MobSpawnType.SPAWNER);
-                serverLevel.setBlock(new BlockPos(WorldUtil.FERRY_GIRL_PORTAL_POS), ModBlocks.waystone.defaultBlockState(), 3);
-                serverLevel.setBlock(new BlockPos(WorldUtil.FERRY_GIRL_PORTAL_POS).above(), ModBlocks.waystone.defaultBlockState().setValue(WaystoneBlock.HALF, DoubleBlockHalf.UPPER), 3);
+                TCREntities.FERRY_GIRL.get().spawn(serverLevel, new BlockPos(WorldUtils.FERRY_GIRL_POS), MobSpawnType.SPAWNER);
+                TCREntities.CHRONOS_SOL.get().spawn(serverLevel, new BlockPos(WorldUtils.CHRONOS_SOL_BLOCK_POS), MobSpawnType.SPAWNER);
+                TCREntities.AINE.get().spawn(serverLevel, new BlockPos(WorldUtils.AINE_POS), MobSpawnType.SPAWNER);
+                TCREntities.ORNN.get().spawn(serverLevel, new BlockPos(WorldUtils.ORNN_POS), MobSpawnType.SPAWNER);
+                TCREntities.TUTORIAL_HUMANOID.get().spawn(serverLevel, new BlockPos(WorldUtils.GOLEM_CENTER_POS_VEC3I).above(5), MobSpawnType.SPAWNER);
+                serverLevel.setBlock(new BlockPos(WorldUtils.FERRY_GIRL_PORTAL_POS), ModBlocks.waystone.defaultBlockState(), 3);
+                serverLevel.setBlock(new BlockPos(WorldUtils.FERRY_GIRL_PORTAL_POS).above(), ModBlocks.waystone.defaultBlockState().setValue(WaystoneBlock.HALF, DoubleBlockHalf.UPPER), 3);
                 tryHandleLight(serverLevel);
                 tcrMainLevelSaveData.setNPCPlaced(true);
             }

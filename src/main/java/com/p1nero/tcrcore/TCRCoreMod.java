@@ -10,8 +10,6 @@ import com.p1nero.p1nero_ec.PEpicCataclysmMod;
 import com.p1nero.tcr_bosses.entity.TCRBossEntities;
 import com.p1nero.tcrcore.block.TCRBlocks;
 import com.p1nero.tcrcore.block.entity.TCRBlockEntities;
-import com.p1nero.tcrcore.capability.TCRCapabilityProvider;
-import com.p1nero.tcrcore.capability.TCRPlayer;
 import com.p1nero.tcrcore.capability.TCRQuestManager;
 import com.p1nero.tcrcore.client.sound.TCRSounds;
 import com.p1nero.tcrcore.effect.TCREffects;
@@ -22,8 +20,8 @@ import com.p1nero.tcrcore.gameassets.TCRSkillSlots;
 import com.p1nero.tcrcore.item.TCRItemTabs;
 import com.p1nero.tcrcore.item.TCRItems;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
-import com.p1nero.tcrcore.utils.ItemUtil;
-import com.p1nero.tcrcore.utils.WorldUtil;
+import com.p1nero.tcrcore.utils.ItemUtils;
+import com.p1nero.tcrcore.utils.WorldUtils;
 import com.p1nero.tcrcore.worldgen.TCRStructures;
 import com.wintercogs.beyonddimensions.common.init.BDItems;
 import dev.ftb.mods.ftbteams.api.event.TeamEvent;
@@ -120,31 +118,31 @@ public class TCRCoreMod {
                     ModEntities.DEEPLING.get()
             ));
 
-            ItemUtil.initAdditionalInfoItems();
+            ItemUtils.initAdditionalInfoItems();
 
-            PEpicCataclysmMod.astrapeLock = TCRCoreMod.getInfo("pec_weapon_lock", WorldUtil.SAMSARA_NAME,
+            PEpicCataclysmMod.astrapeLock = TCRCoreMod.getInfo("pec_weapon_lock", WorldUtils.SAMSARA_NAME,
                     TCRBossEntities.SCYLLA_HUMANOID.get().getDescription().copy().withStyle(ChatFormatting.AQUA)).withStyle(ChatFormatting.RED);
-            PEpicCataclysmMod.ceraunusLock = TCRCoreMod.getInfo("pec_weapon_lock", WorldUtil.SAMSARA_NAME,
+            PEpicCataclysmMod.ceraunusLock = TCRCoreMod.getInfo("pec_weapon_lock", WorldUtils.SAMSARA_NAME,
                     TCRBossEntities.SCYLLA_HUMANOID.get().getDescription().copy().withStyle(ChatFormatting.AQUA)).withStyle(ChatFormatting.RED);
 
-            PEpicCataclysmMod.dualAnnihilatorLock = TCRCoreMod.getInfo("pec_weapon_lock", WorldUtil.SAMSARA_NAME,
+            PEpicCataclysmMod.dualAnnihilatorLock = TCRCoreMod.getInfo("pec_weapon_lock", WorldUtils.SAMSARA_NAME,
                     TCRBossEntities.MALEDICTUS_HUMANOID.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN)).withStyle(ChatFormatting.RED);
-            PEpicCataclysmMod.soulRenderLock = TCRCoreMod.getInfo("pec_weapon_lock", WorldUtil.SAMSARA_NAME,
+            PEpicCataclysmMod.soulRenderLock = TCRCoreMod.getInfo("pec_weapon_lock", WorldUtils.SAMSARA_NAME,
                     TCRBossEntities.MALEDICTUS_HUMANOID.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN)).withStyle(ChatFormatting.RED);
 
-            PEpicCataclysmMod.gauntletOfGuardLock = TCRCoreMod.getInfo("pec_weapon_lock", WorldUtil.SAMSARA_NAME,
+            PEpicCataclysmMod.gauntletOfGuardLock = TCRCoreMod.getInfo("pec_weapon_lock", WorldUtils.SAMSARA_NAME,
                     TCRBossEntities.ENDER_GUARDIAN_HUMANOID.get().getDescription().copy().withStyle(ChatFormatting.DARK_PURPLE)).withStyle(ChatFormatting.RED);
 
-            PEpicCataclysmMod.infernalForgeLock = TCRCoreMod.getInfo("pec_weapon_lock", WorldUtil.SAMSARA_NAME,
+            PEpicCataclysmMod.infernalForgeLock = TCRCoreMod.getInfo("pec_weapon_lock", WorldUtils.SAMSARA_NAME,
                     TCRBossEntities.NETHERITE_HUMANOID.get().getDescription().copy().withStyle(ChatFormatting.DARK_RED)).withStyle(ChatFormatting.RED);
 
-            PEpicCataclysmMod.tidalClawLock = TCRCoreMod.getInfo("pec_weapon_lock", WorldUtil.SAMSARA_NAME,
+            PEpicCataclysmMod.tidalClawLock = TCRCoreMod.getInfo("pec_weapon_lock", WorldUtils.SAMSARA_NAME,
                     TCRBossEntities.LEVIATHAN_HUMANOID.get().getDescription().copy().withStyle(ChatFormatting.LIGHT_PURPLE)).withStyle(ChatFormatting.RED);
 
-            PEpicCataclysmMod.wrathOfTheDesertLock = TCRCoreMod.getInfo("pec_weapon_lock", WorldUtil.SAMSARA_NAME,
+            PEpicCataclysmMod.wrathOfTheDesertLock = TCRCoreMod.getInfo("pec_weapon_lock", WorldUtils.SAMSARA_NAME,
                     TCRBossEntities.ANCIENT_REMNANT_HUMANOID.get().getDescription().copy().withStyle(ChatFormatting.YELLOW)).withStyle(ChatFormatting.RED);
 
-            PEpicCataclysmMod.theIncineratorLock = TCRCoreMod.getInfo("pec_weapon_lock", WorldUtil.SAMSARA_NAME,
+            PEpicCataclysmMod.theIncineratorLock = TCRCoreMod.getInfo("pec_weapon_lock", WorldUtils.SAMSARA_NAME,
                     TCRBossEntities.IGNIS_HUMANOID.get().getDescription().copy().withStyle(ChatFormatting.RED)).withStyle(ChatFormatting.RED);
 
             TeamEvent.PLAYER_CHANGED.register(PlayerEventListeners::onPlayerTeamChanged);

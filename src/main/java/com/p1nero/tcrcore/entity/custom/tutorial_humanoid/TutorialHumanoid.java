@@ -2,7 +2,7 @@ package com.p1nero.tcrcore.entity.custom.tutorial_humanoid;
 
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.entity.custom.tutorial_golem.TutorialGolem;
-import com.p1nero.tcrcore.utils.WorldUtil;
+import com.p1nero.tcrcore.utils.WorldUtils;
 import net.kenddie.fantasyarmor.item.FAArmorItems;
 import net.kenddie.fantasyarmor.item.armor.FAArmorSet;
 import net.minecraft.server.level.ServerPlayer;
@@ -76,8 +76,8 @@ public class TutorialHumanoid extends PathfinderMob {
             this.setItemSlot(EquipmentSlot.FEET, FAArmorItems.getArmorItem(FAArmorSet.TWINNED, ArmorItem.Type.BOOTS).get().getDefaultInstance());
         }
         if(!level().isClientSide) {
-            if(this.distanceToSqr(WorldUtil.GOLEM_CENTER_POS_VEC3) > 70 * 70) {
-                Vec3 dir = WorldUtil.GOLEM_CENTER_POS_VEC3.subtract(this.position()).normalize();
+            if(this.distanceToSqr(WorldUtils.GOLEM_CENTER_POS_VEC3) > 70 * 70) {
+                Vec3 dir = WorldUtils.GOLEM_CENTER_POS_VEC3.subtract(this.position()).normalize();
                 Vec3 targetPos = this.position().add(dir.scale(30));
                 this.getNavigation().moveTo(targetPos.x, targetPos.y, targetPos.z, 1.0F);
             }

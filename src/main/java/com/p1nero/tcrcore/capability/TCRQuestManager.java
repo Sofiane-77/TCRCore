@@ -5,7 +5,7 @@ import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
 import com.p1nero.tcrcore.network.packet.clientbound.RefreshClientQuestsPacket;
 import com.p1nero.tcrcore.utils.FTBTeamUtils;
-import com.p1nero.tcrcore.utils.XaeroWaypointUtil;
+import com.p1nero.tcrcore.utils.XaeroWaypointUtils;
 import dev.ftb.mods.ftbteams.api.Team;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -123,7 +123,7 @@ public class TCRQuestManager {
         //大地图标点，仅大地图可见
         if(quest.getTrackingPos() != null && quest.getDimension().equals(player.level().dimension())) {
             if(TCRCoreMod.isXaeroMapLoaded()) {
-                XaeroWaypointUtil.sendWaypoint(player, TCRCoreMod.getInfoKey("quest_map_mark"), quest.getTrackingPos(), WaypointColor.GOLD, WaypointVisibilityType.WORLD_MAP_LOCAL);
+                XaeroWaypointUtils.sendWaypoint(player, TCRCoreMod.getInfoKey("quest_map_mark"), quest.getTrackingPos(), WaypointColor.GOLD, WaypointVisibilityType.WORLD_MAP_LOCAL);
             }
         }
     }
@@ -175,7 +175,7 @@ public class TCRQuestManager {
         //移除大地图标点
         if(quest.getTrackingPos() != null && quest.getDimension().equals(player.level().dimension())) {
             if(TCRCoreMod.isXaeroMapLoaded()) {
-                XaeroWaypointUtil.removeWaypoint(player, TCRCoreMod.getInfoKey("quest_map_mark"), quest.getTrackingPos());
+                XaeroWaypointUtils.removeWaypoint(player, TCRCoreMod.getInfoKey("quest_map_mark"), quest.getTrackingPos());
             }
         }
         playFinishSound(player, quest);

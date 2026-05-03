@@ -3,8 +3,7 @@ package com.p1nero.tcrcore.item.custom;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.TCRCapabilityProvider;
 import com.p1nero.tcrcore.capability.TCRPlayer;
-import com.p1nero.tcrcore.utils.FTBTeamUtils;
-import com.p1nero.tcrcore.utils.WorldUtil;
+import com.p1nero.tcrcore.utils.WorldUtils;
 import com.yesman.epicskills.registry.entry.EpicSkillsSounds;
 import net.minecraft.ChatFormatting;
 import net.minecraft.Util;
@@ -34,7 +33,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
 import java.util.function.Predicate;
 
@@ -78,7 +76,7 @@ public class ResonanceStoneItem extends Item {
                 serverPlayer.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(EpicSkillsSounds.GAIN_ABILITY_POINTS.get()), SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextInt()));
                 BlockPos pos = null;
                 try {
-                    pos = WorldUtil.getNearbyStructurePos(serverPlayer, targetStructure.toString(), y, ignoreFounded);
+                    pos = WorldUtils.getNearbyStructurePos(serverPlayer, targetStructure.toString(), y, ignoreFounded);
                 } catch (Exception e) {
                     TCRCoreMod.LOGGER.error("TCRCore : Error finding structure [{}]: ", targetStructure, e);
                     player.displayClientMessage(TCRCoreMod.getInfo("resonance_search_failed", targetStructure).withStyle(ChatFormatting.RED), false);
@@ -86,7 +84,7 @@ public class ResonanceStoneItem extends Item {
                 }
                 if(pos != null) {
                     if(y == SURFACE) {
-                        pos = WorldUtil.getSurfaceBlockPos(serverPlayer.serverLevel(), pos);
+                        pos = WorldUtils.getSurfaceBlockPos(serverPlayer.serverLevel(), pos);
                     }
                     TCRPlayer tcrPlayer = TCRCapabilityProvider.getTCRPlayer(player);
                     tcrPlayer.playDirectionParticle(player.getEyePosition(), new Vec3(pos.getX(), player.getEyeY(), pos.getZ()));
@@ -124,7 +122,7 @@ public class ResonanceStoneItem extends Item {
     }
 
     public static void handleNoXaeroMap(Component prefix, BlockPos pos, ServerPlayer serverPlayer) {
-        String s = pos.getY() == ResonanceStoneItem.SURFACE ? String.valueOf(WorldUtil.getSurfaceBlockPos(serverPlayer.serverLevel(), pos.getX(), pos.getZ()).getY()) : String.valueOf(pos.getY());
+        String s = pos.getY() == ResonanceStoneItem.SURFACE ? String.valueOf(WorldUtils.getSurfaceBlockPos(serverPlayer.serverLevel(), pos.getX(), pos.getZ()).getY()) : String.valueOf(pos.getY());
         s = " " + s + " ";
         String finalS = s;
         Component location = ComponentUtils.wrapInSquareBrackets(Component.translatable("chat.coordinates", pos.getX(), s, pos.getZ()))

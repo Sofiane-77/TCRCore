@@ -1,8 +1,6 @@
 package com.p1nero.tcrcore.mixin;
 
-import com.p1nero.tcrcore.capability.TCRQuestManager;
-import com.p1nero.tcrcore.capability.TCRQuests;
-import com.p1nero.tcrcore.utils.WorldUtil;
+import com.p1nero.tcrcore.utils.WorldUtils;
 import com.p1nero.tcrcore.worldgen.TCRDimensions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -28,11 +26,11 @@ public class BedBlockMixin {
 
     @Inject(method = "use", at = @At("HEAD"), cancellable = true)
     private void tcr$use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand hand, BlockHitResult hitResult, CallbackInfoReturnable<InteractionResult> cir) {
-        if (WorldUtil.inReal(player)) {
+        if (WorldUtils.inReal(player)) {
             if (player instanceof ServerPlayer serverPlayer) {
                 ServerLevel sanctum = serverPlayer.server.getLevel(TCRDimensions.SANCTUM_LEVEL_KEY);
                 if (sanctum != null) {
-                    player.changeDimension(sanctum, new PositionTeleporter(new BlockPos(WorldUtil.START_POS)));
+                    player.changeDimension(sanctum, new PositionTeleporter(new BlockPos(WorldUtils.START_POS)));
                 }
             }
             cir.setReturnValue(InteractionResult.sidedSuccess(level.isClientSide));

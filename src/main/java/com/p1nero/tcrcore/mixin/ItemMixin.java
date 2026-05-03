@@ -1,6 +1,6 @@
 package com.p1nero.tcrcore.mixin;
 
-import com.p1nero.tcrcore.utils.ItemUtil;
+import com.p1nero.tcrcore.utils.ItemUtils;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
@@ -19,7 +19,7 @@ public abstract class ItemMixin {
 
     @Inject(method = {"getName", "m_7626_"}, at = @At("RETURN"), cancellable = true, remap = false)
     private void tcr$getDesc(ItemStack itemStack, CallbackInfoReturnable<Component> cir){
-        if(ItemUtil.eyesItems.contains((Item) (Object) this)){
+        if(ItemUtils.eyesItems.contains((Item) (Object) this)){
             cir.setReturnValue(cir.getReturnValue().copy().withStyle(ChatFormatting.GOLD));
         }
     }
