@@ -62,6 +62,11 @@ public abstract class CaptainCorneliaMixin extends Monster {
 
     @Inject(method = "doHurtTarget(Lnet/minecraft/world/entity/Entity;)Z", at = @At("HEAD"), cancellable = true)
     private void tcr$doHurtTarget(Entity entity, CallbackInfoReturnable<Boolean> cir) {
+        //亡语太傻福了
+        if(this.isDeadOrDying()) {
+            cir.setReturnValue(false);
+            return;
+        }
         if (entity instanceof LivingEntity living) {
             Item item = this.getMainHandItem().getItem();
 
