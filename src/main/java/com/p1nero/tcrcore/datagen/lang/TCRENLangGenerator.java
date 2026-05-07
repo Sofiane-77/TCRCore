@@ -321,6 +321,8 @@ public class TCRENLangGenerator extends TCRLangProvider {
         this.add(TCRItems.MAGIC_GREATSWORD.get(), "Ninehold");
         this.add(TCRItems.MAGIC_SPEAR.get(), "Heavenrend");
 
+        this.addInfo("possible_loot", "Possible Rewards:");
+        this.addInfo("ocean_tower_breaking", "Ocean Tower is answering the Abyss... Please wait.");
         this.addInfo("team_progress_synced", "Team progress synced!");
         this.addInfo("only_team_leader_can_use", "To prevent progress error, only the team leader can use it!");
         this.addInfo("pet_respawn", "Player death detected, [%s] has respawned in sanctum...");

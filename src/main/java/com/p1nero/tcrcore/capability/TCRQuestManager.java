@@ -1,5 +1,6 @@
 package com.p1nero.tcrcore.capability;
 
+import com.google.common.collect.ImmutableList;
 import com.p1nero.fast_tpa.network.PacketRelay;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.network.TCRPacketHandler;
@@ -19,6 +20,8 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 import xaero.common.minimap.waypoints.WaypointVisibilityType;
@@ -226,6 +229,7 @@ public class TCRQuestManager {
         private BlockPos trackingPos;
         private ResourceKey<Level> dimension;
         private SoundEvent finishSound;
+        private List<ItemStack> rewards = null;
 
         //id统一管理
         private Quest(int id, String key) {
@@ -316,6 +320,11 @@ public class TCRQuestManager {
             return id;
         }
 
+        @Nullable
+        public List<ItemStack> getRewards() {
+            return rewards;
+        }
+
         public Quest withFinishSound(SoundEvent sound) {
             this.finishSound = sound;
             return this;
@@ -329,6 +338,16 @@ public class TCRQuestManager {
         public Quest withTrackingPos(BlockPos trackingPos, ResourceKey<Level> dimension) {
             this.trackingPos = trackingPos;
             this.dimension = dimension;
+            return this;
+        }
+
+        public Quest withRewards(Item... items) {
+            this.rewards = Arrays.stream(items).map(Item::getDefaultInstance).toList();
+            return this;
+        }
+
+        public Quest withRewards(ItemStack... itemStack) {
+            this.rewards = List.of(itemStack);
             return this;
         }
 

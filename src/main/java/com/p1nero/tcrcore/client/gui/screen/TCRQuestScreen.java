@@ -15,6 +15,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.FormattedCharSequence;
 import net.minecraft.util.Mth;
+import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -42,6 +43,8 @@ public class TCRQuestScreen extends Screen {
     private static final int ENTRY_PADDING = 4;
     private static final int ICON_SIZE = 20;
     private static final int BOTTOM_AREA_HEIGHT = 48;
+
+    private static final Component possibleLoot = TCRCoreMod.getInfo("possible_loot");
 
     private int listX0;
     private int listX1;
@@ -499,6 +502,10 @@ public class TCRQuestScreen extends Screen {
             guiGraphics.drawString(font, line, x, y, descColor, false);
             y += font.lineHeight + 1;
         }
+
+        List<ItemStack> rewards = uiSelectedQuest.getRewards();
+
+        //TODO 请你补全绘制，在合适的地方画一句possibleLoot，然后在下面按顺序画出rewards的图标。图标边上可以画个小方框
     }
 
     private void drawNineSlice(GuiGraphics guiGraphics, ResourceLocation texture, int x, int y, int width, int height, int border, int textureWidth, int textureHeight) {

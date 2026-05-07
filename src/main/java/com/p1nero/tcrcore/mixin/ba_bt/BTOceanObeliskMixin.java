@@ -6,6 +6,7 @@ import com.brass_amber.ba_bt.util.BTStatics;
 import com.brass_amber.ba_bt.util.BTUtil;
 import com.brass_amber.ba_bt.util.GolemType;
 import com.google.common.collect.ImmutableList;
+import com.p1nero.tcrcore.TCRCoreMod;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -49,6 +50,11 @@ public abstract class BTOceanObeliskMixin extends BTAbstractObelisk  {
             BTUtil.doNoOutputCommand(this, "/kill @e[distance=0..100,type=item]");
         } else {
             this.generationState = BTAbstractObelisk.GenerationState.ADD_AREA_FEATURES;
+        }
+        if(this.tickCount % 10 == 0) {
+            level().players().forEach(player -> {
+                player.displayClientMessage(TCRCoreMod.getInfo("ocean_tower_breaking"), true);
+            });
         }
         ci.cancel();
     }

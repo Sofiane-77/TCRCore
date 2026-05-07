@@ -319,6 +319,8 @@ public class TCRZHLangGenerator extends TCRLangProvider {
         this.add(TCRItems.MAGIC_GREATSWORD.get(), "镇九州");
         this.add(TCRItems.MAGIC_SPEAR.get(), "贯长空");
 
+        this.addInfo("possible_loot", "可能获得的奖励：");
+        this.addInfo("ocean_tower_breaking", "海洋塔正在响应深渊呼唤，请等待...");
         this.addInfo("team_progress_synced", "团队进度同步！");
         this.addInfo("only_team_leader_can_use", "为了防止进度混乱，仅队长可以使用！");
         this.addInfo("pet_respawn", "检测到玩家死亡，[%s] 已在主城重生...");

@@ -35,7 +35,7 @@ public class CustomQuestOverlayRenderer implements IGuiOverlay {
     private static final int FADE_DURATION = 30; // 30 ticks = 1.5 seconds
     private static Component lastQuestShortDesc = Component.empty();
     private static Component lastQuestTitle = Component.empty();
-    private static Component hintText = Component.literal("按 %s 键查看任务列表。");
+    private static Component hintText = null;
     private static int x;
     private static int y;
     private static int textX;
@@ -88,7 +88,9 @@ public class CustomQuestOverlayRenderer implements IGuiOverlay {
         // Calculate alpha based on game time with partialTick interpolation
         timeSinceStateChange = currentTime - fadeStartTime;
         hasQuest = TCRQuestManager.hasQuest(localPlayer);
-        hintText = TCRCoreMod.getInfo("press_to_show_quest_ui", TCRKeyMappings.SHOW_QUESTS.getTranslatedKeyMessage().copy().withStyle(ChatFormatting.GOLD));
+        if(hintText == null) {
+            hintText = TCRCoreMod.getInfo("press_to_show_quest_ui", TCRKeyMappings.SHOW_QUESTS.getTranslatedKeyMessage().copy().withStyle(ChatFormatting.GOLD));
+        }
         // Handle state changes
         if (hasQuest != lastHasQuest) {
             fadeStartTime = currentTime;
@@ -164,7 +166,9 @@ public class CustomQuestOverlayRenderer implements IGuiOverlay {
         guiGraphics.pose().pushPose();
         guiGraphics.pose().translate((float) x + 2, textY + 14, 0);
         guiGraphics.pose().scale(0.7F, 0.7F, 0.7F);
-        guiGraphics.drawString(minecraft.font, hintText, 0, 0, hintTextColor, true);
+        if(hintText != null) {
+            guiGraphics.drawString(minecraft.font, hintText, 0, 0, hintTextColor, true);
+        }
         guiGraphics.pose().popPose();
 
         // Reset color
