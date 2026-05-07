@@ -29,6 +29,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -67,7 +68,7 @@ public class TCRPlayer {
     private final int particleCount = 20;
     private Vec3 from = Vec3.ZERO;
     private Vec3 dir = Vec3.ZERO;
-    //===================
+    //=======任务系统===========
     private List<TCRQuestManager.Quest> currentQuests = new ArrayList<>();
     private List<Integer> finishedQuests = new ArrayList<>();
 
@@ -578,5 +579,4 @@ public class TCRPlayer {
             }
         }
     }
-
 }

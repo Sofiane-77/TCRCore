@@ -1,6 +1,5 @@
 package com.p1nero.tcrcore.save_data;
 
-import com.p1nero.tcrcore.worldgen.TCRDimensions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.MinecraftServer;
@@ -92,9 +91,9 @@ public class TCRMainLevelSaveData extends SavedData {
     }
 
     public static TCRMainLevelSaveData get(ServerLevel worldIn) {
-        ServerLevel world = worldIn.dimension() == TCRDimensions.SANCTUM_LEVEL_KEY ? worldIn : worldIn.getServer().getLevel(TCRDimensions.SANCTUM_LEVEL_KEY);
+        ServerLevel world = worldIn.dimension() == Level.OVERWORLD ? worldIn : worldIn.getServer().getLevel(Level.OVERWORLD);
         if(world == null) {
-            throw new IllegalStateException("主城维度丢失！请重新创建世界！Please recreate a new world!");
+            throw new IllegalStateException("主世界丢失？！请重新创建世界！Please recreate a new world!");
         }
         DimensionDataStorage dataStorage = world.getDataStorage();
         TCRMainLevelSaveData levelSaveData = dataStorage.computeIfAbsent(TCRMainLevelSaveData::decode, TCRMainLevelSaveData::create, TCRMainLevelSaveData.NAME);
@@ -104,9 +103,9 @@ public class TCRMainLevelSaveData extends SavedData {
 
 
     public static TCRMainLevelSaveData get(MinecraftServer server) {
-        ServerLevel world = server.getLevel(TCRDimensions.SANCTUM_LEVEL_KEY);
+        ServerLevel world = server.getLevel(Level.OVERWORLD);
         if(world == null) {
-            throw new IllegalStateException("主城维度丢失！请重新创建世界！Please recreate a new world!");
+            throw new IllegalStateException("主世界丢失？！请重新创建世界！Please recreate a new world!");
         }
         DimensionDataStorage dataStorage = world.getDataStorage();
         TCRMainLevelSaveData levelSaveData = dataStorage.computeIfAbsent(TCRMainLevelSaveData::decode, TCRMainLevelSaveData::create, TCRMainLevelSaveData.NAME);

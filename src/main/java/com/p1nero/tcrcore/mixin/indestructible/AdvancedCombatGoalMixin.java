@@ -4,6 +4,7 @@ import com.nameless.indestructible.world.ai.CombatBehaviors.WanderMotionSet;
 import com.nameless.indestructible.world.ai.goal.AdvancedCombatGoal;
 import com.nameless.indestructible.world.capability.Utils.IAdvancedCapability;
 import com.p1nero.tcr_bosses.entity.cataclysm.BaseBossEntity;
+import com.p1nero.tcr_bosses.entity.custom.BaseSmallBossEntity;
 import com.p1nero.tcrcore.utils.EntityUtils;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.monster.Enemy;
@@ -45,7 +46,7 @@ public class AdvancedCombatGoalMixin<T extends MobPatch<?>> {
     @Unique
     private boolean tcr$check() {
         List<Entity> list = EntityUtils.getNearByEntities(this.mobPatch.getOriginal(), 6);
-        if(this.mobPatch.getOriginal() instanceof BaseBossEntity) {
+        if(this.mobPatch.getOriginal() instanceof BaseSmallBossEntity) {
             return false;
         }
         if(list.stream().anyMatch(entity -> {

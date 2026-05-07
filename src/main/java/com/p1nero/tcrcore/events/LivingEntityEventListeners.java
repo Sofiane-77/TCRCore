@@ -26,6 +26,7 @@ import com.github.dodo.dodosmobs.entity.InternalAnimationMonster.IABossMonsters.
 import com.github.dodo.dodosmobs.init.ModEntities;
 import com.hm.efn.registries.EFNItem;
 import com.hm.efn.registries.EFNMobEffectRegistry;
+import com.nameless.indestructible.world.capability.AdvancedCustomHumanoidMobPatch;
 import com.p1nero.battle_field1.PBF1Mod;
 import com.p1nero.battle_field1.worldgen.PBF1Dimensions;
 import com.p1nero.cataclysm_dimension.worldgen.CataclysmDimensions;
@@ -117,6 +118,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.event.entity.EntityMountEvent;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -938,16 +940,28 @@ public class LivingEntityEventListeners {
         }
     }
 
+    @SubscribeEvent
+    public static void onLivingMount(EntityMountEvent event) {
+        if(!event.isCanceled() && event.isMounting() && !event.getEntity().level().isClientSide) {
+            if(event.getEntityMounting().getType().is(Tags.EntityTypes.BOSSES)) {
+                event.getEntityMounting().stopRiding();
+                if(!(event.getEntityBeingMounted() instanceof LivingEntity)) {
+                    event.getEntityBeingMounted().discard();
+                }
+            }
+        }
+    }
+
     public static Set<EntityType<?>> illegalEntityTypes = new HashSet<>();
 
     @SubscribeEvent
     public static void onLivingJoin(EntityJoinLevelEvent event) {
 
-        if (event.getEntity().level().isClientSide) {
+        if (event.getLevel().isClientSide) {
             return;
         }
 
-        ServerLevel serverLevel = (ServerLevel) event.getEntity().level();
+        ServerLevel serverLevel = ((ServerLevel) event.getLevel());
 
         UUID uuid = UUID.fromString("d4c3b2a1-f6e5-8b7a-0d9c-cba987654321");
 
@@ -957,22 +971,20 @@ public class LivingEntityEventListeners {
             return;
         }
 
-        if(!(event.getEntity() instanceof LivingEntity)) {
+        if(!(event.getEntity() instanceof LivingEntity livingEntity)) {
             return;
         }
 
-        LivingEntity livingEntity = ((LivingEntity) event.getEntity());
-
         //全局的设置
-        if(event.getEntity() instanceof LivingEntity living && !(living instanceof Player)) {
+        if(!(livingEntity instanceof Player)) {
             //处理多周目
             if(serverLevel.getServer().isSingleplayer() && TCRPlayer.SARDINE_COUNT > 0) {
-                handleNGPlus(living);
+                handleNGPlus(livingEntity);
             }
             //处理难度
             Difficulty difficulty = TCRMainLevelSaveData.get(serverLevel).getDifficulty();
             if(!difficulty.equals(Difficulty.NORMAL)) {
-                handleDifficulty(living, difficulty);
+                handleDifficulty(livingEntity, difficulty);
             }
         }
 
@@ -1165,6 +1177,8 @@ public class LivingEntityEventListeners {
 
     @SubscribeEvent
     public static void onLivingTick(LivingEvent.LivingTickEvent event) {
+        handleGroupTarget(event.getEntity());
+
         if (event.getEntity() instanceof EndGolem endGolem) {
             if (!endGolem.level().isClientSide) {
                 if (!TCREntityCapabilityProvider.getTCREntityPatch(endGolem).isFighting()) {
@@ -1175,6 +1189,40 @@ public class LivingEntityEventListeners {
             //凋零破坏方块
             if (witherBoss.tickCount > 0 && witherBoss.tickCount % 20 == 0) {
                 destroyBlocksNearby(witherBoss);
+            }
+        }
+    }
+
+    /**
+     * 简单暴力的群怪优化
+     */
+    public static void handleGroupTarget(LivingEntity living) {
+        if(living instanceof Mob mob) {
+            if(mob.getTarget() instanceof ServerPlayer serverPlayer) {
+                //不处理自己的人形怪
+                if(EpicFightCapabilities.getUnparameterizedEntityPatch(mob, AdvancedCustomHumanoidMobPatch.class).isPresent()) {
+                    return;
+                }
+                List<Entity> list = EntityUtils.getNearByEntities(mob, 16);
+                if(list.stream().anyMatch(entity -> {
+                    if(entity instanceof Mob mob1) {
+                        //不处理自己的人形怪
+                        if(EpicFightCapabilities.getUnparameterizedEntityPatch(mob1, AdvancedCustomHumanoidMobPatch.class).isPresent()) {
+                            return false;
+                        }
+                        if(serverPlayer == mob1.getTarget()) {
+                            return mob1.distanceTo(serverPlayer) < mob.distanceTo(serverPlayer);
+                        }
+                    }
+                    return false;
+                })) {
+                    //存在同目标且距离更近的，就退让
+                    mob.setTarget(null);
+                    if(mob.distanceTo(serverPlayer) < 5) {
+                        Vec3 dir = mob.position().subtract(serverPlayer.position()).normalize().scale(0.2);
+                        mob.setDeltaMovement(dir.x, mob.getDeltaMovement().y, dir.z);
+                    }
+                }
             }
         }
     }

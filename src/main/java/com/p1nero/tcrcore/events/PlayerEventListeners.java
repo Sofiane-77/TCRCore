@@ -172,6 +172,7 @@ public class PlayerEventListeners {
             if (!isNGPlus) {
                 serverPlayer.server.getGameRules().getRule(GameRules.RULE_KEEPINVENTORY).set(true, serverPlayer.server);
                 serverPlayer.server.getGameRules().getRule(GameRules.RULE_MOBGRIEFING).set(false, serverPlayer.server);
+                serverPlayer.server.getGameRules().getRule(GameRules.RULE_DISABLE_RAIDS).set(true, serverPlayer.server);
                 serverPlayer.server.getGameRules().getRule(EpicFightGameRules.SKILL_REPLACE_COOLDOWN.getRuleKey()).set(200, serverPlayer.server);
                 ServerPlayer finalServerPlayer = serverPlayer;
                 ResourceKey<SkillTree> dpr = ResourceKey.create(SkillTree.SKILL_TREE_REGISTRY_KEY, ResourceLocation.fromNamespaceAndPath("dodge_parry_reward", "passive"));

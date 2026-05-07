@@ -146,7 +146,7 @@
             "wom:saulomonk"
         ],
         "mincount": {
-            "amount": 6,
+            "amount": 2,
             "perplayer": true
         },
         "result": "deny"
@@ -156,7 +156,7 @@
             "wom:lycanth"
         ],
         "mincount": {
-            "amount": 3,
+            "amount": 2,
             "perplayer": true
         },
         "result": "deny"
