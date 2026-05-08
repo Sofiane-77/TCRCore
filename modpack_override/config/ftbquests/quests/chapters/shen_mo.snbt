@@ -455,30 +455,7 @@
 				value: 1L
 			}]
 			title: "{ftbquests.chapter.shen_mo.quest3507A660CAD8962F.title}"
-			x: -3.75d
-			y: -4.5d
-		}
-		{
-			dependencies: ["68EDC89BB022788B"]
-			id: "48244C835D24AF3B"
-			rewards: [{
-				count: 5
-				id: "5CEB5E90809843FF"
-				item: "epicskills:ability_stone"
-				type: "item"
-			}]
-			shape: "none"
-			size: 1.5d
-			subtitle: "{ftbquests.chapter.shen_mo.quest48244C835D24AF3B.subtitle}"
-			tasks: [{
-				entity: "epicfight_leonidas:leonidas"
-				icon: "epicfight_leonidas:the_lost_helmet"
-				id: "6F7ED27823087F4A"
-				type: "kill"
-				value: 1L
-			}]
-			title: "{ftbquests.chapter.shen_mo.quest48244C835D24AF3B.title}"
-			x: 4.5d
+			x: 0.0d
 			y: -4.5d
 		}
 		{

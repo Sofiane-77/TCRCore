@@ -5,6 +5,7 @@ import com.brass_amber.ba_bt.init.BTItems;
 import com.github.L_Ender.cataclysm.init.ModEntities;
 import com.github.L_Ender.cataclysm.init.ModItems;
 import com.github.alexthe668.domesticationinnovation.server.item.DIItemRegistry;
+import com.hm.efn.gameasset.EFNSkills;
 import com.hm.efn.registries.EFNItem;
 import com.p1nero.tcr_bosses.entity.TCRBossEntities;
 import com.p1nero.tcrcore.TCRCoreMod;
@@ -22,10 +23,13 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import org.merlin204.leonidas.entity.LeonidasEntities;
 import org.merlin204.leonidas.item.LeonidasItems;
+import yesman.epicfight.world.item.EpicFightItems;
+import yesman.epicfight.world.item.SkillBookItem;
 
 public class TCRQuests {
 
@@ -164,6 +168,7 @@ public class TCRQuests {
 
         KILL_DESERT_EYE = TCRQuestManager.create("kill_desert_eye")
                 .withIcon(SIDE_QUEST_1)
+                .withRewards(EpicSkillsItems.ABILIITY_STONE.get(), ModItems.WRATH_OF_THE_DESERT.get())
                 .shortDescParam(ModEntities.ANCIENT_REMNANT.get().getDescription().copy().withStyle(ChatFormatting.YELLOW))
                 .descParam(ModItems.DESERT_EYE.get().getDescription().copy().withStyle(ChatFormatting.YELLOW),
                         ModEntities.ANCIENT_REMNANT.get().getDescription().copy().withStyle(ChatFormatting.YELLOW),
@@ -171,6 +176,7 @@ public class TCRQuests {
                         ModEntities.ANCIENT_REMNANT.get().getDescription().copy().withStyle(ChatFormatting.YELLOW));
         KILL_MECH_EYE = TCRQuestManager.create("kill_mech_eye")
                 .withIcon(SIDE_QUEST_1)
+                .withRewards(EpicSkillsItems.ABILIITY_STONE.get(), ModItems.WITHERITE_INGOT.get())
                 .shortDescParam(ModEntities.THE_HARBINGER.get().getDescription().copy().withStyle(ChatFormatting.GOLD))
                 .descParam(ModItems.MECH_EYE.get().getDescription().copy().withStyle(ChatFormatting.GOLD),
                         ModEntities.THE_HARBINGER.get().getDescription().copy().withStyle(ChatFormatting.GOLD),
@@ -178,11 +184,13 @@ public class TCRQuests {
                         ModEntities.THE_HARBINGER.get().getDescription().copy().withStyle(ChatFormatting.GOLD));
         KILL_MONST_EYE = TCRQuestManager.create("kill_monst_eye")
                 .withIcon(SIDE_QUEST_1)
+                .withRewards(EpicSkillsItems.ABILIITY_STONE.get(), ModItems.INFERNAL_FORGE.get())
                 .shortDescParam(ModEntities.NETHERITE_MONSTROSITY.get().getDescription().copy().withStyle(ChatFormatting.DARK_RED))
                 .descParam(ModItems.MONSTROUS_EYE.get().getDescription().copy().withStyle(ChatFormatting.DARK_RED),
                         ModEntities.NETHERITE_MONSTROSITY.get().getDescription().copy().withStyle(ChatFormatting.DARK_RED));
         KILL_STORM_EYE = TCRQuestManager.create("kill_storm_eye")
                 .withIcon(SIDE_QUEST_1)
+                .withRewards(EpicSkillsItems.ABILIITY_STONE.get(), ModItems.CERAUNUS.get(), ModItems.ASTRAPE.get())
                 .shortDescParam(ModEntities.SCYLLA.get().getDescription().copy().withStyle(ChatFormatting.AQUA))
                 .descParam(ModItems.STORM_EYE.get().getDescription().copy().withStyle(ChatFormatting.AQUA),
                         ModEntities.SCYLLA.get().getDescription().copy().withStyle(ChatFormatting.AQUA),
@@ -190,6 +198,7 @@ public class TCRQuests {
                         ModEntities.SCYLLA.get().getDescription().copy().withStyle(ChatFormatting.AQUA));
         KILL_ABYSS_EYE = TCRQuestManager.create("kill_abyss_eye")
                 .withIcon(SIDE_QUEST_1)
+                .withRewards(EpicSkillsItems.ABILIITY_STONE.get(), ModItems.TIDAL_CLAWS.get())
                 .shortDescParam(ModEntities.THE_LEVIATHAN.get().getDescription().copy().withStyle(ChatFormatting.BLUE))
                 .descParam(ModItems.ABYSS_EYE.get().getDescription().copy().withStyle(ChatFormatting.BLUE),
                         ModEntities.THE_LEVIATHAN.get().getDescription().copy().withStyle(ChatFormatting.BLUE),
@@ -197,6 +206,7 @@ public class TCRQuests {
                         ModEntities.THE_LEVIATHAN.get().getDescription().copy().withStyle(ChatFormatting.BLUE));
         KILL_CURSED_EYE = TCRQuestManager.create("kill_cursed_eye")
                 .withIcon(SIDE_QUEST_1)
+                .withRewards(EpicSkillsItems.ABILIITY_STONE.get(), ModItems.SOUL_RENDER.get(), ModItems.THE_ANNIHILATOR.get())
                 .shortDescParam(ModEntities.MALEDICTUS.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN))
                 .descParam(ModItems.CURSED_EYE.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN),
                         ModEntities.MALEDICTUS.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN),
@@ -204,6 +214,7 @@ public class TCRQuests {
                         ModEntities.MALEDICTUS.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN));
         KILL_FLAME_EYE = TCRQuestManager.create("kill_flame_eye")
                 .withIcon(SIDE_QUEST_1)
+                .withRewards(EpicSkillsItems.ABILIITY_STONE.get(), ModItems.THE_INCINERATOR.get())
                 .shortDescParam(ModEntities.IGNIS.get().getDescription().copy().withStyle(ChatFormatting.RED))
                 .descParam(ModItems.FLAME_EYE.get().getDescription().copy().withStyle(ChatFormatting.RED),
                         ModEntities.IGNIS.get().getDescription().copy().withStyle(ChatFormatting.RED),
@@ -211,6 +222,7 @@ public class TCRQuests {
                         ModEntities.IGNIS.get().getDescription().copy().withStyle(ChatFormatting.RED));
         KILL_VOID_EYE = TCRQuestManager.create("kill_void_eye")
                 .withIcon(SIDE_QUEST_1)
+                .withRewards(EpicSkillsItems.ABILIITY_STONE.get(), ModItems.GAUNTLET_OF_GUARD.get())
                 .shortDescParam(ModEntities.ENDER_GUARDIAN.get().getDescription().copy().withStyle(ChatFormatting.LIGHT_PURPLE))
                 .descParam(ModItems.VOID_EYE.get().getDescription().copy().withStyle(ChatFormatting.LIGHT_PURPLE),
                         ModEntities.ENDER_GUARDIAN.get().getDescription().copy().withStyle(ChatFormatting.LIGHT_PURPLE),
@@ -266,6 +278,7 @@ public class TCRQuests {
 
         BLESS_ON_THE_GODNESS_STATUE = TCRQuestManager.create("bless_on_the_godness_statue")
                 .withIcon(SIDE_QUEST_1)
+                .withRewards(EpicSkillsItems.ABILIITY_STONE.get())
                 .withTrackingPos(new BlockPos(WorldUtils.GODNESS_STATUE_POS), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         TALK_TO_AINE_CLOUDLAND = TCRQuestManager.create("talk_to_aine_cloudland")
@@ -294,6 +307,7 @@ public class TCRQuests {
 
         TAME_DRAGON = TCRQuestManager.create("tame_dragon")
                 .withIcon(SIDE_QUEST_1)
+                .withRewards(Items.SADDLE)
                 .descParam(TCREntities.FERRY_GIRL.get().getDescription(),
                         net.magister.bookofdragons.item.ModItems.BOOK_OF_DRAGONS.get().getDescription(),
                         Component.translatable("item.domesticationinnovation.collar_tag"),
@@ -303,6 +317,7 @@ public class TCRQuests {
                 .shortDescParam(TCREntities.FERRY_GIRL.get().getDescription())
                 .descParam(TCREntities.FERRY_GIRL.get().getDescription(), TCREntities.FERRY_GIRL.get().getDescription(), Items.SADDLE.getDescription(), DIItemRegistry.COLLAR_TAG.get().getDescription())
                 .withIcon(SIDE_QUEST_1)
+                .withRewards(Items.SADDLE)
                 .withTrackingPos(new BlockPos(WorldUtils.FERRY_GIRL_POS.above(1)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         USE_LAND_RESONANCE_STONE = TCRQuestManager.create("use_land_resonance_stone")
@@ -310,7 +325,7 @@ public class TCRQuests {
                 .descParam(WorldUtils.OVERWORLD_NAME, TCRItems.LAND_RESONANCE_STONE.get().getDescription());
 
         GET_DESERT_EYE = TCRQuestManager.create("get_desert_eye")
-                .withRewards(BTItems.LAND_GOLEM_EYE.get(), EpicSkillsItems.ABILIITY_STONE.get())//TODO
+                .withRewards(EpicSkillsItems.ABILIITY_STONE.get())
                 .shortDescParam(ModItems.DESERT_EYE.get().getDescription().copy().withStyle(ChatFormatting.YELLOW))
                 .descParam(TCRItems.LAND_RESONANCE_STONE.get().getDescription(),
                         ModItems.DESERT_EYE.get().getDescription().copy().withStyle(ChatFormatting.YELLOW),
@@ -319,6 +334,7 @@ public class TCRQuests {
 
         BONE_CHIMERA_QUEST = TCRQuestManager.create("bone_chimera_quest")
                 .withIcon(SIDE_QUEST_1)
+                .withRewards(TCRItems.MYSTERIOUS_WEAPONS.get())
                 .descParam(TCRItems.LAND_RESONANCE_STONE.get().getDescription(), TCRItems.MYSTERIOUS_WEAPONS.get().getDescription())
                 .shortDescParam(WorldUtils.getStructureName(WorldUtils.BONE_CHIMERA_STRUCTURE));
 
@@ -349,6 +365,7 @@ public class TCRQuests {
                         ModItems.ABYSS_EYE.get().getDescription().copy().withStyle(ChatFormatting.BLUE));
 
         GET_OCEAN_EYE = TCRQuestManager.create("get_ocean_eye")
+                .withRewards(EpicSkillsItems.ABILIITY_STONE.get())
                 .shortDescParam(ModItems.ABYSS_EYE.get().getDescription().copy().withStyle(ChatFormatting.BLUE))
                 .descParam(TCRItems.OCEAN_RESONANCE_STONE.get().getDescription(),
                         ModItems.ABYSS_EYE.get().getDescription().copy().withStyle(ChatFormatting.BLUE),
@@ -362,14 +379,19 @@ public class TCRQuests {
                         ItemRegistry.ICY_FANG.get().getDescription())
                 .withTrackingPos(new BlockPos(WorldUtils.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
+        ItemStack waterAvoid = new ItemStack(EpicFightItems.SKILLBOOK.get());
+        SkillBookItem.setContainingSkill(TCRSkills.WATER_AVOID, waterAvoid);
+
         RIBBITS_QUEST = TCRQuestManager.create("ribbits_quest")
                 .withIcon(SIDE_QUEST_1)
+                .withRewards(waterAvoid, artifacts.registry.ModItems.CHARM_OF_SINKING.get().getDefaultInstance())
                 .shortDescParam(WorldUtils.getStructureName(WorldUtils.RIBBIT_VILLAGE))
                 .descParam(TCRItems.OCEAN_RESONANCE_STONE.get().getDescription(),
                         Component.translatable(TCRSkills.WATER_AVOID.getTranslationKey()),
                         artifacts.registry.ModItems.CHARM_OF_SINKING.get().getDescription());
         GIVE_AMETHYST_BLOCK_TO_RIBBITS = TCRQuestManager.create("give_amethyst_block_to_ribbits")
                 .withIcon(SIDE_QUEST_1)
+                .withRewards(waterAvoid, artifacts.registry.ModItems.CHARM_OF_SINKING.get().getDefaultInstance())
                 .shortDescParam(Items.AMETHYST_BLOCK.getDescription(), EntityTypeModule.RIBBIT.get().getDescription())
                 .descParam(ModItems.ABYSS_EYE.get().getDescription().copy().withStyle(ChatFormatting.BLUE),
                         EntityTypeModule.RIBBIT.get().getDescription(),
@@ -413,6 +435,7 @@ public class TCRQuests {
                         WorldUtils.getStructureName(WorldUtils.OCEAN_MONUMENT));
 
         GET_CURSED_EYE = TCRQuestManager.create("get_cursed_eye")
+                .withRewards(EpicSkillsItems.ABILIITY_STONE.get())
                 .shortDescParam(ModItems.CURSED_EYE.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN))
                 .descParam(TCRItems.CURSED_RESONANCE_STONE.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN),
                         ModItems.CURSED_EYE.get().getDescription().copy().withStyle(ChatFormatting.DARK_GREEN),
@@ -426,6 +449,7 @@ public class TCRQuests {
                 .withTrackingPos(new BlockPos(WorldUtils.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         TALK_TO_AINE_MAGIC = TCRQuestManager.create("talk_to_aine_magic")
+                .withRewards(TCRItems.MAGIC_BOTTLE.get())
                 .shortDescParam(TCREntities.AINE.get().getDescription())
                 .descParam(LeonidasEntities.LEONIDAS.get().getDescription(),
                         TCRItems.NECROMANCY_SCROLL.get().getDescription(),
@@ -435,11 +459,13 @@ public class TCRQuests {
 
         TRY_TO_LEARN_MAGIC = TCRQuestManager.create("try_to_learn_magic")
                 .withIcon(SIDE_QUEST_1)
+                .withRewards(TCRItems.MAGIC_BOTTLE.get())
                 .descParam(TCRItems.NECROMANCY_SCROLL.get().getDescription(), TCREntities.AINE.get().getDescription(),
                         TCREntities.AINE.get().getDescription())
                 .withTrackingPos(new BlockPos(WorldUtils.AINE_POS.above(2)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         TALK_TO_AINE_MAGIC_2 = TCRQuestManager.create("talk_to_aine_magic_2")
+                .withRewards(TCRItems.MAGIC_BOTTLE.get())
                 .shortDescParam(TCREntities.AINE.get().getDescription())
                 .descParam(TCREntities.AINE.get().getDescription())
                 .withIcon(SIDE_QUEST_1)
@@ -461,6 +487,7 @@ public class TCRQuests {
                         ModItems.FLAME_EYE.get().getDescription().copy().withStyle(ChatFormatting.RED));
 
         GET_FLAME_EYE = TCRQuestManager.create("get_flame_eye")
+                .withRewards(EpicSkillsItems.ABILIITY_STONE.get())
                 .shortDescParam(ModItems.FLAME_EYE.get().getDescription().copy().withStyle(ChatFormatting.RED))
                 .descParam(TCRItems.CORE_RESONANCE_STONE.get().getDescription().copy().withStyle(ChatFormatting.RED),
                         ModItems.FLAME_EYE.get().getDescription().copy().withStyle(ChatFormatting.RED),
@@ -494,6 +521,7 @@ public class TCRQuests {
                         ModItems.MONSTROUS_EYE.get().getDescription().copy().withStyle(ChatFormatting.DARK_RED));
 
         GET_NETHER_MONOLITH_KEY_1 = TCRQuestManager.create("get_nether_monolith_key_1")
+                .withRewards(EpicSkillsItems.ABILIITY_STONE.get(), TCRItems.BLOOD_LOTUS.get())
                 .shortDescParam(ItemRegistry.CINDEROUS_SOULCALLER.get().getDescription().copy().withStyle(ChatFormatting.GOLD),
                         BTItems.NETHER_MONOLITH_KEY.get().getDescription().copy().withStyle(ChatFormatting.DARK_RED))
                 .descParam(
@@ -506,6 +534,7 @@ public class TCRQuests {
                         BTItems.NETHER_MONOLITH_KEY.get().getDescription().copy().withStyle(ChatFormatting.GOLD));
 
         GET_NETHER_MONOLITH_KEY_2 = TCRQuestManager.create("get_nether_monolith_key_2")
+                .withRewards(EpicSkillsItems.ABILIITY_STONE.get(), TCRItems.BLOOD_LOTUS.get())
                 .shortDescParam(BTItems.NETHER_MONOLITH_KEY.get().getDescription().copy().withStyle(ChatFormatting.DARK_RED))
                 .descParam(
                         BTEntityType.NETHER_MONOLITH.get().getDescription().copy().withStyle(ChatFormatting.GOLD),
@@ -517,6 +546,7 @@ public class TCRQuests {
                         BTItems.NETHER_MONOLITH_KEY.get().getDescription().copy().withStyle(ChatFormatting.GOLD));
 
         GET_MONST_EYE = TCRQuestManager.create("get_monst_eye")
+                .withRewards(EpicSkillsItems.ABILIITY_STONE.get())
                 .shortDescParam(ModItems.MONSTROUS_EYE.get().getDescription().copy().withStyle(ChatFormatting.DARK_RED))
                 .descParam(TCRItems.NETHER_RESONANCE_STONE.get().getDescription().copy().withStyle(ChatFormatting.DARK_RED),
                         ModItems.MONSTROUS_EYE.get().getDescription().copy().withStyle(ChatFormatting.DARK_RED),
@@ -530,6 +560,7 @@ public class TCRQuests {
                 .withTrackingPos(new BlockPos(WorldUtils.CHRONOS_SOL_BLOCK_POS.above(4)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         GET_WITHER_EYE = TCRQuestManager.create("get_wither_eye")
+                .withRewards(EpicSkillsItems.ABILIITY_STONE.get(), TCRItems.WITHER_SOUL_STONE.get())
                 .shortDescParam(ModItems.MECH_EYE.get().getDescription().copy().withStyle(ChatFormatting.GOLD))
                 .descParam(TCREntities.CHRONOS_SOL.get().getDescription(), EntityType.WITHER.getDescription().copy().withStyle(ChatFormatting.GOLD),
                         ModItems.MECH_EYE.get().getDescription().copy().withStyle(ChatFormatting.GOLD));
@@ -549,6 +580,7 @@ public class TCRQuests {
 
         GO_TO_SAMSARA = TCRQuestManager.create("go_to_samsara")
                 .withIcon(SIDE_QUEST_1)
+                .withRewards(EpicSkillsItems.ABILIITY_STONE.get())
                 .shortDescParam(Component.translatable("travelerstitles.pbf1.sanctum_of_the_battle1").withStyle(ChatFormatting.RED))
                 .descParam(Component.translatable("travelerstitles.pbf1.sanctum_of_the_battle1").withStyle(ChatFormatting.RED),
                         TCREntities.AINE.get().getDescription().copy().withStyle(ChatFormatting.GOLD),
@@ -569,6 +601,7 @@ public class TCRQuests {
                         ModItems.STORM_EYE.get().getDescription().copy().withStyle(ChatFormatting.AQUA));
 
         GET_AETHER_MONOLITH_KEY_1 = TCRQuestManager.create("get_aether_monolith_key_1")
+                .withRewards(EpicSkillsItems.ABILIITY_STONE.get(), TCRItems.NINE_HEAVEN_DARKSTEEL.get())
                 .shortDescParam(BTItems.SKY_MONOLITH_KEY.get().getDescription().copy().withStyle(ChatFormatting.AQUA))
                 .descParam(BTEntityType.SKY_MONOLITH.get().getDescription().copy().withStyle(ChatFormatting.AQUA),
                         BTItems.SKY_MONOLITH_KEY.get().getDescription().copy().withStyle(ChatFormatting.AQUA),
@@ -579,6 +612,7 @@ public class TCRQuests {
                         BTItems.SKY_MONOLITH_KEY.get().getDescription().copy().withStyle(ChatFormatting.AQUA));
 
         GET_AETHER_MONOLITH_KEY_2 = TCRQuestManager.create("get_aether_monolith_key_2")
+                .withRewards(EpicSkillsItems.ABILIITY_STONE.get(), TCRItems.NINE_HEAVEN_DARKSTEEL.get())
                 .shortDescParam(BTItems.SKY_MONOLITH_KEY.get().getDescription().copy().withStyle(ChatFormatting.AQUA))
                 .descParam(BTEntityType.SKY_MONOLITH.get().getDescription().copy().withStyle(ChatFormatting.AQUA),
                         BTItems.SKY_MONOLITH_KEY.get().getDescription().copy().withStyle(ChatFormatting.AQUA),
@@ -589,6 +623,7 @@ public class TCRQuests {
                         BTItems.SKY_MONOLITH_KEY.get().getDescription().copy().withStyle(ChatFormatting.AQUA));
 
         GET_STORM_EYE = TCRQuestManager.create("get_storm_eye")
+                .withRewards(EpicSkillsItems.ABILIITY_STONE.get())
                 .shortDescParam(ModItems.STORM_EYE.get().getDescription().copy().withStyle(ChatFormatting.AQUA))
                 .descParam(TCRItems.SKY_RESONANCE_STONE.get().getDescription().copy().withStyle(ChatFormatting.AQUA),
                         ModItems.STORM_EYE.get().getDescription().copy().withStyle(ChatFormatting.AQUA),
@@ -636,6 +671,7 @@ public class TCRQuests {
                         WorldUtils.END_NAME);
 
         GET_VOID_EYE = TCRQuestManager.create("get_void_eye")
+                .withRewards(EpicSkillsItems.ABILIITY_STONE.get(), EFNItem.YAMATO_DMC_IN_SHEATH.get())
                 .shortDescParam(ModItems.VOID_EYE.get().getDescription().copy().withStyle(ChatFormatting.LIGHT_PURPLE))
                 .descParam(ModItems.VOID_EYE.get().getDescription().copy().withStyle(ChatFormatting.LIGHT_PURPLE),
                         WorldUtils.END_NAME);
@@ -659,6 +695,7 @@ public class TCRQuests {
                 .withTrackingPos(new BlockPos(WorldUtils.AINE_POS.above(2)), TCRDimensions.SANCTUM_LEVEL_KEY);
 
         TALK_TO_BOUNTIFUL_VILLAGER = TCRQuestManager.create("talk_to_bountiful_villager")
+                .withRewards(EpicSkillsItems.ABILIITY_STONE.get())
                 .descParam(WorldUtils.OVERWORLD_NAME)
                 .withIcon(SIDE_QUEST_1);
     }

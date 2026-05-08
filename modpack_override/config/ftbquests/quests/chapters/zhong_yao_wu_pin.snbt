@@ -67,69 +67,6 @@
 			y: -1.0d
 		}
 		{
-			description: ["{ftbquests.chapter.zhong_yao_wu_pin.quest5944135541529370519.description1}"]
-			id: "527DCFC819A1DF97"
-			invisible: true
-			rewards: [{
-				id: "589978CE9FB6A972"
-				type: "xp"
-				xp: 1
-			}]
-			shape: "none"
-			size: 2.0d
-			subtitle: "{ftbquests.chapter.zhong_yao_wu_pin.quest5944135541529370519.subtitle}"
-			tasks: [{
-				id: "2045D4FF8DDFFC5D"
-				item: "aquamirae:shell_horn"
-				type: "item"
-			}]
-			x: -4.0d
-			y: -1.0d
-		}
-		{
-			description: ["{ftbquests.chapter.zhong_yao_wu_pin.quest2205299458336238367.description1}"]
-			id: "1E9ACC2C557E2B1F"
-			invisible: true
-			rewards: [{
-				id: "2CF06ADF36F45E90"
-				type: "xp"
-				xp: 1
-			}]
-			shape: "none"
-			size: 2.0d
-			subtitle: "{ftbquests.chapter.zhong_yao_wu_pin.quest2205299458336238367.subtitle}"
-			tasks: [{
-				id: "1C87E186C57947A3"
-				item: "aquamirae:frozen_key"
-				type: "item"
-			}]
-			x: -12.0d
-			y: -1.0d
-		}
-		{
-			description: [
-				"{ftbquests.chapter.zhong_yao_wu_pin.quest2643745248865061760.description1}"
-				"{ftbquests.chapter.zhong_yao_wu_pin.quest2643745248865061760.description2}"
-			]
-			id: "24B0784BF33A8B80"
-			invisible: true
-			rewards: [{
-				id: "48F597CFF8864425"
-				type: "xp"
-				xp: 1
-			}]
-			shape: "none"
-			size: 2.0d
-			subtitle: "{ftbquests.chapter.zhong_yao_wu_pin.quest2643745248865061760.subtitle}"
-			tasks: [{
-				id: "5734585C12BEE415"
-				item: "aquamirae:ship_graveyard_echo"
-				type: "item"
-			}]
-			x: -8.0d
-			y: -1.0d
-		}
-		{
 			description: [
 				"{ftbquests.chapter.zhong_yao_wu_pin.quest7775256599894434225.description1}"
 				"{ftbquests.chapter.zhong_yao_wu_pin.quest7775256599894434225.description2}"
@@ -427,6 +364,76 @@
 			}]
 			x: 6.0d
 			y: 3.0d
+		}
+		{
+			description: [
+				"{ftbquests.chapter.zhong_yao_wu_pin.quest1521002339387395093.description1}"
+				"{ftbquests.chapter.zhong_yao_wu_pin.quest1521002339387395093.description2}"
+				""
+			]
+			id: "30C5E1D808B88F2C"
+			invisible: true
+			rewards: [{
+				id: "106DBF1F264137AB"
+				type: "xp"
+				xp: 1
+			}]
+			shape: "none"
+			size: 2.0d
+			tasks: [{
+				id: "4CB90E14F0FBC426"
+				item: "tcrcore:artifact_ticket"
+				type: "item"
+			}]
+			x: -12.0d
+			y: -1.0d
+		}
+		{
+			description: [
+				"{ftbquests.chapter.zhong_yao_wu_pin.quest1521002339387395093.description1}"
+				"{ftbquests.chapter.zhong_yao_wu_pin.quest1521002339387395093.description2}"
+				""
+			]
+			id: "1831ADB107CC66F5"
+			invisible: true
+			rewards: [{
+				id: "3D46B630FE783EFB"
+				type: "xp"
+				xp: 1
+			}]
+			shape: "none"
+			size: 2.0d
+			tasks: [{
+				id: "50732EC687FF3B66"
+				item: "tcrcore:rare_artifact_ticket"
+				type: "item"
+			}]
+			x: -8.0d
+			y: -1.0d
+		}
+		{
+			description: [""]
+			id: "50A708E1CA1351FF"
+			invisible: true
+			rewards: [{
+				id: "69A2B870DD84EC7F"
+				type: "xp"
+				xp: 1
+			}]
+			shape: "none"
+			size: 2.0d
+			subtitle: "{ftbquests.chapter.wu_qi.quest27A558871393BF23.subtitle}"
+			tasks: [{
+				id: "6A0D15DD0BA95FA1"
+				item: {
+					Count: 1
+					id: "tcrcore:dragon_flute"
+					tag: { }
+				}
+				type: "item"
+			}]
+			x: -4.0d
+			y: -1.0d
 		}
 	]
 	title: "{ftbquests.chapter.zhong_yao_wu_pin.title}"

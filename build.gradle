@@ -405,8 +405,8 @@ dependencies {
 
     implementation fg.deobf("curse.maven:mmmmmmmmmmmm-225738:6860192")
     implementation fg.deobf("curse.maven:selene-499980:7664875")
-//    implementation fg.deobf("curse.maven:epic-knights-armor-and-weapons-509041:7756534")//FIXME runData时需注释掉
-//    runtimeOnly(fg.deobf("curse.maven:armourers-workshop-229523:6965580"))//FIXME runData时需注释掉
+    implementation fg.deobf("curse.maven:epic-knights-armor-and-weapons-509041:7756534")//FIXME runData时需注释掉
+    runtimeOnly(fg.deobf("curse.maven:armourers-workshop-229523:6965580"))//FIXME runData时需注释掉
 
     runtimeOnly fg.deobf("curse.maven:domestication-innovation-591149:4911955")
     compileOnly(fg.deobf("curse.maven:armourers-workshop-229523:6965580"))

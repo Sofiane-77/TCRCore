@@ -51,7 +51,7 @@
 			}]
 			title: "{ftbquests.chapter.zhuang_bei.quest7301166028169305205.title}"
 			x: 0.0d
-			y: 3.0d
+			y: 2.0d
 		}
 		{
 			dependencies: ["6552F3D1C32E5C75"]
@@ -345,75 +345,6 @@
 			dependencies: ["6552F3D1C32E5C75"]
 			icon: {
 				Count: 1
-				id: "aquamirae:three_bolt_helmet"
-				tag: {
-					Damage: 0
-				}
-			}
-			icon_scale: 1.5d
-			id: "5433D8210E45724B"
-			rewards: [{
-				id: "7635BF37E8DC8E79"
-				type: "xp"
-				xp: 100
-			}]
-			shape: "none"
-			size: 1.5d
-			subtitle: "{ftbquests.chapter.zhuang_bei.quest6067430759483142731.subtitle}"
-			tasks: [
-				{
-					id: "15E38B29E15B1684"
-					item: {
-						Count: 1
-						id: "aquamirae:three_bolt_helmet"
-						tag: {
-							Damage: 0
-						}
-					}
-					type: "item"
-				}
-				{
-					id: "0918BA29A2CC5960"
-					item: {
-						Count: 1
-						id: "aquamirae:three_bolt_suit"
-						tag: {
-							Damage: 0
-						}
-					}
-					type: "item"
-				}
-				{
-					id: "49829D98ED8EF190"
-					item: {
-						Count: 1
-						id: "aquamirae:three_bolt_leggings"
-						tag: {
-							Damage: 0
-						}
-					}
-					type: "item"
-				}
-				{
-					id: "07C866732B5EBBB8"
-					item: {
-						Count: 1
-						id: "aquamirae:three_bolt_boots"
-						tag: {
-							Damage: 0
-						}
-					}
-					type: "item"
-				}
-			]
-			title: "{ftbquests.chapter.zhuang_bei.quest6067430759483142731.title}"
-			x: 0.0d
-			y: 0.0d
-		}
-		{
-			dependencies: ["6552F3D1C32E5C75"]
-			icon: {
-				Count: 1
 				id: "cataclysm:bone_reptile_helmet"
 				tag: {
 					Damage: 0
@@ -594,144 +525,6 @@
 			title: "{ftbquests.chapter.zhuang_bei.quest6107895593504866504.title}"
 			x: -2.0d
 			y: -3.0d
-		}
-		{
-			dependencies: ["6552F3D1C32E5C75"]
-			icon: {
-				Count: 1
-				id: "aquamirae:abyssal_tiara"
-				tag: {
-					Damage: 0
-				}
-			}
-			icon_scale: 1.5d
-			id: "374137744E10EF8C"
-			rewards: [{
-				id: "4FE4FD3C7E8B0CDE"
-				type: "xp"
-				xp: 100
-			}]
-			shape: "none"
-			size: 1.5d
-			subtitle: "{ftbquests.chapter.zhuang_bei.quest3981524518237695884.subtitle}"
-			tasks: [
-				{
-					id: "5501F1611A85B204"
-					item: {
-						Count: 1
-						id: "aquamirae:abyssal_heaume"
-						tag: {
-							Damage: 0
-						}
-					}
-					type: "item"
-				}
-				{
-					id: "2264063B067FB694"
-					item: {
-						Count: 1
-						id: "aquamirae:abyssal_brigantine"
-						tag: {
-							Damage: 0
-						}
-					}
-					type: "item"
-				}
-				{
-					id: "18881AEE2C316748"
-					item: {
-						Count: 1
-						id: "aquamirae:abyssal_leggings"
-						tag: {
-							Damage: 0
-						}
-					}
-					type: "item"
-				}
-				{
-					id: "5156B6ECFE9E9968"
-					item: {
-						Count: 1
-						id: "aquamirae:abyssal_boots"
-						tag: {
-							Damage: 0
-						}
-					}
-					type: "item"
-				}
-			]
-			title: "{ftbquests.chapter.zhuang_bei.quest3981524518237695884.title}"
-			x: -2.25d
-			y: 1.5d
-		}
-		{
-			dependencies: ["6552F3D1C32E5C75"]
-			icon: {
-				Count: 1
-				id: "aquamirae:terrible_helmet"
-				tag: {
-					Damage: 0
-				}
-			}
-			icon_scale: 1.5d
-			id: "2FEA17DDB5B78674"
-			rewards: [{
-				id: "7ACC9817E6EBF321"
-				type: "xp"
-				xp: 100
-			}]
-			shape: "none"
-			size: 1.5d
-			subtitle: "{ftbquests.chapter.zhuang_bei.quest3452598305336821364.subtitle}"
-			tasks: [
-				{
-					id: "29F882141AA57A7F"
-					item: {
-						Count: 1
-						id: "aquamirae:terrible_helmet"
-						tag: {
-							Damage: 0
-						}
-					}
-					type: "item"
-				}
-				{
-					id: "0692A036CA0857D7"
-					item: {
-						Count: 1
-						id: "aquamirae:terrible_chestplate"
-						tag: {
-							Damage: 0
-						}
-					}
-					type: "item"
-				}
-				{
-					id: "5CA224CFFED2D367"
-					item: {
-						Count: 1
-						id: "aquamirae:terrible_leggings"
-						tag: {
-							Damage: 0
-						}
-					}
-					type: "item"
-				}
-				{
-					id: "582F0313994E6899"
-					item: {
-						Count: 1
-						id: "aquamirae:terrible_boots"
-						tag: {
-							Damage: 0
-						}
-					}
-					type: "item"
-				}
-			]
-			title: "{ftbquests.chapter.zhuang_bei.quest3452598305336821364.title}"
-			x: -5.25d
-			y: 2.25d
 		}
 		{
 			dependencies: ["6552F3D1C32E5C75"]
@@ -963,8 +756,8 @@
 				}
 			]
 			title: "{ftbquests.chapter.zhuang_bei.quest4525109753956982642.title}"
-			x: 3.0d
-			y: 1.5d
+			x: -6.0d
+			y: 2.25d
 		}
 	]
 	title: "{ftbquests.chapter.zhuang_bei.title}"

@@ -504,7 +504,7 @@ public class TCRQuestScreen extends Screen {
         }
 
         List<ItemStack> rewards = uiSelectedQuest.getRewards();
-        if (rewards != null && rewards.isEmpty()) {
+        if (rewards != null && !rewards.isEmpty()) {
             y += 8;
             guiGraphics.drawString(font, possibleLoot, x, y, 0xFFCCCCCC, false);
             y += font.lineHeight + 4;
@@ -530,8 +530,8 @@ public class TCRQuestScreen extends Screen {
                 guiGraphics.fill(iconX - 1, iconY - 1, iconX + slotSize + 1, iconY + slotSize + 1, 0xFF888888);
                 guiGraphics.fill(iconX, iconY, iconX + slotSize, iconY + slotSize, 0xFF222222);
                 ItemStack stack = rewards.get(i);
-                guiGraphics.renderItem(stack, iconX, iconY);
-                guiGraphics.renderItemDecorations(font, stack, iconX, iconY);
+                guiGraphics.renderItem(stack, iconX + 1, iconY + 1);
+//                guiGraphics.renderItemDecorations(font, stack, iconX, iconY);
 
                 // 检测鼠标是否悬停在该物品区域
                 if (mouseX >= iconX - 1 && mouseX <= iconX + slotSize + 1 &&

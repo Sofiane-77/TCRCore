@@ -50,7 +50,6 @@ import com.p1nero.tcr_bosses.entity.custom.nether.golden_executor.GoldenExecutor
 import com.p1nero.tcr_bosses.mixins.AbstractGolemInvoker;
 import com.p1nero.tcrcore.TCRCoreMod;
 import com.p1nero.tcrcore.capability.*;
-import com.p1nero.tcrcore.client.sound.CorneliaMusicPlayer;
 import com.p1nero.tcrcore.client.sound.WraithonMusicPlayer;
 import com.p1nero.tcrcore.entity.custom.fake_npc.fake_end_golem.FakeEndGolem;
 import com.p1nero.tcrcore.entity.custom.fake_npc.fake_sky_golem.FakeSkyGolem;
@@ -1200,6 +1199,12 @@ public class LivingEntityEventListeners {
         if(living instanceof Mob mob) {
             if(mob.getTarget() instanceof ServerPlayer serverPlayer) {
                 //不处理自己的人形怪
+                if(mob.getType().is(Tags.EntityTypes.BOSSES)) {
+                    return;
+                }
+                if(mob instanceof TutorialGolem) {
+                    return;
+                }
                 if(EpicFightCapabilities.getUnparameterizedEntityPatch(mob, AdvancedCustomHumanoidMobPatch.class).isPresent()) {
                     return;
                 }
