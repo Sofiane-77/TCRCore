@@ -185,7 +185,7 @@ public class TCRQuestScreen extends Screen {
             index++;
         }
         guiGraphics.disableScissor();
-        renderDetailPanel(guiGraphics);
+        renderDetailPanel(guiGraphics, mouseX, mouseY);
         renderScrollbar(guiGraphics, contentHeight);
         super.render(guiGraphics, mouseX, mouseY, partialTick);
     }
@@ -473,7 +473,7 @@ public class TCRQuestScreen extends Screen {
         }
     }
 
-    private void renderDetailPanel(GuiGraphics guiGraphics) {
+    private void renderDetailPanel(GuiGraphics guiGraphics, int mouseX, int mouseY) {
         if (detailX1 <= detailX0 + 8 || detailY1 <= detailY0 + 8) {
             return;
         }
@@ -504,8 +504,45 @@ public class TCRQuestScreen extends Screen {
         }
 
         List<ItemStack> rewards = uiSelectedQuest.getRewards();
+        if (rewards != null && rewards.isEmpty()) {
+            y += 8;
+            guiGraphics.drawString(font, possibleLoot, x, y, 0xFFCCCCCC, false);
+            y += font.lineHeight + 4;
 
-        //TODO 请你补全绘制，在合适的地方画一句possibleLoot，然后在下面按顺序画出rewards的图标。图标边上可以画个小方框
+            int slotSize = 18;
+            int spacing = 22;
+            int maxWidth = detailX1 - detailX0 - 8 * 2;
+            int itemsPerRow = Math.max(1, maxWidth / spacing);
+            int startX = x;
+            int startY = y;
+
+            ItemStack hoveredReward = ItemStack.EMPTY;
+
+            for (int i = 0; i < rewards.size(); i++) {
+                int row = i / itemsPerRow;
+                int col = i % itemsPerRow;
+                int iconX = startX + col * spacing;
+                int iconY = startY + row * spacing;
+
+                if (iconY + slotSize > detailY1 - 8) break;
+
+                // 绘制小方框和物品
+                guiGraphics.fill(iconX - 1, iconY - 1, iconX + slotSize + 1, iconY + slotSize + 1, 0xFF888888);
+                guiGraphics.fill(iconX, iconY, iconX + slotSize, iconY + slotSize, 0xFF222222);
+                ItemStack stack = rewards.get(i);
+                guiGraphics.renderItem(stack, iconX, iconY);
+                guiGraphics.renderItemDecorations(font, stack, iconX, iconY);
+
+                // 检测鼠标是否悬停在该物品区域
+                if (mouseX >= iconX - 1 && mouseX <= iconX + slotSize + 1 &&
+                        mouseY >= iconY - 1 && mouseY <= iconY + slotSize + 1) {
+                    hoveredReward = stack;
+                }
+            }
+            if(!hoveredReward.isEmpty()) {
+                guiGraphics.renderTooltip(font, hoveredReward, mouseX, mouseY);
+            }
+        }
     }
 
     private void drawNineSlice(GuiGraphics guiGraphics, ResourceLocation texture, int x, int y, int width, int height, int border, int textureWidth, int textureHeight) {

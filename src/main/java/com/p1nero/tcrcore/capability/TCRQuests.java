@@ -14,6 +14,7 @@ import com.p1nero.tcrcore.gameassets.TCRSkills;
 import com.p1nero.tcrcore.item.TCRItems;
 import com.p1nero.tcrcore.utils.WorldUtils;
 import com.p1nero.tcrcore.worldgen.TCRDimensions;
+import com.yesman.epicskills.registry.entry.EpicSkillsItems;
 import com.yungnickyoung.minecraft.ribbits.module.EntityTypeModule;
 import io.redspace.ironsspellbooks.registries.ItemRegistry;
 import net.minecraft.ChatFormatting;
@@ -309,6 +310,7 @@ public class TCRQuests {
                 .descParam(WorldUtils.OVERWORLD_NAME, TCRItems.LAND_RESONANCE_STONE.get().getDescription());
 
         GET_DESERT_EYE = TCRQuestManager.create("get_desert_eye")
+                .withRewards(BTItems.LAND_GOLEM_EYE.get(), EpicSkillsItems.ABILIITY_STONE.get())//TODO
                 .shortDescParam(ModItems.DESERT_EYE.get().getDescription().copy().withStyle(ChatFormatting.YELLOW))
                 .descParam(TCRItems.LAND_RESONANCE_STONE.get().getDescription(),
                         ModItems.DESERT_EYE.get().getDescription().copy().withStyle(ChatFormatting.YELLOW),

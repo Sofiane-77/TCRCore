@@ -1206,9 +1206,9 @@ public class LivingEntityEventListeners {
                 List<Entity> list = EntityUtils.getNearByEntities(mob, 16);
                 if(list.stream().anyMatch(entity -> {
                     if(entity instanceof Mob mob1) {
-                        //不处理自己的人形怪
+                        //让给人形怪先处理
                         if(EpicFightCapabilities.getUnparameterizedEntityPatch(mob1, AdvancedCustomHumanoidMobPatch.class).isPresent()) {
-                            return false;
+                            return true;
                         }
                         if(serverPlayer == mob1.getTarget()) {
                             return mob1.distanceTo(serverPlayer) < mob.distanceTo(serverPlayer);
