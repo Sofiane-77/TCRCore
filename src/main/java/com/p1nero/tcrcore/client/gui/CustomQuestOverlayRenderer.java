@@ -341,10 +341,22 @@ public class CustomQuestOverlayRenderer implements IGuiOverlay {
         double aspect = (double) screenWidth / (double) screenHeight;
         double tanHalfFovX = tanHalfFovY * aspect;
 
-        double nx = xCam / (zCam * tanHalfFovX);
-        double ny = yCam / (zCam * tanHalfFovY);
+        double nx, ny;
+        boolean inside;
 
-        boolean inside = zCam > 0.1 && nx >= -1.0 && nx <= 1.0 && ny >= -1.0 && ny <= 1.0;
+        if (zCam > 0.1) {
+            // 目标在前方：使用标准透视投影
+            nx = xCam / (zCam * tanHalfFovX);
+            ny = yCam / (zCam * tanHalfFovY);
+            inside = nx >= -1.0 && nx <= 1.0 && ny >= -1.0 && ny <= 1.0;
+        } else {
+            // 目标在后方或侧方：使用 |zCam| 保留正确的方向符号，防止除零
+            double safeZ = Math.abs(zCam);
+            if (safeZ < 0.1) safeZ = 0.1;
+            nx = xCam / (safeZ * tanHalfFovX);
+            ny = yCam / (safeZ * tanHalfFovY);
+            inside = false;
+        }
 
         ScreenPos result = new ScreenPos();
         result.inside = inside;
