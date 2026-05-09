@@ -1,313 +1,246 @@
 {
-	"content": {
-
-		"hunters_normal_obj_bone_serpent": {
-			"type": "entity",
-			"timeMult": 3.0,
-			"content": "alexsmobs:bone_serpent",
-			"amount": {
-				"min": 1,
-				"max": 1
-			},
-			"unitWorth": 300
-		},
-
-		"hunters_normal_obj_crimson_mosquito": {
-			"type": "entity",
-			"timeMult": 3.0,
-			"content": "alexsmobs:crimson_mosquito",
-			"amount": {
-				"min": 1,
-				"max": 1
-			},
-			"unitWorth": 300
-		},
-
-		"hunters_normal_obj_guster": {
-			"type": "entity",
-			"timeMult": 3.0,
-			"content": "alexsmobs:guster",
-			"amount": {
-				"min": 1,
-				"max": 1
-			},
-			"unitWorth": 300
-		},
-
-		"hunters_normal_obj_soul_vulture": {
-			"type": "entity",
-			"timeMult": 3.0,
-			"content": "alexsmobs:soul_vulture",
-			"amount": {
-				"min": 1,
-				"max": 1
-			},
-			"unitWorth": 300
-		},
-
-		"hunters_normal_obj_froststalker": {
-			"type": "entity",
-			"timeMult": 3.0,
-			"content": "alexsmobs:froststalker",
-			"amount": {
-				"min": 1,
-				"max": 1
-			},
-			"unitWorth": 300
-		},
-
-		"hunters_normal_obj_tusklin": {
-			"type": "entity",
-			"timeMult": 3.0,
-			"content": "alexsmobs:tusklin",
-			"amount": {
-				"min": 1,
-				"max": 1
-			},
-			"unitWorth": 300
-		},
-
-		"hunters_normal_obj_rocky_roller": {
-			"type": "entity",
-			"timeMult": 3.0,
-			"content": "alexsmobs:rocky_roller",
-			"amount": {
-				"min": 1,
-				"max": 1
-			},
-			"unitWorth": 300
-		},
-
-		"hunters_normal_obj_skelewag": {
-			"type": "entity",
-			"timeMult": 3.0,
-			"content": "alexsmobs:skelewag",
-			"amount": {
-				"min": 1,
-				"max": 1
-			},
-			"unitWorth": 300
-		},
-
-		"hunters_normal_obj_skreecher": {
-			"type": "entity",
-			"timeMult": 3.0,
-			"content": "alexsmobs:skreecher",
-			"amount": {
-				"min": 1,
-				"max": 1
-			},
-			"unitWorth": 300
-		},
-
-        "hunters_normal_obj_bison": {
-          "type": "entity",
-          "timeMult": 3.0,
-          "content": "alexsmobs:bison",
-          "amount": {
-            "min": 1,
-            "max": 3
-          },
-          "unitWorth": 300
-        },
-
-		"hunters_normal_obj_foliaath": {
-			"type": "entity",
-			"timeMult": 3.0,
-			"content": "mowziesmobs:foliaath",
-			"amount": {
-				"min": 1,
-				"max": 1
-			},
-			"unitWorth": 300
-		},
-
-		"hunters_normal_obj_umvuthana": {
-			"type": "entity",
-			"timeMult": 3.0,
-			"content": "mowziesmobs:umvuthana",
-			"amount": {
-				"min": 1,
-				"max": 1
-			},
-			"unitWorth": 300
-		},
-
-		"hunters_normal_obj_umvuthana_raptor": {
-			"type": "entity",
-			"timeMult": 3.0,
-			"content": "mowziesmobs:umvuthana_raptor",
-			"amount": {
-				"min": 1,
-				"max": 1
-			},
-			"unitWorth": 300
-		},
-
-		"hunters_normal_obj_umvuthana_crane": {
-			"type": "entity",
-			"timeMult": 3.0,
-			"content": "mowziesmobs:umvuthana_crane",
-			"amount": {
-				"min": 1,
-				"max": 1
-			},
-			"unitWorth": 300
-		},
-
-		"hunters_normal_obj_naga": {
-			"type": "entity",
-			"timeMult": 3.0,
-			"content": "mowziesmobs:naga",
-			"amount": {
-				"min": 1,
-				"max": 1
-			},
-			"unitWorth": 300
-		},
-
-		"hunters_normal_obj_zombie": {
-			"type": "entity",
-			"timeMult": 3.0,
-			"content": "minecraft:zombie",
-			"amount": {
-				"min": 5,
-				"max": 15
-			},
-			"unitWorth": 60
-		},
-
-		"hunters_normal_obj_husk": {
-			"type": "entity",
-			"timeMult": 3.0,
-			"content": "minecraft:husk",
-			"amount": {
-				"min": 5,
-				"max": 15
-			},
-			"unitWorth": 60
-		},
-
-		"hunters_normal_obj_drowned": {
-			"type": "entity",
-			"timeMult": 3.0,
-			"content": "minecraft:drowned",
-			"amount": {
-				"min": 5,
-				"max": 15
-			},
-			"unitWorth": 60
-		},
-
-		"hunters_normal_obj_skeleton": {
-			"type": "entity",
-			"timeMult": 3.0,
-			"content": "minecraft:skeleton",
-			"amount": {
-				"min": 5,
-				"max": 15
-			},
-			"unitWorth": 60
-		},
-
-		"hunters_normal_obj_wither_skeleton": {
-			"type": "entity",
-			"timeMult": 3.0,
-			"content": "minecraft:wither_skeleton",
-			"amount": {
-				"min": 5,
-				"max": 15
-			},
-			"unitWorth": 60
-		},
-
-		"hunters_normal_obj_stray": {
-			"type": "entity",
-			"timeMult": 3.0,
-			"content": "minecraft:stray",
-			"amount": {
-				"min": 2,
-				"max": 5
-			},
-			"unitWorth": 60
-		},
-
-		"hunters_normal_obj_slime": {
-			"type": "entity",
-			"timeMult": 3.0,
-			"content": "minecraft:slime",
-			"amount": {
-				"min": 5,
-				"max": 15
-			},
-			"unitWorth": 60
-		},
-
-		"hunters_normal_obj_warden": {
-			"type": "entity",
-			"timeMult": 5.0,
-			"content": "minecraft:warden",
-			"amount": {
-				"min": 1,
-				"max": 1
-			},
-			"unitWorth": 500
-		},
-
-		"hunters_normal_obj_phantom": {
-			"type": "entity",
-			"timeMult": 3.0,
-			"content": "minecraft:phantom",
-			"amount": {
-				"min": 1,
-				"max": 2
-			},
-			"unitWorth": 60
-		},
-
-		"hunters_normal_obj_ghast": {
-			"type": "entity",
-			"timeMult": 3.0,
-			"content": "minecraft:ghast",
-			"amount": {
-				"min": 1,
-				"max": 1
-			},
-			"unitWorth": 50
-		},
-
-		"hunters_normal_obj_blaze": {
-			"type": "entity",
-			"timeMult": 3.0,
-			"content": "minecraft:blaze",
-			"amount": {
-				"min": 3,
-				"max": 5
-			},
-			"unitWorth": 60
-		},
-
-        "hunters_normal_obj_enderman": {
-            "type": "entity",
-            "timeMult": 3.0,
-            "content": "minecraft:enderman",
-            "amount": {
-              "min": 3,
-              "max": 5
-            },
-            "unitWorth": 60
-        },
-
-		"hunters_normal_obj_magma_cube": {
-			"type": "entity",
-			"timeMult": 3.0,
-			"content": "minecraft:magma_cube",
-			"amount": {
-				"min": 5,
-				"max": 15
-			},
-			"unitWorth": 60
-		}
-	}
-
+  "content": {
+    "hunters_normal_obj_moa": {
+      "type": "entity",
+      "timeMult": 3.0,
+      "rarity": "LEGENDARY",
+      "content": "aether:moa",
+      "amount": {
+        "min": 1,
+        "max": 3
+      },
+      "unitWorth": 300
+    },
+    "hunters_normal_obj_crimson_mosquito": {
+      "type": "entity",
+      "timeMult": 3.0,
+      "rarity": "LEGENDARY",
+      "content": "alexsmobs:crimson_mosquito",
+      "amount": {
+        "min": 1,
+        "max": 1
+      },
+      "unitWorth": 1000
+    },
+    "hunters_normal_obj_soul_vulture": {
+      "type": "entity",
+      "timeMult": 3.0,
+      "rarity": "LEGENDARY",
+      "content": "alexsmobs:soul_vulture",
+      "amount": {
+        "min": 1,
+        "max": 1
+      },
+      "unitWorth": 1000
+    },
+    "hunters_normal_obj_tusklin": {
+      "type": "entity",
+      "timeMult": 3.0,
+      "rarity": "LEGENDARY",
+      "content": "alexsmobs:tusklin",
+      "amount": {
+        "min": 1,
+        "max": 1
+      },
+      "unitWorth": 1000
+    },
+    "hunters_normal_obj_skreecher": {
+      "type": "entity",
+      "timeMult": 3.0,
+      "rarity": "LEGENDARY",
+      "content": "alexsmobs:skreecher",
+      "amount": {
+        "min": 1,
+        "max": 1
+      },
+      "unitWorth": 1000
+    },
+    "hunters_normal_obj_seagull": {
+      "type": "entity",
+      "timeMult": 3.0,
+      "rarity": "RARE",
+      "content": "alexsmobs:seagull",
+      "amount": {
+        "min": 1,
+        "max": 1
+      },
+      "unitWorth": 1000
+    },
+    "hunters_normal_obj_bison": {
+      "type": "entity",
+      "timeMult": 3.0,
+      "rarity": "RARE",
+      "content": "alexsmobs:bison",
+      "amount": {
+        "min": 1,
+        "max": 3
+      },
+      "unitWorth": 400
+    },
+    "hunters_normal_obj_foliaath": {
+      "type": "entity",
+      "timeMult": 3.0,
+      "rarity": "LEGENDARY",
+      "content": "mowziesmobs:foliaath",
+      "amount": {
+        "min": 1,
+        "max": 1
+      },
+      "unitWorth": 1000
+    },
+    "hunters_normal_obj_umvuthana": {
+      "type": "entity",
+      "timeMult": 3.0,
+      "rarity": "LEGENDARY",
+      "content": "mowziesmobs:umvuthana",
+      "amount": {
+        "min": 1,
+        "max": 1
+      },
+      "unitWorth": 1000
+    },
+    "hunters_normal_obj_zombie": {
+      "type": "entity",
+      "timeMult": 3.0,
+      "rarity": "COMMON",
+      "content": "minecraft:zombie",
+      "amount": {
+        "min": 5,
+        "max": 20
+      },
+      "unitWorth": 60
+    },
+    "hunters_normal_obj_husk": {
+      "type": "entity",
+      "timeMult": 3.0,
+      "rarity": "COMMON",
+      "content": "minecraft:husk",
+      "amount": {
+        "min": 5,
+        "max": 20
+      },
+      "unitWorth": 200
+    },
+    "hunters_normal_obj_drowned": {
+      "type": "entity",
+      "timeMult": 3.0,
+      "rarity": "COMMON",
+      "content": "minecraft:drowned",
+      "amount": {
+        "min": 5,
+        "max": 20
+      },
+      "unitWorth": 60
+    },
+    "hunters_normal_obj_skeleton": {
+      "type": "entity",
+      "timeMult": 3.0,
+      "rarity": "COMMON",
+      "content": "minecraft:skeleton",
+      "amount": {
+        "min": 5,
+        "max": 20
+      },
+      "unitWorth": 60
+    },
+    "hunters_normal_obj_wither_skeleton": {
+      "type": "entity",
+      "timeMult": 3.0,
+      "rarity": "RARE",
+      "content": "minecraft:wither_skeleton",
+      "amount": {
+        "min": 2,
+        "max": 5
+      },
+      "unitWorth": 300
+    },
+    "hunters_normal_obj_stray": {
+      "type": "entity",
+      "timeMult": 3.0,
+      "rarity": "COMMON",
+      "content": "minecraft:stray",
+      "amount": {
+        "min": 2,
+        "max": 5
+      },
+      "unitWorth": 300
+    },
+    "hunters_normal_obj_slime": {
+      "type": "entity",
+      "timeMult": 3.0,
+      "rarity": "COMMON",
+      "content": "minecraft:slime",
+      "amount": {
+        "min": 5,
+        "max": 20
+      },
+      "unitWorth": 60
+    },
+    "hunters_normal_obj_warden": {
+      "type": "entity",
+      "timeMult": 5.0,
+      "rarity": "RARE",
+      "content": "minecraft:warden",
+      "amount": {
+        "min": 1,
+        "max": 1
+      },
+      "unitWorth": 1000
+    },
+    "hunters_normal_obj_phantom": {
+      "type": "entity",
+      "timeMult": 3.0,
+      "rarity": "UNCOMMON",
+      "content": "minecraft:phantom",
+      "amount": {
+        "min": 1,
+        "max": 2
+      },
+      "unitWorth": 500
+    },
+    "hunters_normal_obj_ghast": {
+      "type": "entity",
+      "timeMult": 3.0,
+      "rarity": "RARE",
+      "content": "minecraft:ghast",
+      "amount": {
+        "min": 1,
+        "max": 3
+      },
+      "unitWorth": 300
+    },
+    "hunters_normal_obj_blaze": {
+      "type": "entity",
+      "timeMult": 3.0,
+      "rarity": "RARE",
+      "content": "minecraft:blaze",
+      "amount": {
+        "min": 3,
+        "max": 5
+      },
+      "unitWorth": 200
+    },
+    "hunters_normal_obj_enderman": {
+      "type": "entity",
+      "timeMult": 3.0,
+      "rarity": "RARE",
+      "content": "minecraft:enderman",
+      "amount": {
+        "min": 3,
+        "max": 5
+      },
+      "unitWorth": 200
+    },
+    "hunters_normal_obj_magma_cube": {
+      "type": "entity",
+      "timeMult": 3.0,
+      "rarity": "RARE",
+      "content": "minecraft:magma_cube",
+      "amount": {
+        "min": 5,
+        "max": 20
+      },
+      "unitWorth": 100
+    }
+  }
 }

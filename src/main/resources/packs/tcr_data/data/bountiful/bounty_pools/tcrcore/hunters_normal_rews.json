@@ -1,105 +1,144 @@
-
 {
-	"content": {
-
-		"hunters_normal_rews_coal": {
-			"type": "item",
-			"rarity": "COMMON",
-			"content": "minecraft:coal",
-			"amount": {
-				"min": 1,
-				"max": 128
-			},
-			"unitWorth": 9
-		},
-
-		"hunters_normal_rews_lapis_lazuli": {
-			"type": "item",
-			"rarity": "COMMON",
-			"content": "minecraft:lapis_lazuli",
-			"amount": {
-				"min": 1,
-				"max": 128
-			},
-			"unitWorth": 9
-		},
-
-		"hunters_normal_rews_copper_ingot": {
-			"type": "item",
-			"rarity": "COMMON",
-			"content": "minecraft:copper_ingot",
-			"amount": {
-				"min": 1,
-				"max": 32
-			},
-			"unitWorth": 20
-		},
-
-		"hunters_normal_rews_iron_ingot": {
-			"type": "item",
-			"rarity": "COMMON",
-			"content": "minecraft:iron_ingot",
-			"amount": {
-				"min": 1,
-				"max": 32
-			},
-			"unitWorth": 20
-		},
-
-		"hunters_normal_rews_gold_ingot": {
-			"type": "item",
-			"rarity": "COMMON",
-			"content": "minecraft:gold_ingot",
-			"amount": {
-				"min": 1,
-				"max": 32
-			},
-			"unitWorth": 30
-		},
-
-		"hunters_normal_rews_emerald": {
-			"type": "item",
-			"rarity": "COMMON",
-			"content": "minecraft:emerald",
-			"amount": {
-				"min": 1,
-				"max": 32
-			},
-			"unitWorth": 30
-		},
-
-		"hunters_normal_rews_diamond": {
-			"type": "item",
-			"rarity": "UNCOMMON",
-			"content": "minecraft:diamond",
-			"amount": {
-				"min": 3,
-				"max": 10
-			},
-			"unitWorth": 100
-		},
-
-		"hunters_normal_rews_ghast_tear": {
-			"type": "item",
-			"rarity": "UNCOMMON",
-			"content": "minecraft:ghast_tear",
-			"amount": {
-				"min": 3,
-				"max": 10
-			},
-			"unitWorth": 100
-		},
-
-        "hunters_normal_netherite_ingot": {
-          "type": "item",
-          "rarity": "RARE",
-          "content": "minecraft:netherite_ingot",
-          "amount": {
-            "min": 1,
-            "max": 2
-          },
-          "unitWorth": 500
-        }
-	}
-
+  "content": {
+    "hunters_normal_rews_coal": {
+      "type": "item",
+      "rarity": "COMMON",
+      "content": "minecraft:coal",
+      "amount": {
+        "min": 1,
+        "max": 128
+      },
+      "unitWorth": 10
+    },
+    "hunters_normal_rews_copper_ingot": {
+      "type": "item",
+      "rarity": "COMMON",
+      "content": "minecraft:copper_ingot",
+      "amount": {
+        "min": 1,
+        "max": 64
+      },
+      "unitWorth": 20
+    },
+    "hunters_normal_rews_iron_ingot": {
+      "type": "item",
+      "rarity": "COMMON",
+      "content": "minecraft:iron_ingot",
+      "amount": {
+        "min": 1,
+        "max": 64
+      },
+      "unitWorth": 20
+    },
+    "hunters_normal_rews_gold_ingot": {
+      "type": "item",
+      "rarity": "COMMON",
+      "content": "minecraft:gold_ingot",
+      "amount": {
+        "min": 1,
+        "max": 64
+      },
+      "unitWorth": 40
+    },
+    "hunters_normal_rews_emerald": {
+      "type": "item",
+      "rarity": "COMMON",
+      "content": "minecraft:emerald",
+      "amount": {
+        "min": 1,
+        "max": 64
+      },
+      "unitWorth": 40
+    },
+    "hunters_normal_rews_diamond": {
+      "type": "item",
+      "rarity": "UNCOMMON",
+      "content": "minecraft:diamond",
+      "amount": {
+        "min": 3,
+        "max": 20
+      },
+      "unitWorth": 100
+    },
+    "hunters_normal_rews_ghast_tear": {
+      "type": "item",
+      "rarity": "UNCOMMON",
+      "content": "minecraft:ghast_tear",
+      "amount": {
+        "min": 3,
+        "max": 10
+      },
+      "unitWorth": 200
+    },
+    "hunters_normal_netherite_ingot": {
+      "type": "item",
+      "rarity": "RARE",
+      "content": "minecraft:netherite_ingot",
+      "amount": {
+        "min": 1,
+        "max": 2
+      },
+      "unitWorth": 500
+    },
+    "hunters_normal_rews_frozen_bone": {
+      "type": "item",
+      "rarity": "RARE",
+      "content": "irons_spellbooks:frozen_bone",
+      "amount": {
+        "min": 3,
+        "max": 10
+      },
+      "unitWorth": 200
+    },
+    "hunters_normal_rews_lightning_bottle": {
+      "type": "item",
+      "rarity": "RARE",
+      "content": "irons_spellbooks:lightning_bottle",
+      "amount": {
+        "min": 3,
+        "max": 10
+      },
+      "unitWorth": 200
+    },
+    "hunters_normal_rews_divine_pearl": {
+      "type": "item",
+      "rarity": "RARE",
+      "content": "irons_spellbooks:divine_pearl",
+      "amount": {
+        "min": 3,
+        "max": 10
+      },
+      "unitWorth": 200
+    },
+    "hunters_normal_rews_blood_vial": {
+      "type": "item",
+      "rarity": "RARE",
+      "content": "irons_spellbooks:blood_vial",
+      "amount": {
+        "min": 3,
+        "max": 10
+      },
+      "unitWorth": 200
+    },
+    "hunters_normal_rews_bloody_vellum": {
+      "type": "item",
+      "rarity": "RARE",
+      "content": "irons_spellbooks:bloody_vellum",
+      "amount": {
+        "min": 3,
+        "max": 10
+      },
+      "unitWorth": 200
+    },
+    "hunters_normal_rews_firefly_jar": {
+      "type": "item",
+      "rarity": "RARE",
+      "content": "irons_spellbooks:firefly_jar",
+      "amount": {
+        "min": 3,
+        "max": 10
+      },
+      "unitWorth": 200
+    }
+  }
 }

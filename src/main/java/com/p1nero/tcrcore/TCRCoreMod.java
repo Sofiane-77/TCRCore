@@ -2,6 +2,7 @@ package com.p1nero.tcrcore;
 
 import artifacts.registry.ModItems;
 import com.aetherteam.aether.entity.AetherEntityTypes;
+import com.bobmowzie.mowziesmobs.server.entity.EntityHandler;
 import com.brass_amber.ba_bt.init.BTEntityType;
 import com.github.L_Ender.cataclysm.init.ModEntities;
 import com.mojang.logging.LogUtils;
@@ -106,6 +107,7 @@ public class TCRCoreMod {
             LivingEntityEventListeners.illegalEntityTypes.addAll(List.of(
                     BTEntityType.BT_CULTIST.get(),
                     AetherEntityTypes.FIRE_MINION.get(),
+                    EntityHandler.NAGA.get(),
                     ModEntities.URCHINKIN.get(),
                     ModEntities.KOBOLETON.get(),
                     ModEntities.ELITE_DRAUGR.get(),

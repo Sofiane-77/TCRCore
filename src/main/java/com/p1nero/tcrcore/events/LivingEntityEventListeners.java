@@ -29,6 +29,7 @@ import com.hm.efn.registries.EFNMobEffectRegistry;
 import com.nameless.indestructible.world.capability.AdvancedCustomHumanoidMobPatch;
 import com.p1nero.battle_field1.PBF1Mod;
 import com.p1nero.battle_field1.worldgen.PBF1Dimensions;
+import com.p1nero.bountiful_npc.villager.BountifulVillagers;
 import com.p1nero.cataclysm_dimension.worldgen.CataclysmDimensions;
 import com.p1nero.entityrespawner.EntityRespawnerMod;
 import com.p1nero.entityrespawner.entity.SoulEntity;
@@ -105,6 +106,7 @@ import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.monster.piglin.AbstractPiglin;
 import net.minecraft.world.entity.monster.piglin.PiglinBrute;
+import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -868,6 +870,11 @@ public class LivingEntityEventListeners {
                     }
                     event.setCanceled(true);
                 }
+            }
+            //保护冒险家接待员不被除了玩家的怪打死
+        } else if(event.getEntity() instanceof Villager villager) {
+            if(villager.getVillagerData().getProfession().equals(BountifulVillagers.RECEPTIONIST.get()) && !(event.getSource().getEntity() instanceof Player)) {
+                event.setCanceled(true);
             }
         }
 
