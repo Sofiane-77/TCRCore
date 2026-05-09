@@ -62,6 +62,7 @@ import com.p1nero.tcrcore.item.custom.DragonFluteItem;
 import com.p1nero.tcrcore.save_data.TCRDimSaveData;
 import com.p1nero.tcrcore.save_data.TCRMainLevelSaveData;
 import com.p1nero.tcrcore.utils.EntityUtils;
+import com.p1nero.tcrcore.utils.FTBTeamUtils;
 import com.p1nero.tcrcore.utils.ItemUtils;
 import com.p1nero.tcrcore.utils.WorldUtils;
 import com.p1nero.tcrcore.worldgen.TCRDimensions;
@@ -126,6 +127,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.shelmarow.combat_evolution.ai.iml.ILivingEntityData;
 import net.shelmarow.combat_evolution.ai.util.CEPatchUtils;
+import org.jetbrains.annotations.Nullable;
 import org.merlin204.leonidas.entity.LeonidasEntity;
 import org.merlin204.wraithon.entity.wraithon.WraithonEntity;
 import org.merlin204.wraithon.worldgen.WraithonDimensions;
@@ -147,6 +149,7 @@ import yesman.epicfight.world.damagesource.StunType;
 import yesman.epicfight.world.effect.EpicFightMobEffects;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 @Mod.EventBusSubscriber(modid = TCRCoreMod.MOD_ID)
 public class LivingEntityEventListeners {
@@ -231,7 +234,7 @@ public class LivingEntityEventListeners {
                     player.displayClientMessage(TCRCoreMod.getInfo("creative_may_lost_progress").withStyle(ChatFormatting.RED), false);
                     return;
                 }
-
+                player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE), SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextInt()));
                 //击败祭坛内的boss
                 if (livingEntity instanceof Scylla_Entity) {
                     if (!PlayerDataManager.stormEyeKilled.get(player)) {
@@ -256,8 +259,7 @@ public class LivingEntityEventListeners {
                     ItemUtils.addItemEntity(player, Items.ECHO_SHARD, 6, ChatFormatting.GOLD.getColor().intValue());
                 } else if (livingEntity instanceof Maledictus_Entity) {
                     if (!PlayerDataManager.cursedEyeKilled.get(player)) {
-                        givePlayerAward(player, 2);
-                        ItemUtils.addItemEntity(livingEntity, TCRItems.DUAL_BOKKEN.get(), 1, ChatFormatting.LIGHT_PURPLE.getColor());
+                        givePlayerAward(player, 2, TCRItems.DUAL_BOKKEN.get());
                         PlayerDataManager.cursedEyeKilled.put(player, true);
                         TCRQuests.KILL_CURSED_EYE.finish(player, true);
                     }
@@ -297,24 +299,24 @@ public class LivingEntityEventListeners {
                 else if (livingEntity instanceof LandGolem) {
                     //有任务才会掉
                     if (TCRQuestManager.hasQuest(player, TCRQuests.GET_DESERT_EYE)) {
-                        givePlayerAward(player, 1);
-                        if(TCRMainLevelSaveData.get(player.serverLevel()).isHardDifficulty()) {
-                            ItemUtils.addItemEntity(player, TCRItems.ARTIFACT_TICKET.get(), 1);
-                        }
+                        givePlayerAward(player, 1, serverPlayer -> {
+                            if(TCRMainLevelSaveData.get(serverPlayer.serverLevel()).isHardDifficulty()) {
+                                ItemUtils.addItemEntity(serverPlayer, TCRItems.ARTIFACT_TICKET.get(), 1);
+                            }
+                        });
                         ItemUtils.addItemEntity(player, ModItems.DESERT_EYE.get(), 1, ChatFormatting.YELLOW.getColor().intValue());
-                        player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE), SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextInt()));
                     }
                     ItemUtils.addItemEntity(player, ItemRegistry.FIREFLY_JAR_ITEM.get(), 3, ChatFormatting.YELLOW.getColor().intValue());
                     ItemUtils.addItemEntity(player, ItemRegistry.SHRIVING_STONE.get(), 1, ChatFormatting.YELLOW.getColor().intValue());
                 } else if (livingEntity instanceof OceanGolem) {
                     if (TCRQuestManager.hasQuest(player, TCRQuests.GET_OCEAN_EYE)) {
-                        givePlayerAward(player, 1);
-                        if(TCRMainLevelSaveData.get(player.serverLevel()).isHardDifficulty()) {
-                            ItemUtils.addItemEntity(player, Items.NAUTILUS_SHELL, 6);
-                        }
+                        givePlayerAward(player, 1, serverPlayer -> {
+                            if(TCRMainLevelSaveData.get(serverPlayer.serverLevel()).isHardDifficulty()) {
+                                ItemUtils.addItemEntity(serverPlayer, Items.NAUTILUS_SHELL, 6);
+                            }
+                        });
                         ItemUtils.addItemEntity(player, ModItems.ABYSS_EYE.get(), 1, ChatFormatting.BLUE.getColor().intValue());
                         ItemUtils.addItemEntity(player, ItemRegistry.ICY_FANG.get(), 1, ChatFormatting.BLUE.getColor().intValue());
-                        player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE), SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextInt()));
                     }
                     ItemUtils.addItemEntity(player, Items.HEART_OF_THE_SEA, 1, ChatFormatting.AQUA.getColor().intValue());
                 } else if (livingEntity instanceof LeonidasEntity) {
@@ -322,16 +324,15 @@ public class LivingEntityEventListeners {
                         givePlayerAward(player, 1);
                         ItemUtils.addItemEntity(player, ModItems.CURSED_EYE.get(), 1, ChatFormatting.DARK_GREEN.getColor().intValue());
                         ItemUtils.addItemEntity(player, TCRItems.NECROMANCY_SCROLL.get(), 1, ChatFormatting.DARK_GREEN.getColor().intValue());
-                        player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE), SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextInt()));
                     }
                 } else if (livingEntity instanceof CoreGolem) {
                     if (TCRQuestManager.hasQuest(player, TCRQuests.GET_FLAME_EYE)) {
-                        givePlayerAward(player, 1);
-                        if(TCRMainLevelSaveData.get(player.serverLevel()).isHardDifficulty()) {
-                            ItemUtils.addItemEntity(player, UAItems.SUN_STONE.get(), 1);
-                        }
+                        givePlayerAward(player, 1, serverPlayer -> {
+                            if(TCRMainLevelSaveData.get(serverPlayer.serverLevel()).isHardDifficulty()) {
+                                ItemUtils.addItemEntity(serverPlayer, UAItems.SUN_STONE.get(), 1);
+                            }
+                        });
                         ItemUtils.addItemEntity(player, ModItems.FLAME_EYE.get(), 1, ChatFormatting.RED.getColor().intValue());
-                        player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE), SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextInt()));
                     }
                     ItemUtils.addItemEntity(player, EFNItem.DUSKFIRE_INGOT.get(), 1, ChatFormatting.RED.getColor().intValue());
                     ItemUtils.addItemEntity(player, ItemRegistry.CINDER_ESSENCE.get(), 1, ChatFormatting.RED.getColor().intValue());
@@ -351,23 +352,23 @@ public class LivingEntityEventListeners {
                     }
                 } else if (livingEntity instanceof NetherGolem) {
                     if (TCRQuestManager.hasQuest(player, TCRQuests.GET_MONST_EYE)) {
-                        givePlayerAward(player, 1);
-                        if(TCRMainLevelSaveData.get(player.serverLevel()).isHardDifficulty()) {
-                            ItemUtils.addItemEntity(player, Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, 1, ChatFormatting.DARK_RED.getColor().intValue());
-                        }
+                        givePlayerAward(player, 1, serverPlayer -> {
+                            if(TCRMainLevelSaveData.get(player.serverLevel()).isHardDifficulty()) {
+                                ItemUtils.addItemEntity(player, Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE, 1, ChatFormatting.DARK_RED.getColor().intValue());
+                            }
+                        });
                         ItemUtils.addItemEntity(player, ModItems.MONSTROUS_EYE.get(), 1, ChatFormatting.DARK_RED.getColor().intValue());
-                        player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE), SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextInt()));
                     }
                     ItemUtils.addItemEntity(player, EFNItem.DUSKFIRE_INGOT.get(), 1, ChatFormatting.RED.getColor().intValue());
                 } else if (livingEntity instanceof WitherBoss) {
                     if (TCRQuestManager.hasQuest(player, TCRQuests.GET_WITHER_EYE)) {
-                        givePlayerAward(player, 1);
-                        if(TCRMainLevelSaveData.get(player.serverLevel()).isHardDifficulty()) {
-                            ItemUtils.addItemEntity(player, Items.WITHER_ROSE, 3, ChatFormatting.DARK_RED.getColor().intValue());
-                        }
+                        givePlayerAward(player, 1, serverPlayer -> {
+                            if(TCRMainLevelSaveData.get(serverPlayer.serverLevel()).isHardDifficulty()) {
+                                ItemUtils.addItemEntity(serverPlayer, Items.WITHER_ROSE, 3, ChatFormatting.DARK_RED.getColor().intValue());
+                            }
+                            ItemUtils.addItemEntity(serverPlayer, TCRItems.WITHER_SOUL_STONE.get(), 1, ChatFormatting.GOLD.getColor().intValue());
+                        });
                         ItemUtils.addItemEntity(player, ModItems.MECH_EYE.get(), 1, ChatFormatting.GOLD.getColor().intValue());
-                        ItemUtils.addItemEntity(player, TCRItems.WITHER_SOUL_STONE.get(), 1, ChatFormatting.GOLD.getColor().intValue());
-                        player.connection.send(new ClientboundSoundPacket(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.UI_TOAST_CHALLENGE_COMPLETE), SoundSource.PLAYERS, player.getX(), player.getY(), player.getZ(), 1.0F, 1.0F, player.getRandom().nextInt()));
                     }
                     ItemUtils.addItemEntity(player, Items.WITHER_ROSE, 1, ChatFormatting.DARK_RED.getColor().intValue());
                 } else if (livingEntity instanceof ValkyrieQueenEntity) {
@@ -386,10 +387,11 @@ public class LivingEntityEventListeners {
                     }
                 } else if (livingEntity instanceof SkyGolem) {
                     if (TCRQuestManager.hasQuest(player, TCRQuests.GET_STORM_EYE)) {
-                        givePlayerAward(player, 1);
-                        if(TCRMainLevelSaveData.get(player.serverLevel()).isHardDifficulty()) {
-                            ItemUtils.addItemEntity(player, TCRItems.RARE_ARTIFACT_TICKET.get(), 1);
-                        }
+                        givePlayerAward(player, 1, serverPlayer -> {
+                            if(TCRMainLevelSaveData.get(serverPlayer.serverLevel()).isHardDifficulty()) {
+                                ItemUtils.addItemEntity(serverPlayer, TCRItems.RARE_ARTIFACT_TICKET.get(), 1);
+                            }
+                        });
                         FakeSkyGolem fakeSkyGolem = new FakeSkyGolem(player);
                         fakeSkyGolem.setPos(player.position());
                         fakeSkyGolem.setGlowingTag(true);
@@ -400,15 +402,18 @@ public class LivingEntityEventListeners {
                     ItemUtils.addItemEntity(player, ItemRegistry.SHRIVING_STONE.get(), 1, ChatFormatting.GOLD.getColor().intValue());
                 } else if (livingEntity instanceof EndGolem) {
                     if (TCRQuestManager.hasQuest(player, TCRQuests.GET_VOID_EYE)) {
-                        givePlayerAward(player, 2);
-                        if(TCRMainLevelSaveData.get(player.serverLevel()).isHardDifficulty()) {
-                            ItemUtils.addItemEntity(player, UAItems.HERO_EMBLEM.get(), 1);
-                        }
+                        givePlayerAward(player, 2, serverPlayer -> {
+                            if(TCRMainLevelSaveData.get(serverPlayer.serverLevel()).isHardDifficulty()) {
+                                ItemUtils.addItemEntity(serverPlayer, UAItems.HERO_EMBLEM.get(), 1);
+                            }
+                        });
                         FakeEndGolem fakeEndGolem = new FakeEndGolem(player);
                         fakeEndGolem.setPos(player.position().add(0, 3, 0));
                         fakeEndGolem.setGlowingTag(true);
                         player.serverLevel().addFreshEntity(fakeEndGolem);
                     }
+
+                //灾变娘奖励
                 } else if (livingEntity instanceof ScyllaHumanoid) {
                     if (!PlayerDataManager.scyllaHumanoidKilled.get(player)) {
                         givePlayerAward(player, 3);
@@ -721,15 +726,32 @@ public class LivingEntityEventListeners {
     }
 
     public static void givePlayerAward(ServerPlayer player, int count) {
+        givePlayerAward(player, count, serverPlayer -> {});
+    }
+
+    public static void givePlayerAward(ServerPlayer player, int count, Item item) {
+        givePlayerAward(player, count, serverPlayer -> {
+            ItemUtils.addItemEntity(serverPlayer, item, 1, ChatFormatting.GOLD.getColor());
+        });
+    }
+
+    public static void givePlayerAward(ServerPlayer player, int count, @Nullable Consumer<ServerPlayer> anotherAward) {
         if(TCRMainLevelSaveData.get(player.serverLevel()).isHardDifficulty()) {
             count += 1;
         }
-        ItemUtils.addItemEntity(player, EpicSkillsItems.ABILIITY_STONE.get(), count, ChatFormatting.YELLOW.getColor().intValue());
-        if (count > 2) {
-            ItemUtils.addItemEntity(player, TCRItems.RARE_ARTIFACT_TICKET.get(), 1, ChatFormatting.YELLOW.getColor().intValue());
-        } else {
-            ItemUtils.addItemEntity(player, TCRItems.ARTIFACT_TICKET.get(), 1, ChatFormatting.YELLOW.getColor().intValue());
-        }
+        final int finalCount = count;
+        FTBTeamUtils.onlineTeamMembersDoWithSelf(player, member -> {
+
+            ItemUtils.addItemEntity(member, EpicSkillsItems.ABILIITY_STONE.get(), finalCount, ChatFormatting.YELLOW.getColor().intValue());
+            if (finalCount > 2) {
+                ItemUtils.addItemEntity(member, TCRItems.RARE_ARTIFACT_TICKET.get(), 1, ChatFormatting.YELLOW.getColor().intValue());
+            } else {
+                ItemUtils.addItemEntity(member, TCRItems.ARTIFACT_TICKET.get(), 1, ChatFormatting.YELLOW.getColor().intValue());
+            }
+            if(anotherAward != null) {
+                anotherAward.accept(member);
+            }
+        });
     }
 
     @SubscribeEvent
